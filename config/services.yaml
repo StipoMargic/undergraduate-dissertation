@@ -1,0 +1,71 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Infrastructure\UI\HTTP\Web\v1\Endpoint\:
+        resource: '../src/Infrastructure/UI/HTTP/Web/v1/Endpoint/*'
+        tags: ['controller.service_arguments']
+
+    App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\:
+        resource: '../src/Infrastructure/UI/HTTP/Web/v1/ApiResponder/*'
+
+    # Application services - Command & Query handlers and Bus configuration
+    App\Application\Service\:
+        resource: '../src/Application/Service/*'
+        exclude: '../src/Application/Service/{CommandHandler}'
+
+    App\Infrastructure\Service\:
+      resource: '../src/Infrastructure/Service/*'
+      exclude: '../src/Infrastructure/Service/{QueryHandler}'
+
+    App\Application\Service\CommandHandler\:
+        resource: '../src/Application/Service/CommandHandler/*'
+        autoconfigure: false
+        tags:
+            - { name: messenger.message_handler, bus: command.bus }
+
+    App\Infrastructure\Service\QueryHandler\:
+        resource: '../src/Infrastructure/Service/QueryHandler/*'
+        autoconfigure: false
+        tags:
+            - { name: messenger.message_handler, bus: query.bus }
+
+    App\Application\Service\Bus\QueryBus:
+        alias: App\Infrastructure\Service\Bus\MessengerQueryBus
+
+    App\Application\Service\Bus\CommandBus:
+        alias: App\Infrastructure\Service\Bus\MessengerCommandBus
+
+    # Buses
+    App\Infrastructure\Service\Bus\:
+        resource: '../src/Infrastructure/Service/Bus/*'
+
+    App\Infrastructure\UI\Console\:
+        resource: '../src/Infrastructure/UI/Console/*'
+
+    App\Infrastructure\ParamConverter\UuidConverter: ~
+
+    # Repositories
+    App\Infrastructure\Persistence\Doctrine\Repository\:
+        resource: '../src/Infrastructure/Persistence/Doctrine/Repository/*'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+
+    App\Application\User\UserRepository\UserReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineUserReadRepository'
+    App\Application\User\UserRepository\UserWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineUserWriteRepository'

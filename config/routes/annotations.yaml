@@ -1,0 +1,3 @@
+web_v1:
+    resource: ../../src/Infrastructure/UI/HTTP/Web/v1/
+    type: annotation

@@ -1,0 +1,43 @@
+info:
+  title: example api
+  version: '1'
+  contact:
+    name: me
+    url: some-url.com
+    email: me@some.com
+tags:
+  -
+    name: someTag
+paths:
+  /books:
+    get:
+      operationId: getBooks
+      description: get list of books
+      tags:
+        - someTag
+      responses:
+        '200':
+          description: Fetch list of books
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - name
+                properties:
+                  name:
+                    type: string
+                    nullable: false
+                    example: "Vulcan lives"
+                  tag:
+                    type: string
+                    example: "foo"
+            application/xml:
+              schema:
+                type: object
+                required:
+                  - count
+                properties:
+                  count:
+                    type: integer
+openapi: 3.0.0

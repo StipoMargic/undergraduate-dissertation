@@ -1,0 +1,24 @@
+<?php //%255BApp%255CInfrastructure%255CUI%255CHTTP%255CWeb%255Cv1%255CModel%255CTest%255CTestReadModel%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Undabot\\SymfonyJsonApi\\Service\\Resource\\Validation\\Constraint\\ResourceType'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Undabot\\SymfonyJsonApi\\Service\\Resource\\Validation\\Constraint\\ResourceType')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'type' => [
+                'test',
+            ],
+            'groups' => [
+                [
+                    'Default',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

@@ -1,0 +1,74 @@
+<?php //%255BApp%255CDomain%255CBar%255CBar%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\AssignedGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\AssignedGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Domain\\Bar\\Bar',
+            ],
+            'namespace' => [
+                'App\\Domain\\Bar',
+            ],
+            'rootEntityName' => [
+                'App\\Domain\\Bar\\Bar',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'uuid',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => true,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'foo' => [
+                        'fieldName' => 'foo',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'foo',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'foo' => 'foo',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'foo' => 'foo',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'bar',
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

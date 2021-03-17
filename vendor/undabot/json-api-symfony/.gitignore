@@ -1,0 +1,8 @@
+/vendor/
+/.idea
+/.php_cs
+/.php_cs.cache
+/phpunit.xml
+/ci_key*
+/tests/_reports
+.phpunit.result.cache
