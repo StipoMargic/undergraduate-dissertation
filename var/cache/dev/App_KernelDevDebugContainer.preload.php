@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/Container2r31V4M/App_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerSRhL0Yv/App_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -209,7 +209,9 @@ $classes[] = 'Symfony\Component\Mailer\Transport\SendmailTransportFactory';
 $classes[] = 'Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory';
 $classes[] = 'Symfony\Component\Messenger\MessageBus';
 $classes[] = 'Symfony\Component\Messenger\EventListener\AddErrorDetailsStampListener';
+$classes[] = 'Symfony\Component\Messenger\EventListener\DispatchPcntlSignalListener';
 $classes[] = 'Symfony\Component\Messenger\EventListener\StopWorkerOnRestartSignalListener';
+$classes[] = 'Symfony\Component\Messenger\EventListener\StopWorkerOnSigtermSignalListener';
 $classes[] = 'Symfony\Component\Messenger\Middleware\DispatchAfterCurrentBusMiddleware';
 $classes[] = 'Symfony\Component\Messenger\Middleware\FailedMessageProcessingMiddleware';
 $classes[] = 'Symfony\Component\Messenger\Middleware\RejectRedeliveredMessageMiddleware';
