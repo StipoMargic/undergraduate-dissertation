@@ -9,7 +9,7 @@ security:
     app_user_provider:
       entity:
         class: App\Domain\User\User
-        property: username
+        property: email
   firewalls:
     login:
       pattern: ^/api/login

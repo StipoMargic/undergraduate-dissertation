@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Runner\Exception;
 use Ramsey\Uuid\UuidInterface;
 
+
 class DoctrineUserReadRepository extends ServiceEntityRepository implements UserReadRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -22,8 +23,7 @@ class DoctrineUserReadRepository extends ServiceEntityRepository implements User
     public function get(UuidInterface $id): ?User
     {
         try {
-            /** @var User|null $entity
-             */
+            /** @var User|null $entity */
             $entity = $this->find((string) $id);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
@@ -34,6 +34,25 @@ class DoctrineUserReadRepository extends ServiceEntityRepository implements User
 
     public function getByUsername(string $username): ?User
     {
-        return $this->_em->getRepository(User::class)->findOneBy(['username' => $username]);
+        try {
+            /** @var User|null $entity */
+            $entity = $this->_em->getRepository(User::class)->findOneBy(['username' => $username]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return $entity;
+    }
+
+    public function get0ByEmail(string $email): ?User
+    {
+        try {
+            /** @var User|null $entity */
+            $entity = $this->_em->getRepository(User::class)->findOneBy(['email' => $email]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return $entity;
     }
 }
