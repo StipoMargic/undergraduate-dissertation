@@ -44,7 +44,7 @@ class DoctrineUserReadRepository extends ServiceEntityRepository implements User
         return $entity;
     }
 
-    public function get0ByEmail(string $email): ?User
+    public function getByEmail(string $email): ?User
     {
         try {
             /** @var User|null $entity */

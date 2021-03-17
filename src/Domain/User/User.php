@@ -28,7 +28,7 @@ class User implements UserInterface
     private UuidInterface $id;
 
     /**
-     * @ORM\Column(name="username", type="string")
+     * @ORM\Column(name="username", type="string", unique=true)
      */
     private string $username;
 

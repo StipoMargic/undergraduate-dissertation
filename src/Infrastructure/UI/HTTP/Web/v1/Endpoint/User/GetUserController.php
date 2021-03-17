@@ -1,0 +1,26 @@
+<?php /** @noinspection PhpDocSignatureInspection */
+
+declare(strict_types = 1);
+
+namespace App\Infrastructure\UI\HTTP\Web\v1\Endpoint\User;
+
+
+use App\Application\User\UserRepository\UserReadRepository;
+use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
+use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceResponse;
+
+class GetUserController
+{
+    /**  @Route("/api/v1/user/{id}", name="api_v1_get_user", methods={"GET"}) */
+    public function get(
+        UuidInterface $id,
+        UserReadRepository $repository,
+        ResourceResponder $responder
+    ): ResourceResponse {
+        $user = $repository->get($id);
+
+        return $responder->resource($user);
+    }
+}
