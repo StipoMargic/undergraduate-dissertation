@@ -9,8 +9,6 @@ return [
     false, // $matchHost
     [ // $staticRoutes
         '/api/login_check' => [[['_route' => 'api_login_check', '_controller' => 'App\\Infrastructure\\UI\\HTTP\\Web\\v1\\Endpoint\\User\\Login::getTokenUser'], null, ['POST' => 0], null, false, false, null]],
-        '/register' => [[['_route' => 'register', '_controller' => 'App\\Infrastructure\\UI\\HTTP\\Web\\v1\\Endpoint\\User\\Login::register'], null, null, null, false, false, null]],
-        '/api/test' => [[['_route' => 'test', '_controller' => 'App\\Infrastructure\\UI\\HTTP\\Web\\v1\\Endpoint\\User\\Login::test'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

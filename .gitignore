@@ -12,8 +12,6 @@
 # Email spool folder
 /app/spool/*
 
-/var
-
 # Cache, session files and logs (Symfony3)
 /var/cache/*
 /var/logs/*
