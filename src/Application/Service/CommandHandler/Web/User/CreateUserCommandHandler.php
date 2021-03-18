@@ -8,33 +8,31 @@ namespace App\Application\Service\CommandHandler\Web\User;
 use App\Application\Command\Web\User\CreateUserCommand;
 use App\Application\User\UserRepository\UserReadRepository;
 use App\Application\User\UserRepository\UserWriteRepository;
+use App\Domain\User\Exception\NotValidRoleException;
 use App\Domain\User\Exception\UserAlreadyExistException;
 use App\Domain\User\User;
-use App\Infrastructure\UI\HTTP\Web\v1\Model\User\UserWriteModel;
+use App\Infrastructure\Image\Upload\ImageUploader;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 final class CreateUserCommandHandler
 {
-    public UserWriteRepository $userWriteRepository;
-    public UserReadRepository $userReadRepository;
-    public UserPasswordEncoderInterface $encoder;
-
     public function __construct(
-        UserWriteRepository $userWriteRepository,
-        UserReadRepository $userReadRepository,
-        UserPasswordEncoderInterface $encoder
+        public UserWriteRepository $userWriteRepository,
+        public UserReadRepository $userReadRepository,
+        public UserPasswordEncoderInterface $encoder,
+        public ImageUploader $imageUploader
     ) {
-        $this->userWriteRepository = $userWriteRepository;
-        $this->userReadRepository = $userReadRepository;
-        $this->encoder = $encoder;
     }
 
 
     public function __invoke(CreateUserCommand $command)
     {
-        if ($this->userReadRepository->getByEmail($command->email)){
+        if ($this->userReadRepository->getByEmail($command->email)) {
             throw UserAlreadyExistException::withEmail($command->email);
+        }
+        if (!in_array($command->role, User::ALLOWED_API_ROLES)) {
+            throw NotValidRoleException::withRole($command->role);
         }
 
         $user = new User(
@@ -43,7 +41,7 @@ final class CreateUserCommandHandler
             $command->email,
             $command->password,
             $command->role,
-            null,
+            null === $command->avatar ? null : $this->makeAvatar($command->avatar),
             null,
             null
         );
@@ -56,5 +54,12 @@ final class CreateUserCommandHandler
     private function encodePassword(User $user, string $password): string
     {
         return $this->encoder->encodePassword($user, $password);
+    }
+
+    private function makeAvatar(string $avatar): string
+    {
+        $image = $this->imageUploader->convert($avatar);
+
+        return $this->imageUploader->upload($image, 'avatar');
     }
 }

@@ -28,12 +28,16 @@ class UserWriteModel implements ApiModel
     /** @Attribute */
     public string $password;
 
-    public function __construct(string $id, string $username, string $email, string $role, string $password)
+    /** @Attribute */
+    public ?string $avatar;
+
+    public function __construct(string $id, string $username, string $email, string $role, string $password, ?string $avatar)
     {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
         $this->role = $role;
         $this->password = $password;
+        $this->avatar = $avatar;
     }
 }

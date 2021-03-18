@@ -69,3 +69,9 @@ services:
 
     App\Application\User\UserRepository\UserReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineUserReadRepository'
     App\Application\User\UserRepository\UserWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineUserWriteRepository'
+
+    # Additional config
+
+    App\Infrastructure\Image\Upload\ImageUploader:
+        arguments:
+            $targetDirectory: "%kernel.project_dir%/public/images/"
