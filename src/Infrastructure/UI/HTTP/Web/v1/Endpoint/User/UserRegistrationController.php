@@ -16,7 +16,7 @@ use Undabot\JsonApi\Definition\Model\Request\CreateResourceRequestInterface;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceCreatedResponse;
 use Undabot\SymfonyJsonApi\Http\Service\SimpleResourceHandler;
 
-class UserRegistrationController
+final class UserRegistrationController
 {
     /** @Route("/api/register", name="api_v1_register", methods={"POST"}) */
     public function create(

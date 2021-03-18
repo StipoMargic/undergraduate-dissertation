@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Undabot\JsonApi\Definition\Model\Request\GetResourceCollectionRequestInterface;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceCollectionResponse;
 
-class ListUserController
+final class ListUserController
 {
     /**
      * @Route("/api/v1/users", name="web.v1.user.list", methods={"GET"})

@@ -243,4 +243,9 @@ final class User implements UserInterface
     {
     }
 
+    public function delete()
+    {
+        $this->setDeletedAt(new \DateTimeImmutable());
+        $this->verified = false;
+    }
 }
