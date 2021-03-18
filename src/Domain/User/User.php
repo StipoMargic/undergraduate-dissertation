@@ -6,7 +6,6 @@ namespace App\Domain\User;
 
 
 use App\Application\User\VerificationToken;
-use App\Domain\Common\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,11 +14,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User implements UserInterface
+final class User implements UserInterface
 {
     public const ROLE_ADMIN = "ROLE_ADMIN";
     public const ROLE_USER = "ROLE_USER";
     public const ROLE_EMPLOYER = "ROLE_EMPLOYER";
+    public const ALLOWED_API_ROLES = [self::ROLE_EMPLOYER, self::ROLE_USER];
 
     /**
      * @ORM\Id

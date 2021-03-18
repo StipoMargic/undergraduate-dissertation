@@ -11,7 +11,7 @@ class UserAlreadyExistException extends \Exception
 {
     #[Pure] public static function withEmail(string $email): self
     {
-        $message = sprintf("User with %s already exist!");
+        $message = sprintf("User with email %s already exist!", $email);
 
         return  new self($message, 400);
     }

@@ -87,7 +87,7 @@ class UserReadModel implements ApiModel
             $user->getRoles(),
             $user->isVerified(),
             null === $user->getToken() ? null : $user->getToken(),
-            null === $user->getAvatar() ? null : $user->getAvatar(),
+            null === $user->getAvatar() ? null : '/images/avatar/' . $user->getAvatar(),
             null === $user->getAddress() ? null : $user->getAddress(),
             null === $user->getCity() ? null : $user->getCity(),
             $user->getCreatedAt()->format('Y-m-d H:i:s'),
