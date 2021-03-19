@@ -9,6 +9,7 @@ use App\Domain\Test\Test;
 use App\Domain\User\User;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\Bar\BarReadModel;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\Test\TestReadModel;
+use App\Infrastructure\UI\HTTP\Web\v1\Model\User\UserReadModel;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\User\UserUpdateModel;
 use Undabot\SymfonyJsonApi\Http\Service\Responder\AbstractResponder;
 
@@ -20,7 +21,7 @@ class ResourceResponder extends AbstractResponder
     protected function getMap(): array
     {
         return [
-            User::class => [UserUpdateModel::class, 'fromEntity'],
+            User::class => [UserReadModel::class, 'fromEntity'],
         ];
     }
 }

@@ -72,6 +72,10 @@ services:
 
   # Additional config
 
+  App\Infrastructure\Security\Voter\:
+    resource: '../src/Infrastructure/Security/Voter/*'
+    tags: [ 'security.voter' ]
+
   App\Infrastructure\Image\Upload\ImageUploader:
     arguments:
       $targetDirectory: "%kernel.project_dir%/public/images/"

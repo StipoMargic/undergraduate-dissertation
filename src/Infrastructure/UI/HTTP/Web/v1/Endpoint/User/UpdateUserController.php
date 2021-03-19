@@ -21,7 +21,7 @@ use Undabot\SymfonyJsonApi\Service\Resource\Factory\ResourceFactory;
 
 final class UpdateUserController
 {
-    /** @Route("/api/users/{id}", name="api_v1_users_update", methods={"PUT"} */
+    /** @Route("/api/users/{id}", name="api_v1_users_update", methods={"PUT"})  */
     public function update(
         UuidInterface $id,
         UpdateResourceRequestInterface $request,
