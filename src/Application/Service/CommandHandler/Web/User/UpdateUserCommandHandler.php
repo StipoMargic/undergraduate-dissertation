@@ -5,44 +5,44 @@ declare(strict_types = 1);
 namespace App\Application\Service\CommandHandler\Web\User;
 
 
-use App\Application\Command\Web\User\CreateUserCommand;
+use App\Application\Command\Web\User\UpdateUserCommand;
 use App\Application\User\UserRepository\UserReadRepository;
 use App\Application\User\UserRepository\UserWriteRepository;
-use App\Domain\User\Exception\NotValidRoleException;
-use App\Domain\User\Exception\UserAlreadyExistException;
+use App\Domain\User\Exception\UserNotFoundException;
 use App\Domain\User\User;
 use App\Infrastructure\Image\Upload\ImageUploader;
+use phpDocumentor\Reflection\Types\This;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-final class CreateUserCommandHandler
+class UpdateUserCommandHandler
 {
     public function __construct(
-        public UserWriteRepository $userWriteRepository,
         public UserReadRepository $userReadRepository,
         public UserPasswordEncoderInterface $encoder,
-        public ImageUploader $imageUploader
+        public ImageUploader $imageUploader,
+        public UserWriteRepository $userWriteRepository
     ) {
     }
 
-
-    public function __invoke(CreateUserCommand $command)
+    public function __invoke(UpdateUserCommand $command): void
     {
-        if ($this->userReadRepository->getByEmail($command->email)) throw UserAlreadyExistException::withEmail($command->email);
-        if (!in_array($command->role, User::ALLOWED_API_ROLES)) throw NotValidRoleException::withRole($command->role);
+        $user = $this->userReadRepository->get(Uuid::fromString($command->id));
 
-        $user = new User(
-            Uuid::fromString($command->id),
-            $command->username,
-            $command->email,
-            $command->password,
-            $command->role,
+        if (!$user) {
+            throw UserNotFoundException::withEmail($command->email);
+        }
+
+        $user->update(
+            null === $command->username ? $user->getUsername() : $command->username,
+            null === $command->email ? $user->getEmail() : $command->email,
+            null === $command->role ? $user->getRoles()[0] : $command->role,
             null === $command->avatar ? null : $this->makeAvatar($command->avatar),
-            null,
-            null
+            $command->address,
+            $command->city
         );
 
-        $user->setPassword($this->encodePassword($user, $command->password));
+        $command->password ? $user->setPassword($this->encodePassword($user, $command->password)) : null;
 
         $this->userWriteRepository->save($user);
     }

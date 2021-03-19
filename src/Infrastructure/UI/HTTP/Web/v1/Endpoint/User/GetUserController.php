@@ -14,7 +14,7 @@ use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceResponse;
 
 class GetUserController
 {
-    /**  @Route("/api/v1/user/{id}", name="api_v1_get_user", methods={"GET"})
+    /**  @Route("/api/v1/users/{id}", name="api_v1_get_user", methods={"GET"})
      *   @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
      */
     public function get(

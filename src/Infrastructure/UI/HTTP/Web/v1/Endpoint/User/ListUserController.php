@@ -15,7 +15,7 @@ use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceCollectionResponse;
 final class ListUserController
 {
     /**
-     * @Route("/api/v1/users", name="web.v1.user.list", methods={"GET"})
+     * @Route("/api/v1/users", name="api_v1_user_list", methods={"GET"})
      */
     public function list(
         GetResourceCollectionRequestInterface $request,

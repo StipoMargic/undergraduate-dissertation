@@ -248,4 +248,20 @@ final class User implements UserInterface
         $this->setDeletedAt(new \DateTimeImmutable());
         $this->verified = false;
     }
+
+    public function update(
+        string $username,
+        string $email,
+        string $role,
+        ?string $avatar,
+        ?string $address,
+        ?string $city,
+    ) {
+        $this->username = $username;
+        $this->email = $email;
+        $this->roles = [$role];
+        $this->avatar = $avatar;
+        $this->address = $address;
+        $this->city = $city;
+    }
 }
