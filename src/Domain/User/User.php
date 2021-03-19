@@ -6,6 +6,11 @@ namespace App\Domain\User;
 
 
 use App\Application\User\VerificationToken;
+use App\Domain\Common\EntityInterface;
+use App\Domain\Portfolio\Portfolio;
+use Assert\Assertion;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-final class User implements UserInterface
+final class User implements UserInterface, EntityInterface
 {
     public const ROLE_ADMIN = "ROLE_ADMIN";
     public const ROLE_USER = "ROLE_USER";
@@ -26,6 +31,9 @@ final class User implements UserInterface
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
+
+    /** @ORM\OneToMany(targetEntity="App\Domain\Portfolio\Portfolio", mappedBy="user", cascade="persist") */
+    private Collection $portfolios;
 
     /**
      * @ORM\Column(name="username", type="string", unique=true)
@@ -112,10 +120,27 @@ final class User implements UserInterface
         $this->deletedAt = null;
     }
 
+    private function verifyPortfolios(array $portfolios): ArrayCollection
+    {
+        Assertion::allIsInstanceOf($portfolios, Portfolio::class,
+            "All instances should be of class Portfolio,  %s provided");
+
+        return new ArrayCollection($portfolios);
+    }
 
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function getPortfolios(): Collection
+    {
+        return $this->portfolios;
+    }
+
+    public function setPortfolios(array $portfolios): void
+    {
+        $this->portfolios = $this->verifyPortfolios($portfolios);
     }
 
     public function getUsername(): string
