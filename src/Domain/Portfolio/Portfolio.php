@@ -5,7 +5,11 @@ declare(strict_types = 1);
 namespace App\Domain\Portfolio;
 
 use App\Domain\Common\EntityInterface;
+use App\Domain\Image\Image;
 use App\Domain\User\User;
+use Assert\Assertion;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
@@ -25,6 +29,9 @@ final class Portfolio implements EntityInterface
      * @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="portfolios", cascade="persist")
      */
     private User $user;
+
+    /** @ORM\ManyToMany(targetEntity="App\Domain\Image\Image", inversedBy="portfolios", cascade="persist") */
+    private Collection $images;
 
     /** @ORM\Column(name="company_name", type="string", nullable=false) */
     private string $companyName;
@@ -65,6 +72,7 @@ final class Portfolio implements EntityInterface
     public function __construct(
         UuidInterface $id,
         User $user,
+        array $images,
         string $companyName,
         string $address,
         string $city,
@@ -89,6 +97,14 @@ final class Portfolio implements EntityInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
+        $this->images = $this->setImages($images);
+    }
+
+    private function setImages(array $images): ArrayCollection
+    {
+        Assertion::allIsInstanceOf($images, Image::class, "All images should be of type Image, %s provided!");
+
+        return new ArrayCollection($images);
     }
 
     public function getId(): UuidInterface
@@ -164,5 +180,12 @@ final class Portfolio implements EntityInterface
     public function delete(): void
     {
         $this->deletedAt = new \DateTimeImmutable();
+    }
+
+    public function addImage(Image $image): void
+    {
+        if (false === $this->images->contains($image)) {
+            $this->images->add($image);
+        }
     }
 }
