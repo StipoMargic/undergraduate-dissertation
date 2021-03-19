@@ -263,5 +263,6 @@ final class User implements UserInterface
         $this->avatar = $avatar;
         $this->address = $address;
         $this->city = $city;
+        $this->updatedAt = new \DateTimeImmutable();
     }
 }

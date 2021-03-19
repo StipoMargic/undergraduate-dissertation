@@ -12,10 +12,12 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class UserVoter extends Voter
 {
+    private const DELETE = "DELETE";
+    private const EDIT = "EDIT";
 
     #[Pure] protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, ['DELETE', 'EDIT']) && $subject instanceof User;
+        return in_array($attribute, [self::DELETE, self::EDIT]) && $subject instanceof User;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -30,17 +32,16 @@ class UserVoter extends Voter
         }
 
         switch ($attribute) {
-            case 'DELETE':
-                if ($subject->getId() === $user->getId()) {
-                    return true;
-                }
-                break;
-            case 'EDIT':
-                if ($subject->getId() === $user->getId()) {
-                    return true;
-                }
+            case self::EDIT:
+            case self::DELETE:
+                return $this->isOwner($subject, $user);
         }
 
         return false;
+    }
+
+    #[Pure] private function isOwner(User $subject, User $user): bool
+    {
+        return $subject->getId() === $user->getId();
     }
 }
