@@ -191,4 +191,11 @@ final class Portfolio implements EntityInterface
             $this->images->add($image);
         }
     }
+
+    public function getImages(): ArrayCollection
+    {
+        return $this->images;
+    }
+
+
 }
