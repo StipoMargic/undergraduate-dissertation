@@ -33,7 +33,7 @@ final class User implements UserInterface, EntityInterface
     private UuidInterface $id;
 
     /** @ORM\OneToMany(targetEntity="App\Domain\Portfolio\Portfolio", mappedBy="user", cascade="persist") */
-    private Collection $portfolios;
+    private ?Collection $portfolios;
 
     /**
      * @ORM\Column(name="username", type="string", unique=true)
@@ -118,6 +118,7 @@ final class User implements UserInterface, EntityInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
+        $this->portfolios = new ArrayCollection();
     }
 
     private function verifyPortfolios(array $portfolios): ArrayCollection
@@ -133,7 +134,7 @@ final class User implements UserInterface, EntityInterface
         return $this->id;
     }
 
-    public function getPortfolios(): Collection
+    public function getPortfolios(): ?Collection
     {
         return $this->portfolios;
     }
