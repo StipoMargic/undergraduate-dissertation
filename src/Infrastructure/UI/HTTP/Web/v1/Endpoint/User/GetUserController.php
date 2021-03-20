@@ -12,10 +12,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceResponse;
 
-class GetUserController
+final class GetUserController
 {
     /**  @Route("/api/v1/users/{id}", name="api_v1_get_user", methods={"GET"})
-     *   @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
+     * @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
      */
     public function get(
         UuidInterface $id,

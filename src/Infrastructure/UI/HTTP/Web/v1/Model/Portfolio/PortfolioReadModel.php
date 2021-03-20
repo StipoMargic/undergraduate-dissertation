@@ -9,6 +9,7 @@ use App\Domain\Image\Image;
 use App\Domain\Portfolio\Portfolio;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
+use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
 
 /**
  * @ResourceType(type="portfolio")
@@ -54,10 +55,10 @@ class PortfolioReadModel implements ApiModel
     public string $createdAt;
 
     /** @Attribute */
-    public string $updatedAt;
+    public ?string $updatedAt;
 
     /** @Attribute */
-    public string $deletedAt;
+    public ?string $deletedAt;
 
     public function __construct(
         string $id,
@@ -73,8 +74,8 @@ class PortfolioReadModel implements ApiModel
         string $aboutJob,
         string $jobPosition,
         string $createdAt,
-        string $updatedAt,
-        string $deletedAt
+        ?string $updatedAt,
+        ?string $deletedAt
     ) {
         $this->id = $id;
         $this->user = $user;

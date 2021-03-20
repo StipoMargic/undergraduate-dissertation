@@ -15,6 +15,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Undabot\JsonApi\Definition\Model\Request\UpdateResourceRequestInterface;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceUpdatedResponse;
 use Undabot\SymfonyJsonApi\Http\Service\SimpleResourceHandler;

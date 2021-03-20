@@ -16,9 +16,6 @@ class PortfolioWriteModel implements ApiModel
 {
     public string $id;
 
-    /** @ToOne(name="user", type="user") */
-    public string $user;
-
     /** @Attribute */
     public array $images;
 
@@ -51,7 +48,6 @@ class PortfolioWriteModel implements ApiModel
 
     public function __construct(
         string $id,
-        string $user,
         array $images,
         string $companyName,
         string $address,
@@ -64,7 +60,6 @@ class PortfolioWriteModel implements ApiModel
         string $jobPosition
     ) {
         $this->id = $id;
-        $this->user = $user;
         $this->images = $images;
         $this->companyName = $companyName;
         $this->address = $address;

@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-final class User implements UserInterface, EntityInterface
+class User implements UserInterface, EntityInterface
 {
     public const ROLE_ADMIN = "ROLE_ADMIN";
     public const ROLE_USER = "ROLE_USER";

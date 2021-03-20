@@ -8,9 +8,9 @@ namespace App\Domain\Image;
 use App\Domain\Common\EntityInterface;
 use App\Domain\Portfolio\Portfolio;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use Ramsey\Collection\Collection;
 use Ramsey\Uuid\UuidInterface;
 
 /**
