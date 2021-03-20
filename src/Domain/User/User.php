@@ -268,7 +268,7 @@ final class User implements UserInterface, EntityInterface
     {
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->setDeletedAt(new \DateTimeImmutable());
         $this->verified = false;

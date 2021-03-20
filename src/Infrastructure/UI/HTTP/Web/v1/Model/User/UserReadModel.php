@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Infrastructure\UI\HTTP\Web\v1\Model\User;
 
+use App\Domain\Portfolio\Portfolio;
 use App\Domain\User\User;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
@@ -16,6 +17,9 @@ use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 class UserReadModel implements ApiModel
 {
     public string $id;
+
+    /** @Attribute  */
+    public array $portfolios;
 
     /** @Attribute */
     public string $username;
@@ -52,6 +56,7 @@ class UserReadModel implements ApiModel
 
     public function __construct(
         string $id,
+        array $portfolios,
         string $username,
         string $email,
         array $roles,
@@ -76,12 +81,18 @@ class UserReadModel implements ApiModel
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
+        $this->portfolios = $portfolios;
     }
 
     public static function fromEntity(User $user): self
     {
+        $portfolios = array_map(static function(Portfolio $portfolio){
+            return $portfolio->getId();
+        }, $user->getPortfolios()->getValues());
+
         return new self(
             (string) $user->getId(),
+            $portfolios,
             $user->getUsername(),
             $user->getEmail(),
             $user->getRoles(),

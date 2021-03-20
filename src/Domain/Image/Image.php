@@ -15,7 +15,7 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="NAME")
+ * @ORM\Table(name="image")
  */
 class Image implements EntityInterface
 {

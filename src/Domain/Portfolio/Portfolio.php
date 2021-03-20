@@ -15,7 +15,7 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="portfolio)
+ * @ORM\Table(name="portfolio")
  */
 final class Portfolio implements EntityInterface
 {
@@ -30,7 +30,10 @@ final class Portfolio implements EntityInterface
      */
     private User $user;
 
-    /** @ORM\ManyToMany(targetEntity="App\Domain\Image\Image", inversedBy="portfolios", cascade="persist") */
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Domain\Image\Image", inversedBy="portfolios", cascade="persist")
+     * @ORM\JoinTable(name="portfolios_image")
+     */
     private Collection $images;
 
     /** @ORM\Column(name="company_name", type="string", nullable=false) */
