@@ -74,7 +74,6 @@ final class Portfolio implements EntityInterface
 
     public function __construct(
         UuidInterface $id,
-        User $user,
         array $images,
         string $companyName,
         string $address,
@@ -87,7 +86,6 @@ final class Portfolio implements EntityInterface
         string $jobPosition,
     ) {
         $this->id = $id;
-        $this->user = $user;
         $this->companyName = $companyName;
         $this->address = $address;
         $this->city = $city;
@@ -118,6 +116,11 @@ final class Portfolio implements EntityInterface
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 
     public function getCompanyName(): string

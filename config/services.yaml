@@ -88,3 +88,9 @@ services:
 
   app.user_checker:
     class: App\Infrastructure\Security\UserChecker
+
+  App\Infrastructure\Service\EventHandler\CreateNewPortfolioEventHandler:
+    tags:
+      - name: 'doctrine.event_listener'
+        event: 'prePersist'
+        priority: 500

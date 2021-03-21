@@ -24,12 +24,10 @@ final class CreatePortfolioCommandHandler
 
     public function __invoke(CreatePortfolioCommand $command): void
     {
-        $user = $this->userReadRepository->getByUsername($command->user);
         $images = $this->getImages($command);
 
         $portfolio = new Portfolio(
             Uuid::fromString($command->id),
-            $user,
             [],
             $command->companyName,
             $command->address,

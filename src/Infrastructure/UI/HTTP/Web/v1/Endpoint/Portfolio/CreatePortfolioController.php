@@ -26,11 +26,10 @@ final class CreatePortfolioController
         CommandBus $commandBus,
         PortfolioReadRepository $repository,
         ResourceResponder $responder,
-        UserInterface $user
     ): ResourceCreatedResponse {
         $createModel = $resourceHandler->getModelFromRequest($request, PortfolioWriteModel::class);
 
-        $command = new CreatePortfolioCommand($createModel->id, $user->getUsername(), $createModel->images,
+        $command = new CreatePortfolioCommand($createModel->id, $createModel->images,
             $createModel->companyName, $createModel->address, $createModel->city, $createModel->phone,
             $createModel->disabilityPercent, $createModel->paycheck, $createModel->aboutCompany, $createModel->aboutJob,
             $createModel->jobPosition);

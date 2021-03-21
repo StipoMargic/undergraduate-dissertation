@@ -10,7 +10,6 @@ class CreatePortfolioCommand implements CommandInterface
 {
     public function __construct(
         public string $id,
-        public string $user,
         public array $images,
         public string $companyName,
         public string $address,
