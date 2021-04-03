@@ -1,0 +1,341 @@
+@import "../../Styles/variables";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700');
+
+.nav-brand,
+.nav-brand:focus,
+.nav-brand:hover,
+.nav-menu > li > a {
+  color: #2D4379;
+}
+
+.nav-dropdown,
+.nav-menu,
+ul {
+  list-style: none;
+
+}
+
+.navigation,
+.navigation * {
+  -webkit-tap-highlight-color: transparent
+}
+
+.navigation,
+.navigation * {
+  box-sizing: border-box
+}
+
+.navigation {
+  width: 100%;
+  height: 70px;
+  display: table;
+  position: relative;
+  font-family: inherit;
+  background: #F5F9FD;
+  padding: 0 1rem;
+  border-radius: 3rem;
+}
+
+
+.align-to-right {
+  float: right
+}
+
+.nav-header {
+  float: left
+}
+
+.nav-brand {
+  padding: 17px 15px;
+  font-size: 24px;
+  margin-right: 1rem;
+  text-decoration: none !important
+}
+
+.nav-dropdown > li > a,
+.nav-menu > li > a,
+nav a {
+  text-decoration: none
+}
+
+
+.nav-logo > img {
+  height: 48px;
+  margin: 11px auto;
+  padding: 0 15px;
+  float: left
+}
+
+.nav-logo:focus > img {
+  outline: initial
+}
+
+.nav-menu {
+  margin: 0;
+  padding: 0;
+  line-height: normal
+}
+
+.navigation-portrait .nav-menu {
+  width: 100%
+}
+
+.navigation-landscape .nav-menu.nav-menu-centered {
+  float: none;
+  text-align: center
+}
+
+.nav-menu > li {
+  display: inline-block;
+  float: left;
+  text-align: left
+}
+
+
+.navigation-landscape .nav-menu.nav-menu-centered > li {
+  float: none
+}
+
+.nav-menu > li > a {
+  padding: 30px 12px;
+  display: inline-block;
+  font-family: 'Muli', sans-serif;
+  font-weight: 600;
+  transition: color .3s, background .3s;
+}
+
+.navigation-portrait .nav-menu > li > a {
+  height: auto;
+  width: 100%;
+  padding: 12px 15px 12px 26px
+}
+
+.nav-menu > .active > a,
+.nav-menu > .focus > a,
+.nav-menu > li:hover > a {
+  color: #0b85ec !important;
+}
+
+.header-transparent .nav-menu > .active > a,
+.header-transparent .nav-menu > .focus > a,
+.header-transparent .nav-menu > li:hover > a {
+  color: #ffffff !important;
+}
+
+.header-transparent.dark-text .nav-menu > .active > a,
+.header-transparent.dark-text .nav-menu > .focus > a,
+.header-transparent.dark-text .nav-menu > li:hover > a {
+  color: #0b85ec !important;
+}
+
+.nav-menu > li > a > [class*=ion-],
+.nav-menu > li > a > i {
+  width: 18px;
+  height: 16px;
+  line-height: 16px;
+  -ms-transform: scale(1.1);
+  transform: scale(1.1)
+}
+
+.nav-menu > li > a > [class*=ion-] {
+  width: 16px;
+  display: inline-block;
+  transform: scale(1.8)
+}
+
+
+.nav-dropdown {
+  min-width: 250px;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  z-index: 98;
+  white-space: nowrap
+}
+
+
+.nav-dropdown .nav-dropdown {
+  left: 100%
+}
+
+.nav-menu > li .nav-dropdown {
+  border: none;
+  padding: 15px;
+  background: #ffffff;
+  box-shadow: 0px 0px 50px 0px rgba(32, 32, 32, 0.15);
+  -webkit-box-shadow: 0px 0px 50px 0px rgba(32, 32, 32, 0.15);
+  border-radius: 0.4rem;
+}
+
+.nav-menu > li > .nav-dropdown:before {
+  background-color: #ffffff;
+  content: "";
+  height: 20px;
+  left: 25px;
+  position: absolute;
+  top: -10px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 20px;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+  -o-transition: all 0.1s ease 0s;
+  transition: all 0.1s ease 0s;
+}
+
+.nav-dropdown > li {
+  width: 100%;
+  float: left;
+  clear: both;
+  position: relative;
+  text-align: left
+}
+
+.nav-dropdown > li > a {
+  width: 100%;
+  padding: 14px 20px 14px 10px;
+  border-bottom: 1px solid #e4e8ec;
+  display: inline-block;
+  float: left;
+  color: #2b345d;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.nav-dropdown > li:last-child > a {
+  border-bottom: none;
+}
+
+.nav-dropdown > li > a:hover, .nav-dropdown > li > a:focus {
+  padding-left: 20px;
+  color: #615fff;
+}
+
+.nav-dropdown > .focus > a,
+.nav-dropdown > li:hover > a {
+  color: #615fff
+}
+
+.nav-dropdown.nav-dropdown-left {
+  right: 0
+}
+
+.nav-dropdown > li > .nav-dropdown-left {
+  left: auto;
+  right: 100%
+}
+
+.navigation-landscape .nav-dropdown-left > li > a {
+  text-align: right
+}
+
+nav a {
+  display: inline-block
+}
+
+.header {
+  background: #fff
+}
+
+
+.nav-brand img {
+  max-width: 135px;
+  position: relative;
+  top: 0;
+}
+
+
+nav .menu > li.dropdown li.dropdown > a:before {
+  margin-left: 10px;
+  content: "\e649";
+  font-family: 'themify', sans-serif;
+  float: right;
+  position: relative;
+  font-size: 14px;
+  top: 1px;
+}
+
+.show-dropdown {
+  display: block;
+  opacity: 66%;
+}
+
+.nav-menu > li > a {
+  cursor: pointer;
+}
+
+.modal{
+  z-index:99999;
+}
+.modal-header {
+  align-items: center;
+  padding:0.6rem 1rem;
+}
+.modal-header h4 {
+  margin: 0;
+  flex:1;
+  font-size: 14px;
+  font-weight: 600;
+}
+.modal-header button.close {
+  font-size: 12px;
+  opacity: 1;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: #e8ebf1;
+  border-radius: 4px;
+  position:relative;
+  margin:0;
+}
+.login-form .form-control {
+  border-radius: 4px;
+  background: #edf2fb;
+  border: 1px solid #e0e7f3;
+}
+.modal-body {
+  padding: 2rem 1.5rem;
+}
+.login-form .form-control:focus {
+  background: rgba(6, 159, 228,0.1);
+  border-color: rgba(6, 159, 228,0.2);
+  color: #069fe4;
+}
+.mf-link {
+  flex: 1;
+}
+.mf-forget a {
+  color: #1278e0;
+}
+.form-group label.light {
+  font-size: 13px;
+  color: #8087ab;
+}
+label.custom-file-label {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 159, 228,0.2);
+  color: #069fe4;
+  cursor:pointer;
+  border: 1px solid rgba(6, 159, 228,0.3);
+}
+.custom-file {
+  height: 56px;
+}
+label.custom-file-label:after{
+  display:none !important;
+}
+body.modal-open {
+  overflow-y: hidden !important;
+  padding-right: 0 !important;
+}
