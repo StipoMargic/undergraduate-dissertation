@@ -1,5 +1,6 @@
 import "./styles.scss";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
@@ -11,7 +12,14 @@ import logo from "../../Assets/images/logo.png";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
-  const [signIn, setSignIn] = useState(true);
+  const [signIn, setSignIn] = useState(false);
+
+  const handleDropdown = (value) => {
+    setDropdown(value);
+  };
+  const handleSignIn = (value) => {
+    setSignIn(value);
+  };
 
   const renderSignInModal = () => {
     return (
@@ -33,7 +41,7 @@ const Header = () => {
                 <h4>Sign In</h4>
                 <button
                   type="button"
-                  onClick={() => setSignIn(false)}
+                  onClick={() => handleSignIn(false)}
                   className="close"
                   aria-label="Close"
                 >
@@ -50,21 +58,27 @@ const Header = () => {
                 <div className="login-form">
                   <form>
                     <div className="form-group">
-                      <label>User Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Username"
-                      />
+                      <label htmlFor="username">
+                        User Name
+                        <input
+                          id="username"
+                          type="text"
+                          className="form-control"
+                          placeholder="Username"
+                        />
+                      </label>
                     </div>
 
                     <div className="form-group">
-                      <label>Password</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        placeholder="*******"
-                      />
+                      <label htmlFor="password">
+                        Password
+                        <input
+                          id="password"
+                          type="password"
+                          className="form-control"
+                          placeholder="*******"
+                        />
+                      </label>
                     </div>
 
                     <div className="form-group">
@@ -81,12 +95,14 @@ const Header = () => {
               <div className="modal-footer">
                 <div className="mf-link">
                   <FontAwesomeIcon icon={faUser} /> Have not An Account?
-                  <a className="theme-cl"> Sign Up</a>
+                  <Link to="/login" className="theme-cl">
+                    Sign Up
+                  </Link>
                 </div>
                 <div className="mf-forget ml-2">
-                  <a href="#">
+                  <Link to="/forget-password">
                     <FontAwesomeIcon icon={faKey} /> Forget Password
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -97,63 +113,72 @@ const Header = () => {
   };
   return (
     <>
-      <div className="header header-transparent dark-text">
+      <div className="mt-2 header header-transparent dark-text">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12">
-              <nav id="navigation" className="navigation navigation-landscape">
+              <nav
+                id="navigation"
+                className="navigation navigation-landscape shadow-sm"
+              >
                 <div className="nav-header">
-                  <a className="nav-brand" href="#">
+                  <a className="nav-brand" href="/">
                     <img src={logo} className="logo" alt="" />
                   </a>
                 </div>
                 <div className="nav-menus-wrapper">
                   <ul className="nav-menu">
                     <li className="active">
-                      <a href="#">Home</a>
+                      <Link to="/">Home </Link>
                     </li>
 
                     <li>
-                      <a href="#">Explore</a>
+                      <Link to="/explore">Explore</Link>
                     </li>
 
                     <li>
-                      <a href="dashboard.html">Dashboard</a>
+                      <Link to="/explore">Explore</Link>
                     </li>
 
                     <li
-                      onMouseOver={() => setDropdown(true)}
-                      onMouseOut={() => setDropdown(false)}
+                      onMouseOver={() => handleDropdown(true)}
+                      onFocus={() => handleDropdown(true)}
+                      onMouseOut={() => handleDropdown(false)}
+                      onBlur={() => handleDropdown(false)}
                     >
-                      <a href="#">
-                        Pages <FontAwesomeIcon icon={faChevronDown} />
-                      </a>
+                      <Link to="/explore">
+                        Dropdown Pages <FontAwesomeIcon icon={faChevronDown} />
+                      </Link>
                       <ul
                         className={`nav-dropdown nav-submenu ${
                           dropdown ? "show-dropdown" : ""
                         }`}
                       >
                         <li>
-                          <a href="#">About Us</a>
+                          <Link to="/explore">Explore</Link>
                         </li>
                         <li>
-                          <a href="#">Pricing</a>
+                          <Link to="/explore">Explore</Link>
                         </li>
                         <li>
-                          <a href="#">Contact Us</a>
+                          <Link to="/explore">Explore</Link>
                         </li>
                         <li>
-                          <a href="#">FAQ's</a>
+                          <Link to="/explore">Explore</Link>
                         </li>
                       </ul>
                     </li>
                   </ul>
 
                   <ul className="nav-menu align-to-right">
-                    <li onClick={() => setSignIn(true)}>
-                      <a>
+                    <li>
+                      <button
+                        type="button"
+                        className="btn btn-outline-primary text-dark mr-4 mt-4"
+                        onClick={() => handleSignIn(true)}
+                      >
                         <FontAwesomeIcon icon={faUser} /> Sign in
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>
