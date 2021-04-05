@@ -1,0 +1,239 @@
+@import "../../Styles/variables";
+
+section.min-sec {
+  padding: 80px 0 50px;
+}
+
+.sec-heading {
+  text-align: center;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+.jobs-like {
+  position: absolute;
+  top: 20px;
+  left: 35px;
+}
+
+.toggler {
+  color: #dadeef;
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.toggler [type=checkbox]:checked, .toggler [type=checkbox]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.toggler input:checked + i {
+  color: #df3411;
+}
+
+.jb_types {
+  position: absolute;
+  height: 25px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  right: 15px;
+  top: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f1f3f7;
+  border-radius: 50px;
+}
+
+.jb_types.fulltime {
+  color: #ffffff;
+  background: #01b753;
+}
+
+.jb_types.parttime {
+  color: #ffffff;
+  background: #ff9800;
+}
+
+.jb_types.internship {
+  color: #ffffff;
+  background: #ea3426;
+}
+
+.jb_types.contract {
+  color: #ffffff;
+  background: #069fe4;
+}
+
+.jb_types.openings {
+  background: rgba(13, 202, 158, 0.1);
+  color: #0dca9e;
+}
+
+
+._featured_jbs {
+  margin-left: .5rem;
+  margin-top: .5rem;
+}
+
+.job_grid_02 {
+  position: relative;
+  background: $gray-100;
+  border-radius: .625rem;
+  margin-bottom: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.jb_grid_01_thumb {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem auto 0.4rem;
+}
+
+.jb_grid_01_caption {
+  padding: 0 1rem;
+  text-align: center;
+  position: relative;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.jb_grid_01_caption ._jb_title {
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+._emp_jb {
+  font-weight: 600;
+  font-size: 14px;
+  color: #5c75a2;
+}
+
+.jb_grid_01_footer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 1rem;
+  border-top: 1px solid #e6eaef;
+}
+
+.jb_grid_01_footer_flex {
+  flex: 1;
+}
+
+._lot_jb {
+  font-size: 14px;
+}
+
+.job_grid_02 .jb_grid_01_caption {
+  height: 100px;
+}
+
+.job_grid_02 .jb_grid_01_caption.large {
+  height: 140px;
+}
+
+._jb_apply {
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 5px 25px;
+  border-radius: 50px;
+  background: #f4f5f7;
+  transition: all ease 0.4s;
+  border: 1px solid #f1f3f7;
+  font-weight: 600;
+}
+
+._jb_apply:hover, ._jb_apply:focus {
+  color: #ffffff;
+  background: #01b753;
+  border: 1px solid #01b753;
+}
+
+.jobs-like {
+  position: absolute;
+  top: 20px;
+  left: 35px;
+}
+
+.toggler {
+  color: #dadeef;
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.toggler [type=checkbox]:checked, .toggler [type=checkbox]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.toggler input:checked + i {
+  color: #df3411;
+}
+
+.jb_types {
+  position: absolute;
+  height: 25px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  right: 15px;
+  top: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f1f3f7;
+  border-radius: 50px;
+}
+
+.jb_types.fulltime {
+  color: #ffffff;
+  background: #01b753;
+}
+
+.jb_types.parttime {
+  color: #ffffff;
+  background: #ff9800;
+}
+
+.jb_types.internship {
+  color: #ffffff;
+  background: #ea3426;
+}
+
+.jb_types.contract {
+  color: #ffffff;
+  background: #069fe4;
+}
+
+.jb_types.openings {
+  background: rgba(13, 202, 158, 0.1);
+  color: #0dca9e;
+}

@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import heroPicture from "../../Assets/images/a-2.png";
 import "./styles.scss";
 
 const HomepageHero = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    alert(searchTerm);
+  };
   return (
     <div className="hero-banner full jumbo-banner">
       <div className="container">
@@ -18,13 +24,18 @@ const HomepageHero = () => {
               Find <span className="text-info">your job</span> & make sure goal!
             </h1>
             <p className="lead">Your dream job is waiting for you.</p>
-            <form className="search-big-form banner-search shadow mt-3 mb-2">
+            <form
+              onSubmit={(e) => handleSearch(e)}
+              className="search-big-form banner-search shadow mt-3 mb-2"
+            >
               <div className="row pt-2 pl-4">
                 <div className="col-lg-8 col-md-8 col-sm-12 p-0">
                   <div className="form-group">
                     <i className="ti-search" />
                     <input
                       type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       className="form-control b-0 b-r l-radius"
                       placeholder="Job Title or Keywords"
                     />
@@ -33,7 +44,8 @@ const HomepageHero = () => {
 
                 <div className="col-lg-2 col-md-3 col-sm-12 p-0">
                   <button
-                    type="button"
+                    type="submit"
+                    onClick={(e) => handleSearch(e)}
                     className="btn btn-outline-primary rounded-sm dark-3 full-width ml-4"
                   >
                     Search

@@ -113,13 +113,13 @@ const Header = () => {
   };
   return (
     <>
-      <div className="mt-2 header header-transparent dark-text">
+      <div className="header header-transparent dark-text">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12">
               <nav
                 id="navigation"
-                className="navigation navigation-landscape shadow-sm"
+                className="mt-2 navigation navigation-landscape shadow-sm"
               >
                 <div className="nav-header">
                   <a className="nav-brand" href="/">
