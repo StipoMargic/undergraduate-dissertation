@@ -9,6 +9,15 @@
   color: #2D4379;
 }
 
+.header {
+  background: #f4f9fd !important;
+}
+
+nav {
+  z-index: 999;
+
+}
+
 .nav-dropdown,
 .nav-menu,
 ul {
@@ -239,11 +248,6 @@ nav a {
   display: inline-block
 }
 
-.header {
-  background: #fff
-}
-
-
 .nav-brand img {
   max-width: 135px;
   position: relative;
@@ -266,23 +270,25 @@ nav .menu > li.dropdown li.dropdown > a:before {
   opacity: 66%;
 }
 
-.nav-menu > li > a {
-  cursor: pointer;
+.nav-menu > li > button {
 }
 
-.modal{
-  z-index:99999;
+.modal {
+  z-index: 99999;
 }
+
 .modal-header {
   align-items: center;
-  padding:0.6rem 1rem;
+  padding: 0.6rem 1rem;
 }
+
 .modal-header h4 {
   margin: 0;
-  flex:1;
+  flex: 1;
   font-size: 14px;
   font-weight: 600;
 }
+
 .modal-header button.close {
   font-size: 12px;
   opacity: 1;
@@ -293,48 +299,62 @@ nav .menu > li.dropdown li.dropdown > a:before {
   display: flex;
   background: #e8ebf1;
   border-radius: 4px;
-  position:relative;
-  margin:0;
+  position: relative;
+  margin: 0;
 }
+
+label {
+  width: 100%;
+}
+
 .login-form .form-control {
   border-radius: 4px;
   background: #edf2fb;
   border: 1px solid #e0e7f3;
 }
+
 .modal-body {
   padding: 2rem 1.5rem;
 }
+
 .login-form .form-control:focus {
-  background: rgba(6, 159, 228,0.1);
-  border-color: rgba(6, 159, 228,0.2);
+  background: rgba(6, 159, 228, 0.1);
+  border-color: rgba(6, 159, 228, 0.2);
   color: #069fe4;
 }
+
 .mf-link {
   flex: 1;
 }
+
 .mf-forget a {
   color: #1278e0;
 }
+
 .form-group label.light {
   font-size: 13px;
   color: #8087ab;
 }
+
 label.custom-file-label {
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 159, 228,0.2);
+  background: rgba(6, 159, 228, 0.2);
   color: #069fe4;
-  cursor:pointer;
-  border: 1px solid rgba(6, 159, 228,0.3);
+  cursor: pointer;
+  border: 1px solid rgba(6, 159, 228, 0.3);
 }
+
 .custom-file {
   height: 56px;
 }
-label.custom-file-label:after{
-  display:none !important;
+
+label.custom-file-label:after {
+  display: none !important;
 }
+
 body.modal-open {
   overflow-y: hidden !important;
   padding-right: 0 !important;
