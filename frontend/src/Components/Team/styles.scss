@@ -1,0 +1,104 @@
+.team-grid {
+  background: #ffffff;
+  position: relative;
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 3em 0;
+  margin-bottom: 30px;
+}
+
+.single-team {
+  padding: 15px 10px;
+}
+
+.teamgrid-user {
+  max-width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.teamgrid-content {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.teamgrid-content h4 {
+  margin: 0;
+}
+
+.teamgrid-social ul {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.teamgrid-social ul li {
+  display: inline-block;
+  list-style: none;
+  padding: 0 10px;
+}
+
+.f-cl {
+  color: #1943d0;
+}
+
+.t-cl {
+  color: #12b0e8;
+}
+
+.i-cl {
+  color: #d62ba4;
+}
+
+.l-cl {
+  color: #0c9a9e;
+}
+
+.g-cl {
+  color: #f53500;
+}
+
+.p-cl {
+  color: #d21818;
+}
+
+.icon-mi-left {
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 1.2em 2em;
+  box-shadow: 0 0 20px 0 rgba(62, 28, 131, 0.1);
+  -webkit-box-shadow: 0 0 20px 0 rgba(62, 28, 131, 0.1);
+}
+
+.icon-mi-left i {
+  font-size: 55px;
+  color: #333;
+  text-align: left;
+  position: relative;
+  top: 5px;
+  left: 0;
+  line-height: 55px;
+}
+
+.icon-mi-left .icon-mi-left-content {
+  padding: 10px 0 0 15px;
+}
+
+.icon-mi-left h4 {
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.icon-mi-left p {
+  line-height: 1.7;
+}
