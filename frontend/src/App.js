@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Switch, Route } from "react-router";
 // eslint-disable-next-line import/no-named-as-default
-import HomePage from "./Components/Pages/HomePage";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
