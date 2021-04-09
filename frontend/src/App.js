@@ -1,17 +1,15 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Header from "./Components/Header";
-import HomepageHero from "./Components/HomepageHero";
-import NewestJob from "./Components/NewestJobs";
-import Footer from "./Components/Footer";
+import { Switch, Route } from "react-router";
+// eslint-disable-next-line import/no-named-as-default
+import HomePage from "./Components/Pages/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <HomepageHero />
-      <NewestJob />
-      <Footer />
+      <Switch>
+        <Route exact="/" component={HomePage} />
+      </Switch>
     </BrowserRouter>
   );
 }

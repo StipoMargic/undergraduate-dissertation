@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap');
 @import "variables";
+
 body {
   margin: 0;
   padding: 0;
@@ -12,4 +13,44 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
+}
+
+.theme-cl {
+  color: #df3411 !important;
+}
+
+.theme-cl-2 {
+  color: #0b85ec;
+}
+
+.theme-bg {
+  background: #df3411;
+}
+
+.bl-dark {
+  background: #1e2944;
+}
+
+.dark-2 {
+  background: #2944c1;
+}
+
+.dark-3 {
+  background: #0b85ec;
+}
+
+.btn.theme-bg {
+  color: #ffffff !important;
+}
+
+.theme-bg-blue {
+  background: #0b85ec;
+}
+
+.theme-bg-green {
+  background: #01b753;
+}
+
+.gray-light{
+  background:#f6f7f9;
 }

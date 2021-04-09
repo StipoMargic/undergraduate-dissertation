@@ -1,0 +1,45 @@
+.urip_cated.shadow {
+  background: #ffffff;
+  display: block;
+  padding: 2.5rem 1rem;
+  box-shadow: 0 0 20px 0 rgb(62, 28, 131 / 10%);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.urip_cated {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.urip_cated i {
+  max-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+}
+
+.urip_cated i {
+  color: #0b85ec;
+  font-size: 45px;
+}
+
+.urip_cated .cats_urip_title a {
+  font-size: 15px;
+  margin: 0;
+  font-weight: bold;
+  color: black;
+  line-height: 1.3;
+}
+
+.urip_cated .cats_urip_title a:hover, .urip_cated .cats_urip_title a:focus {
+  color: #16b739;
+}
+
+.urip_cated_caps span {
+  color: #60688e;
+}
