@@ -7,6 +7,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import FreelancersPage from "./Pages/FreelancersPage";
 import FDetail from "./Pages/FDetail";
+import ContactPage from "./Pages/ContactPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" component={AboutPage} />
         <Route path="/freelancers" exact component={FreelancersPage} />
         <Route path="/freelancers/:id" exact component={FDetail} />
+        <Route path="/contact" component={ContactPage} />
       </Switch>
       <Footer />
     </BrowserRouter>
