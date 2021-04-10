@@ -16,9 +16,9 @@ const AboutUs = () => {
 
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="about-captione">
-              <h6 className="text-blue">About Workoo</h6>
+              <h6 className="text-blue">About LiberatoJob</h6>
               <h2>
-                Let&apos;s Short Story About Workoo
+                Let&apos;s Short Story About LiberatoJob
                 <br />
                 Job Service.
               </h2>
