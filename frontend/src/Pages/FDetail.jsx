@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import FreelancerDetail from "../Components/Freelancers/FreelancerDetail";
 
-const Detail = () => {
+const FDetail = () => {
   const params = useParams();
 
   return (
@@ -12,4 +12,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default FDetail;
