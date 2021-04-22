@@ -15,7 +15,7 @@ import {
 const Contact = () => {
   return (
     <>
-      <div className="page-title inner-page mt-4">
+      <div className="page-title inner-page">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12">
@@ -191,6 +191,7 @@ const Contact = () => {
                             <textarea
                               className="form-control with-light"
                               id="message"
+                              rows={5}
                             >
                               About Your Query
                             </textarea>
