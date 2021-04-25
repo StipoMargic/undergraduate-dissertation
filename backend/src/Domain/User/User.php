@@ -80,6 +80,24 @@ class User implements UserInterface, EntityInterface
      */
     private ?string $city;
 
+    /** @ORM\Column(name="phone", type="string", nullable=true) */
+    private ?string $phone;
+
+    /**  @ORM\Column(name="occupation", type="string", nullable=true) */
+    private ?string $occupation;
+
+    /** @ORM\Column(name="facebook", type="string", nullable=true) */
+    private ?string $facebook;
+
+    /** @ORM\Column(name="twitter", type="string", nullable=true) */
+    private ?string $twitter;
+
+    /** @ORM\Column(name="linkedin", type="string", nullable=true) */
+    private ?string $linkedin;
+
+    /** @ORM\Column(name="about", type="string", nullable=false) */
+    private string $about;
+
     /**
      * @ORM\Column(name="created_at", type="datetime_immutable", nullable=false)
      */
@@ -104,6 +122,12 @@ class User implements UserInterface, EntityInterface
         ?string $avatar,
         ?string $address,
         ?string $city,
+        ?string $phone,
+        ?string $occupation,
+        ?string $facebook,
+        ?string $twitter,
+        ?string $linkedin,
+        string $about
     ) {
         $this->id = $id;
         $this->username = $username;
@@ -115,6 +139,12 @@ class User implements UserInterface, EntityInterface
         $this->avatar = $avatar;
         $this->address = $address;
         $this->city = $city;
+        $this->phone = $phone;
+        $this->occupation = $occupation;
+        $this->facebook = $facebook;
+        $this->twitter = $twitter;
+        $this->linkedin = $linkedin;
+        $this->about = $about;
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
@@ -233,6 +263,66 @@ class User implements UserInterface, EntityInterface
     public function setCity(?string $city): void
     {
         $this->city = $city;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function getOccupation(): ?string
+    {
+        return $this->occupation;
+    }
+
+    public function setOccupation(?string $occupation): void
+    {
+        $this->occupation = $occupation;
+    }
+
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?string $facebook): void
+    {
+        $this->facebook = $facebook;
+    }
+
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    public function setTwitter(?string $twitter): void
+    {
+        $this->twitter = $twitter;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): void
+    {
+        $this->linkedin = $linkedin;
+    }
+
+    public function getAbout(): string
+    {
+        return $this->about;
+    }
+
+    public function setAbout(string $about): void
+    {
+        $this->about = $about;
     }
 
     public function getCreatedAt(): \DateTimeImmutable
