@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Domain\Portfolio;
 
+use App\Domain\Category\Category;
 use App\Domain\Common\EntityInterface;
 use App\Domain\Image\Image;
 use App\Domain\User\User;
@@ -29,6 +30,9 @@ final class Portfolio implements EntityInterface
      * @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="portfolios", cascade="persist")
      */
     private User $user;
+
+    /** @ORM\ManyToOne(targetEntity="App\Domain\Category\Category", inversedBy="portfolios", cascade="persist") */
+    private Category $category;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Domain\Image\Image", inversedBy="portfolios", cascade="persist")
