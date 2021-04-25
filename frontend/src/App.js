@@ -10,6 +10,7 @@ import FDetail from "./Pages/FDetail";
 import ContactPage from "./Pages/ContactPage";
 import JobPage from "./Pages/JobPage";
 import JDetail from "./Pages/JDetail";
+import Register from "./Components/Register";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/jobs/:id" exact component={JDetail} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/jobs" component={JobPage} />
+        <Route path="/register" component={Register} />
       </Switch>
       <Footer />
     </BrowserRouter>
