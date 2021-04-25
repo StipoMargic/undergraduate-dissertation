@@ -1,0 +1,389 @@
+.job_grid_01 {
+  position: relative;
+  background: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.jb_grid_01_thumb {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem auto 0.4rem;
+}
+
+.jb_grid_01_caption {
+  padding: 0 1rem;
+  text-align: center;
+  position: relative;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.jb_grid_01_caption ._jb_title {
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+._emp_jb {
+  font-weight: 600;
+  font-size: 14px;
+  color: #5c75a2;
+}
+
+.jb_grid_01_footer {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 1rem;
+  border-top: 1px solid #e6eaef;
+}
+
+.jb_grid_01_footer_flex {
+  flex-direction: row;
+}
+
+.jb_grid_01_footer_right {
+  color: #7482ab;
+}
+
+._lot_jb {
+  font-size: 14px;
+}
+
+._jb_details01 {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+._jb_details01_flex {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+._jb_details01_authors {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+._jb_details01_authors_caption {
+  padding-left: 1rem;
+}
+
+._jb_details01_authors_caption .jbs_title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+ul.jbx_info_list {
+  padding: 0;
+  margin: 0;
+}
+
+ul.jbx_info_list li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 15px;
+}
+
+ul.jbx_info_list li span i {
+  margin-right: 5px;
+}
+
+ul.jbx_info_list li span {
+  color: #5c75a2;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+ul.jbx_info_list li .jb_types {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-top: 8px;
+}
+
+.jb_types.urgent {
+  background: #ff9800;
+  color: #ffffff;
+}
+
+.jb_types.remote {
+  background: #837bf5;
+  color: #ffffff;
+}
+
+ul._flex_btn {
+  margin: 0;
+  padding: 0;
+}
+
+ul._flex_btn li {
+  display: inline-block;
+  margin-left: 10px;
+  list-style: none;
+}
+
+ul._flex_btn li ._saveed_jb {
+  height: 50px;
+  width: auto;
+  padding: 0 18px;
+  background: #33b561;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+ul._flex_btn li ._applied_jb {
+  height: 50px;
+  padding: 0 18px;
+  width: auto;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+ul._flex_btn li ._applied_jb.dark-btn {
+  color: #ffffff;
+  background: #0f92fb;
+}
+
+ul._flex_btn li ._applied_jb.dark {
+  background: #0e77f9;
+  color: #ffffff;
+}
+
+.dark ._jb_details01_authors_caption .jbs_title {
+  color: #ffffff;
+}
+
+.dark ul.jbx_info_list li span {
+  color: #869bff;
+}
+
+._job_detail_box {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+._job_details_single {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5eaf1;
+}
+
+._job_detail_box_body {
+  padding: 1.5rem 2rem;
+}
+
+._job_detail_single {
+  margin-bottom: 2rem;
+}
+
+._job_detail_single h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+._job_detail_single {
+  font-size: 14px;
+}
+
+._job_detail_single ul {
+  padding: 0;
+  padding: 0;
+}
+
+._job_detail_single ul li {
+  margin-bottom: 12px;
+  list-style: none;
+  padding-left: 17px;
+  position: relative;
+}
+
+._job_detail_single ul li:before {
+  position: absolute;
+  font-family: 'themify', serif;
+  left: 0;
+  top: 0;
+  font-size: 12px;
+  color: #7f95bd;
+}
+
+._job_detail_single.flexeo {
+  display: flex;
+  align-items: center;
+}
+
+._job_detail_single_flex {
+  flex: 1;
+}
+
+ul.shares_jobs {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+ul.shares_jobs li {
+  list-style: none;
+  display: inline-block !important;
+  margin-right: 12px;
+  padding: 0;
+}
+
+ul.shares_jobs li:before {
+  display: none;
+}
+
+ul.shares_jobs li .share {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f5f7;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 17px;
+}
+
+ul.shares_jobs li .share.fb {
+  background: #3f51b5;
+}
+
+ul.shares_jobs li .share.tw {
+  background: #089ee2;
+}
+
+ul.shares_jobs li .share.gp {
+  background: #ea4444;
+}
+
+ul.shares_jobs li .share.ln {
+  background: #16a0bf;
+}
+
+ul.bottoms_applies {
+  margin: 0;
+  padding: 0;
+}
+
+ul.bottoms_applies li {
+  padding: 0;
+  margin-left: 12px;
+  display: inline-block;
+  list-style: none;
+}
+
+ul.bottoms_applies li:before {
+  display: none;
+}
+
+ul.bottoms_applies li ._saveed_jb {
+  height: 52px;
+  width: auto;
+  padding: 0 22px;
+  border-radius: 50px;
+  background: #eff2f9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+ul.bottoms_applies li ._applied_jb {
+  height: 52px;
+  width: auto;
+  padding: 0 22px;
+  color: #ffffff;
+  border-radius: 50px;
+  background: #0f92fb;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+._jb_summary {
+  position: relative;
+  width: 100%;
+  background: #f4f8fb;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+._jb_summary ul {
+  margin: 0;
+  padding: 0;
+}
+
+._jb_summary ul li {
+  margin-bottom: 1rem;
+  list-style: none;
+  display: block;
+  font-size: 16px;
+  color: #2944c1;
+  font-weight: 600;
+}
+
+._jb_summary ul li span {
+  display: block;
+  font-size: 14px;
+  color: #7181a9;
+}
+
+._jb_summary h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+._jb_summary_thumb {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  margin: 1rem auto 0.5rem;
+}
+
+._jb_summary_caption {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+._jb_summary_caption h4 {
+  margin: 0;
+  line-height: 1;
+}
+
+._jb_summary_caption span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6a799a;
+}

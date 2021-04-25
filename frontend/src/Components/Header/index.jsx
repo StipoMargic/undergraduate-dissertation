@@ -133,11 +133,11 @@ const Header = () => {
                     </li>
 
                     <li>
-                      <Link to="/explore">Explore</Link>
+                      <Link to="/freelancers">Freelancers</Link>
                     </li>
 
                     <li>
-                      <Link to="/explore">Explore</Link>
+                      <Link to="/jobs">Jobs</Link>
                     </li>
 
                     <li
@@ -146,8 +146,12 @@ const Header = () => {
                       onMouseOut={() => handleDropdown(false)}
                       onBlur={() => handleDropdown(false)}
                     >
-                      <Link to="/explore">
-                        Dropdown Pages <FontAwesomeIcon icon={faChevronDown} />
+                      <Link to="/about">
+                        Liberato Job
+                        <FontAwesomeIcon
+                          icon={faChevronDown}
+                          style={{ marginLeft: "10px" }}
+                        />
                       </Link>
                       <ul
                         className={`nav-dropdown nav-submenu ${
@@ -155,16 +159,10 @@ const Header = () => {
                         }`}
                       >
                         <li>
-                          <Link to="/explore">Explore</Link>
+                          <Link to="/about">About Us</Link>
                         </li>
                         <li>
-                          <Link to="/explore">Explore</Link>
-                        </li>
-                        <li>
-                          <Link to="/explore">Explore</Link>
-                        </li>
-                        <li>
-                          <Link to="/explore">Explore</Link>
+                          <Link to="/contact">Contact Us</Link>
                         </li>
                       </ul>
                     </li>

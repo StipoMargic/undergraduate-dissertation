@@ -7,7 +7,7 @@ const HomepageHero = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    alert(searchTerm);
+    // TODO: Api search
   };
   return (
     <div className="hero-banner full jumbo-banner">
