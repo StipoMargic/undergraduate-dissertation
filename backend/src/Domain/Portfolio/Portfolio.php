@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Domain\Portfolio;
 
+use App\Domain\Category\Category;
 use App\Domain\Common\EntityInterface;
 use App\Domain\Image\Image;
 use App\Domain\User\User;
@@ -30,38 +31,29 @@ final class Portfolio implements EntityInterface
      */
     private User $user;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Domain\Image\Image", inversedBy="portfolios", cascade="persist")
-     * @ORM\JoinTable(name="portfolios_image")
-     */
-    private Collection $images;
+    /** @ORM\ManyToOne(targetEntity="App\Domain\Category\Category", inversedBy="portfolios", cascade="persist") */
+    private Category $category;
 
-    /** @ORM\Column(name="company_name", type="string", nullable=false) */
-    private string $companyName;
+    /** @ORM\Column(name="advancedKnowledge", type="string", nullable=false) */
+    private string $advancedKnowledge;
 
-    /** @ORM\Column(name="address", type="string", nullable=false) */
-    private string $address;
+    /** @ORM\Column(name="advancedKnowledgeBulletins", type="string", nullable=false) */
+    private string $advancedKnowledgeBulletins;
 
-    /** @ORM\Column(name="city", type="string", nullable=false) */
-    private string $city;
+    /** @ORM\Column(name="skills", type="string", nullable=false) */
+    private string $skills;
 
-    /** @ORM\Column(name="phone", type="string", nullable=false) */
-    private string $phone;
+    /** @ORM\Column(name="salary", type="string", nullable=false) */
+    private string $salary;
 
     /** @ORM\Column(name="disability_percent", type="integer", nullable=false) */
     private int $disabilityPercent;
 
-    /** @ORM\Column(name="paycheck", type="string", nullable=false) */
-    private string $paycheck;
+    /** @ORM\Column(name="$rate", type="string", nullable=false) */
+    private string $rate;
 
-    /** @ORM\Column(name="about_company", type="string", nullable=false) */
-    private string $aboutCompany;
-
-    /** @ORM\Column(name="about_job", type="string", nullable=false) */
-    private string $aboutJob;
-
-    /** @ORM\Column(name="job_position", type="string", nullable=false) */
-    private string $jobPosition;
+    /** @ORM\Column(name="hours", type="string", nullable=false) */
+    private string $hours;
 
     /** @ORM\Column(name="created_at", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $createdAt;
@@ -72,45 +64,41 @@ final class Portfolio implements EntityInterface
     /** @ORM\Column(name="deleted_at", type="datetime_immutable", nullable=true) */
     private ?\DateTimeImmutable $deletedAt;
 
+
     public function __construct(
         UuidInterface $id,
-        array $images,
-        string $companyName,
-        string $address,
-        string $city,
-        string $phone,
+        Category $category,
+        string $advancedKnowledge,
+        string $advancedKnowledgeBulletins,
+        string $skills,
+        string $salary,
         int $disabilityPercent,
-        string $paycheck,
-        string $aboutCompany,
-        string $aboutJob,
-        string $jobPosition,
+        string $rate,
+        string $hours
     ) {
         $this->id = $id;
-        $this->companyName = $companyName;
-        $this->address = $address;
-        $this->city = $city;
-        $this->phone = $phone;
+        $this->category = $category;
+        $this->advancedKnowledge = $advancedKnowledge;
+        $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
+        $this->skills = $skills;
+        $this->salary = $salary;
         $this->disabilityPercent = $disabilityPercent;
-        $this->paycheck = $paycheck;
-        $this->aboutCompany = $aboutCompany;
-        $this->aboutJob = $aboutJob;
-        $this->jobPosition = $jobPosition;
+        $this->rate = $rate;
+        $this->hours = $hours;
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
-        $this->images = $this->setImages($images);
     }
 
-    private function setImages(array $images): ArrayCollection
-    {
-        Assertion::allIsInstanceOf($images, Image::class, "All images should be of type Image, %s provided!");
-
-        return new ArrayCollection($images);
-    }
 
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function setId(UuidInterface $id): void
+    {
+        $this->id = $id;
     }
 
     public function getUser(): User
@@ -123,24 +111,54 @@ final class Portfolio implements EntityInterface
         $this->user = $user;
     }
 
-    public function getCompanyName(): string
+    public function getCategory(): Category
     {
-        return $this->companyName;
+        return $this->category;
     }
 
-    public function getAddress(): string
+    public function setCategory(Category $category): void
     {
-        return $this->address;
+        $this->category = $category;
     }
 
-    public function getCity(): string
+    public function getAdvancedKnowledge(): string
     {
-        return $this->city;
+        return $this->advancedKnowledge;
     }
 
-    public function getPhone(): string
+    public function setAdvancedKnowledge(string $advancedKnowledge): void
     {
-        return $this->phone;
+        $this->advancedKnowledge = $advancedKnowledge;
+    }
+
+    public function getAdvancedKnowledgeBulletins(): string
+    {
+        return $this->advancedKnowledgeBulletins;
+    }
+
+    public function setAdvancedKnowledgeBulletins(string $advancedKnowledgeBulletins): void
+    {
+        $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
+    }
+
+    public function getSkills(): string
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(string $skills): void
+    {
+        $this->skills = $skills;
+    }
+
+    public function getSalary(): string
+    {
+        return $this->salary;
+    }
+
+    public function setSalary(string $salary): void
+    {
+        $this->salary = $salary;
     }
 
     public function getDisabilityPercent(): int
@@ -148,24 +166,29 @@ final class Portfolio implements EntityInterface
         return $this->disabilityPercent;
     }
 
-    public function getPaycheck(): string
+    public function setDisabilityPercent(int $disabilityPercent): void
     {
-        return $this->paycheck;
+        $this->disabilityPercent = $disabilityPercent;
     }
 
-    public function getAboutCompany(): string
+    public function getRate(): string
     {
-        return $this->aboutCompany;
+        return $this->rate;
     }
 
-    public function getAboutJob(): string
+    public function setRate(string $rate): void
     {
-        return $this->aboutJob;
+        $this->rate = $rate;
     }
 
-    public function getJobPosition(): string
+    public function getHours(): string
     {
-        return $this->jobPosition;
+        return $this->hours;
+    }
+
+    public function setHours(string $hours): void
+    {
+        $this->hours = $hours;
     }
 
     public function getCreatedAt(): \DateTimeImmutable
@@ -186,17 +209,5 @@ final class Portfolio implements EntityInterface
     public function delete(): void
     {
         $this->deletedAt = new \DateTimeImmutable();
-    }
-
-    public function addImage(Image $image): void
-    {
-        if (false === $this->images->contains($image)) {
-            $this->images->add($image);
-        }
-    }
-
-    public function getImages(): ArrayCollection|Collection
-    {
-        return $this->images;
     }
 }

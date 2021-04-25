@@ -18,7 +18,7 @@ class UserReadModel implements ApiModel
 {
     public string $id;
 
-    /** @Attribute  */
+    /** @Attribute */
     public array $portfolios;
 
     /** @Attribute */
@@ -46,6 +46,21 @@ class UserReadModel implements ApiModel
     public ?string $city;
 
     /** @Attribute */
+    public ?string $phone;
+
+    /** @Attribute */
+    public ?string $occupation;
+
+    /** @Attribute */
+    public ?string $facebook;
+
+    /** @Attribute */
+    public ?string $twitter;
+
+    /** @Attribute */
+    public ?string $linkedin;
+
+    /** @Attribute */
     public string $createdAt;
 
     /** @Attribute */
@@ -65,6 +80,11 @@ class UserReadModel implements ApiModel
         ?string $avatar,
         ?string $address,
         ?string $city,
+        ?string $phone,
+        ?string $occupation,
+        ?string $facebook,
+        ?string $twitter,
+        ?string $linkedin,
         string $createdAt,
         ?string $updatedAt,
         ?string $deletedAt
@@ -78,6 +98,11 @@ class UserReadModel implements ApiModel
         $this->avatar = $avatar;
         $this->address = $address;
         $this->city = $city;
+        $this->phone = $phone;
+        $this->occupation = $occupation;
+        $this->facebook = $facebook;
+        $this->twitter = $twitter;
+        $this->linkedin = $linkedin;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
@@ -86,7 +111,7 @@ class UserReadModel implements ApiModel
 
     public static function fromEntity(User $user): self
     {
-        $portfolios = array_map(static function(Portfolio $portfolio){
+        $portfolios = array_map(static function (Portfolio $portfolio) {
             return $portfolio->getId();
         }, $user->getPortfolios()->getValues());
 
@@ -101,6 +126,11 @@ class UserReadModel implements ApiModel
             null === $user->getAvatar() ? null : '/images/avatar/' . $user->getAvatar(),
             null === $user->getAddress() ? null : $user->getAddress(),
             null === $user->getCity() ? null : $user->getCity(),
+            null === $user->getPhone() ? null : $user->getPhone(),
+            null === $user->getOccupation() ? null : $user->getOccupation(),
+            null === $user->getFacebook() ? null : $user->getFacebook(),
+            null === $user->getTwitter() ? null : $user->getTwitter(),
+            null === $user->getLinkedin() ? null : $user->getLinkedin(),
             $user->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $user->getUpdatedAt() ? null : $user->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $user->getDeletedAt() ? null : $user->getDeletedAt()->format('Y-m-d H:i:s')
