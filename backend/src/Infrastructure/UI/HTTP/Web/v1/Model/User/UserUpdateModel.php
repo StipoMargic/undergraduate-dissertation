@@ -39,6 +39,21 @@ class UserUpdateModel implements ApiModel
     /** @Attribute */
     public ?string $city;
 
+    /** @Attribute */
+    public ?string $phone;
+
+    /** @Attribute */
+    public ?string $occupation;
+
+    /** @Attribute */
+    public ?string $facebook;
+
+    /** @Attribute */
+    public ?string $twitter;
+
+    /** @Attribute */
+    public ?string $linkedin;
+
     public function __construct(
         string $id,
         ?string $username,
@@ -48,16 +63,27 @@ class UserUpdateModel implements ApiModel
         ?string $avatar,
         ?string $address,
         ?string $city,
+        ?string $phone,
+        ?string $occupation,
+        ?string $facebook,
+        ?string $twitter,
+        ?string $linkedin
     ) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
+        $this->password = $password;
         $this->role = $role;
         $this->avatar = $avatar;
         $this->address = $address;
         $this->city = $city;
-        $this->password = $password;
+        $this->phone = $phone;
+        $this->occupation = $occupation;
+        $this->facebook = $facebook;
+        $this->twitter = $twitter;
+        $this->linkedin = $linkedin;
     }
+
 
     #[Pure] public static function fromEntity(User $user): self
     {
@@ -69,7 +95,12 @@ class UserUpdateModel implements ApiModel
             $user->getRoles()[0],
             $user->getAvatar(),
             $user->getAddress(),
-            $user->getCity()
+            $user->getCity(),
+            $user->getPhone(),
+            $user->getOccupation(),
+            $user->getFacebook(),
+            $user->getTwitter(),
+            $user->getLinkedin()
         );
     }
 }
