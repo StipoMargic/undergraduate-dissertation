@@ -34,12 +34,6 @@ final class Portfolio implements EntityInterface
     /** @ORM\ManyToOne(targetEntity="App\Domain\Category\Category", inversedBy="portfolios", cascade="persist") */
     private Category $category;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Domain\Image\Image", inversedBy="portfolios", cascade="persist")
-     * @ORM\JoinTable(name="portfolios_image")
-     */
-    private Collection $images;
-
     /** @ORM\Column(name="advancedKnowledge", type="string", nullable=false) */
     private string $advancedKnowledge;
 
@@ -74,7 +68,6 @@ final class Portfolio implements EntityInterface
     public function __construct(
         UuidInterface $id,
         Category $category,
-        array $images,
         string $advancedKnowledge,
         string $advancedKnowledgeBulletins,
         string $skills,
@@ -95,16 +88,8 @@ final class Portfolio implements EntityInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
-        $this->images = $this->setImages($images);
     }
 
-
-    private function setImages(array $images): ArrayCollection
-    {
-        Assertion::allIsInstanceOf($images, Image::class, "All images should be of type Image, %s provided!");
-
-        return new ArrayCollection($images);
-    }
 
     public function getId(): UuidInterface
     {
@@ -219,18 +204,6 @@ final class Portfolio implements EntityInterface
     public function getDeletedAt(): ?\DateTimeImmutable
     {
         return $this->deletedAt;
-    }
-
-    public function addImage(Image $image): void
-    {
-        if (false === $this->images->contains($image)) {
-            $this->images->add($image);
-        }
-    }
-
-    public function getImages(): ArrayCollection|Collection
-    {
-        return $this->images;
     }
 
     public function delete(): void

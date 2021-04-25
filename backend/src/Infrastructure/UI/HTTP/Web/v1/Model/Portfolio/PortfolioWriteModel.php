@@ -17,58 +17,50 @@ class PortfolioWriteModel implements ApiModel
     public string $id;
 
     /** @Attribute */
-    public array $images;
+    public string $category;
 
     /** @Attribute */
-    public string $companyName;
+    public string $advancedKnowledge;
 
     /** @Attribute */
-    public string $address;
+    public string $advancedKnowledgeBulletins;
 
     /** @Attribute */
-    public string $city;
+    public string $skills;
 
     /** @Attribute */
-    public string $phone;
+    public string $salary;
 
     /** @Attribute */
     public int $disabilityPercent;
 
     /** @Attribute */
-    public string $paycheck;
+    public string $rate;
 
     /** @Attribute */
-    public string $aboutCompany;
-
-    /** @Attribute */
-    public string $aboutJob;
-
-    /** @Attribute */
-    public string $jobPosition;
+    public string $hour;
 
     public function __construct(
         string $id,
-        array $images,
-        string $companyName,
-        string $address,
-        string $city,
-        string $phone,
+        string $category,
+        string $advancedKnowledge,
+        string $advancedKnowledgeBulletins,
+        string $skills,
+        string $salary,
         int $disabilityPercent,
-        string $paycheck,
-        string $aboutCompany,
-        string $aboutJob,
-        string $jobPosition
+        string $rate,
+        string $hour
     ) {
         $this->id = $id;
-        $this->images = $images;
-        $this->companyName = $companyName;
-        $this->address = $address;
-        $this->city = $city;
-        $this->phone = $phone;
+        $this->category = $category;
+        $this->advancedKnowledge = $advancedKnowledge;
+        $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
+        $this->skills = $skills;
+        $this->salary = $salary;
         $this->disabilityPercent = $disabilityPercent;
-        $this->paycheck = $paycheck;
-        $this->aboutCompany = $aboutCompany;
-        $this->aboutJob = $aboutJob;
-        $this->jobPosition = $jobPosition;
+        $this->rate = $rate;
+        $this->hour = $hour;
     }
+
+
 }
