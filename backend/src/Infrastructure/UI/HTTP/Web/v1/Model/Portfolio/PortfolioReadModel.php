@@ -22,34 +22,28 @@ class PortfolioReadModel implements ApiModel
     public string $user;
 
     /** @Attribute */
-    public array $images;
+    public string $category;
 
     /** @Attribute */
-    public string $companyName;
+    public string $advancedKnowledge;
 
     /** @Attribute */
-    public string $address;
+    public string $advancedKnowledgeBulletins;
 
     /** @Attribute */
-    public string $city;
+    public string $skills;
 
     /** @Attribute */
-    public string $phone;
+    public string $salary;
 
     /** @Attribute */
     public int $disabilityPercent;
 
     /** @Attribute */
-    public string $paycheck;
+    public string $rate;
 
     /** @Attribute */
-    public string $aboutCompany;
-
-    /** @Attribute */
-    public string $aboutJob;
-
-    /** @Attribute */
-    public string $jobPosition;
+    public string $hour;
 
     /** @Attribute */
     public string $createdAt;
@@ -63,56 +57,47 @@ class PortfolioReadModel implements ApiModel
     public function __construct(
         string $id,
         string $user,
-        array $images,
-        string $companyName,
-        string $address,
-        string $city,
-        string $phone,
+        string $category,
+        string $advancedKnowledge,
+        string $advancedKnowledgeBulletins,
+        string $skills,
+        string $salary,
         int $disabilityPercent,
-        string $paycheck,
-        string $aboutCompany,
-        string $aboutJob,
-        string $jobPosition,
+        string $rate,
+        string $hour,
         string $createdAt,
         ?string $updatedAt,
         ?string $deletedAt
     ) {
         $this->id = $id;
         $this->user = $user;
-        $this->images = $images;
-        $this->companyName = $companyName;
-        $this->address = $address;
-        $this->city = $city;
-        $this->phone = $phone;
+        $this->category = $category;
+        $this->advancedKnowledge = $advancedKnowledge;
+        $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
+        $this->skills = $skills;
+        $this->salary = $salary;
         $this->disabilityPercent = $disabilityPercent;
-        $this->paycheck = $paycheck;
-        $this->aboutCompany = $aboutCompany;
-        $this->aboutJob = $aboutJob;
-        $this->jobPosition = $jobPosition;
+        $this->rate = $rate;
+        $this->hour = $hour;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
     }
 
+
     public static function fromEntity(Portfolio $portfolio): self
     {
-        $images = array_map(static function (Image $image) {
-            return $image->getPath();
-        }, $portfolio->getImages()->getValues());
-
         return new self(
             (string) $portfolio->getId(),
             $portfolio->getUser()->getUsername(),
-            $images,
-            $portfolio->getCompanyName(),
-            $portfolio->getAddress(),
-            $portfolio->getCity(),
-            $portfolio->getPhone(),
+            $portfolio->getCategory()->getName(),
+            $portfolio->getAdvancedKnowledge(),
+            $portfolio->getAdvancedKnowledgeBulletins(),
+            $portfolio->getSkills(),
+            $portfolio->getSalary(),
             $portfolio->getDisabilityPercent(),
-            $portfolio->getPaycheck(),
-            $portfolio->getAboutCompany(),
-            $portfolio->getAboutJob(),
-            $portfolio->getJobPosition(),
+            $portfolio->getRate(),
+            $portfolio->getHours(),
             $portfolio->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getUpdatedAt() ? null : $portfolio->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s')
