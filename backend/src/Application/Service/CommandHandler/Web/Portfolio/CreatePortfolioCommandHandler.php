@@ -15,8 +15,6 @@ use Ramsey\Uuid\Uuid;
 final class CreatePortfolioCommandHandler
 {
     public function __construct(
-        private UserReadRepository $userReadRepository,
-        private PortfolioReadRepository $portfolioReadRepository,
         private PortfolioWriteRepository $portfolioWriteRepository,
         private ImageUploader $imageUploader
     ) {

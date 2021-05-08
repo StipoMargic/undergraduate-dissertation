@@ -23,7 +23,7 @@ services:
   App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\:
     resource: '../src/Infrastructure/UI/HTTP/Web/v1/ApiResponder/*'
 
-  # Application services - Command & Query handlers and Bus configuration
+  # Application services - Category & Query handlers and Bus configuration
   App\Application\Service\:
     resource: '../src/Application/Service/*'
     exclude: '../src/Application/Service/{CommandHandler}'
