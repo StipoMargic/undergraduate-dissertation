@@ -5,12 +5,8 @@ namespace App\Application\Service\CommandHandler\Web\Portfolio;
 
 use App\Application\Category\CategoryRepository\CategoryReadRepository;
 use App\Application\Command\Web\Portfolio\CreatePortfolioCommand;
-use App\Application\Portfolio\PortfolioRepository\PortfolioReadRepository;
 use App\Application\Portfolio\PortfolioRepository\PortfolioWriteRepository;
-use App\Application\User\UserRepository\UserReadRepository;
-use App\Domain\Image\Image;
 use App\Domain\Portfolio\Portfolio;
-use App\Infrastructure\Image\Upload\ImageUploader;
 use Ramsey\Uuid\Uuid;
 
 final class CreatePortfolioCommandHandler
