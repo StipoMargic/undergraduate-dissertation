@@ -22,7 +22,6 @@ final class DeletePortfolioController
     public function delete(
         UuidInterface $id,
         CommandBus $commandBus,
-        Portfolio $portfolio
     ): ResourceDeletedResponse
     {
         $command = new DeletePortfolioCommand((string) $id);
