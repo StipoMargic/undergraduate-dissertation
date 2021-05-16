@@ -28,8 +28,12 @@ final class CreateUserCommandHandler
 
     public function __invoke(CreateUserCommand $command)
     {
-        if ($this->userReadRepository->getByEmail($command->email)) throw UserAlreadyExistException::withEmail($command->email);
-        if (!in_array($command->role, User::ALLOWED_API_ROLES)) throw NotValidRoleException::withRole($command->role);
+        if ($this->userReadRepository->getByEmail($command->email)) {
+            throw UserAlreadyExistException::withEmail($command->email);
+        }
+        if (!in_array($command->role, User::ALLOWED_API_ROLES)) {
+            throw NotValidRoleException::withRole($command->role);
+        }
 
         $user = new User(
             Uuid::fromString($command->id),
@@ -38,8 +42,14 @@ final class CreateUserCommandHandler
             $command->password,
             $command->role,
             null === $command->avatar ? null : $this->makeAvatar($command->avatar),
-            null,
-            null
+            $command->address,
+            $command->city,
+            $command->phone,
+            $command->occupation,
+            $command->facebook,
+            $command->twitter,
+            $command->linkedin,
+            "aaaaaaaaaaaaaaa"
         );
 
         $user->setPassword($this->encodePassword($user, $command->password));

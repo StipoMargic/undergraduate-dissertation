@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Infrastructure\UI\HTTP\Web\v1\Endpoint\Category;
 
+use App\Application\Category\CategoryRepository\CategoryReadRepository;
 use App\Application\Command\Web\Category\CreateCategoryCommand;
-use App\Application\Portfolio\PortfolioRepository\PortfolioReadRepository;
 use App\Application\Service\Bus\CommandBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\Category\CategoryWriteModel;
@@ -22,7 +22,7 @@ final class CreateCategoryController
         CreateResourceRequestInterface $request,
         SimpleResourceHandler $resourceHandler,
         CommandBus $commandBus,
-        PortfolioReadRepository $repository,
+        CategoryReadRepository $repository,
         ResourceResponder $responder
     ): ResourceCreatedResponse {
         $createModel = $resourceHandler->getModelFromRequest($request, CategoryWriteModel::class);

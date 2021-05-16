@@ -72,7 +72,9 @@ services:
   App\Application\Portfolio\PortfolioRepository\PortfolioReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrinePortfolioReadRepository'
   App\Application\Portfolio\PortfolioRepository\PortfolioWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrinePortfolioWriteRepository'
   App\Application\Category\CategoryRepository\CategoryReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineCategoryReadRepository'
-    App\Application\Category\CategoryRepository\CategoryWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineCategoryWriteRepository'
+  App\Application\Category\CategoryRepository\CategoryWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineCategoryWriteRepository'
+  App\Application\Qualification\QualificationRepository\QualificationReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineQualificationReadRepository'
+  App\Application\Qualification\QualificationRepository\QualificationWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineQualificationWriteRepository'
 
   # Additional config
 

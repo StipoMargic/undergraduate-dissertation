@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Infrastructure\Service\QueryHandler\Web\Category;
 
 
-use App\Application\Query\Category\CategoryQuery;
+use App\Application\Query\Web\Category\CategoryQuery;
 use App\Domain\Category\Category;
 use Doctrine\ORM\EntityManagerInterface;
 use Undabot\JsonApi\Implementation\Model\Request\Sort\SortSet;

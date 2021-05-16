@@ -25,12 +25,14 @@ final class UserRegistrationController
         CommandBus $commandBus,
         UserReadRepository $repository,
         ResourceResponder $responder
-    ): ResourceCreatedResponse
-    {
+    ): ResourceCreatedResponse {
         $createModel = $resourceHandler->getModelFromRequest($request, UserWriteModel::class);
 
-        $command = new CreateUserCommand($createModel->id, $createModel->username, $createModel->email, $createModel->role, $createModel->password, $createModel->avatar);
-
+        $command = new CreateUserCommand($createModel->id, $createModel->username,
+            $createModel->email, $createModel->role, $createModel->password, $createModel->avatar, $createModel->address, $createModel->city,
+            $createModel->phone, $createModel->occupation, $createModel->facebook, $createModel->twitter,
+            $createModel->linkedin
+        );
         $commandBus->handleCommand($command);
 
         $user = $repository->getByEmail($command->email);

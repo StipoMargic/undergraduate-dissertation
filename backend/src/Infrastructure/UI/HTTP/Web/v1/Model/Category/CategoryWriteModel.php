@@ -19,16 +19,16 @@ class CategoryWriteModel implements ApiModel
     public string $name;
 
     /** @Attribute  */
-    public string $imaqe;
+    public string $image;
 
     /** @Attribute  */
     public ?string $description;
 
-    public function __construct(string $id, string $name, string $imaqe, ?string $description)
+    public function __construct(string $id, string $name, string $image, ?string $description)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->imaqe = $imaqe;
+        $this->image = $image;
         $this->description = $description;
     }
 }

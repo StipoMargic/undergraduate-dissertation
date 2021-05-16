@@ -14,7 +14,14 @@ class CreateUserCommand implements CommandInterface
         public string $email,
         public string $role,
         public string $password,
-        public ?string $avatar
+        public ?string $avatar,
+        public ?string $address,
+        public ?string $city,
+        public ?string $phone,
+        public ?string $occupation,
+        public ?string $facebook,
+        public ?string $twitter,
+        public ?string $linkedin,
     ) {
     }
 

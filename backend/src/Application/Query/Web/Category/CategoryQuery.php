@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Application\Query\Category;
+namespace App\Application\Query\Web\Category;
 
 use App\Application\Query\QueryInterface;
 use Undabot\JsonApi\Implementation\Model\Request\Sort\SortSet;

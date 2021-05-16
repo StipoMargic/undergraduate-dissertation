@@ -8,6 +8,7 @@ use App\Domain\Category\Category;
 use App\Domain\Portfolio\Portfolio;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
+use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
 
 /** @ResourceType(type="category") */
 class CategoryReadModel implements ApiModel

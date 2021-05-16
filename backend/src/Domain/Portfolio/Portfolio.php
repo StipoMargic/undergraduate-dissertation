@@ -26,9 +26,7 @@ final class Portfolio implements EntityInterface
      */
     private UuidInterface $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="portfolios", cascade="persist")
-     */
+    /** @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="portfolios", cascade="persist") */
     private User $user;
 
     /** @ORM\ManyToOne(targetEntity="App\Domain\Category\Category", inversedBy="portfolios", cascade="persist") */

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\UI\HTTP\Web\v1\Endpoint\Category;
 
-use App\Application\Query\Category\CategoryQuery;
+use App\Application\Query\Web\Category\CategoryQuery;
 use App\Application\Service\Bus\QueryBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
 use Symfony\Component\Routing\Annotation\Route;
