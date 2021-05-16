@@ -22,10 +22,10 @@ final class ListCategoryController
         $request->allowSorting(['name', 'createdAt']);
 
         $pagination = $request->getPagination();
-
         $entities = $queryBus->handleQuery(new CategoryQuery(null === $pagination ? null : $pagination->getOffset(),
             null ===
             $pagination ? null : $pagination->getSize(), $request->getSortSet()));
+
 
         return $responder->resourceObjectCollection($entities);
     }

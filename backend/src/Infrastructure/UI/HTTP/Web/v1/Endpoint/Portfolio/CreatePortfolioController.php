@@ -30,7 +30,7 @@ final class CreatePortfolioController
 
         $command = new CreatePortfolioCommand($createModel->id, $createModel->category, $createModel->advancedKnowledge,
             $createModel->advancedKnowledgeBulletins, $createModel->skills,
-            $createModel->salary, $createModel->disabilityPercent, $createModel->rate, $createModel->hour);
+            $createModel->salary, $createModel->disabilityPercent, $createModel->rate, $createModel->hour, $createModel->arrTe);
         $commandBus->handleCommand($command);
 
         $portfolio = $repository->get(Uuid::fromString($command->id));

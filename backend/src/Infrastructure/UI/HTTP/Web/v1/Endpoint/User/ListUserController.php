@@ -27,7 +27,6 @@ final class ListUserController
         $request->allowFilters(['role']);
 
         $pagination = $request->getPagination();
-
         $entities = $queryBus->handleQuery(new UserQuery(null === $pagination ? null : $pagination->getOffset(),
                 null === $pagination ? null : $pagination->getSize(),
                 $request->getFilterSet(),

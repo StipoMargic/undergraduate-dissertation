@@ -7,6 +7,7 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Portfolio;
 
 use App\Domain\Image\Image;
 use App\Domain\Portfolio\Portfolio;
+use App\Domain\Qualification\Qualification;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
@@ -26,6 +27,9 @@ class PortfolioReadModel implements ApiModel
 
     /** @Attribute */
     public string $advancedKnowledge;
+
+    /** @Attribute */
+    public array $qualifications;
 
     /** @Attribute */
     public string $advancedKnowledgeBulletins;
@@ -67,7 +71,8 @@ class PortfolioReadModel implements ApiModel
         string $hour,
         string $createdAt,
         ?string $updatedAt,
-        ?string $deletedAt
+        ?string $deletedAt,
+        array $qualifications
     ) {
         $this->id = $id;
         $this->user = $user;
@@ -82,11 +87,16 @@ class PortfolioReadModel implements ApiModel
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
+        $this->qualifications = $qualifications;
     }
 
 
     public static function fromEntity(Portfolio $portfolio): self
     {
+        $qualifications = array_map(static function (Qualification $q) {
+            return $q->getId();
+        }, $portfolio->getQualification()->getValues());
+
         return new self(
             (string) $portfolio->getId(),
             $portfolio->getUser()->getUsername(),
@@ -100,7 +110,8 @@ class PortfolioReadModel implements ApiModel
             $portfolio->getHours(),
             $portfolio->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getUpdatedAt() ? null : $portfolio->getUpdatedAt()->format('Y-m-d H:i:s'),
-            null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s')
+            null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
+            $qualifications
         );
     }
 }

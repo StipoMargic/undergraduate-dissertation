@@ -17,7 +17,8 @@ class CreatePortfolioCommand implements CommandInterface
         public string $salary,
         public int $disabilityPercent,
         public string $rate,
-        public string $hour
+        public string $hour,
+        public array $test
     ) {
     }
 }

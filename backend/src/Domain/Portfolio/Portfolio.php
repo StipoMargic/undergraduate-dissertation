@@ -6,9 +6,8 @@ namespace App\Domain\Portfolio;
 
 use App\Domain\Category\Category;
 use App\Domain\Common\EntityInterface;
-use App\Domain\Image\Image;
+use App\Domain\Qualification\Qualification;
 use App\Domain\User\User;
-use Assert\Assertion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,6 +30,9 @@ final class Portfolio implements EntityInterface
 
     /** @ORM\ManyToOne(targetEntity="App\Domain\Category\Category", inversedBy="portfolios", cascade="persist") */
     private Category $category;
+
+    /** @ORM\OneToMany(targetEntity="App\Domain\Qualification\Qualification", mappedBy="portfolio", cascade="persist") */
+    private ?Collection $qualifications;
 
     /** @ORM\Column(name="advancedKnowledge", type="string", nullable=false) */
     private string $advancedKnowledge;
@@ -86,6 +88,7 @@ final class Portfolio implements EntityInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
+        $this->qualifications = new ArrayCollection();
     }
 
 
@@ -207,5 +210,21 @@ final class Portfolio implements EntityInterface
     public function delete(): void
     {
         $this->deletedAt = new \DateTimeImmutable();
+    }
+
+    public function getQualification(): Collection
+    {
+        return $this->qualifications;
+    }
+
+    public function setQualification(Collection $qualifications): void
+    {
+        $this->qualifications = $qualifications;
+    }
+
+    public function addQualification(
+        Qualification $qualifications
+    ): void {
+        $this->qualifications->add($qualifications);
     }
 }

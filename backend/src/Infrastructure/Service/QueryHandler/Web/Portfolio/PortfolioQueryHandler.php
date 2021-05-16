@@ -9,6 +9,7 @@ use App\Domain\Portfolio\Portfolio;
 use Doctrine\ORM\EntityManagerInterface;
 use Undabot\JsonApi\Implementation\Model\Request\Sort\SortSet;
 use Undabot\SymfonyJsonApi\Model\Collection\ArrayCollection;
+use Undabot\SymfonyJsonApi\Model\Collection\ObjectCollection;
 use Undabot\SymfonyJsonApi\Service\Pagination\Paginator;
 
 class PortfolioQueryHandler
@@ -18,7 +19,7 @@ class PortfolioQueryHandler
     }
 
     public function __invoke(PortfolioQuery $query
-    ): \Undabot\SymfonyJsonApi\Model\Collection\ObjectCollection|ArrayCollection {
+    ): ObjectCollection {
         $qb = $this->entityManager->createQueryBuilder()->select('p')->from(Portfolio::class, 'p');
 
         if (property_exists($query, 'sortSet') && null !== $query->sortSet && $query->sortSet instanceof SortSet) {
@@ -28,8 +29,12 @@ class PortfolioQueryHandler
         }
 
         return (null !== $query->offset && null !== $query->size)
-            ? (new Paginator())->createPaginatedCollection(
-                $qb, $query->offset, $query->size
-            ) : new ArrayCollection($qb->getQuery()->getArrayResult());
+            ? (new Paginator())
+                ->createPaginatedCollection(
+                    $qb,
+                    $query->offset,
+                    $query->size
+                )
+            : new ArrayCollection($qb->getQuery()->getResult());
     }
 }

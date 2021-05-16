@@ -4,12 +4,13 @@ declare(strict_types = 1);
 
 namespace App\Domain\Qualification;
 
+use App\Domain\Portfolio\Portfolio;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Qualification")
+ * @ORM\Table(name="qualification")
  */
 class Qualification
 {
@@ -19,7 +20,8 @@ class Qualification
      */
     private UuidInterface $id;
 
-
+    /** @ORM\ManyToOne(targetEntity="App\Domain\Portfolio\Portfolio", inversedBy="qualifications", cascade="persist") */
+    private Portfolio $portfolio;
 
     /** @ORM\Column(name="name_of_qualification", type="string", nullable=false) */
     private string $nameOfQualification;
@@ -38,13 +40,15 @@ class Qualification
         string $nameOfQualification,
         int $yearStart,
         ?int $yearEnd,
-        ?string $description
+        ?string $description,
+        Portfolio $portfolio
     ) {
         $this->id = $id;
         $this->nameOfQualification = $nameOfQualification;
         $this->yearStart = $yearStart;
         $this->yearEnd = $yearEnd;
         $this->description = $description;
+        $this->portfolio = $portfolio;
     }
 
     public function getId(): UuidInterface
@@ -90,5 +94,15 @@ class Qualification
     public function setDescription(?string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getPortfolio(): Portfolio
+    {
+        return $this->portfolio;
+    }
+
+    public function setPortfolio(Portfolio $portfolio): void
+    {
+        $this->portfolio = $portfolio;
     }
 }

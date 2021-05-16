@@ -6,14 +6,18 @@ namespace App\Application\Service\CommandHandler\Web\Portfolio;
 use App\Application\Category\CategoryRepository\CategoryReadRepository;
 use App\Application\Command\Web\Portfolio\CreatePortfolioCommand;
 use App\Application\Portfolio\PortfolioRepository\PortfolioWriteRepository;
+use App\Application\Qualification\QualificationRepository\QualificationWriteRepository;
 use App\Domain\Portfolio\Portfolio;
+use App\Domain\Qualification\Qualification;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 final class CreatePortfolioCommandHandler
 {
     public function __construct(
         private PortfolioWriteRepository $portfolioWriteRepository,
         private CategoryReadRepository $categoryReadRepository,
+        private QualificationWriteRepository $qualificationWriteRepository
     ) {
     }
 
@@ -27,6 +31,11 @@ final class CreatePortfolioCommandHandler
             $command->salary, $command->disabilityPercent, $command->rate, $command->hour
         );
 
+        foreach ($command->test as $item) {
+            $qual = new Qualification(Uuid::fromString((string) Uuid::uuid4()), $item["nameOfQualification"],
+                $item["yearStart"], $item["yearEnd"], $item["description"], $portfolio);
+            $portfolio->addQualification($qual);
+        }
         $this->portfolioWriteRepository->save($portfolio);
     }
 }
