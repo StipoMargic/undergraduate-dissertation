@@ -5,12 +5,11 @@ declare(strict_types = 1);
 namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Portfolio;
 
 
-use App\Domain\Image\Image;
 use App\Domain\Portfolio\Portfolio;
 use App\Domain\Qualification\Qualification;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
-use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
+use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 
 /**
  * @ResourceType(type="portfolio")

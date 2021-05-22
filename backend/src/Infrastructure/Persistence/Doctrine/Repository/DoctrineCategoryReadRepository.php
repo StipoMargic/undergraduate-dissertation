@@ -7,7 +7,6 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Application\Category\CategoryRepository\CategoryReadRepository;
 use App\Domain\Category\Category;
-use App\Domain\Category\Exception\CategoryNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;

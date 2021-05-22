@@ -11,7 +11,6 @@ use App\Application\User\UserRepository\UserWriteRepository;
 use App\Domain\User\Exception\UserNotFoundException;
 use App\Domain\User\User;
 use App\Infrastructure\Image\Upload\ImageUploader;
-use phpDocumentor\Reflection\Types\This;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 

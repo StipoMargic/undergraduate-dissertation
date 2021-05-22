@@ -7,7 +7,6 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Endpoint\Portfolio;
 
 use App\Application\Command\Web\Portfolio\DeletePortfolioCommand;
 use App\Application\Service\Bus\CommandBus;
-use App\Domain\Portfolio\Portfolio;
 use Ramsey\Uuid\UuidInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;

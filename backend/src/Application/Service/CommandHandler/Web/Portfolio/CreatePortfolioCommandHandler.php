@@ -10,7 +10,6 @@ use App\Application\Qualification\QualificationRepository\QualificationWriteRepo
 use App\Domain\Portfolio\Portfolio;
 use App\Domain\Qualification\Qualification;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 final class CreatePortfolioCommandHandler
 {

@@ -7,8 +7,8 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Qualification;
 use App\Domain\Qualification\Qualification;
 use JetBrains\PhpStorm\Pure;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
-use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
+use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 
 /** @ResourceType(type="qualification") */
 class QualificationReadModel implements ApiModel

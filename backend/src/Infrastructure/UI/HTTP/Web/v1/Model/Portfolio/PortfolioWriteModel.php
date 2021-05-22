@@ -6,7 +6,6 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Portfolio;
 
 
 use Undabot\SymfonyJsonApi\Model\ApiModel;
-use Undabot\SymfonyJsonApi\Model\Resource\Annotation\ToOne;
 use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 
 /**

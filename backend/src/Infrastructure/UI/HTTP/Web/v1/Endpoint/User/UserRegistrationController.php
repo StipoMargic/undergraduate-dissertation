@@ -10,7 +10,6 @@ use App\Application\Service\Bus\CommandBus;
 use App\Application\User\UserRepository\UserReadRepository;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\User\UserWriteModel;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Undabot\JsonApi\Definition\Model\Request\CreateResourceRequestInterface;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceCreatedResponse;
