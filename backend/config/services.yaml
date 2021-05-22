@@ -75,6 +75,8 @@ services:
   App\Application\Category\CategoryRepository\CategoryWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineCategoryWriteRepository'
   App\Application\Qualification\QualificationRepository\QualificationReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineQualificationReadRepository'
   App\Application\Qualification\QualificationRepository\QualificationWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineQualificationWriteRepository'
+  App\Application\Experience\ExperienceRepository\ExperienceReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineExperienceReadRepository'
+  App\Application\Experience\ExperienceRepository\ExperienceWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineExperienceWriteRepository'
 
   # Additional config
 
