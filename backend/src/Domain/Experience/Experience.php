@@ -40,10 +40,10 @@ class Experience implements EntityInterface
     public function __construct(
         UuidInterface $id,
         string $jobTitle,
-        Portfolio $portfolio,
         int $yearStart,
         ?int $yearEnd,
-        ?string $description
+        ?string $description,
+        Portfolio $portfolio
     ) {
         $this->id = $id;
         $this->jobTitle = $jobTitle;

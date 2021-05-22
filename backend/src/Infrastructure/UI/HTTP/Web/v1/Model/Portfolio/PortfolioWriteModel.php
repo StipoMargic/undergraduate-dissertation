@@ -40,7 +40,10 @@ class PortfolioWriteModel implements ApiModel
     public string $hour;
 
     /** @Attribute */
-    public array $arrTe;
+    public array $qualifications;
+
+    /** @Attribute */
+    public array $experiences;
 
     public function __construct(
         string $id,
@@ -52,7 +55,8 @@ class PortfolioWriteModel implements ApiModel
         int $disabilityPercent,
         string $rate,
         string $hour,
-        array $arrTe
+        array $qualifications,
+        array $experiences
     ) {
         $this->id = $id;
         $this->category = $category;
@@ -63,7 +67,8 @@ class PortfolioWriteModel implements ApiModel
         $this->disabilityPercent = $disabilityPercent;
         $this->rate = $rate;
         $this->hour = $hour;
-        $this->arrTe = $arrTe;
+        $this->qualifications = $qualifications;
+        $this->experiences = $experiences;
     }
 
 }
