@@ -6,6 +6,7 @@ namespace App\Domain\Portfolio;
 
 use App\Domain\Category\Category;
 use App\Domain\Common\EntityInterface;
+use App\Domain\Experience\Experience;
 use App\Domain\Qualification\Qualification;
 use App\Domain\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,7 +18,7 @@ use Ramsey\Uuid\UuidInterface;
  * @ORM\Entity
  * @ORM\Table(name="portfolio")
  */
-final class Portfolio implements EntityInterface
+class Portfolio implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -33,6 +34,9 @@ final class Portfolio implements EntityInterface
 
     /** @ORM\OneToMany(targetEntity="App\Domain\Qualification\Qualification", mappedBy="portfolio", cascade="persist") */
     private ?Collection $qualifications;
+
+    /** @ORM\OneToMany(targetEntity="App\Domain\Experience\Experience", mappedBy="portfolio", cascade="persist") */
+    private ?Collection $experiences;
 
     /** @ORM\Column(name="advancedKnowledge", type="string", nullable=false) */
     private string $advancedKnowledge;
@@ -89,6 +93,7 @@ final class Portfolio implements EntityInterface
         $this->updatedAt = null;
         $this->deletedAt = null;
         $this->qualifications = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
 
@@ -226,5 +231,20 @@ final class Portfolio implements EntityInterface
         Qualification $qualifications
     ): void {
         $this->qualifications->add($qualifications);
+    }
+
+    public function getExperiences(): ?Collection
+    {
+        return $this->experiences;
+    }
+
+    public function setExperiences(?Collection $experiences): void
+    {
+        $this->experiences = $experiences;
+    }
+
+    public function addExperience(Experience $experience): void
+    {
+        $this->experiences->add($experience);
     }
 }

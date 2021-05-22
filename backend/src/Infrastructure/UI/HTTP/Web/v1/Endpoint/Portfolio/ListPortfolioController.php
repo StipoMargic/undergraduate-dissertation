@@ -10,7 +10,6 @@ use App\Application\Service\Bus\QueryBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
 use Symfony\Component\Routing\Annotation\Route;
 use Undabot\JsonApi\Definition\Model\Request\GetResourceCollectionRequestInterface;
-use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceCollectionResponse;
 
 final class ListPortfolioController
 {
