@@ -47,8 +47,8 @@ class QualificationReadModel implements ApiModel
             (string) $qualification->getId(),
             $qualification->getNameOfQualification(),
             $qualification->getYearStart(),
-            $qualification->getYearEnd(),
-            $qualification->getDescription()
+            null === $qualification->getYearEnd() ? null : $qualification->getYearEnd(),
+            null === $qualification->getDescription() ? null : $qualification->getDescription()
         );
     }
 }
