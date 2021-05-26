@@ -101,6 +101,11 @@ class Job implements EntityInterface
         return $this->user;
     }
 
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+
     public function getJobDuties(): string
     {
         return $this->jobDuties;
