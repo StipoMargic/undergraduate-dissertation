@@ -77,6 +77,8 @@ services:
   App\Application\Qualification\QualificationRepository\QualificationWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineQualificationWriteRepository'
   App\Application\Experience\ExperienceRepository\ExperienceReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineExperienceReadRepository'
   App\Application\Experience\ExperienceRepository\ExperienceWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineExperienceWriteRepository'
+  App\Application\Job\JobRepository\JobReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineJobReadRepository'
+  App\Application\Job\JobRepository\JobWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineJobWriteRepository'
 
   # Additional config
 
@@ -96,6 +98,12 @@ services:
     class: App\Infrastructure\Security\UserChecker
 
   App\Infrastructure\Service\EventHandler\CreateNewPortfolioEventHandler:
+    tags:
+      - name: 'doctrine.event_listener'
+        event: 'prePersist'
+        priority: 500
+
+  App\Infrastructure\Service\EventHandler\CreateNewJobEventHandler:
     tags:
       - name: 'doctrine.event_listener'
         event: 'prePersist'
