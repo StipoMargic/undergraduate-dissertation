@@ -33,8 +33,8 @@ class Job implements EntityInterface
     /** @ORM\Column(name="vacancy", type="string", nullable=false) */
     private string $vacancy;
 
-    /** @ORM\Column(name="post_date", type="string", nullable=false) */
-    private string $postDate;
+    /** @ORM\Column(name="post_date", type="datetime_immutable", nullable=false) */
+    private \DateTimeImmutable $postDate;
 
     /** @ORM\Column(name="active_till", type="string", nullable=false) */
     private string $activeTill;
@@ -68,7 +68,6 @@ class Job implements EntityInterface
         string $jobDuties,
         string $skills,
         string $vacancy,
-        string $postDate,
         string $activeTill,
         string $location,
         string $salary,
@@ -80,7 +79,7 @@ class Job implements EntityInterface
         $this->jobDuties = $jobDuties;
         $this->skills = $skills;
         $this->vacancy = $vacancy;
-        $this->postDate = $postDate;
+        $this->postDate = new \DateTimeImmutable();
         $this->activeTill = $activeTill;
         $this->location = $location;
         $this->salary = $salary;
@@ -130,16 +129,6 @@ class Job implements EntityInterface
     public function setVacancy(string $vacancy): void
     {
         $this->vacancy = $vacancy;
-    }
-
-    public function getPostDate(): string
-    {
-        return $this->postDate;
-    }
-
-    public function setPostDate(string $postDate): void
-    {
-        $this->postDate = $postDate;
     }
 
     public function getActiveTill(): string
@@ -221,4 +210,10 @@ class Job implements EntityInterface
     {
         $this->deletedAt = new \DateTimeImmutable();
     }
+
+    public function getPostDate(): \DateTimeImmutable
+    {
+        return $this->postDate;
+    }
+
 }
