@@ -102,3 +102,9 @@ services:
       - name: 'doctrine.event_listener'
         event: 'prePersist'
         priority: 500
+
+  App\Infrastructure\Service\EventHandler\CreateNewJobEventHandler:
+    tags:
+      - name: 'doctrine.event_listener'
+        event: 'prePersist'
+        priority: 500
