@@ -13,7 +13,6 @@ class CreateJobCommand implements CommandInterface
         public string $jobDuties,
         public string $skills,
         public string $vacancy,
-        public string $postDate,
         public string $activeTill,
         public string $location,
         public string $salary,
