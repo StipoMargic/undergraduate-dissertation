@@ -7,6 +7,7 @@ namespace App\Domain\User;
 
 use App\Application\User\VerificationToken;
 use App\Domain\Common\EntityInterface;
+use App\Domain\Job\Job;
 use App\Domain\Portfolio\Portfolio;
 use Assert\Assertion;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -34,6 +35,9 @@ class User implements UserInterface, EntityInterface
 
     /** @ORM\OneToMany(targetEntity="App\Domain\Portfolio\Portfolio", mappedBy="user", cascade="persist") */
     private ?Collection $portfolios;
+
+    /** @ORM\OneToMany(targetEntity="App\Domain\Job\Job", mappedBy="user", cascade="persist") */
+    private ?Collection $jobs;
 
     /**
      * @ORM\Column(name="username", type="string", unique=true)
@@ -149,6 +153,7 @@ class User implements UserInterface, EntityInterface
         $this->updatedAt = null;
         $this->deletedAt = null;
         $this->portfolios = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
     }
 
     private function verifyPortfolios(array $portfolios): ArrayCollection
@@ -363,6 +368,21 @@ class User implements UserInterface, EntityInterface
     {
         $this->setDeletedAt(new \DateTimeImmutable());
         $this->verified = false;
+    }
+
+    public function getJobs(): ArrayCollection|Collection|null
+    {
+        return $this->jobs;
+    }
+
+    public function setJobs(ArrayCollection|Collection|null $jobs): void
+    {
+        $this->jobs = $jobs;
+    }
+
+    public function addJob(Job $job): void
+    {
+        $this->jobs->add($job);
     }
 
     public function update(
