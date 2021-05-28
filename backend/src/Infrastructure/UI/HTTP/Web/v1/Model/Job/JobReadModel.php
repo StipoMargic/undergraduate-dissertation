@@ -91,7 +91,7 @@ class JobReadModel implements ApiModel
             $job->getJobDuties(),
             $job->getSkills(),
             $job->getVacancy(),
-            $job->getPostDate(),
+            $job->getPostDate()->format('Y-m-d H:i:s'),
             $job->getActiveTill(),
             $job->getLocation(),
             $job->getSalary(),

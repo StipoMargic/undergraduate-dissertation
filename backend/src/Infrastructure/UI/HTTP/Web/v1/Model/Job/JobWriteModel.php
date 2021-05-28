@@ -21,9 +21,6 @@ class JobWriteModel implements ApiModel
     public string $vacancy;
 
     /** @Attribute */
-    public string $postDate;
-
-    /** @Attribute */
     public string $activeTill;
 
     /** @Attribute */
@@ -39,31 +36,29 @@ class JobWriteModel implements ApiModel
     public string $typeOfPosition;
 
     /** @Attribute */
-    public bool $disableFriendly;
+    public bool $disabledFriendly;
 
     public function __construct(
         string $id,
         string $jobDuties,
         string $skills,
         string $vacancy,
-        string $postDate,
         string $activeTill,
         string $location,
         string $salary,
         string $hours,
         string $typeOfPosition,
-        bool $disableFriendly
+        bool $disabledFriendly
     ) {
         $this->id = $id;
         $this->jobDuties = $jobDuties;
         $this->skills = $skills;
         $this->vacancy = $vacancy;
-        $this->postDate = $postDate;
         $this->activeTill = $activeTill;
         $this->location = $location;
         $this->salary = $salary;
         $this->hours = $hours;
         $this->typeOfPosition = $typeOfPosition;
-        $this->disableFriendly = $disableFriendly;
+        $this->disabledFriendly = $disabledFriendly;
     }
 }

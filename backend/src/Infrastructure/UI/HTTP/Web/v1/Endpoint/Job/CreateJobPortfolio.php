@@ -29,7 +29,7 @@ class CreateJobPortfolio
 
         $command = new CreateJobCommand($createModel->id, $createModel->jobDuties, $createModel->skills,
             $createModel->vacancy, $createModel->activeTill,
-            $createModel->location, $createModel->salary, $createModel->hours, $createModel->typeOfPosions,
+            $createModel->location, $createModel->salary, $createModel->hours, $createModel->typeOfPosition,
             $createModel->disabledFriendly);
         $commandBus->handleCommand($command);
 
