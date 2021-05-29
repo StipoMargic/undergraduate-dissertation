@@ -14,6 +14,9 @@ class JobReadModel implements ApiModel
     public string $id;
 
     /** @Attribute */
+    public string $name;
+
+    /** @Attribute */
     public string $jobDuties;
 
     /** @Attribute */
@@ -54,6 +57,7 @@ class JobReadModel implements ApiModel
 
     public function __construct(
         string $id,
+        string $name,
         string $jobDuties,
         string $skills,
         string $vacancy,
@@ -69,6 +73,7 @@ class JobReadModel implements ApiModel
         ?string $deletedAt
     ) {
         $this->id = $id;
+        $this->name = $name;
         $this->jobDuties = $jobDuties;
         $this->skills = $skills;
         $this->vacancy = $vacancy;
@@ -88,6 +93,7 @@ class JobReadModel implements ApiModel
     {
         return new self(
             (string) $job->getId(),
+            $job->getUser()->getUsername(),
             $job->getJobDuties(),
             $job->getSkills(),
             $job->getVacancy(),
