@@ -19,7 +19,7 @@ export const GlobalProvider = ({ children }) => {
       .catch((err) => console.log(err));
 
     axios
-      .get("http://127.0.0.1:8000/api/v1/portfolios")
+      .get("http://127.0.0.1:8000/api/v1/categories")
       .then((res) => {
         if (res && res.data) {
           setCategories([...res.data.data]);
