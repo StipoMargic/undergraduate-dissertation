@@ -11,22 +11,25 @@ import ContactPage from "./Pages/ContactPage";
 import JobPage from "./Pages/JobPage";
 import JDetail from "./Pages/JDetail";
 import Register from "./Components/Register";
+import { GlobalProvider } from "./Context/global";
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/freelancers" exact component={FreelancersPage} />
-        <Route path="/freelancers/:id" exact component={FDetail} />
-        <Route path="/jobs/:id" exact component={JDetail} />
-        <Route path="/contact" component={ContactPage} />
-        <Route path="/jobs" component={JobPage} />
-        <Route path="/register" component={Register} />
-      </Switch>
-      <Footer />
+      <GlobalProvider>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/freelancers" exact component={FreelancersPage} />
+          <Route path="/freelancers/:id" exact component={FDetail} />
+          <Route path="/jobs/:id" exact component={JDetail} />
+          <Route path="/contact" component={ContactPage} />
+          <Route path="/jobs" component={JobPage} />
+          <Route path="/register" component={Register} />
+        </Switch>
+        <Footer />
+      </GlobalProvider>
     </BrowserRouter>
   );
 }
