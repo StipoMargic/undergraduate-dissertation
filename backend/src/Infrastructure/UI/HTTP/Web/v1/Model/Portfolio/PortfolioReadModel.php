@@ -45,6 +45,12 @@ class PortfolioReadModel implements ApiModel
     public string $hour;
 
     /** @Attribute */
+    public string $avatar;
+
+    /** @Attribute */
+    public string $location;
+
+    /** @Attribute */
     public string $createdAt;
 
     /** @Attribute */
@@ -64,6 +70,8 @@ class PortfolioReadModel implements ApiModel
         int $disabilityPercent,
         string $rate,
         string $hour,
+        string $location,
+        string $avatar,
         string $createdAt,
         ?string $updatedAt,
         ?string $deletedAt
@@ -78,6 +86,8 @@ class PortfolioReadModel implements ApiModel
         $this->disabilityPercent = $disabilityPercent;
         $this->rate = $rate;
         $this->hour = $hour;
+        $this->avatar = $avatar;
+        $this->location = $location;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
@@ -97,6 +107,8 @@ class PortfolioReadModel implements ApiModel
             $portfolio->getDisabilityPercent(),
             $portfolio->getRate(),
             $portfolio->getHours(),
+            $portfolio->getUser()->getCity(),
+            '/images/avatar/' . $portfolio->getUser()->getAvatar(),
             $portfolio->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getUpdatedAt() ? null : $portfolio->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
