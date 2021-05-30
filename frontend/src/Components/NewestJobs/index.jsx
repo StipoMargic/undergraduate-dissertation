@@ -24,8 +24,15 @@ const NewestJob = () => {
         </div>
 
         <div className="row justify-content-center">
-          {jobs.map((job) => {
-            return <Job key={job.id} id={job.id} name={job.attributes.name} />;
+          {jobs.slice(0, 8).map((job) => {
+            return (
+              <Job
+                key={job.id}
+                id={job.id}
+                name={job.attributes.name}
+                position={job.attributes.jobPositionName}
+              />
+            );
           })}
         </div>
       </div>

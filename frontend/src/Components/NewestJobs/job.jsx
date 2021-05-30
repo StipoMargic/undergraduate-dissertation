@@ -3,7 +3,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Job = ({ id, name }) => {
+const Job = ({ id, name, position }) => {
   return (
     <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6">
       <div className="job_grid_02">
@@ -28,7 +28,7 @@ const Job = ({ id, name }) => {
         </div>
         <div className="jb_grid_01_caption">
           <h4 className="_jb_title">
-            <a href="job-detail.html">Nazoiv posla</a>
+            <a href="job-detail.html">{position}</a>
           </h4>
           <div className="_emp_jb">{name}</div>
         </div>
