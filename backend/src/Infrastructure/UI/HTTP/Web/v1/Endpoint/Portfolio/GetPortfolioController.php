@@ -24,7 +24,7 @@ final class GetPortfolioController
         ResourceResponder $responder,
         GetResourceRequestInterface $request
     ): ResourceResponse {
-        $request->allowIncluded(['qualifications', 'experiences']);
+        $request->allowIncluded(['qualifications', 'experiences', 'user']);
         $portfolio = $repository->get($id);
 
         return $responder->resource($portfolio, $this->getIncludedItems($request, $portfolio)->getItems());
@@ -41,7 +41,11 @@ final class GetPortfolioController
         }
 
         if (true === $request->isIncluded('experiences') && !$portfolio->getExperiences()->isEmpty()) {
-            $includedEntities ->addObjects($portfolio->getExperiences()->getValues());
+            $includedEntities->addObjects($portfolio->getExperiences()->getValues());
+        }
+
+        if (true === $request->isIncluded('user')) {
+            $includedEntities->addObject($portfolio->getUser());
         }
 
         return $includedEntities;
