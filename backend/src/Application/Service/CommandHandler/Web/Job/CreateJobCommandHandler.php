@@ -28,7 +28,8 @@ final class CreateJobCommandHandler
             $command->salary,
             $command->hours,
             $command->typeOfPosition,
-            $command->disableFriendly
+            $command->disableFriendly,
+            $command->jobSummary
         );
 
         $this->jobWriteRepository->save($job);

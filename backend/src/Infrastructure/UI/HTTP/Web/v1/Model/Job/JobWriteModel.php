@@ -38,6 +38,9 @@ class JobWriteModel implements ApiModel
     /** @Attribute */
     public bool $disabledFriendly;
 
+    /** @Attribute  */
+    public string $jobSummary;
+
     public function __construct(
         string $id,
         string $jobDuties,
@@ -48,7 +51,8 @@ class JobWriteModel implements ApiModel
         string $salary,
         string $hours,
         string $typeOfPosition,
-        bool $disabledFriendly
+        bool $disabledFriendly,
+        string $jobSummary
     ) {
         $this->id = $id;
         $this->jobDuties = $jobDuties;
@@ -60,5 +64,6 @@ class JobWriteModel implements ApiModel
         $this->hours = $hours;
         $this->typeOfPosition = $typeOfPosition;
         $this->disabledFriendly = $disabledFriendly;
+        $this->jobSummary = $jobSummary;
     }
 }
