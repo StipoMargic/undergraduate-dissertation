@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 import FreelancerCard from "./FreelancerCard";
-// TODO: Refactor to userdetail comp
+import { GlobalContext } from "../../Context/global";
 
 const Freelancers = () => {
+  const { portfolios } = useContext(GlobalContext);
   return (
     <>
       <div className="page-title">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12">
-              <h2 className="ipt-title">Search Users</h2>
-              <span className="ipn-subtitle">Browse All Users</span>
+              <h2 className="ipt-title">Search Portfolios</h2>
+              <span className="ipn-subtitle">Browse All Portfolios</span>
             </div>
           </div>
         </div>
@@ -19,26 +20,15 @@ const Freelancers = () => {
       <section className="gray-bg">
         <div className="container">
           <div className="row py-5">
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
-            <FreelancerCard />
+            {portfolios.map((portfolio) => {
+              return (
+                <FreelancerCard
+                  key={portfolio.id}
+                  id={portfolio.id}
+                  portfolio={portfolio.attributes}
+                />
+              );
+            })}
           </div>
         </div>
       </section>

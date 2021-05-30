@@ -2,12 +2,13 @@ import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 
-const FreelancerCard = () => {
-  const id = 1;
+const FreelancerCard = ({ id, portfolio }) => {
+  const skills = portfolio.skills.split(",");
+
   return (
     <div className="col-lg-4 col-md-6 col-sm-12">
       <div className="_freelacers_120 large shadow_0">
-        <div className="_freelancers_rate">$110 hourly</div>
+        <div className="_freelancers_rate">{portfolio.rate} hourly</div>
         <div className="_freelacers_120_thumb">
           <img
             src="assets/img/verify.svg"
@@ -26,40 +27,23 @@ const FreelancerCard = () => {
         <div className="_freelacers_120_caption">
           <div className="_freelan_laft">
             <i className="ti-location-pin mr-1" />
-            London, UK
+            {portfolio.location}
           </div>
           <h4>
-            <a href="/reelancer-detail.html">Samantha L. Breaux</a>
+            <a href="/reelancer-detail.html">{portfolio.user}</a>
           </h4>
-          <span className="_freel_spec">Magento Developer</span>
-          <div className="_freelan_right">
-            <strong>
-              <i className="fa fa-star mr-1" />
-              4.6
-            </strong>
-          </div>
+          <span className="_freel_spec">{portfolio.category}</span>
         </div>
         <div className="_freelacers_120_body">
           <div className="_free0o9">
             <ul>
-              <li>
-                <span>HTML5</span>
-              </li>
-              <li>
-                <span>CSS3</span>
-              </li>
-              <li>
-                <span>PHP</span>
-              </li>
-              <li>
-                <span>Bootstrap</span>
-              </li>
-              <li>
-                <span>JavaScript</span>
-              </li>
-              <li>
-                <span>3 More</span>
-              </li>
+              {skills.slice(0, 5).map((skill) => {
+                return (
+                  <li key={skill}>
+                    <span>{skill}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="_freelacers_121_foot">

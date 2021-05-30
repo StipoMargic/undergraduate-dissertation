@@ -31,7 +31,7 @@ const JobDetail = () => {
                     </div>
                     <div className="_jb_details01_authors_caption">
                       <h4 className="jbs_title">
-                        Full-Stack Web Designer
+                        {job.data.attributes.jobPositionName}
                         <img
                           src="assets/img/verify.svg"
                           className="ml-1"
