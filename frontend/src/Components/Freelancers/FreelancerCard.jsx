@@ -10,15 +10,9 @@ const FreelancerCard = ({ id, portfolio }) => {
       <div className="_freelacers_120 large shadow_0">
         <div className="_freelancers_rate">{portfolio.rate} hourly</div>
         <div className="_freelacers_120_thumb">
-          <img
-            src="assets/img/verify.svg"
-            className="verified"
-            width="15"
-            alt=""
-          />
           <a href="/reelancer-detail.html">
             <img
-              src="https://via.placeholder.com/400x400"
+              src={`http://127.0.0.1:8000/${portfolio.avatar}`}
               className="img-fluid circle"
               alt=""
             />

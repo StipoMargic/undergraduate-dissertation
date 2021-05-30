@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -8,10 +8,35 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { useParams } from "react-router";
 import QualificationDetail from "./QualificationDetail";
 import AwardDetail from "./AwardDetail";
+import { getSinglePortfolio } from "./getSinglePortfolio";
 
 const FreelancerDetail = () => {
+  const [portfolio, setPortfolio] = useState();
+  const params = useParams();
+  const qualifications = [];
+  const experiences = [];
+  const skills = [];
+
+  useEffect(() => {
+    getSinglePortfolio(params.id, setPortfolio);
+  }, []);
+
+  if (portfolio !== undefined) {
+    skills.push(portfolio.data.attributes.skills.split(","));
+    portfolio.included.map((include) => {
+      if (include.type === "qualification") {
+        return qualifications.push(include.attributes);
+      }
+      if (include.type === "experience") {
+        return experiences.push(include.attributes);
+      }
+      return null;
+    });
+  }
+
   return (
     <section className="gray-bg py-5">
       <div className="container">
@@ -93,52 +118,48 @@ const FreelancerDetail = () => {
                 <div className="_job_detail_single">
                   <h4>Skill & Experience</h4>
                   <ul className="skilss">
-                    <li>
-                      <a href="/">IOS Developer</a>
-                    </li>
-                    <li>
-                      <a href="/">WordPress</a>
-                    </li>
-                    <li>
-                      <a href="/">SEO Specialist</a>
-                    </li>
-                    <li>
-                      <a href="/">JavaScript</a>
-                    </li>
-                    <li>
-                      <a href="/">Photoshop</a>
-                    </li>
-                    <li>
-                      <a href="/">Joomla</a>
-                    </li>
-                    <li>
-                      <a href="/">Magento</a>
-                    </li>
+                    {skills.map((skill) => {
+                      return (
+                        <li key={skill}>
+                          <a href="/">{skill}</a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
+              {experiences.length > 0 && (
+                <div className="_wrap_box_slice">
+                  <div className="_job_detail_single">
+                    <h4>Award & Experience</h4>
+                    <ul className="qa-skill-list">
+                      {experiences.map((experience, index) => {
+                        return (
+                          <AwardDetail key={index} expirience={experience} />
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              )}
 
-              <div className="_wrap_box_slice">
-                <div className="_job_detail_single">
-                  <h4>Award & Experience</h4>
-                  <ul className="qa-skill-list">
-                    <AwardDetail />
-                    <AwardDetail />
-                    <AwardDetail />
-                  </ul>
+              {qualifications.length > 0 && (
+                <div className="_wrap_box_slice">
+                  <div className="_job_detail_single">
+                    <h4>Education & Qualification</h4>
+                    <ul className="qa-skill-list">
+                      {qualifications.map((qualification, index) => {
+                        return (
+                          <QualificationDetail
+                            key={index}
+                            qualification={qualification}
+                          />
+                        );
+                      })}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-
-              <div className="_wrap_box_slice">
-                <div className="_job_detail_single">
-                  <h4>Education & Qualification</h4>
-                  <ul className="qa-skill-list">
-                    <QualificationDetail />
-                    <QualificationDetail />
-                    <QualificationDetail />
-                  </ul>
-                </div>
-              </div>
+              )}
             </div>
           </div>
 
