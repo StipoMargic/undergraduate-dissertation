@@ -15,7 +15,7 @@ use Undabot\JsonApi\Definition\Model\Request\CreateResourceRequestInterface;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceCreatedResponse;
 use Undabot\SymfonyJsonApi\Http\Service\SimpleResourceHandler;
 
-class CreateJobPortfolio
+class CreateJobController
 {
     #[Route('/api/v1/job', name: 'api_v1_job_create', methods: ['POST'])]
     public function create(
@@ -30,7 +30,7 @@ class CreateJobPortfolio
         $command = new CreateJobCommand($createModel->id, $createModel->jobDuties, $createModel->skills,
             $createModel->vacancy, $createModel->activeTill,
             $createModel->location, $createModel->salary, $createModel->hours, $createModel->typeOfPosition,
-            $createModel->disabledFriendly);
+            $createModel->disabledFriendly, $createModel->jobSummary);
         $commandBus->handleCommand($command);
 
         $job = $repository->get(Uuid::fromString($command->id));

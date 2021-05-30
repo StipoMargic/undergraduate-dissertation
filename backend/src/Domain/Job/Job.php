@@ -54,6 +54,9 @@ class Job implements EntityInterface
     /** @ORM\Column(name="disable_friendly", nullable=false, type="boolean") */
     private bool $disableFriendly;
 
+    /** @ORM\Column(name="job_summary", nullable=false, type="string") */
+    private string $jobSummary;
+
     /** @ORM\Column(name="created_at", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $createdAt;
 
@@ -74,6 +77,7 @@ class Job implements EntityInterface
         string $hours,
         string $typeOfPosition,
         bool $disableFriendly,
+        string $jobSummary
     ) {
         $this->id = $id;
         $this->jobDuties = $jobDuties;
@@ -89,6 +93,7 @@ class Job implements EntityInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = null;
         $this->deletedAt = null;
+        $this->jobSummary = $jobSummary;
     }
 
     public function getId(): UuidInterface
@@ -219,6 +224,11 @@ class Job implements EntityInterface
     public function getPostDate(): \DateTimeImmutable
     {
         return $this->postDate;
+    }
+
+    public function getJobSummary(): string
+    {
+        return $this->jobSummary;
     }
 
 }
