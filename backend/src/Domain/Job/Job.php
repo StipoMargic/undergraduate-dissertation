@@ -57,6 +57,9 @@ class Job implements EntityInterface
     /** @ORM\Column(name="job_summary", nullable=false, type="string") */
     private string $jobSummary;
 
+    /** @ORM\Column(name="job_position_name", nullable=false, type="string") */
+    private string $jobPositionName;
+
     /** @ORM\Column(name="created_at", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $createdAt;
 
@@ -77,7 +80,8 @@ class Job implements EntityInterface
         string $hours,
         string $typeOfPosition,
         bool $disableFriendly,
-        string $jobSummary
+        string $jobSummary,
+        string $jobPositionName
     ) {
         $this->id = $id;
         $this->jobDuties = $jobDuties;
@@ -94,6 +98,7 @@ class Job implements EntityInterface
         $this->updatedAt = null;
         $this->deletedAt = null;
         $this->jobSummary = $jobSummary;
+        $this->jobPositionName = $jobPositionName;
     }
 
     public function getId(): UuidInterface
@@ -229,6 +234,11 @@ class Job implements EntityInterface
     public function getJobSummary(): string
     {
         return $this->jobSummary;
+    }
+
+    public function getJobPositionName(): string
+    {
+        return $this->jobPositionName;
     }
 
 }

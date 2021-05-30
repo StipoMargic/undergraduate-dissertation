@@ -50,6 +50,9 @@ class JobReadModel implements ApiModel
     public string $jobSummary;
 
     /** @Attribute */
+    public string $jobPositionName;
+
+    /** @Attribute */
     public string $createdAt;
 
     /** @Attribute */
@@ -72,6 +75,7 @@ class JobReadModel implements ApiModel
         string $typeOfPosition,
         bool $disableFriendly,
         string $jobSummary,
+        string $jobPositionName,
         string $createdAt,
         ?string $updatedAt,
         ?string $deletedAt
@@ -89,6 +93,7 @@ class JobReadModel implements ApiModel
         $this->typeOfPosition = $typeOfPosition;
         $this->disableFriendly = $disableFriendly;
         $this->jobSummary = $jobSummary;
+        $this->jobPositionName = $jobPositionName;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
@@ -110,6 +115,7 @@ class JobReadModel implements ApiModel
             $job->getTypeOfPosition(),
             $job->isDisableFriendly(),
             $job->getJobSummary(),
+            $job->getJobPositionName(),
             $job->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $job->getUpdatedAt() ? null : $job->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $job->getDeletedAt() ? null : $job->getDeletedAt()->format('Y-m-d H:i:s'),

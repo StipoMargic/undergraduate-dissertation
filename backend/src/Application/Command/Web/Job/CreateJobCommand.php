@@ -19,7 +19,8 @@ class CreateJobCommand implements CommandInterface
         public string $hours,
         public string $typeOfPosition,
         public bool $disableFriendly,
-        public string $jobSummary
+        public string $jobSummary,
+        public string $jobPositionName
     ) {
     }
 }
