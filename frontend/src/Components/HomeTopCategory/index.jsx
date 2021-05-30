@@ -1,21 +1,12 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext } from "react";
 
 import "./styles.scss";
-import {
-  faCar,
-  faDesktop,
-  faMoneyBill,
-  faPhone,
-  faPiggyBank,
-  faSchool,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faArtstation,
-  faGoogleDrive,
-} from "@fortawesome/free-brands-svg-icons";
+import Category from "./category";
+import { GlobalContext } from "../../Context/global";
 
 const HomeTopCategory = () => {
+  const { categories } = useContext(GlobalContext);
+
   return (
     <section className="gray-light p-5">
       <div className="container">
@@ -34,101 +25,16 @@ const HomeTopCategory = () => {
         </div>
 
         <div className="row justify-content-center">
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faMoneyBill} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Accounting & Finance</a>
-                </h3>
-                <span>310 Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faArtstation} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Art & Design</a>
-                </h3>
-                <span>200 Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faCar} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Transportation</a>
-                </h3>
-                <span>100k Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faPhone} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Telecommunications</a>
-                </h3>
-                <span>507 Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faDesktop} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Designing & Multimedia</a>
-                </h3>
-                <span>10k Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faSchool} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Education Training</a>
-                </h3>
-                <span>102 Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faGoogleDrive} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Automotive Jobs</a>
-                </h3>
-                <span>45 Jobs Found</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="urip_cated shadow">
-              <FontAwesomeIcon icon={faPiggyBank} size="3x" color="#0b85ec" />
-              <div className="urip_cated_caps">
-                <h3 className="cats_urip_title">
-                  <a href="/">Banking Jobs</a>
-                </h3>
-                <span>32 Jobs Found</span>
-              </div>
-            </div>
-          </div>
+          {categories.map((category) => {
+            return (
+              <Category
+                key={category.attributes.name}
+                name={category.attributes.name}
+                image={category.attributes.image}
+                length={category.attributes.portfolios.length}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
