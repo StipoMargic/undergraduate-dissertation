@@ -27,6 +27,9 @@ class UserReadModel implements ApiModel
     /** @Attribute */
     public string $email;
 
+    /** @Attribute  */
+    public string $about;
+
     /** @Attribute */
     public array $roles;
 
@@ -73,6 +76,7 @@ class UserReadModel implements ApiModel
         string $id,
         array $portfolios,
         string $username,
+        string $about,
         string $email,
         array $roles,
         bool $verified,
@@ -92,6 +96,7 @@ class UserReadModel implements ApiModel
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
+        $this->about = $about;
         $this->roles = $roles;
         $this->verified = $verified;
         $this->token = $token;
@@ -119,6 +124,7 @@ class UserReadModel implements ApiModel
             (string) $user->getId(),
             $portfolios,
             $user->getUsername(),
+            $user->getAbout(),
             $user->getEmail(),
             $user->getRoles(),
             $user->isVerified(),

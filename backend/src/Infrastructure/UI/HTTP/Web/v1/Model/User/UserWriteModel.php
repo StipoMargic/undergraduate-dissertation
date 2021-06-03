@@ -52,6 +52,9 @@ class UserWriteModel implements ApiModel
     /** @Attribute */
     public ?string $linkedin;
 
+    /** @Attribute */
+    public string $about;
+
     public function __construct(
         string $id,
         string $username,
@@ -65,7 +68,8 @@ class UserWriteModel implements ApiModel
         ?string $occupation,
         ?string $facebook,
         ?string $twitter,
-        ?string $linkedin
+        ?string $linkedin,
+        string $about
     ) {
         $this->id = $id;
         $this->username = $username;
@@ -80,5 +84,6 @@ class UserWriteModel implements ApiModel
         $this->facebook = $facebook;
         $this->twitter = $twitter;
         $this->linkedin = $linkedin;
+        $this->about = $about;
     }
 }

@@ -22,6 +22,7 @@ class CreateUserCommand implements CommandInterface
         public ?string $facebook,
         public ?string $twitter,
         public ?string $linkedin,
+        public string $about,
     ) {
     }
 

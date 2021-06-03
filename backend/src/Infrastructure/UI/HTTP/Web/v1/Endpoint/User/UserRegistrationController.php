@@ -28,9 +28,10 @@ final class UserRegistrationController
         $createModel = $resourceHandler->getModelFromRequest($request, UserWriteModel::class);
 
         $command = new CreateUserCommand($createModel->id, $createModel->username,
-            $createModel->email, $createModel->role, $createModel->password, $createModel->avatar, $createModel->address, $createModel->city,
+            $createModel->email, $createModel->role, $createModel->password, $createModel->avatar,
+            $createModel->address, $createModel->city,
             $createModel->phone, $createModel->occupation, $createModel->facebook, $createModel->twitter,
-            $createModel->linkedin
+            $createModel->linkedin, $createModel->about
         );
         $commandBus->handleCommand($command);
 

@@ -49,7 +49,7 @@ final class CreateUserCommandHandler
             $command->facebook,
             $command->twitter,
             $command->linkedin,
-            "aaaaaaaaaaaaaaa"
+            $command->about
         );
 
         $user->setPassword($this->encodePassword($user, $command->password));
