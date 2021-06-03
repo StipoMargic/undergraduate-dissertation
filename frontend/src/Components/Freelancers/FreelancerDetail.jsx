@@ -18,6 +18,7 @@ const FreelancerDetail = () => {
   const params = useParams();
   const qualifications = [];
   const experiences = [];
+  const user = [];
   let skills = [];
   useEffect(() => {
     getSinglePortfolio(params.id, setPortfolio);
@@ -32,10 +33,13 @@ const FreelancerDetail = () => {
       if (include.type === "experience") {
         return experiences.push(include.attributes);
       }
+      if (include.type === "user") {
+        return user.push(include.attributes);
+      }
       return null;
     });
   }
-
+  console.log(user[0].username);
   return (
     <section className="gray-bg py-5">
       <div className="container">
