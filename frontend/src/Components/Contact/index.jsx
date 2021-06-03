@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
 import {
@@ -11,8 +11,36 @@ import {
   faMapPin,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { makeContactData } from "./makeContactData";
 
+const initContactData = {
+  name: "",
+  email: "",
+  company: "",
+  phone: "",
+  message: "",
+};
 const Contact = () => {
+  const [contactData, setContactData] = useState(initContactData);
+
+  const onInputChange = (field) => (e) => {
+    e.persist();
+
+    setContactData((prevState) => ({
+      ...prevState,
+      [field]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://127.0.0.1:8000/v1/contact", makeContactData(contactData))
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className="page-title inner-page">
@@ -107,7 +135,7 @@ const Contact = () => {
             </div>
 
             <div className="col-lg-8 col-md-8 col-sm-12">
-              <form className="contact_row">
+              <form onSubmit={handleSubmit} className="contact_row">
                 <div className="form_row_box">
                   <div className="form_row_header">
                     <div className="form_row_header_flex">
@@ -133,6 +161,7 @@ const Contact = () => {
                           <label htmlFor="name">
                             Your Name
                             <input
+                              onChange={onInputChange("name")}
                               type="text"
                               id="mame"
                               className="form-control with-light"
@@ -147,6 +176,7 @@ const Contact = () => {
                           <label htmlFor="email">
                             Your e-Mail
                             <input
+                              onChange={onInputChange("email")}
                               type="email"
                               id="email"
                               className="form-control with-light"
@@ -161,6 +191,7 @@ const Contact = () => {
                           <label htmlFor="company">
                             Company
                             <input
+                              onChange={onInputChange("company")}
                               type="text"
                               id="company"
                               className="form-control with-light"
@@ -175,6 +206,7 @@ const Contact = () => {
                           <label htmlFor="phone">
                             Phone No.
                             <input
+                              onChange={onInputChange("phone")}
                               type="text"
                               id="phone"
                               className="form-control with-light"
@@ -189,12 +221,12 @@ const Contact = () => {
                           <label htmlFor="message">
                             Your Query
                             <textarea
+                              onChange={onInputChange("message")}
                               className="form-control with-light"
                               id="message"
                               rows={5}
-                            >
-                              About Your Query
-                            </textarea>
+                              value="About Your Quer"
+                            />
                           </label>
                         </div>
                       </div>
@@ -202,6 +234,7 @@ const Contact = () => {
                       <div className="col-lg-12 col-md-12">
                         <div className="form-group">
                           <button
+                            onClick={handleSubmit}
                             type="button"
                             className="btn btn-primary w-100"
                           >
