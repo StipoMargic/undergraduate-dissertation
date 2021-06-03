@@ -275,6 +275,9 @@ nav .menu > li.dropdown li.dropdown > a:before {
 
 .modal-open {
   z-index: 99999;
+  position: fixed;
+  top: 4rem;
+  left: 60%;
 }
 
 .modal-header {

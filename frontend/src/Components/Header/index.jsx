@@ -4,21 +4,45 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
-  faKey,
   faUser,
   faWindowClose,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import logo from "../../Assets/images/logo.png";
+import { makeLoginData } from "./makeLoginData";
+
+const loginInitData = {
+  username: "",
+  password: "",
+};
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
+  const [loginData, setLoginData] = useState(loginInitData);
 
   const handleDropdown = (value) => {
     setDropdown(value);
   };
   const handleSignIn = (value) => {
     setSignIn(value);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const onInputChange = (value) => (e) => {
+    e.persist();
+
+    setLoginData((prevState) => ({
+      ...prevState,
+      [value]: e.target.value,
+    }));
   };
 
   const renderSignInModal = () => {
@@ -56,12 +80,13 @@ const Header = () => {
               </div>
               <div className="modal-body">
                 <div className="login-form">
-                  <form>
+                  <form onSubmit={handleLogin}>
                     <div className="form-group">
                       <label htmlFor="username">
                         User Name
                         <input
                           id="username"
+                          onChange={onInputChange("username")}
                           type="text"
                           className="form-control"
                           placeholder="Username"
@@ -73,6 +98,7 @@ const Header = () => {
                       <label htmlFor="password">
                         Password
                         <input
+                          onChange={onInputChange("password")}
                           id="password"
                           type="password"
                           className="form-control"
@@ -83,6 +109,7 @@ const Header = () => {
 
                     <div className="form-group">
                       <button
+                        onClick={handleLogin}
                         type="submit"
                         className="btn btn-primary btn-lg w-100"
                       >
@@ -95,13 +122,8 @@ const Header = () => {
               <div className="modal-footer">
                 <div className="mf-link">
                   <FontAwesomeIcon icon={faUser} /> Have not An Account?
-                  <Link to="/login" className="theme-cl">
+                  <Link to="/register" className="theme-cl">
                     Sign Up
-                  </Link>
-                </div>
-                <div className="mf-forget ml-2">
-                  <Link to="/forget-password">
-                    <FontAwesomeIcon icon={faKey} /> Forget Password
                   </Link>
                 </div>
               </div>
@@ -113,6 +135,7 @@ const Header = () => {
   };
   return (
     <>
+      {signIn ? renderSignInModal() : ""}
       <div className="header header-transparent dark-text">
         <div className="container">
           <div className="row">
@@ -173,7 +196,7 @@ const Header = () => {
                       <button
                         type="button"
                         className="btn btn-outline-primary text-dark mr-4 mt-4"
-                        onClick={() => handleSignIn(true)}
+                        onClick={() => handleSignIn(!signIn)}
                       >
                         <FontAwesomeIcon icon={faUser} /> Sign in
                       </button>
@@ -186,7 +209,6 @@ const Header = () => {
         </div>
       </div>
       <div className="clearfix" />
-      {signIn ? renderSignInModal() : ""}
     </>
   );
 };
