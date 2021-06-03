@@ -18,7 +18,7 @@ const loginInitData = {
 };
 
 const Header = () => {
-  const { token, setTokenWithCookie } = useContext(GlobalContext);
+  const { setTokenWithCookie } = useContext(GlobalContext);
   const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [loginData, setLoginData] = useState(loginInitData);
