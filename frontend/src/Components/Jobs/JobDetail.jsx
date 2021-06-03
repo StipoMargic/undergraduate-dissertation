@@ -8,10 +8,12 @@ import { getSingleJob } from "./getSingleJob";
 const JobDetail = () => {
   const [job, setJob] = useState();
   const params = useParams();
-
+  let skills;
   useEffect(() => {
     getSingleJob(params.id, setJob);
   }, []);
+
+  if (job !== undefined) skills = job.data.attributes.skills.split(" | ");
 
   const renderDetail = () => {
     return (
@@ -24,7 +26,7 @@ const JobDetail = () => {
                   <div className="_jb_details01_flex">
                     <div className="_jb_details01_authors">
                       <img
-                        src="https://via.placeholder.com/100x100"
+                        src={`http://127.0.0.1:8000/${job.included[0].attributes.avatar}`}
                         className="img-fluid"
                         alt=""
                       />
@@ -43,37 +45,28 @@ const JobDetail = () => {
                         <li>
                           <span>
                             <i className="ti-briefcase" />
-                            InVision
+                            {job.included[0].attributes.username}
                           </span>
                         </li>
                         <li>
                           <span>
                             <i className="ti-credit-card" />
-                            $35k-50k PA
+                            {job.data.attributes.salary}
                           </span>
                         </li>
                         <li>
                           <span>
                             <i className="ti-location-pin" />
-                            Canada, USA
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <i className="ti-timer" />
-                            10 min ago
+                            {job.included[0].attributes.address},
+                            {job.included[0].attributes.city}
                           </span>
                         </li>
                       </ul>
                       <ul className="jbx_info_list">
                         <li>
-                          <div className="jb_types fulltime">Full Time</div>
-                        </li>
-                        <li>
-                          <div className="jb_types urgent">Urgent</div>
-                        </li>
-                        <li>
-                          <div className="jb_types remote">Remote</div>
+                          <div className="jb_types fulltime">
+                            {job.data.attributes.typeOfPosition}
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -82,7 +75,10 @@ const JobDetail = () => {
                   <div className="_jb_details01_last">
                     <ul className="_flex_btn">
                       <li>
-                        <a href="/" className="_applied_jb">
+                        <a
+                          href={`mailto:${job.included[0].attributes.email}`}
+                          className="_applied_jb"
+                        >
                           Apply Job
                         </a>
                       </li>
@@ -101,14 +97,7 @@ const JobDetail = () => {
                 <div className="_job_detail_box my-5 p-5 shadow-lg">
                   <div className="_job_detail_single">
                     <h4>Job Summary</h4>
-                    <p>
-                      We are one of the leading manufacturers and exporters of
-                      finished leather goods from Calcutta, India for the last
-                      20 years. We are a 100% EOU and manufacture leather goods
-                      for global brands worldwide. We maintain strict quality
-                      parameters and ensure total employee retention and
-                      satisfaction.
-                    </p>
+                    <p>{job.data.attributes.jobSummary}</p>
                   </div>
 
                   <div className="_job_detail_single">
@@ -174,43 +163,24 @@ const JobDetail = () => {
                     </ul>
                   </div>
 
-                  <div className="_job_detail_single">
-                    <h4>Skill & Experience</h4>
-                    <ul>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Need 3+ EXPERIENCE IN Web Designing
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Understanding of key Design Principal
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Proficiency With HTML, CSS, Bootstrap
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Experience With Responsive & Adaptive Design
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Wordpress: 1 year (Required)
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        web designing: 1 year (Preferred)
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        total work: 2 years (Required)
-                      </li>
-                    </ul>
-                  </div>
-
+                  {skills.length && (
+                    <div className="_job_detail_single">
+                      <h4>Skill & Experience</h4>
+                      <ul>
+                        {skills.map((skill) => {
+                          return (
+                            <li>
+                              <FontAwesomeIcon icon={faChevronRight} />
+                              {skill}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  )}
                   <div className="_job_detail_single flexeo">
                     <a
-                      href="/"
+                      href={`mailto:${job.included[0].attributes.email}`}
                       className="_applied_jb btn btn-outline-primary w-100"
                     >
                       Apply Job
