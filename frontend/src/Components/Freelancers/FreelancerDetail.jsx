@@ -4,7 +4,6 @@ import "./styles.scss";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
-  faGoogle,
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
@@ -57,14 +56,7 @@ const FreelancerDetail = () => {
                   <div className="_wrap_box_slice">
                     <div className="_job_detail_single">
                       <h4>About User</h4>
-                      <p>
-                        We are one of the leading manufacturers and exporters of
-                        finished leather goods from Calcutta, India for the last
-                        20 years. We are a 100% EOU and manufacture leather
-                        goods for global brands worldwide. We maintain strict
-                        quality parameters and ensure total employee retention
-                        and satisfaction.
-                      </p>
+                      <p>{user[0].about}</p>
                     </div>
 
                     <div className="_job_detail_single">
@@ -188,26 +180,42 @@ const FreelancerDetail = () => {
                 <div className="_jb_summary light_box p-4">
                   <h4>Social Info</h4>
                   <ul className="shares_jobs">
-                    <li>
-                      <a href="/" className="share fb">
-                        <FontAwesomeIcon icon={faFacebook} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/" className="share tw">
-                        <FontAwesomeIcon icon={faTwitter} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/" className="share gp">
-                        <FontAwesomeIcon icon={faGoogle} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/" className="share ln">
-                        <FontAwesomeIcon icon={faLinkedin} />
-                      </a>
-                    </li>
+                    {user[0].facebook && (
+                      <li>
+                        <a
+                          target="_blank"
+                          href={user[0].facebook}
+                          className="share fb"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faFacebook} />
+                        </a>
+                      </li>
+                    )}
+                    {user[0].twitter && (
+                      <li>
+                        <a
+                          target="_blank"
+                          href={user[0].twitter}
+                          className="share tw"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faTwitter} />
+                        </a>
+                      </li>
+                    )}
+                    {user[0].linkedin && (
+                      <li>
+                        <a
+                          target="_blank"
+                          href={user[0].linkedin}
+                          className="share ln"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faLinkedin} />
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </div>

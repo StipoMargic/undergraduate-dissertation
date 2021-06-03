@@ -10,13 +10,13 @@ const FreelancerCard = ({ id, portfolio }) => {
       <div className="_freelacers_120 large shadow_0">
         <div className="_freelancers_rate">{portfolio.rate} hourly</div>
         <div className="_freelacers_120_thumb">
-          <a href="/reelancer-detail.html">
+          <Link to={`/freelancers/${id}`}>
             <img
               src={`http://127.0.0.1:8000/${portfolio.avatar}`}
               className="img-fluid circle"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="_freelacers_120_caption">
           <div className="_freelan_laft">
@@ -24,7 +24,7 @@ const FreelancerCard = ({ id, portfolio }) => {
             {portfolio.location}
           </div>
           <h4>
-            <a href="/reelancer-detail.html">{portfolio.user}</a>
+            <Link to={`/freelancers/${id}`}>{portfolio.user}</Link>
           </h4>
           <span className="_freel_spec">{portfolio.category}</span>
         </div>
