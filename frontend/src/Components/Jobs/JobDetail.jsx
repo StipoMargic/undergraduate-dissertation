@@ -9,11 +9,16 @@ const JobDetail = () => {
   const [job, setJob] = useState();
   const params = useParams();
   let skills;
+  let jobDutiesBulletins;
+
   useEffect(() => {
     getSingleJob(params.id, setJob);
   }, []);
 
-  if (job !== undefined) skills = job.data.attributes.skills.split(" | ");
+  if (job !== undefined) {
+    skills = job.data.attributes.skills.split(" | ");
+    jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(" | ");
+  }
 
   const renderDetail = () => {
     return (
@@ -102,64 +107,16 @@ const JobDetail = () => {
 
                   <div className="_job_detail_single">
                     <h4>Job Duties:</h4>
-                    <p>
-                      We&apos;re looking for someone with the creative spark,
-                      eye for illustration and design, passion for graphics and
-                      ability to produce high quality design collaterals
-                      end-to-end.
-                    </p>
+                    <p>{job.data.attributes.jobDutiess}</p>
                     <ul>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Draft mockups of website designs, brochures,
-                        iconography, and any other marketing materials required
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Collaborate with marketing teams and management to
-                        discuss which mockups are effective, and use their
-                        feedback to develop final drafts
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Revise the work of previous designers to create a
-                        unified aesthetic for our brand materials
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Work on multiple projects at once, and consistently meet
-                        draft deadlines
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Communicate frequently with clients to update them on
-                        the progress of the project and to answer any questions
-                        they might have
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Work on multiple projects at once, and consistently meet
-                        draft deadlines
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        can start the part time job/internship between 4th
-                        Mar&apos;21 and 8th Apr&apos;21
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        have already graduated or are currently in any year of
-                        study
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Revise the work of previous designers to create a
-                        unified aesthetic for our brand materials
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                        Other duties as requested
-                      </li>
+                      {jobDutiesBulletins.map((bulletin) => {
+                        return (
+                          <li>
+                            <FontAwesomeIcon icon={faChevronRight} />
+                            {bulletin}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
 
