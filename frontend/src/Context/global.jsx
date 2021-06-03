@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import axios from "axios";
 
 export const GlobalContext = createContext();
@@ -7,6 +8,12 @@ export const GlobalProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [portfolios, setPortfolios] = useState([]);
+  const [token, setToken] = useState("");
+
+  const setTokenWithCookie = (cookie) => {
+    Cookies.set("token", cookie);
+    setToken(cookie);
+  };
 
   useEffect(() => {
     axios
@@ -39,7 +46,9 @@ export const GlobalProvider = ({ children }) => {
 
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <GlobalContext.Provider value={{ categories, jobs, portfolios }}>
+    <GlobalContext.Provider
+      value={{ categories, jobs, portfolios, token, setTokenWithCookie }}
+    >
       {children}
     </GlobalContext.Provider>
   );

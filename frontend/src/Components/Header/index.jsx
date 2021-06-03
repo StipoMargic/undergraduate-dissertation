@@ -1,5 +1,5 @@
 import "./styles.scss";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import logo from "../../Assets/images/logo.png";
 import { makeLoginData } from "./makeLoginData";
+import { GlobalContext } from "../../Context/global";
 
 const loginInitData = {
   username: "",
@@ -17,6 +18,7 @@ const loginInitData = {
 };
 
 const Header = () => {
+  const { token, setTokenWithCookie } = useContext(GlobalContext);
   const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [loginData, setLoginData] = useState(loginInitData);
@@ -32,7 +34,7 @@ const Header = () => {
     e.preventDefault();
     axios
       .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
-      .then((res) => console.log(res))
+      .then((res) => setTokenWithCookie(res.data.token))
       .catch((err) => console.log(err));
   };
 
