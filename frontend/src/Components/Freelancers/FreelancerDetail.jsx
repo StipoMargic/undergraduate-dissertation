@@ -18,14 +18,13 @@ const FreelancerDetail = () => {
   const params = useParams();
   const qualifications = [];
   const experiences = [];
-  const skills = [];
-
+  let skills = [];
   useEffect(() => {
     getSinglePortfolio(params.id, setPortfolio);
   }, []);
 
   if (portfolio !== undefined) {
-    skills.push(portfolio.data.attributes.skills.split(","));
+    skills = portfolio.data.attributes.skills.split(",");
     portfolio.included.map((include) => {
       if (include.type === "qualification") {
         return qualifications.push(include.attributes);
