@@ -27,6 +27,9 @@ class Job implements EntityInterface
     /** @ORM\Column(name="job_duties", type="string", nullable=false) */
     private string $jobDuties;
 
+    /** @ORM\Column(name="job_duties_bulletins", type="string", nullable=false) */
+    private string $jobDutiesBulletins;
+
     /** @ORM\Column(name="skills", type="string", nullable=false) */
     private string $skills;
 
@@ -81,9 +84,11 @@ class Job implements EntityInterface
         string $typeOfPosition,
         bool $disableFriendly,
         string $jobSummary,
-        string $jobPositionName
+        string $jobPositionName,
+        string $jobDutiesBulletins
     ) {
         $this->id = $id;
+        $this->jobDutiesBulletins = $jobDutiesBulletins;
         $this->jobDuties = $jobDuties;
         $this->skills = $skills;
         $this->vacancy = $vacancy;
@@ -241,4 +246,13 @@ class Job implements EntityInterface
         return $this->jobPositionName;
     }
 
+    public function getJobDutiesBulletins(): string
+    {
+        return $this->jobDutiesBulletins;
+    }
+
+    public function setJobDutiesBulletins(string $jobDutiesBulletins): void
+    {
+        $this->jobDutiesBulletins = $jobDutiesBulletins;
+    }
 }

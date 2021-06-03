@@ -30,7 +30,7 @@ class CreateJobController
         $command = new CreateJobCommand($createModel->id, $createModel->jobDuties, $createModel->skills,
             $createModel->vacancy, $createModel->activeTill,
             $createModel->location, $createModel->salary, $createModel->hours, $createModel->typeOfPosition,
-            $createModel->disabledFriendly, $createModel->jobSummary, $createModel->jobPositionName);
+            $createModel->disabledFriendly, $createModel->jobSummary, $createModel->jobPositionName, $createModel->jobDutiesBulletins);
         $commandBus->handleCommand($command);
 
         $job = $repository->get(Uuid::fromString($command->id));

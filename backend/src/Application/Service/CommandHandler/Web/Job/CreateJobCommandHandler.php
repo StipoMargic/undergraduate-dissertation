@@ -30,7 +30,8 @@ final class CreateJobCommandHandler
             $command->typeOfPosition,
             $command->disableFriendly,
             $command->jobSummary,
-            $command->jobPositionName
+            $command->jobPositionName,
+            $command->jobDutiesBulletins
         );
 
         $this->jobWriteRepository->save($job);

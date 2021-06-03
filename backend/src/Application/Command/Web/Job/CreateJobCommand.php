@@ -20,7 +20,8 @@ class CreateJobCommand implements CommandInterface
         public string $typeOfPosition,
         public bool $disableFriendly,
         public string $jobSummary,
-        public string $jobPositionName
+        public string $jobPositionName,
+        public string $jobDutiesBulletins
     ) {
     }
 }
