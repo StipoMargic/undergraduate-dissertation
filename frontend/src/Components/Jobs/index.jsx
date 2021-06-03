@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 import JobCard from "./JobCard";
+import { GlobalContext } from "../../Context/global";
 
 const Jobs = () => {
+  const { jobs } = useContext(GlobalContext);
+
   return (
     <>
       <div className="page-title">
@@ -18,17 +21,9 @@ const Jobs = () => {
       <section className="gray-bg py-5">
         <div className="container">
           <div className="row">
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
-            <JobCard />
+            {jobs.map((job) => {
+              return <JobCard key={job.id} id={job.id} job={job.attributes} />;
+            })}
           </div>
         </div>
       </section>
