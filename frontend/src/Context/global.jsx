@@ -9,10 +9,15 @@ export const GlobalProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
   const [portfolios, setPortfolios] = useState([]);
   const [token, setToken] = useState("");
+  const [ttl, setTtl] = useState("");
 
-  const setTokenWithCookie = (cookie) => {
+  const setTokenWithCookie = (cookie, timeToLive, username, role) => {
     Cookies.set("token", cookie);
+    Cookies.set("ttl", timeToLive);
+    Cookies.set("username", username);
+    Cookies.set("role", role);
     setToken(cookie);
+    setTtl(timeToLive);
   };
 
   useEffect(() => {
@@ -47,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
     <GlobalContext.Provider
-      value={{ categories, jobs, portfolios, token, setTokenWithCookie }}
+      value={{ categories, jobs, portfolios, token, setTokenWithCookie, ttl }}
     >
       {children}
     </GlobalContext.Provider>

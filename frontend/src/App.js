@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Switch, Route } from "react-router";
+import { Route, Switch } from "react-router";
+import Cookies from "js-cookie";
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import Header from "./Components/Header";
@@ -14,6 +15,15 @@ import Register from "./Components/Register";
 import { GlobalProvider } from "./Context/global";
 
 function App() {
+  const ttl = Cookies.get("ttl");
+
+  if (
+    ttl < new Date().getDate() ||
+    (ttl === 30 && new Date().getDate() === 1) ||
+    (ttl === 31 && new Date().getDate() === 1)
+  ) {
+    Cookies.remove("token");
+  }
   return (
     <BrowserRouter>
       <GlobalProvider>

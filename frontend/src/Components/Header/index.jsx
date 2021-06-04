@@ -34,7 +34,14 @@ const Header = () => {
     e.preventDefault();
     axios
       .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
-      .then((res) => setTokenWithCookie(res.data.token))
+      .then((res) =>
+        setTokenWithCookie(
+          res.data.token,
+          new Date().getDate(),
+          res.data.username,
+          res.data.role
+        )
+      )
       .catch((err) => console.log(err));
   };
 
