@@ -43,6 +43,8 @@ const Header = () => {
         )
       )
       .catch((err) => console.log(err));
+
+    setSignIn(false);
   };
 
   const onInputChange = (value) => (e) => {

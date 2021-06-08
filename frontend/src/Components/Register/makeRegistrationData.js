@@ -15,6 +15,7 @@ export const makeRegistrationData = (user, avatar) => {
         facebook: user.facebook,
         twitter: user.twitter,
         linkedin: user.linkedin,
+        about: user.about,
         avatar,
       },
     },

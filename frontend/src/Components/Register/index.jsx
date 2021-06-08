@@ -26,6 +26,7 @@ const userRegistration = {
   facebook: "",
   twitter: "",
   linkedin: "",
+  about: "",
   role: "Freelancer",
 };
 const Register = () => {
@@ -212,12 +213,24 @@ const Register = () => {
           </label>
         </div>
 
+        <div className="form-group">
+          <label htmlFor="about">
+            About
+            <input
+              onChange={handleInputChange("about")}
+              type="text"
+              id="about"
+              className="form-control"
+              name="about"
+            />
+          </label>
+        </div>
+
         <FilePond
           onaddfile={(err, item) => {
             if (err) {
               return;
             }
-            // @ts-ignore
             setAvatar((file) => file.concat(item.getFileEncodeDataURL()));
           }}
           allowReorder={false}
