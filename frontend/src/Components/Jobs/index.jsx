@@ -4,8 +4,7 @@ import JobCard from "./JobCard";
 import { GlobalContext } from "../../Context/global";
 
 const Jobs = () => {
-  const { jobs } = useContext(GlobalContext);
-
+  const { jobs, role } = useContext(GlobalContext);
   return (
     <>
       <div className="page-title">
@@ -20,6 +19,13 @@ const Jobs = () => {
       </div>
       <section className="gray-bg py-5">
         <div className="container">
+          {role === "ROLE_EMPLOYER" ? (
+            <button className="mb-4 btn btn-primary btn-lg" type="button">
+              Add job
+            </button>
+          ) : (
+            ""
+          )}
           <div className="row">
             {jobs.map((job) => {
               return <JobCard key={job.id} id={job.id} job={job.attributes} />;

@@ -13,6 +13,7 @@ import JobPage from "./Pages/JobPage";
 import JDetail from "./Pages/JDetail";
 import Register from "./Components/Register";
 import { GlobalProvider } from "./Context/global";
+import Logout from "./Components/Logout";
 
 function App() {
   const ttl = Cookies.get("ttl");
@@ -37,6 +38,7 @@ function App() {
           <Route path="/contact" component={ContactPage} />
           <Route path="/jobs" component={JobPage} />
           <Route path="/register" component={Register} />
+          <Route path="/logout" component={Logout} />
         </Switch>
         <Footer />
       </GlobalProvider>

@@ -1,9 +1,10 @@
 import "./styles.scss";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
+  faLock,
   faUser,
   faWindowClose,
 } from "@fortawesome/free-solid-svg-icons";
@@ -18,11 +19,13 @@ const loginInitData = {
 };
 
 const Header = () => {
-  const { setTokenWithCookie } = useContext(GlobalContext);
+  const { setTokenWithCookie, username } = useContext(GlobalContext);
   const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [loginData, setLoginData] = useState(loginInitData);
+  const [loginError, setLoginError] = useState(false);
 
+  const history = useHistory();
   const handleDropdown = (value) => {
     setDropdown(value);
   };
@@ -34,17 +37,20 @@ const Header = () => {
     e.preventDefault();
     axios
       .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
-      .then((res) =>
+      .then((res) => {
         setTokenWithCookie(
           res.data.token,
           new Date().getDate(),
           res.data.username,
           res.data.role
-        )
-      )
-      .catch((err) => console.log(err));
+        );
 
-    setSignIn(false);
+        setSignIn(false);
+
+        history.push("/");
+        window.location.reload();
+      })
+      .catch(() => setLoginError(true));
   };
 
   const onInputChange = (value) => (e) => {
@@ -132,6 +138,11 @@ const Header = () => {
               </div>
               <div className="modal-footer">
                 <div className="mf-link">
+                  {loginError && (
+                    <p className="text-danger">
+                      Something went wrong! Try again...
+                    </p>
+                  )}
                   <FontAwesomeIcon icon={faUser} /> Have not An Account?
                   <Link to="/register" className="theme-cl">
                     Sign Up
@@ -202,17 +213,42 @@ const Header = () => {
                     </li>
                   </ul>
 
-                  <ul className="nav-menu align-to-right">
-                    <li>
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary text-dark mr-4 mt-4"
-                        onClick={() => handleSignIn(!signIn)}
-                      >
-                        <FontAwesomeIcon icon={faUser} /> Sign in
-                      </button>
-                    </li>
-                  </ul>
+                  {!username ? (
+                    <ul className="nav-menu align-to-right">
+                      <li>
+                        <button
+                          type="button"
+                          className="btn btn-outline-primary text-dark mr-2 mt-4"
+                          onClick={() => handleSignIn(!signIn)}
+                        >
+                          <FontAwesomeIcon icon={faUser} /> Sign in
+                        </button>
+                      </li>
+                      <li>
+                        <Link to="/register">
+                          <button
+                            className="btn btn-primary text-light mr-4 mtminus"
+                            type="button"
+                          >
+                            <FontAwesomeIcon icon={faLock} /> Register
+                          </button>
+                        </Link>
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul className="nav-menu align-to-right">
+                      <li>
+                        <Link to="/logout">
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary text-dark mr-2"
+                          >
+                            <FontAwesomeIcon icon={faUser} /> Logout
+                          </button>
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
                 </div>
               </nav>
             </div>

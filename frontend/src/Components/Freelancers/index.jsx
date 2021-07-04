@@ -4,7 +4,8 @@ import FreelancerCard from "./FreelancerCard";
 import { GlobalContext } from "../../Context/global";
 
 const Freelancers = () => {
-  const { portfolios } = useContext(GlobalContext);
+  const { portfolios, role } = useContext(GlobalContext);
+
   return (
     <>
       <div className="page-title">
@@ -17,8 +18,16 @@ const Freelancers = () => {
           </div>
         </div>
       </div>
+
       <section className="gray-bg">
         <div className="container">
+          {role === "ROLE_USER" ? (
+            <button className="mb-4 btn btn-primary btn-lg" type="button">
+              Add portfolio
+            </button>
+          ) : (
+            ""
+          )}
           <div className="row py-5">
             {portfolios.map((portfolio) => {
               return (
@@ -35,5 +44,4 @@ const Freelancers = () => {
     </>
   );
 };
-
 export default Freelancers;

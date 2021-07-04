@@ -10,14 +10,23 @@ export const GlobalProvider = ({ children }) => {
   const [portfolios, setPortfolios] = useState([]);
   const [token, setToken] = useState("");
   const [ttl, setTtl] = useState("");
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
 
-  const setTokenWithCookie = (cookie, timeToLive, username, role) => {
+  const setTokenWithCookie = (cookie, timeToLive, _username, _role) => {
     Cookies.set("token", cookie);
     Cookies.set("ttl", timeToLive);
-    Cookies.set("username", username);
-    Cookies.set("role", role);
+    Cookies.set("username", _username);
+    Cookies.set("role", _role);
     setToken(cookie);
     setTtl(timeToLive);
+  };
+
+  const removeAllCookies = () => {
+    Cookies.remove("ttl");
+    Cookies.remove("username");
+    Cookies.remove("role");
+    Cookies.remove("token");
   };
 
   useEffect(() => {
@@ -47,12 +56,24 @@ export const GlobalProvider = ({ children }) => {
         }
       })
       .catch((err) => console.log(err));
+    setRole(Cookies.get("role"));
+    setUsername(Cookies.get("username"));
   }, []);
 
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
     <GlobalContext.Provider
-      value={{ categories, jobs, portfolios, token, setTokenWithCookie, ttl }}
+      value={{
+        categories,
+        jobs,
+        portfolios,
+        token,
+        setTokenWithCookie,
+        ttl,
+        username,
+        role,
+        removeAllCookies,
+      }}
     >
       {children}
     </GlobalContext.Provider>
