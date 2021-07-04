@@ -58,6 +58,7 @@ export const GlobalProvider = ({ children }) => {
       .catch((err) => console.log(err));
     setRole(Cookies.get("role"));
     setUsername(Cookies.get("username"));
+    setToken(Cookies.get("token"));
   }, []);
 
   return (

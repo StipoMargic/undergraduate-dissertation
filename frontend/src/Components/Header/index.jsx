@@ -52,7 +52,6 @@ const Header = () => {
       })
       .catch(() => setLoginError(true));
   };
-
   const onInputChange = (value) => (e) => {
     e.persist();
 
@@ -243,7 +242,8 @@ const Header = () => {
                             type="button"
                             className="btn btn-outline-primary text-dark mr-2"
                           >
-                            <FontAwesomeIcon icon={faUser} /> Logout
+                            <FontAwesomeIcon icon={faUser} className="mr-2" />
+                            Hi {username}, Logout
                           </button>
                         </Link>
                       </li>
