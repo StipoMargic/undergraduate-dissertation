@@ -401,4 +401,9 @@ class User implements UserInterface, EntityInterface
         $this->city = $city;
         $this->updatedAt = new \DateTimeImmutable();
     }
+
+    public function removeToken(): void
+    {
+        $this->token = null;
+    }
 }
