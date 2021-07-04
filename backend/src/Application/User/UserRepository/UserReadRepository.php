@@ -14,4 +14,6 @@ interface UserReadRepository
     public function getByUsername(string $username): ?User;
 
     public function getByEmail(string $email): ?User;
+
+    public function getByToken(string $token): ?User;
 }

@@ -23,4 +23,9 @@ final class UserNotFoundException extends EntityNotFoundException
 
         return new self($message, 404);
     }
+
+    #[Pure] public static function verificationTokenError(): self
+    {
+        return new self("User with that token can't be found", 404);
+    }
 }

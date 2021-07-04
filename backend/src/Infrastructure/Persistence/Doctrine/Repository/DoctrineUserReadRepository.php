@@ -55,4 +55,9 @@ class DoctrineUserReadRepository extends ServiceEntityRepository implements User
 
         return $entity;
     }
+
+    public function getByToken(string $token): ?User
+    {
+        return $this->_em->getRepository(User::class)->findOneBy(['token' => $token]);
+    }
 }

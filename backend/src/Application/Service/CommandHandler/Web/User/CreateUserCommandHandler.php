@@ -13,6 +13,11 @@ use App\Domain\User\Exception\UserAlreadyExistException;
 use App\Domain\User\User;
 use App\Infrastructure\Image\Upload\ImageUploader;
 use Ramsey\Uuid\Uuid;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Message;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 final class CreateUserCommandHandler
@@ -21,6 +26,7 @@ final class CreateUserCommandHandler
         public UserWriteRepository $userWriteRepository,
         public UserReadRepository $userReadRepository,
         public UserPasswordEncoderInterface $encoder,
+        public MailerInterface $mailer,
         public ImageUploader $imageUploader
     ) {
     }
@@ -55,6 +61,8 @@ final class CreateUserCommandHandler
         $user->setPassword($this->encodePassword($user, $command->password));
 
         $this->userWriteRepository->save($user);
+
+        $this->sendVerificationEmail($user);
     }
 
     private function encodePassword(User $user, string $password): string
@@ -67,5 +75,20 @@ final class CreateUserCommandHandler
         $image = $this->imageUploader->convert($avatar);
 
         return $this->imageUploader->upload($image, 'avatar');
+    }
+
+    private function sendVerificationEmail(User $user): void
+    {
+        $email = (new TemplatedEmail())
+            ->from("info@liberato.io")
+            ->to(new Address($user->getEmail(), $user->getUsername()))
+            ->subject('Thanks for signing up!')
+            ->htmlTemplate('emails/signup.html.twig')
+            ->context([
+                'username' => $user->getUsername(),
+                'token' => $user->getToken(),
+            ]);
+
+        $this->mailer->send($email);
     }
 }
