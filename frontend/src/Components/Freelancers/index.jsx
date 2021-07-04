@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import "./styles.scss";
+import { Link } from "react-router-dom";
 import FreelancerCard from "./FreelancerCard";
 import { GlobalContext } from "../../Context/global";
 
@@ -22,9 +23,11 @@ const Freelancers = () => {
       <section className="gray-bg">
         <div className="container">
           {role === "ROLE_USER" ? (
-            <button className="mb-4 btn btn-primary btn-lg" type="button">
-              Add portfolio
-            </button>
+            <Link to="/add-job">
+              <button className="my-2 btn btn-primary btn-lg" type="button">
+                Add portfolio
+              </button>
+            </Link>
           ) : (
             ""
           )}

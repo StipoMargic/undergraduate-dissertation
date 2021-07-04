@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./styles.scss";
 import axios from "axios";
 import FilePondPluginFileEncode from "filepond-plugin-file-encode";
@@ -7,7 +7,9 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
+import { useHistory } from "react-router";
 import { makeRegistrationData } from "./makeRegistrationData";
+import { GlobalContext } from "../../Context/global";
 
 registerPlugin(
   FilePondPluginImageExifOrientation,
@@ -29,9 +31,16 @@ const userRegistration = {
   about: "",
   role: "Freelancer",
 };
+
 const Register = () => {
+  const { username } = useContext(GlobalContext);
+  const history = useHistory();
   const [user, setUser] = useState(userRegistration);
   const [avatar, setAvatar] = useState("");
+
+  if (username) {
+    history.push("/");
+  }
 
   const handleInputChange = (inputValue) => (e) => {
     e.persist();

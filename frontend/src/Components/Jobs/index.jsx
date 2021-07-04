@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import "./styles.scss";
+import { Link } from "react-router-dom";
 import JobCard from "./JobCard";
 import { GlobalContext } from "../../Context/global";
 
@@ -20,9 +21,11 @@ const Jobs = () => {
       <section className="gray-bg py-5">
         <div className="container">
           {role === "ROLE_EMPLOYER" ? (
-            <button className="mb-4 btn btn-primary btn-lg" type="button">
-              Add job
-            </button>
+            <Link to="/add-job">
+              <button className="mb-4 btn btn-primary btn-lg" type="button">
+                Add job
+              </button>
+            </Link>
           ) : (
             ""
           )}
