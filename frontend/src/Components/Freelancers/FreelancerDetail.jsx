@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +11,10 @@ import { useParams } from "react-router";
 import QualificationDetail from "./QualificationDetail";
 import AwardDetail from "./AwardDetail";
 import { getSinglePortfolio } from "./getSinglePortfolio";
+import { GlobalContext } from "../../Context/global";
 
 const FreelancerDetail = () => {
+  const { role } = useContext(GlobalContext);
   const [portfolio, setPortfolio] = useState();
   const params = useParams();
   const qualifications = [];
@@ -139,14 +141,20 @@ const FreelancerDetail = () => {
                     <span>{user[0].occupation}</span>
                   </div>
                   <div className="_jb_summary_body">
-                    <div className="_view_dis_908">
-                      <a
-                        href={`mailto:${user[0].email}`}
-                        className="btn btn-primary w-100"
-                      >
-                        Hire Now
-                      </a>
-                    </div>
+                    {role === "ROLE_EMPLOYER" ? (
+                      <div className="_view_dis_908">
+                        <a
+                          href={`mailto:${user[0].email}`}
+                          className="btn btn-primary w-100"
+                        >
+                          Hire Now
+                        </a>
+                      </div>
+                    ) : (
+                      <small className="text-dark text-center">
+                        Login with company account to hire this freelancer!
+                      </small>
+                    )}
                   </div>
                 </div>
 

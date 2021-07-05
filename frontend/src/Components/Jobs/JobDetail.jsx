@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { getSingleJob } from "./getSingleJob";
+import { GlobalContext } from "../../Context/global";
 
 const JobDetail = () => {
+  const { role } = useContext(GlobalContext);
   const [job, setJob] = useState();
   const params = useParams();
   let skills;
@@ -19,7 +21,7 @@ const JobDetail = () => {
     skills = job.data.attributes.skills.split(", ");
     jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
   }
-
+  console.log(role);
   const renderDetail = () => {
     return (
       <>
@@ -76,19 +78,20 @@ const JobDetail = () => {
                       </ul>
                     </div>
                   </div>
-
-                  <div className="_jb_details01_last">
-                    <ul className="_flex_btn">
-                      <li>
-                        <a
-                          href={`mailto:${job.included[0].attributes.email}`}
-                          className="_applied_jb"
-                        >
-                          Apply Job
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  {role === "ROLE_USER" && (
+                    <div className="_jb_details01_last">
+                      <ul className="_flex_btn">
+                        <li>
+                          <a
+                            href={`mailto:${job.included[0].attributes.email}`}
+                            className="_applied_jb"
+                          >
+                            Apply Job
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -135,14 +138,23 @@ const JobDetail = () => {
                       </ul>
                     </div>
                   )}
-                  <div className="_job_detail_single flexeo">
-                    <a
-                      href={`mailto:${job.included[0].attributes.email}`}
-                      className="_applied_jb btn btn-outline-primary w-100"
-                    >
-                      Apply Job
-                    </a>
-                  </div>
+                  {role === "ROLE_USER" ? (
+                    <div className="_job_detail_single flexeo">
+                      <a
+                        href={`mailto:${job.included[0].attributes.email}`}
+                        className="_applied_jb btn btn-outline-primary w-100"
+                      >
+                        Apply Job
+                      </a>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {!role && (
+                    <h6>
+                      Login as Freelancer to be able to apply for this job!
+                    </h6>
+                  )}
                 </div>
               </div>
 

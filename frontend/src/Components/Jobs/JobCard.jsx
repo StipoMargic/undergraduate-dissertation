@@ -30,7 +30,7 @@ const JobCard = ({ id, job }) => {
             </div>
           </div>
           <div className="jb_grid_01_footer_right">
-            <Link to={`/freelancers/${id}`} className="btn btn-outline-primary">
+            <Link to={`/jobs/${id}`} className="btn btn-outline-primary">
               More Info
             </Link>
           </div>
