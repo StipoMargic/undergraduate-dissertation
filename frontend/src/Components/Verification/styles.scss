@@ -1,0 +1,13 @@
+.verification {
+  height: 68vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    input[type="submit"] {
+      margin-left: 25%;
+    }
+  }
+}

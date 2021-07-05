@@ -13,7 +13,7 @@ export const makePortfolioPostRequest = (
         advancedKnowledgeBulletins: portfolio.advancedKnowledgeBulletins,
         skills: portfolio.skills,
         salary: portfolio.salary,
-        disabilityPercent: portfolio.disabilityPercent,
+        disabilityPercent: +portfolio.disabilityPercent,
         rate: portfolio.rate,
         hour: portfolio.hour,
         qualifications,

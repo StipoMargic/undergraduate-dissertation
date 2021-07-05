@@ -15,6 +15,7 @@ import Register from "./Components/Register";
 import { GlobalProvider } from "./Context/global";
 import Logout from "./Components/Logout";
 import AddJob from "./Components/AddJob";
+import Verification from "./Components/Verification";
 
 function App() {
   const ttl = Cookies.get("ttl");
@@ -41,6 +42,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/logout" component={Logout} />
           <Route path="/add-job" component={AddJob} />
+          <Route path="/verify" component={Verification} />
         </Switch>
         <Footer />
       </GlobalProvider>

@@ -16,8 +16,8 @@ const JobDetail = () => {
   }, []);
 
   if (job !== undefined) {
-    skills = job.data.attributes.skills.split(" | ");
-    jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(" | ");
+    skills = job.data.attributes.skills.split(", ");
+    jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
   }
 
   const renderDetail = () => {

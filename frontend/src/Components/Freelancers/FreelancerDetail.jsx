@@ -26,9 +26,9 @@ const FreelancerDetail = () => {
   }, []);
 
   if (portfolio !== undefined) {
-    skills = portfolio.data.attributes.skills.split(",");
+    skills = portfolio.data.attributes.skills.split(", ");
     advancedKnowledgeBulletins =
-      portfolio.data.attributes.advancedKnowledgeBulletins.split(" | ");
+      portfolio.data.attributes.advancedKnowledgeBulletins.split(", ");
     portfolio.included.map((include) => {
       if (include.type === "qualification") {
         return qualifications.push(include.attributes);
