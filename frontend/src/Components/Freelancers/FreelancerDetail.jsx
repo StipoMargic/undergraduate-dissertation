@@ -28,6 +28,7 @@ const FreelancerDetail = () => {
   }, []);
 
   if (portfolio !== undefined) {
+    console.log(portfolio.data.attributes);
     skills = portfolio.data.attributes.skills.split(", ");
     advancedKnowledgeBulletins =
       portfolio.data.attributes.advancedKnowledgeBulletins.split(", ");
@@ -44,7 +45,6 @@ const FreelancerDetail = () => {
       return null;
     });
   }
-
   return (
     <>
       {user.length < 1 ? (

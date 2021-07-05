@@ -29,6 +29,20 @@ const initialExperienceData = {
   description: "",
 };
 
+const initialJobData = {
+  jobDuties: "",
+  jobDutiesBulletins: "",
+  skills: "",
+  vacancy: "",
+  activeTill: "",
+  location: "",
+  salary: "",
+  hours: "",
+  typeOfPosition: "",
+  disabledFriendly: true,
+  jobSummary: "",
+  jobPositionName: "",
+};
 const AddJob = () => {
   const { role, categories, token } = useContext(GlobalContext);
   const history = useHistory();
@@ -37,12 +51,14 @@ const AddJob = () => {
   const [experience, setExperience] = useState(initialExperienceData);
   const [qualifications, setQualifications] = useState([]);
   const [experiences, setExperiences] = useState([]);
+  const [jobData, setJobData] = useState(initialJobData);
+  const [error, setError] = useState(false);
 
   if (!role) {
     history.push("/");
   }
 
-  const handleChange = (value) => (e) => {
+  const handlePortfolioChange = (value) => (e) => {
     e.persist();
 
     setPortfolioData((prevState) => ({
@@ -51,22 +67,44 @@ const AddJob = () => {
     }));
   };
 
-  const handleQualificationChange = (value) => (e) => {
+  const handleJobChange = (value) => (e) => {
     e.persist();
 
-    setQualification((prevState) => ({
-      ...prevState,
+    setJobData((prev) => ({
+      ...prev,
       [value]: e.target.value,
     }));
   };
 
-  const handleExperienceChange = (value) => (e) => {
+  const handleQualificationChange = (value) => (e) => {
     e.persist();
 
-    setExperience((prev) => ({
-      ...prev,
-      [value]: e.target.value,
-    }));
+    if (value === "yearStart" || value === "yearEnd") {
+      setQualification((prev) => ({
+        ...prev,
+        [value]: +e.target.value,
+      }));
+    } else {
+      setQualification((prevState) => ({
+        ...prevState,
+        [value]: e.target.value,
+      }));
+    }
+  };
+
+  const handleExperienceChange = (value) => (e) => {
+    e.persist();
+    if (value === "yearStart" || value === "yearEnd") {
+      setExperience((prev) => ({
+        ...prev,
+        [value]: +e.target.value,
+      }));
+    } else {
+      setExperience((prev) => ({
+        ...prev,
+        [value]: e.target.value,
+      }));
+    }
   };
 
   const addQualification = () => {
@@ -80,8 +118,6 @@ const AddJob = () => {
   };
 
   const handlePortfolioSubmit = () => {
-    console.log(portfolioData);
-
     axios
       .post(
         "http://127.0.0.1:8000/api/v1/portfolios",
@@ -93,8 +129,13 @@ const AddJob = () => {
           },
         }
       )
-      .then(() => console.log("success"))
-      .catch((err) => console.log(err));
+      .then(() => history.push("/freelancers"))
+      .catch(() => setError(true));
+  };
+
+  const handleJobSubmit = (e) => {
+    e.preventDefault();
+    console.log("SUBMITTED");
   };
 
   const renderPortfolioCreation = () => {
@@ -102,7 +143,7 @@ const AddJob = () => {
       <>
         <label htmlFor="categories">
           Select Category:
-          <select onChange={handleChange("category")} id="categories">
+          <select onChange={handlePortfolioChange("category")} id="categories">
             <option>Click here for categories</option>
             {categories.map((category) => {
               return (
@@ -119,7 +160,7 @@ const AddJob = () => {
             id="advancedKnowledge"
             cols="30"
             rows="2"
-            onChange={handleChange("advancedKnowledge")}
+            onChange={handlePortfolioChange("advancedKnowledge")}
           />
         </label>
         <label htmlFor="advancedKnowledgeBulletin">
@@ -128,20 +169,40 @@ const AddJob = () => {
             id="advancedKnowledgeBulletin"
             cols="30"
             rows="10"
-            onChange={handleChange("advancedKnowledgeBulletin")}
+            onChange={handlePortfolioChange("advancedKnowledgeBulletins")}
           />
         </label>
         <label htmlFor="skills">
           Skills
-          <input type="text" id="skills" onChange={handleChange("skills")} />
+          <input
+            type="text"
+            id="skills"
+            onChange={handlePortfolioChange("skills")}
+          />
         </label>
         <label htmlFor="salary">
           Salary
-          <input type="text" id="salary" onChange={handleChange("salary")} />
+          <input
+            type="text"
+            id="salary"
+            onChange={handlePortfolioChange("salary")}
+          />
         </label>
         <label htmlFor="rate">
           Rate
-          <input type="text" id="rate" onChange={handleChange("rate")} />
+          <input
+            type="text"
+            id="rate"
+            onChange={handlePortfolioChange("rate")}
+          />
+        </label>
+        <label htmlFor="hour">
+          Hour
+          <input
+            type="text"
+            id="hour"
+            onChange={handlePortfolioChange("hour")}
+          />
         </label>
         <label htmlFor="disabilityPercent">
           Disability Percent
@@ -151,7 +212,7 @@ const AddJob = () => {
             min="0"
             max="100"
             step="5"
-            onChange={handleChange("disabilityPercent")}
+            onChange={handlePortfolioChange("disabilityPercent")}
           />
         </label>
 
@@ -254,14 +315,132 @@ const AddJob = () => {
             value="Add qualification"
           />
         </div>
-
+        {error && (
+          <p className="text-danger">Something went wrong! Try again</p>
+        )}
         <input type="submit" onClick={handlePortfolioSubmit} value="Submit" />
       </>
     );
   };
 
   const renderJobCreation = () => {
-    return <p>renderJobCreation</p>;
+    return (
+      <div className="container">
+        <label htmlFor="jobDuties">
+          Job Duties
+          <textarea
+            id="jobDuties"
+            cols="30"
+            rows="10"
+            value={jobData.jobDuties}
+            onChange={handleJobChange("jobDuties")}
+          />
+        </label>
+        <label htmlFor="jobDutiesBulletins">
+          Job Duties Bulletins
+          <input
+            type="text"
+            id="jobDutiesBulletins"
+            value={jobData.jobDutiesBulletins}
+            onChange={handleJobChange("jobDutiesBulletins")}
+          />
+        </label>
+        <label htmlFor="skills">
+          Skills
+          <input
+            type="text"
+            id="skills"
+            onChange={handleJobChange("skills")}
+            value={jobData.skills}
+          />
+        </label>
+        <label htmlFor="vacancy">
+          Vacancy
+          <input
+            type="text"
+            id="vacancy"
+            onChange={handleJobChange("vacancy")}
+            value={jobData.vacancy}
+          />
+        </label>
+        <label htmlFor="activeTill">
+          Active till
+          <input
+            type="text"
+            id="activeTill"
+            onChange={handleJobChange("activeTill")}
+            value={jobData.activeTill}
+          />
+        </label>
+        <label htmlFor="location">
+          Location
+          <input
+            type="text"
+            id="location"
+            onChange={handleJobChange("location")}
+            value={jobData.location}
+          />
+        </label>
+        <label htmlFor="salary">
+          Salary
+          <input
+            type="text"
+            id="salary"
+            onChange={handleJobChange("salary")}
+            value={jobData.salary}
+          />
+        </label>
+        <label htmlFor="hours">
+          Hours
+          <input
+            type="text"
+            id="hours"
+            onChange={handleJobChange("hours")}
+            value={jobData.hours}
+          />
+        </label>
+        <label htmlFor="typeOfPosition">
+          Type of position
+          <input
+            type="text"
+            id="typeOfPosition"
+            onChange={handleJobChange("typeOfPosition")}
+            value={jobData.typeOfPosition}
+          />
+        </label>
+        <label htmlFor="disabledFriendly">
+          Disabled friendly
+          <input
+            type="text"
+            id="disabledFriendly"
+            onChange={handleJobChange("disabledFriendly")}
+            value={jobData.disabledFriendly}
+          />
+        </label>
+        <label htmlFor="jobSummary">
+          Job summary
+          <input
+            type="text"
+            id="jobSummary"
+            onChange={handleJobChange("jobSummary")}
+            value={jobData.jobSummary}
+          />
+        </label>
+        <label htmlFor="jobPositionName">
+          Job position name
+          <input
+            type="text"
+            id="jobPositionName"
+            onChange={handleJobChange("jobPositionName")}
+            value={jobData.jobPositionName}
+          />
+        </label>
+        {error && (
+          <p className="text-danger">Something went wrong! Try again</p>
+        )}
+        <input type="submit" value="Submit" onClick={handleJobSubmit} />
+      </div>
+    );
   };
 
   return (
