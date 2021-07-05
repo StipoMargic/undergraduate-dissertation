@@ -3,7 +3,7 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 const FreelancerCard = ({ id, portfolio }) => {
-  const skills = portfolio.skills.split(",");
+  const skills = portfolio.skills.split(", ");
 
   return (
     <div className="col-lg-4 col-md-6 col-sm-12">
