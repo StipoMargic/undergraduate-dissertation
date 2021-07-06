@@ -24,6 +24,10 @@ const JobDetail = () => {
     jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
   }
 
+  const deactivateModal = () => {
+    window.location.reload();
+  };
+
   const handleDelete = (e) => {
     e.preventDefault();
 
@@ -34,7 +38,7 @@ const JobDetail = () => {
           "Content-Type": "application/json",
         },
       })
-      .then(() => console.log("succes"))
+      .then(() => deactivateModal())
       .catch((err) => console.log(err));
   };
 
@@ -269,7 +273,8 @@ const JobDetail = () => {
     <>
       {job === undefined ? (
         "Loading"
-      ) : username === job.included[0].attributes.username ? (
+      ) : username === job.included[0].attributes.username &&
+        job.data.attributes.deletedAt === null ? (
         <>
           {renderHeader()}
           <div className="container pt-3">
@@ -283,11 +288,15 @@ const JobDetail = () => {
           </div>
           {renderBody()}
         </>
-      ) : (
+      ) : job.data.attributes.deletedAt === null ? (
         <>
           {renderHeader()}
           {renderBody()}
         </>
+      ) : (
+        <div className="deactivated">
+          <h3 className="text-danger">This job is deactivated!</h3>
+        </div>
       )}
     </>
   );

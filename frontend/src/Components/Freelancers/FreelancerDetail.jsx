@@ -56,7 +56,7 @@ const FreelancerDetail = () => {
           "Content-Type": "application/json",
         },
       })
-      .then(() => console.log("succes"))
+      .then(() => window.location.reload())
       .catch((err) => console.log(err));
   };
 
@@ -245,7 +245,8 @@ const FreelancerDetail = () => {
     <>
       {user.length < 1 ? (
         "Loading"
-      ) : username === user[0].username ? (
+      ) : username === user[0].username &&
+        portfolio.data.attributes.deletedAt === null ? (
         <>
           <div className="container pt-3">
             <button
@@ -258,8 +259,12 @@ const FreelancerDetail = () => {
           </div>
           {renderBody()}
         </>
-      ) : (
+      ) : portfolio.data.attributes.deletedAt === null ? (
         renderBody()
+      ) : (
+        <div className="deactivated">
+          <h3 className="text-danger">tHIS portfolio is deactivated</h3>
+        </div>
       )}
     </>
   );

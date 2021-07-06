@@ -1,28 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router";
 import { GlobalContext } from "../../Context/global";
 
 const Logout = () => {
-  const { removeAllCookies, username } = useContext(GlobalContext);
+  const { removeAllCookies } = useContext(GlobalContext);
   const history = useHistory();
 
-  if (!username) {
-    history.push("/");
-  }
-
   removeAllCookies();
+  window.location.reload();
+  history.push("/");
 
-  useEffect(() => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 5000);
-  });
-
-  return (
-    <>
-      <p>logout</p>
-    </>
-  );
+  return null;
 };
 
 export default Logout;

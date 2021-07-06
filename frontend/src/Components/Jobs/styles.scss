@@ -387,3 +387,12 @@ ul.bottoms_applies li ._applied_jb {
   font-weight: 600;
   color: #6a799a;
 }
+
+.deactivated{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-transform: uppercase;
+}

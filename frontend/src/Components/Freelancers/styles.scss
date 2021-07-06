@@ -430,3 +430,12 @@ h5.qa-subtitle {
   transform: translateY(-50%);
   color: royalblue !important;
 }
+
+.deactivated {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
