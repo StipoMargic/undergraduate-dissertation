@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import "./styles.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from "react-router";
@@ -6,45 +7,12 @@ import axios from "axios";
 import { GlobalContext } from "../../Context/global";
 import { makePortfolioPostRequest } from "./makePortfolioPostRequest";
 import { makeJobPostRequest } from "./makeJobPostRequest";
-
-const initialPortfolioData = {
-  category: "",
-  advancedKnowledge: "",
-  advancedKnowledgeBulletins: "",
-  skills: "",
-  salary: "",
-  disabilityPercent: 0,
-  rate: "",
-  hour: "",
-};
-
-const initialQualificationData = {
-  nameOfQualification: "",
-  yearStart: 2021,
-  yearEnd: 2021,
-  description: "",
-};
-
-const initialExperienceData = {
-  jobTitle: "",
-  yearStart: 2021,
-  yearEnd: 2021,
-  description: "",
-};
-
-const initialJobData = {
-  jobDuties: "",
-  jobDutiesBulletins: "",
-  skills: "",
-  vacancy: "",
-  location: "",
-  salary: "",
-  hours: "",
-  typeOfPosition: "",
-  disabledFriendly: true,
-  jobSummary: "",
-  jobPositionName: "",
-};
+import {
+  initialExperienceData,
+  initialJobData,
+  initialPortfolioData,
+  initialQualificationData,
+} from "./initialData";
 
 const AddJob = () => {
   const { role, categories, token } = useContext(GlobalContext);
@@ -52,10 +20,10 @@ const AddJob = () => {
   const [portfolioData, setPortfolioData] = useState(initialPortfolioData);
   const [qualification, setQualification] = useState(initialQualificationData);
   const [experience, setExperience] = useState(initialExperienceData);
+  const [jobData, setJobData] = useState(initialJobData);
   const [qualifications, setQualifications] = useState([]);
   const [experiences, setExperiences] = useState([]);
-  const [jobData, setJobData] = useState(initialJobData);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const [activeTill, setActiveTill] = useState(new Date());
 
   if (!role) {
@@ -142,7 +110,7 @@ const AddJob = () => {
           },
         }
       )
-      .then(() => history.push("/freelancers"))
+      .then(() => setError(false))
       .catch(() => setError(true));
   };
 
@@ -160,7 +128,7 @@ const AddJob = () => {
           },
         }
       )
-      .then(() => history.push("/jobs"))
+      .then(() => setError(false))
       .catch(() => setError(true));
   };
 
@@ -474,9 +442,6 @@ const AddJob = () => {
             </div>
           </div>
         </div>
-        {error && (
-          <p className="text-danger">Something went wrong! Try again</p>
-        )}
         <div className="row justify-content-center  py-5">
           <input
             type="submit"
@@ -704,9 +669,6 @@ const AddJob = () => {
             selected={activeTill}
             onChange={(date) => setActiveTill(date)}
           />
-          {error && (
-            <p className="text-danger">Something went wrong! Try again</p>
-          )}
           <div className="row w-100 justify-content-center py-5 mt-5">
             <button
               type="submit"
@@ -723,9 +685,47 @@ const AddJob = () => {
 
   return (
     <>
-      <div className="container py-5">
-        {role === "ROLE_USER" ? renderPortfolioCreation() : renderJobCreation()}
-      </div>
+      {error ? (
+        <>
+          <div className="errModal">
+            <h5 className="text-center text-danger pt-3">
+              Ups! Something went wrong...
+            </h5>
+            <p>We could not finish your listing! Contact us or try again!</p>
+            <a href="/add-job" className="btn btn-sm btn-outline-primary">
+              Try again
+            </a>
+          </div>
+          <div className="container py-5">
+            {role === "ROLE_USER"
+              ? renderPortfolioCreation()
+              : renderJobCreation()}
+          </div>
+        </>
+      ) : error === false ? (
+        <>
+          <div className="sucModal">
+            <h5 className="text-center text-success pt-3">
+              Yay! All went good...
+            </h5>
+            <p>You are done! Check your posting now...</p>
+            <a href="/" className="btn btn-sm btn-outline-primary">
+              Go home
+            </a>
+          </div>
+          <div className="container py-5">
+            {role === "ROLE_USER"
+              ? renderPortfolioCreation()
+              : renderJobCreation()}
+          </div>
+        </>
+      ) : (
+        <div className="container py-5">
+          {role === "ROLE_USER"
+            ? renderPortfolioCreation()
+            : renderJobCreation()}
+        </div>
+      )}
     </>
   );
 };
