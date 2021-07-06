@@ -203,10 +203,18 @@ const JobDetail = () => {
                       Vacancy:<span>{job.data.attributes.vacancy} Open</span>
                     </li>
                     <li>
-                      Post Date:<span>{job.data.attributes.createdAt}</span>
+                      Post Date:
+                      <span>
+                        {new Date(job.data.attributes.createdAt).toDateString()}
+                      </span>
                     </li>
                     <li>
-                      Expire Date:<span>{job.data.attributes.activeTill}</span>
+                      Expire Date:
+                      <span>
+                        {new Date(
+                          job.data.attributes.activeTill
+                        ).toDateString()}
+                      </span>
                     </li>
                     <li>
                       Location:<span>{job.data.attributes.location}</span>
