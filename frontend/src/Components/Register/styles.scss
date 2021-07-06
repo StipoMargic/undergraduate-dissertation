@@ -1,0 +1,39 @@
+.errModal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: .5rem;
+  border: #ff6b5f 1px solid;
+  width: 15%;
+  height: 10rem;
+  background: rgba(255, 107, 95, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    text-align: center;
+  }
+}
+
+.sucModal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: .5rem;
+  border: #289c1f 1px solid;
+  width: 15%;
+  height: 10rem;
+  background: rgba(156, 255, 95, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    text-align: center;
+  }
+}
