@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { getSingleJob } from "./getSingleJob";
 import { GlobalContext } from "../../Context/global";
 
 const JobDetail = () => {
-  const { role } = useContext(GlobalContext);
+  const { role, username, token } = useContext(GlobalContext);
   const [job, setJob] = useState();
   const params = useParams();
   let skills;
@@ -21,83 +22,101 @@ const JobDetail = () => {
     skills = job.data.attributes.skills.split(", ");
     jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
   }
-  console.log(role);
-  const renderDetail = () => {
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    axios
+      .delete(`http://127.0.0.1:8000/api/v1/job/${params.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then(() => console.log("succes"))
+      .catch((err) => console.log(err));
+  };
+
+  const renderHeader = () => {
     return (
-      <>
-        <div className="page-title search-form dark">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 col-md-12">
-                <div className="_jb_details01">
-                  <div className="_jb_details01_flex">
-                    <div className="_jb_details01_authors">
+      <div className="page-title search-form dark">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 col-md-12">
+              <div className="_jb_details01">
+                <div className="_jb_details01_flex">
+                  <div className="_jb_details01_authors">
+                    <img
+                      src={`http://127.0.0.1:8000/${job.included[0].attributes.avatar}`}
+                      className="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div className="_jb_details01_authors_caption">
+                    <h4 className="jbs_title">
+                      {job.data.attributes.jobPositionName}
                       <img
-                        src={`http://127.0.0.1:8000/${job.included[0].attributes.avatar}`}
-                        className="img-fluid"
+                        src="assets/img/verify.svg"
+                        className="ml-1"
+                        width="12"
                         alt=""
                       />
-                    </div>
-                    <div className="_jb_details01_authors_caption">
-                      <h4 className="jbs_title">
-                        {job.data.attributes.jobPositionName}
-                        <img
-                          src="assets/img/verify.svg"
-                          className="ml-1"
-                          width="12"
-                          alt=""
-                        />
-                      </h4>
-                      <ul className="jbx_info_list">
-                        <li>
-                          <span>
-                            <i className="ti-briefcase" />
-                            {job.included[0].attributes.username}
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <i className="ti-credit-card" />
-                            {job.data.attributes.salary}
-                          </span>
-                        </li>
-                        <li>
-                          <span>
-                            <i className="ti-location-pin" />
-                            {job.included[0].attributes.address},
-                            {job.included[0].attributes.city}
-                          </span>
-                        </li>
-                      </ul>
-                      <ul className="jbx_info_list">
-                        <li>
-                          <div className="jb_types fulltime">
-                            {job.data.attributes.typeOfPosition}
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
+                    </h4>
+                    <ul className="jbx_info_list">
+                      <li>
+                        <span>
+                          <i className="ti-briefcase" />
+                          {job.included[0].attributes.username}
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          <i className="ti-credit-card" />
+                          {job.data.attributes.salary}
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          <i className="ti-location-pin" />
+                          {job.included[0].attributes.address},
+                          {job.included[0].attributes.city}
+                        </span>
+                      </li>
+                    </ul>
+                    <ul className="jbx_info_list">
+                      <li>
+                        <div className="jb_types fulltime">
+                          {job.data.attributes.typeOfPosition}
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                  {role === "ROLE_USER" && (
-                    <div className="_jb_details01_last">
-                      <ul className="_flex_btn">
-                        <li>
-                          <a
-                            href={`mailto:${job.included[0].attributes.email}`}
-                            className="_applied_jb"
-                          >
-                            Apply Job
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  )}
                 </div>
+                {role === "ROLE_USER" && (
+                  <div className="_jb_details01_last">
+                    <ul className="_flex_btn">
+                      <li>
+                        <a
+                          href={`mailto:${job.included[0].attributes.email}`}
+                          className="_applied_jb"
+                        >
+                          Apply Job
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
 
+  const renderBody = () => {
+    return (
+      <>
         <section>
           <div className="container">
             <div className="row">
@@ -242,7 +261,33 @@ const JobDetail = () => {
       </>
     );
   };
-  return <>{job !== undefined ? renderDetail() : "Loading"}</>;
+
+  return (
+    <>
+      {job === undefined ? (
+        "Loading"
+      ) : username === job.included[0].attributes.username ? (
+        <>
+          {renderHeader()}
+          <div className="container pt-3">
+            <button
+              type="submit"
+              className="btn btn-lg btn-danger"
+              onClick={handleDelete}
+            >
+              Deactivate
+            </button>
+          </div>
+          {renderBody()}
+        </>
+      ) : (
+        <>
+          {renderHeader()}
+          {renderBody()}
+        </>
+      )}
+    </>
+  );
 };
 
 export default JobDetail;

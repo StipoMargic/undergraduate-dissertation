@@ -42,7 +42,7 @@ const Freelancers = () => {
                   />
                 );
               }
-              return "";
+              return null;
             })}
           </div>
         </div>

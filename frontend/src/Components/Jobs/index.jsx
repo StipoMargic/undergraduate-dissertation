@@ -31,7 +31,12 @@ const Jobs = () => {
           )}
           <div className="row">
             {jobs.map((job) => {
-              return <JobCard key={job.id} id={job.id} job={job.attributes} />;
+              if (job.attributes.deletedAt === null) {
+                return (
+                  <JobCard key={job.id} id={job.id} job={job.attributes} />
+                );
+              }
+              return null;
             })}
           </div>
         </div>
