@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Infrastructure\Security\Voter;
 
 
+use App\Domain\Portfolio\Portfolio;
 use App\Domain\User\User;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -17,14 +18,13 @@ class UserVoter extends Voter
 
     #[Pure] protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::DELETE, self::EDIT]) && $subject instanceof User;
+        return in_array($attribute, [self::DELETE, self::EDIT]);
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        return true;
         $user = $token->getUser();
-        if (!$user instanceof User || !$subject instanceof User) {
+        if (!$user instanceof User) {
             return false;
         }
 
@@ -41,8 +41,11 @@ class UserVoter extends Voter
         return false;
     }
 
-    #[Pure] private function isOwner(User $subject, User $user): bool
+    #[Pure] private function isOwner($subject, User $user): bool
     {
-        return $subject->getId() === $user->getId();
+        if ($subject instanceof Portfolio){
+            return $subject->getUser()->getId() === $user->getId();
+        }
+        return false;
     }
 }

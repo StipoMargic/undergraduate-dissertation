@@ -167,9 +167,21 @@ const AddJob = () => {
   const renderPortfolioCreation = () => {
     return (
       <>
-        <label htmlFor="categories">
-          Select Category:
-          <select onChange={handlePortfolioChange("category")} id="categories">
+        <h2 className="text-center text-uppercase py-5 font-weight-bold">
+          Fill your portfolio and get hired!
+        </h2>
+        <div className="row py-2">
+          <label
+            className="mb-0 text-primary text-lg-left font-weight-bold"
+            htmlFor="categories"
+          >
+            Select Category:
+          </label>
+          <select
+            className="form-control form-control-lg"
+            onChange={handlePortfolioChange("category")}
+            id="categories"
+          >
             <option>Click here for categories</option>
             {categories.map((category) => {
               return (
@@ -179,172 +191,300 @@ const AddJob = () => {
               );
             })}
           </select>
-        </label>
-        <label htmlFor="advancedKnowledge">
-          Advanced Knowledge:
+        </div>
+        <div className="row py-2">
+          <label
+            className="mb-0 text-primary text-lg-left font-weight-bold"
+            htmlFor="advancedKnowledge"
+          >
+            Advanced Knowledge:
+          </label>
           <textarea
             id="advancedKnowledge"
-            cols="30"
-            rows="2"
+            className="form-control"
+            value={portfolioData.advancedKnowledge}
             onChange={handlePortfolioChange("advancedKnowledge")}
           />
-        </label>
-        <label htmlFor="advancedKnowledgeBulletin">
-          Advanced Knowledge Bulletin
+        </div>
+        <div className="row py-2">
+          <label
+            className="mb-0 text-primary text-lg-left font-weight-bold"
+            htmlFor="advancedKnowledgeBulletin"
+          >
+            Advanced Knowledge Bulletins:
+          </label>
+          <small className="form-text text-muted">
+            Divide bulletins with comma (First bulletin, Second bulletin).
+          </small>
           <textarea
             id="advancedKnowledgeBulletin"
-            cols="30"
-            rows="10"
+            className="form-control"
+            value={portfolioData.advancedKnowledgeBulletins}
             onChange={handlePortfolioChange("advancedKnowledgeBulletins")}
           />
-        </label>
-        <label htmlFor="skills">
-          Skills
-          <input
-            type="text"
-            id="skills"
-            onChange={handlePortfolioChange("skills")}
-          />
-        </label>
-        <label htmlFor="salary">
-          Salary
-          <input
-            type="text"
-            id="salary"
-            onChange={handlePortfolioChange("salary")}
-          />
-        </label>
-        <label htmlFor="rate">
-          Rate
-          <input
-            type="text"
-            id="rate"
-            onChange={handlePortfolioChange("rate")}
-          />
-        </label>
-        <label htmlFor="hour">
-          Hour
-          <input
-            type="text"
-            id="hour"
-            onChange={handlePortfolioChange("hour")}
-          />
-        </label>
-        <label htmlFor="disabilityPercent">
-          Disability Percent
-          <input
-            type="number"
-            id="disabilityPercent"
-            min="0"
-            max="100"
-            step="5"
-            onChange={handlePortfolioChange("disabilityPercent")}
-          />
-        </label>
-
-        <div>
-          <h5>Experience</h5>
-          <label htmlFor="jobTitle">
-            Job title
+        </div>
+        <div className="row py-3">
+          <div className="col">
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="skills"
+            >
+              Skills:
+            </label>
+            <small className="form-text text-muted">
+              Divide skills with comma (Word, Excel).
+            </small>
             <input
               type="text"
-              id="jobTitle"
+              className="form-control"
+              id="skills"
+              value={portfolioData.skills}
+              onChange={handlePortfolioChange("skills")}
+            />
+          </div>
+          <div className="col">
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="disabilityPercent"
+            >
+              Disability Percent:
+            </label>
+            <input
+              type="number"
+              id="disabilityPercent"
+              min="0"
+              max="100"
+              step="5"
+              className="form-control"
+              value={portfolioData.disabilityPercent}
+              onChange={handlePortfolioChange("disabilityPercent")}
+            />
+          </div>
+        </div>
+        <div className="row py-3">
+          <div className="col">
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="salary"
+            >
+              Salary:
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={portfolioData.salary}
+              id="salary"
+              onChange={handlePortfolioChange("salary")}
+            />
+          </div>
+          <div className="col">
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="rate"
+            >
+              Rate:
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={portfolioData.rate}
+              id="rate"
+              onChange={handlePortfolioChange("rate")}
+            />
+          </div>
+          <div className="col">
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="hour"
+            >
+              Hour:
+            </label>
+            <input
+              value={portfolioData.hour}
+              type="text"
+              className="form-control"
+              id="hour"
+              onChange={handlePortfolioChange("hour")}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <h5 className="py-3 text-center font-weight-bold">Experience</h5>
+            <div className="text-center">
+              <small>
+                You have <strong>{experiences.length}</strong> experiences
+                added.
+              </small>
+            </div>
+            <label
+              className=" mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor=" jobTitle"
+            >
+              Job title:
+            </label>
+            <input
+              type=" text"
+              className=" form-control"
+              id=" jobTitle"
               value={experience.jobTitle}
-              onChange={handleExperienceChange("jobTitle")}
+              onChange={handleExperienceChange(" jobTitle")}
             />
-          </label>
-          <label htmlFor="yearStart">
-            Year start
-            <input
-              type="number"
-              id="yearStart"
-              min="1950"
-              max="2021"
-              step="1"
-              value={experience.yearStart}
-              onChange={handleExperienceChange("yearStart")}
-            />
-          </label>
-          <label htmlFor="yearEnd">
-            Year End
-            <input
-              type="number"
-              id="yearEnd"
-              min="1950"
-              max="2021"
-              step="1"
-              value={experience.yearEnd}
-              onChange={handleExperienceChange("yearEnd")}
-            />
-          </label>
-          <label htmlFor="description">
-            Description
+            <div className="row py-2">
+              <div className="col">
+                <label
+                  className=" mb-0 text-primary text-lg-left font-weight-bold"
+                  htmlFor=" yearStart"
+                >
+                  Year start:
+                </label>
+                <input
+                  type=" number"
+                  className="form-control"
+                  id=" yearStart"
+                  min="1950"
+                  max="2021"
+                  step="1"
+                  value={experience.yearStart}
+                  onChange={handleExperienceChange("yearStart")}
+                />
+              </div>
+              <div className="col">
+                <label
+                  className="mb-0 text-primary text-lg-left font-weight-bold"
+                  htmlFor="yearEnd"
+                >
+                  Year End:
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="yearEnd"
+                  min="1950"
+                  max="2021"
+                  step="1"
+                  value={experience.yearEnd}
+                  onChange={handleExperienceChange("yearEnd")}
+                />
+              </div>
+            </div>
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="description"
+            >
+              Description:
+            </label>
             <input
               type="text"
+              className="form-control"
               id="description"
               value={experience.description}
               onChange={handleExperienceChange("description")}
             />
-          </label>
-
-          <input type="submit" onClick={addExperience} value="Add experience" />
-        </div>
-
-        <div>
-          <h5>Qualifications</h5>
-          <label htmlFor="nameOfQualification">
-            Name of Qualification
+            <div className="row justify-content-center mt-3">
+              <input
+                type="submit"
+                onClick={addExperience}
+                value="Add experience"
+                className="btn btn-lg btn-primary"
+              />
+            </div>
+          </div>
+          <div className="col">
+            <h5 className="py-3 text-center font-weight-bold">
+              Qualifications
+            </h5>
+            <div className="text-center">
+              <small>
+                You have <strong>{qualifications.length}</strong> qualifications
+                added.
+              </small>
+            </div>
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="nameOfQualification"
+            >
+              Name of Qualification:
+            </label>
             <input
               type="text"
+              className="form-control"
               id="nameOfQualification"
               value={qualification.nameOfQualification}
               onChange={handleQualificationChange("nameOfQualification")}
             />
-          </label>
-          <label htmlFor="yearStart">
-            Year start
-            <input
-              type="number"
-              id="yearStart"
-              min="1950"
-              max="2021"
-              value={qualification.yearStart}
-              step="1"
-              onChange={handleQualificationChange("yearStart")}
-            />
-          </label>
-          <label htmlFor="yearEnd">
-            Year End
-            <input
-              type="number"
-              id="yearEnd"
-              min="1950"
-              max="2021"
-              step="1"
-              value={qualification.yearEnd}
-              onChange={handleQualificationChange("yearEnd")}
-            />
-          </label>
-          <label htmlFor="description">
-            Description
+            <div className="row py-2">
+              <div className="col">
+                <label
+                  className="mb-0 text-primary text-lg-left font-weight-bold"
+                  htmlFor="yearStart"
+                >
+                  Year start:
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="yearStart"
+                  min="1950"
+                  max="2021"
+                  value={qualification.yearStart}
+                  step="1"
+                  onChange={handleQualificationChange("yearStart")}
+                />
+              </div>
+              <div className="col">
+                <label
+                  className="mb-0 text-primary text-lg-left font-weight-bold"
+                  htmlFor="yearEnd"
+                >
+                  Year End:
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="yearEnd"
+                  min="1950"
+                  max="2021"
+                  step="1"
+                  value={qualification.yearEnd}
+                  onChange={handleQualificationChange("yearEnd")}
+                />
+              </div>
+            </div>
+            <label
+              className="mb-0 text-primary text-lg-left font-weight-bold"
+              htmlFor="description"
+            >
+              Description:
+            </label>
             <input
               type="text"
+              className="form-control"
               id="description"
               value={qualification.description}
               onChange={handleQualificationChange("description")}
             />
-          </label>
-
-          <input
-            type="submit"
-            onClick={addQualification}
-            value="Add qualification"
-          />
+            <div className="row justify-content-center mt-3">
+              <input
+                type="submit"
+                onClick={addQualification}
+                value="Add qualification"
+                className="btn btn-lg btn-primary"
+              />
+            </div>
+          </div>
         </div>
         {error && (
           <p className="text-danger">Something went wrong! Try again</p>
         )}
-        <input type="submit" onClick={handlePortfolioSubmit} value="Submit" />
+        <div className="row justify-content-center  py-5">
+          <input
+            type="submit"
+            onClick={handlePortfolioSubmit}
+            className="btn btn-lg btn-outline-primary"
+            value="Submit"
+          />
+        </div>
       </>
     );
   };

@@ -33,13 +33,16 @@ const Freelancers = () => {
           )}
           <div className="row py-5">
             {portfolios.map((portfolio) => {
-              return (
-                <FreelancerCard
-                  key={portfolio.id}
-                  id={portfolio.id}
-                  portfolio={portfolio.attributes}
-                />
-              );
+              if (portfolio.attributes.deletedAt === null) {
+                return (
+                  <FreelancerCard
+                    key={portfolio.id}
+                    id={portfolio.id}
+                    portfolio={portfolio.attributes}
+                  />
+                );
+              }
+              return "";
             })}
           </div>
         </div>

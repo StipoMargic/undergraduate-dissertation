@@ -53,23 +53,6 @@ const HomepageHero = () => {
                 </div>
               </div>
             </form>
-            <div className="featured-category dark">
-              <ul>
-                <li>Browse Category:</li>
-                <li>
-                  <a href="/">Banking</a>
-                </li>
-                <li>
-                  <a href="/">Healthcare</a>
-                </li>
-                <li>
-                  <a href="/">Software</a>
-                </li>
-                <li>
-                  <a href="/">Automotive</a>
-                </li>
-              </ul>
-            </div>
           </div>
 
           <div className="col-lg-5 col-md-4">
