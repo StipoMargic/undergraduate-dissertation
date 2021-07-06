@@ -23,7 +23,7 @@ final class CreateJobCommandHandler
             $command->jobDuties,
             $command->skills,
             $command->vacancy,
-            $command->activeTill,
+            new \DateTimeImmutable($command->activeTill),
             $command->location,
             $command->salary,
             $command->hours,
