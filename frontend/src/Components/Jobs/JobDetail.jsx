@@ -13,12 +13,13 @@ const JobDetail = () => {
   const params = useParams();
   let skills;
   let jobDutiesBulletins;
-
+  let passed;
   useEffect(() => {
     getSingleJob(params.id, setJob);
   }, []);
 
   if (job !== undefined) {
+    passed = new Date() > new Date(job.data.attributes.activeTill);
     skills = job.data.attributes.skills.split(", ");
     jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
   }
@@ -96,12 +97,13 @@ const JobDetail = () => {
                   <div className="_jb_details01_last">
                     <ul className="_flex_btn">
                       <li>
-                        <a
-                          href={`mailto:${job.included[0].attributes.email}`}
+                        <button
+                          type="submit"
                           className="_applied_jb"
+                          disabled={passed}
                         >
                           Apply Job
-                        </a>
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -133,7 +135,7 @@ const JobDetail = () => {
                     <ul>
                       {jobDutiesBulletins.map((bulletin) => {
                         return (
-                          <li>
+                          <li key={bulletin}>
                             <FontAwesomeIcon icon={faChevronRight} />
                             {bulletin}
                           </li>
@@ -148,7 +150,7 @@ const JobDetail = () => {
                       <ul>
                         {skills.map((skill) => {
                           return (
-                            <li>
+                            <li key={skill}>
                               <FontAwesomeIcon icon={faChevronRight} />
                               {skill}
                             </li>
@@ -159,12 +161,13 @@ const JobDetail = () => {
                   )}
                   {role === "ROLE_USER" ? (
                     <div className="_job_detail_single flexeo">
-                      <a
-                        href={`mailto:${job.included[0].attributes.email}`}
+                      <button
+                        type="button"
+                        disabled={passed}
                         className="_applied_jb btn btn-outline-primary w-100"
                       >
                         Apply Job
-                      </a>
+                      </button>
                     </div>
                   ) : (
                     ""
@@ -229,7 +232,7 @@ const JobDetail = () => {
                     </li>
                     <li>
                       Expire Date:
-                      <span>
+                      <span className={passed ? "text-danger" : "text-success"}>
                         {new Date(
                           job.data.attributes.activeTill
                         ).toDateString()}
