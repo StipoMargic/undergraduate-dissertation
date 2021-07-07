@@ -6,6 +6,8 @@ namespace App\Domain\Job;
 
 use App\Domain\Common\EntityInterface;
 use App\Domain\User\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
@@ -16,13 +18,16 @@ use Ramsey\Uuid\UuidInterface;
 class Job implements EntityInterface
 {
     /**
-     * @ORM\Id“
+     * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      */
     private UuidInterface $id;
 
     /**  @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="jobs", cascade="persist") */
     private User $user;
+
+    /** @ORM\OneToMany(targetEntity="App\Domain\Comment\Comment", mappedBy="job") */
+    private ?Collection $comments;
 
     /** @ORM\Column(name="job_duties", type="string", nullable=false) */
     private string $jobDuties;
@@ -104,6 +109,7 @@ class Job implements EntityInterface
         $this->deletedAt = null;
         $this->jobSummary = $jobSummary;
         $this->jobPositionName = $jobPositionName;
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): UuidInterface
@@ -160,7 +166,6 @@ class Job implements EntityInterface
     {
         $this->activeTill = $activeTill;
     }
-
 
 
     public function getLocation(): string
@@ -256,5 +261,15 @@ class Job implements EntityInterface
     public function setJobDutiesBulletins(string $jobDutiesBulletins): void
     {
         $this->jobDutiesBulletins = $jobDutiesBulletins;
+    }
+
+    public function getComments(): ArrayCollection|Collection|null
+    {
+        return $this->comments;
+    }
+
+    public function setComments(ArrayCollection|Collection|null $comments): void
+    {
+        $this->comments = $comments;
     }
 }

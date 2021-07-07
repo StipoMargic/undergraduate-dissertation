@@ -38,6 +38,9 @@ class Portfolio implements EntityInterface
     /** @ORM\OneToMany(targetEntity="App\Domain\Experience\Experience", mappedBy="portfolio", cascade="persist") */
     private ?Collection $experiences;
 
+    /** @ORM\OneToMany(targetEntity="App\Domain\Comment\Comment", mappedBy="portfolio") */
+    private ?Collection $comments;
+
     /** @ORM\Column(name="advancedKnowledge", type="string", nullable=false) */
     private string $advancedKnowledge;
 
@@ -97,6 +100,7 @@ class Portfolio implements EntityInterface
         $this->updatedAt = null;
         $this->deletedAt = null;
         $this->qualifications = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->experiences = new ArrayCollection();
         $this->hiredBy = [];
     }
@@ -261,5 +265,15 @@ class Portfolio implements EntityInterface
     public function addHired(string $companyName): void
     {
         $this->hiredBy[] = $companyName;
+    }
+
+    public function getComments(): ?Collection
+    {
+        return $this->comments;
+    }
+
+    public function setComments(?Collection $comments): void
+    {
+        $this->comments = $comments;
     }
 }
