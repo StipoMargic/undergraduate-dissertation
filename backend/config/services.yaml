@@ -79,6 +79,9 @@ services:
   App\Application\Experience\ExperienceRepository\ExperienceWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineExperienceWriteRepository'
   App\Application\Job\JobRepository\JobReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineJobReadRepository'
   App\Application\Job\JobRepository\JobWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineJobWriteRepository'
+  App\Application\Comment\CommentRepository\CommentReadRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineCommentReadRepository'
+  App\Application\Comment\CommentRepository\CommentWriteRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\DoctrineCommentWriteRepository'
+
 
   # Additional config
 
