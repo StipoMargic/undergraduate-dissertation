@@ -28,7 +28,7 @@ final class CreateCommentCommandHandler
 
     public function __invoke(CreateCommentCommand $command): void
     {
-        $user = $this->userReadRepository->get(Uuid::fromString($command->user));
+        $user = $this->userReadRepository->getByUsername($command->user);
 
         if ($command->portfolio !== null) {
             $portfolio = $this->portfolioReadRepository->get(Uuid::fromString($command->portfolio));
