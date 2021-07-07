@@ -121,4 +121,9 @@ class Comment
     {
         $this->message = $message;
     }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 }
