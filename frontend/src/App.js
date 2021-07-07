@@ -16,6 +16,7 @@ import { GlobalProvider } from "./Context/global";
 import Logout from "./Components/Logout";
 import AddJob from "./Components/AddJob";
 import Verification from "./Components/Verification";
+import HireNow from "./Components/HireNow";
 
 function App() {
   const ttl = Cookies.get("ttl");
@@ -36,6 +37,7 @@ function App() {
           <Route path="/about" component={AboutPage} />
           <Route path="/freelancers" exact component={FreelancersPage} />
           <Route path="/freelancers/:id" exact component={FDetail} />
+          <Route path="/freelancers/:id/hire-now" exact component={HireNow} />
           <Route path="/jobs/:id" exact component={JDetail} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/jobs" component={JobPage} />

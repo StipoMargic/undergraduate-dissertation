@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useParams } from "react-router";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import QualificationDetail from "./QualificationDetail";
 import AwardDetail from "./AwardDetail";
 import { getSinglePortfolio } from "./getSinglePortfolio";
@@ -152,12 +153,11 @@ const FreelancerDetail = () => {
                 <div className="_jb_summary_body">
                   {role === "ROLE_EMPLOYER" ? (
                     <div className="_view_dis_908">
-                      <a
-                        href={`mailto:${user[0].email}`}
-                        className="btn btn-primary w-100"
-                      >
-                        Hire Now
-                      </a>
+                      <Link to={`/freelancers/${params.id}/hire-now`}>
+                        <button type="button" className="btn btn-primary w-100">
+                          Hire now
+                        </button>
+                      </Link>
                     </div>
                   ) : (
                     <small className="text-dark text-center">
