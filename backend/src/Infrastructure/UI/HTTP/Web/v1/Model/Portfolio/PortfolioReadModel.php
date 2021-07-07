@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Portfolio;
 
 
+use App\Domain\Comment\Comment;
 use App\Domain\Portfolio\Portfolio;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
@@ -62,6 +63,9 @@ class PortfolioReadModel implements ApiModel
     /** @Attribute */
     public array $hiredBy;
 
+    /** @Attribute */
+    public array $comments;
+
     public function __construct(
         string $id,
         string $user,
@@ -78,7 +82,8 @@ class PortfolioReadModel implements ApiModel
         string $createdAt,
         ?string $updatedAt,
         ?string $deletedAt,
-        array $hiredBy
+        array $hiredBy,
+        array $comments
     ) {
         $this->id = $id;
         $this->user = $user;
@@ -96,11 +101,21 @@ class PortfolioReadModel implements ApiModel
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
         $this->hiredBy = $hiredBy;
+        $this->comments = $comments;
     }
 
 
     public static function fromEntity(Portfolio $portfolio): self
     {
+        $comments = array_map(static function (Comment $comment) {
+            return [
+                'user' => $comment->getUser()->getUsername(),
+                'score' => $comment->getScore(),
+                'message' => $comment->getMessage(),
+                'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
+            ];
+        }, $portfolio->getComments()->getValues());
+
         return new self(
             (string) $portfolio->getId(),
             $portfolio->getUser()->getUsername(),
@@ -117,7 +132,8 @@ class PortfolioReadModel implements ApiModel
             $portfolio->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getUpdatedAt() ? null : $portfolio->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
-            $portfolio->getHiredBy()
+            $portfolio->getHiredBy(),
+            $comments
         );
     }
 }

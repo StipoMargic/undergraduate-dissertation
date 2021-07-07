@@ -53,7 +53,7 @@ const HireNow = () => {
           },
         }
       )
-      .then(() => console.log("done"))
+      .then(() => history.push("/"))
       .catch((err) => console.log(err));
   };
 

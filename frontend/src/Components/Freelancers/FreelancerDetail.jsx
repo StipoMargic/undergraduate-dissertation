@@ -14,10 +14,17 @@ import QualificationDetail from "./QualificationDetail";
 import AwardDetail from "./AwardDetail";
 import { getSinglePortfolio } from "./getSinglePortfolio";
 import { GlobalContext } from "../../Context/global";
+import { makeCommentData } from "./makeCommentData";
+
+const initialCommentForm = {
+  score: 3,
+  message: "",
+};
 
 const FreelancerDetail = () => {
   const { role, username, token } = useContext(GlobalContext);
   const [portfolio, setPortfolio] = useState();
+  const [commentForm, setCommentForm] = useState(initialCommentForm);
   const params = useParams();
   const qualifications = [];
   const experiences = [];
@@ -52,6 +59,15 @@ const FreelancerDetail = () => {
     });
   }
 
+  const handleCommentFormChange = (e) => {
+    e.preventDefault();
+
+    setCommentForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const handleDelete = (e) => {
     e.preventDefault();
 
@@ -66,22 +82,48 @@ const FreelancerDetail = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        "http://127.0.0.1:8000/api/v1/",
+        makeCommentData(
+          portfolio.data.id,
+          null,
+          username,
+          commentForm.score,
+          commentForm.message
+        ),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => window.location.reload())
+      .catch((err) => console.log(err));
+  };
+
   const renderCommentForm = () => {
     return (
       <div className="container">
         <h6 className="text-muted text-uppercase pb-2">Comment form</h6>
-        <form className="form-group">
+        <form className="form-group" onSubmit={handleCommentSubmit}>
           <div className="row ">
             <div className="col-sm-3">
               <input
                 type="number"
-                name="star"
-                id="star"
+                name="score"
+                id="score"
                 className="form-control"
                 placeholder="Score"
                 min={0}
                 max={5}
                 step={1}
+                value={commentForm.score}
+                onChange={handleCommentFormChange}
               />
             </div>
             <div className="col-sm-9">
@@ -90,12 +132,15 @@ const FreelancerDetail = () => {
                 id="message"
                 className="form-control"
                 placeholder="Your comment..."
+                onChange={handleCommentFormChange}
+                value={commentForm.message}
               />
             </div>
           </div>
           <button
             className="btn btn-outline-primary fa-pull-right mt-3"
             type="submit"
+            onClick={handleCommentSubmit}
           >
             Comment
           </button>
