@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Domain\Portfolio;
 
 use App\Domain\Category\Category;
+use App\Domain\Comment\Comment;
 use App\Domain\Common\EntityInterface;
 use App\Domain\Experience\Experience;
 use App\Domain\Qualification\Qualification;
@@ -275,5 +276,10 @@ class Portfolio implements EntityInterface
     public function setComments(?Collection $comments): void
     {
         $this->comments = $comments;
+    }
+
+    public function addComment(Comment $comment)
+    {
+        $this->comments->add($comment);
     }
 }

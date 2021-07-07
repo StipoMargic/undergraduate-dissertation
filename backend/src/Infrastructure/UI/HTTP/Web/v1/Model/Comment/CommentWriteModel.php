@@ -13,10 +13,10 @@ class CommentWriteModel implements ApiModel
     public string $id;
 
     /** @Attribute  */
-    public string $portfolio;
+    public ?string $portfolio;
 
     /** @Attribute  */
-    public string $job;
+    public ?string $job;
 
     /** @Attribute  */
     public string $user;
@@ -27,7 +27,7 @@ class CommentWriteModel implements ApiModel
     /** @Attribute  */
     public string $message;
 
-    public function __construct(string $id, string $portfolio, string $job, string $user, int $score, string $message)
+    public function __construct(string $id, ?string $portfolio, ?string $job, string $user, int $score, string $message)
     {
         $this->id = $id;
         $this->portfolio = $portfolio;

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Domain\Job;
 
+use App\Domain\Comment\Comment;
 use App\Domain\Common\EntityInterface;
 use App\Domain\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -268,8 +269,9 @@ class Job implements EntityInterface
         return $this->comments;
     }
 
-    public function setComments(ArrayCollection|Collection|null $comments): void
+
+    public function addComment(Comment $comment)
     {
-        $this->comments = $comments;
+        $this->comments->add($comment);
     }
 }

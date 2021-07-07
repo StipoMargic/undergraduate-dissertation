@@ -32,7 +32,7 @@ class Comment
     private ?Job $job;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="object", nullable=false)
      */
     private User $user;
 
