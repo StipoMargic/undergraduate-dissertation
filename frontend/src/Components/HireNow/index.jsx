@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
+import axios from "axios";
 import { getSinglePortfolio } from "../Freelancers/getSinglePortfolio";
 import { GlobalContext } from "../../Context/global";
+import { makeHireFreelancerPostData } from "./makeHireFreelancerPostData";
 
 const initialFormData = {
   subject: "",
@@ -11,8 +13,13 @@ const initialFormData = {
 const HireNow = () => {
   const [portfolio, setPortfolio] = useState();
   const { id } = useParams();
-  const { username } = useContext(GlobalContext);
+  const { username, token, role } = useContext(GlobalContext);
   const [formData, setFormData] = useState(initialFormData);
+  const history = useHistory();
+
+  if (role !== "ROLE_EMPLOYER") {
+    history.push("/");
+  }
 
   useEffect(() => {
     getSinglePortfolio(id, setPortfolio);
@@ -30,7 +37,24 @@ const HireNow = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Submitted");
+    axios
+      .post(
+        `http://127.0.0.1:8000/api/v1/portfolios/${id}/hire-now`,
+        makeHireFreelancerPostData(
+          formData.subject,
+          formData.message,
+          portfolio.data.id,
+          username
+        ),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => console.log("done"))
+      .catch((err) => console.log(err));
   };
 
   const renderForm = () => {
