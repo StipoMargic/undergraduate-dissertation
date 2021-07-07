@@ -59,6 +59,9 @@ class PortfolioReadModel implements ApiModel
     /** @Attribute */
     public ?string $deletedAt;
 
+    /** @Attribute */
+    public array $hiredBy;
+
     public function __construct(
         string $id,
         string $user,
@@ -74,7 +77,8 @@ class PortfolioReadModel implements ApiModel
         string $avatar,
         string $createdAt,
         ?string $updatedAt,
-        ?string $deletedAt
+        ?string $deletedAt,
+        array $hiredBy
     ) {
         $this->id = $id;
         $this->user = $user;
@@ -91,6 +95,7 @@ class PortfolioReadModel implements ApiModel
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
+        $this->hiredBy = $hiredBy;
     }
 
 
@@ -112,6 +117,7 @@ class PortfolioReadModel implements ApiModel
             $portfolio->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getUpdatedAt() ? null : $portfolio->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
+            $portfolio->getHiredBy()
         );
     }
 }

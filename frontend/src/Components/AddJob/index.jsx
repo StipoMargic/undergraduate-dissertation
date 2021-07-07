@@ -287,16 +287,16 @@ const AddJob = () => {
             </div>
             <label
               className=" mb-0 text-primary text-lg-left font-weight-bold"
-              htmlFor=" jobTitle"
+              htmlFor="jobTitle"
             >
               Job title:
             </label>
             <input
               type=" text"
               className=" form-control"
-              id=" jobTitle"
+              id="jobTitle"
               value={experience.jobTitle}
-              onChange={handleExperienceChange(" jobTitle")}
+              onChange={handleExperienceChange("jobTitle")}
             />
             <div className="row py-2">
               <div className="col">

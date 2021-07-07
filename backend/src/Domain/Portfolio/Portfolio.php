@@ -68,6 +68,10 @@ class Portfolio implements EntityInterface
     /** @ORM\Column(name="deleted_at", type="datetime_immutable", nullable=true) */
     private ?\DateTimeImmutable $deletedAt;
 
+    /**
+     * @ORM\Column(type="array", nullable=true, name="hired_by")
+     */
+    private array $hiredBy;
 
     public function __construct(
         UuidInterface $id,
@@ -78,7 +82,7 @@ class Portfolio implements EntityInterface
         string $salary,
         int $disabilityPercent,
         string $rate,
-        string $hours
+        string $hours,
     ) {
         $this->id = $id;
         $this->category = $category;
@@ -94,6 +98,7 @@ class Portfolio implements EntityInterface
         $this->deletedAt = null;
         $this->qualifications = new ArrayCollection();
         $this->experiences = new ArrayCollection();
+        $this->hiredBy = [];
     }
 
 
@@ -246,5 +251,15 @@ class Portfolio implements EntityInterface
     public function addExperience(Experience $experience): void
     {
         $this->experiences->add($experience);
+    }
+
+    public function getHiredBy(): array
+    {
+        return $this->hiredBy;
+    }
+
+    public function addHired(string $companyName): void
+    {
+        $this->hiredBy[] = $companyName;
     }
 }
