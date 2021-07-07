@@ -24,12 +24,17 @@ const FreelancerDetail = () => {
   const user = [];
   let skills = [];
   let advancedKnowledgeBulletins = [];
+  let isInArray;
 
   useEffect(() => {
     getSinglePortfolio(params.id, setPortfolio);
   }, []);
 
   if (portfolio !== undefined) {
+    isInArray = portfolio.data.attributes.hiredBy.find(
+      (name) => name === username
+    );
+
     skills = portfolio.data.attributes.skills.split(", ");
     advancedKnowledgeBulletins =
       portfolio.data.attributes.advancedKnowledgeBulletins.split(", ");
@@ -61,9 +66,47 @@ const FreelancerDetail = () => {
       .catch((err) => console.log(err));
   };
 
+  const renderCommentForm = () => {
+    return (
+      <div className="container">
+        <h6 className="text-muted text-uppercase pb-2">Comment form</h6>
+        <form className="form-group">
+          <div className="row ">
+            <div className="col-sm-3">
+              <input
+                type="number"
+                name="star"
+                id="star"
+                className="form-control"
+                placeholder="Score"
+                min={0}
+                max={5}
+                step={1}
+              />
+            </div>
+            <div className="col-sm-9">
+              <textarea
+                name="message"
+                id="message"
+                className="form-control"
+                placeholder="Your comment..."
+              />
+            </div>
+          </div>
+          <button
+            className="btn btn-outline-primary fa-pull-right mt-3"
+            type="submit"
+          >
+            Comment
+          </button>
+        </form>
+      </div>
+    );
+  };
+
   const renderBody = () => {
     return (
-      <section className="gray-bg py-5">
+      <section className="gray-bg ">
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-8 col-md-12 col-sm-12">
@@ -135,6 +178,8 @@ const FreelancerDetail = () => {
                   </div>
                 )}
               </div>
+
+              {isInArray && renderCommentForm()}
             </div>
 
             <div className="col-lg-4 col-md-12 col-sm-12">
@@ -241,6 +286,7 @@ const FreelancerDetail = () => {
       </section>
     );
   };
+
   return (
     <>
       {user.length < 1 ? (
@@ -248,7 +294,7 @@ const FreelancerDetail = () => {
       ) : username === user[0].username &&
         portfolio.data.attributes.deletedAt === null ? (
         <>
-          <div className="container pt-3">
+          <div className="container mt-5">
             <button
               type="submit"
               className="btn btn-lg btn-danger"
