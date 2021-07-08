@@ -31,7 +31,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/v1/portfolios")
+      .get("http://127.0.0.1:8000/api/v1/portfolios?sort=-createdAt")
       .then((res) => {
         if (res && res.data) {
           setPortfolios([...res.data.data]);

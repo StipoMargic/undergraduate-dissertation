@@ -19,7 +19,7 @@ final class ListPortfolioController
         QueryBus $queryBus,
         ResourceResponder $responder
     ){
-        $request->allowSorting(['$disabilityPercent', 'createdAt']);
+        $request->allowSorting(['disabilityPercent', 'createdAt']);
         $pagination = $request->getPagination();
 
         $entities = $queryBus->handleQuery(new PortfolioQuery(null === $pagination ? null : $pagination->getOffset(),

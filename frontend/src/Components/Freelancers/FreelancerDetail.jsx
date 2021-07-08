@@ -401,6 +401,7 @@ const FreelancerDetail = () => {
       </section>
     );
   };
+
   return (
     <>
       {user.length < 1 ? (

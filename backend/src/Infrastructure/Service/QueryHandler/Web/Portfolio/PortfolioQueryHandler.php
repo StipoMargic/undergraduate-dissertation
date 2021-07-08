@@ -24,7 +24,7 @@ class PortfolioQueryHandler
 
         if (property_exists($query, 'sortSet') && null !== $query->sortSet && $query->sortSet instanceof SortSet) {
             foreach ($query->sortSet->getSortsArray() as $column => $direction) {
-                $qb = $qb->orderBy('p' . $column, $direction);
+                $qb = $qb->orderBy('p.' . $column, $direction);
             }
         }
 

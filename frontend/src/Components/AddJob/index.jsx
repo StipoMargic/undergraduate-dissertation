@@ -25,6 +25,7 @@ const AddJob = () => {
   const [experiences, setExperiences] = useState([]);
   const [error, setError] = useState(null);
   const [activeTill, setActiveTill] = useState(new Date());
+  const [loading, setLoading] = useState();
 
   if (!role) {
     history.push("/");
@@ -98,6 +99,7 @@ const AddJob = () => {
 
   const handlePortfolioSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .post(
@@ -116,6 +118,7 @@ const AddJob = () => {
 
   const handleJobSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .post(
@@ -199,15 +202,13 @@ const AddJob = () => {
             >
               Skills:
             </label>
-            <small className="form-text text-muted">
-              Divide skills with comma (Word, Excel).
-            </small>
             <input
               type="text"
               className="form-control"
               id="skills"
               value={portfolioData.skills}
               onChange={handlePortfolioChange("skills")}
+              placeholder="Divide skills with comma (Word, Excel)."
             />
           </div>
           <div className="col">
@@ -229,8 +230,8 @@ const AddJob = () => {
             />
           </div>
         </div>
-        <div className="row py-3">
-          <div className="col">
+        <div className="row">
+          <div className="col-sm-5">
             <label
               className="mb-0 text-primary text-lg-left font-weight-bold"
               htmlFor="salary"
@@ -302,14 +303,14 @@ const AddJob = () => {
               <div className="col">
                 <label
                   className=" mb-0 text-primary text-lg-left font-weight-bold"
-                  htmlFor=" yearStart"
+                  htmlFor="yearStart"
                 >
                   Year start:
                 </label>
                 <input
-                  type=" number"
+                  type="number"
                   className="form-control"
-                  id=" yearStart"
+                  id="yearStart"
                   min="1950"
                   max="2021"
                   step="1"
@@ -445,6 +446,7 @@ const AddJob = () => {
         <div className="row justify-content-center  py-5">
           <input
             type="submit"
+            disabled={loading}
             onClick={handlePortfolioSubmit}
             className="btn btn-lg btn-outline-primary"
             value="Submit"
@@ -674,6 +676,7 @@ const AddJob = () => {
               type="submit"
               onClick={handleJobSubmit}
               className="btn btn-lg btn-outline-primary"
+              disabled={loading}
             >
               Submit
             </button>
