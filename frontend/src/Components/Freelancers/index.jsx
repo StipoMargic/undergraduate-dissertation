@@ -3,6 +3,8 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 import FreelancerCard from "./FreelancerCard";
 import { GlobalContext } from "../../Context/global";
+import FilterOptions from "../FilterOptions";
+import { freelancerFilterOptions } from "./freelancerFilterOptions";
 
 const initialPagination = {
   start: 0,
@@ -41,7 +43,7 @@ const Freelancers = () => {
           </div>
         </div>
       </div>
-
+      <FilterOptions options={freelancerFilterOptions} />
       <section className="gray-bg">
         <div className="container">
           {role === "ROLE_USER" ? (

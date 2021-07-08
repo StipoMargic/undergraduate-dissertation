@@ -12,6 +12,7 @@ export const GlobalProvider = ({ children }) => {
   const [ttl, setTtl] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
+  const [filter, setFilter] = useState("-createdAt");
 
   const setTokenWithCookie = (cookie, timeToLive, _username, _role) => {
     Cookies.set("token", cookie);
@@ -30,15 +31,6 @@ export const GlobalProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/v1/portfolios?sort=-createdAt")
-      .then((res) => {
-        if (res && res.data) {
-          setPortfolios([...res.data.data]);
-        }
-      })
-      .catch((err) => console.log(err));
-
     axios
       .get("http://127.0.0.1:8000/api/v1/categories")
       .then((res) => {
@@ -61,6 +53,17 @@ export const GlobalProvider = ({ children }) => {
     setToken(Cookies.get("token"));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/api/v1/portfolios?sort=${filter}`)
+      .then((res) => {
+        if (res && res.data) {
+          setPortfolios([...res.data.data]);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [filter]);
+
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
     <GlobalContext.Provider
@@ -71,6 +74,7 @@ export const GlobalProvider = ({ children }) => {
         token,
         setTokenWithCookie,
         ttl,
+        setFilter,
         username,
         role,
         removeAllCookies,
