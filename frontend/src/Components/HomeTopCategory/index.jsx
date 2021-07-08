@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import "./styles.scss";
+import { Link } from "react-router-dom";
 import Category from "./category";
 import { GlobalContext } from "../../Context/global";
 
@@ -27,12 +28,20 @@ const HomeTopCategory = () => {
         <div className="row justify-content-center">
           {categories.map((category) => {
             return (
-              <Category
-                key={category.attributes.name}
-                name={category.attributes.name}
-                image={category.attributes.image}
-                length={category.attributes.portfolios.length}
-              />
+              <Link
+                to={{
+                  pathname: `/category/${category.attributes.name}`,
+                  state: category.attributes.name,
+                }}
+                claassName="w-100"
+              >
+                <Category
+                  key={category.attributes.name}
+                  name={category.attributes.name}
+                  image={category.attributes.image}
+                  length={category.attributes.portfolios.length}
+                />
+              </Link>
             );
           })}
         </div>

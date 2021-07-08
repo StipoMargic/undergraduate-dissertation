@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const Category = ({ name, image, length }) => {
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6">
+    <div className="TEST col-lg-3 col-md-4 col-sm-6">
       <div className="urip_cated shadow">
         <img
           src={`http://127.0.0.1:8000/images/category/${image}`}
@@ -11,9 +11,7 @@ const Category = ({ name, image, length }) => {
           className="category-image"
         />
         <div className="urip_cated_caps">
-          <h3 className="cats_urip_title">
-            <a href="/">{name}</a>
-          </h3>
+          <h6 className="cats_urip_title">{name}</h6>
           <span>Jobs found:{length}</span>
         </div>
       </div>

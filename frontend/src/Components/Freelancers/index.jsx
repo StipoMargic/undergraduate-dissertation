@@ -8,6 +8,7 @@ const initialPagination = {
   start: 0,
   end: 9,
 };
+
 const Freelancers = () => {
   const { portfolios, role } = useContext(GlobalContext);
   const [pagination, setPagination] = useState(initialPagination);
@@ -94,4 +95,5 @@ const Freelancers = () => {
     </>
   );
 };
+
 export default Freelancers;

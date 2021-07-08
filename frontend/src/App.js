@@ -17,6 +17,7 @@ import Logout from "./Components/Logout";
 import AddJob from "./Components/AddJob";
 import Verification from "./Components/Verification";
 import HireNow from "./Components/HireNow";
+import FreelancersCategoryList from "./Components/Freelancers/FreelancersCategoryList";
 
 function App() {
   const ttl = Cookies.get("ttl");
@@ -36,6 +37,11 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/freelancers" exact component={FreelancersPage} />
+          <Route
+            path="/category/:categoryName"
+            exact
+            component={FreelancersCategoryList}
+          />
           <Route path="/freelancers/:id" exact component={FDetail} />
           <Route path="/freelancers/:id/hire-now" exact component={HireNow} />
           <Route path="/jobs/:id" exact component={JDetail} />

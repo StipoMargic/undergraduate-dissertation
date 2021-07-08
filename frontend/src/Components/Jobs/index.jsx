@@ -1,11 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import JobCard from "./JobCard";
 import { GlobalContext } from "../../Context/global";
 
+const initialPagination = {
+  start: 0,
+  end: 9,
+};
+
 const Jobs = () => {
   const { jobs, role } = useContext(GlobalContext);
+  const [pagination, setPagination] = useState(initialPagination);
+
+  const handleNext = () => {
+    setPagination((prev) => ({
+      ...prev,
+      start: prev.start + 9,
+      end: prev.end + 9,
+    }));
+  };
+
+  const handlePrev = () => {
+    setPagination((prev) => ({
+      ...prev,
+      start: prev.start - 9,
+      end: prev.end - 9,
+    }));
+  };
+
   return (
     <>
       <div className="page-title">
@@ -39,6 +62,26 @@ const Jobs = () => {
               return null;
             })}
           </div>
+
+          {pagination.start > 0 && (
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="btn btn-outline-info btn-lg mr-3"
+            >
+              Previous
+            </button>
+          )}
+
+          {jobs.length > pagination.end && (
+            <button
+              type="button"
+              onClick={handleNext}
+              className="btn btn-outline-primary btn-lg"
+            >
+              Next
+            </button>
+          )}
         </div>
       </section>
     </>
