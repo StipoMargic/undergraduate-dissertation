@@ -22,6 +22,12 @@ class JobQueryHandler
     {
         $qb = $this->entityManager->createQueryBuilder()->select('j')->from(Job::class, 'j');
 
+        if (null !== $query->filterSet && null !== $query->filterSet->getFilter('name')) {
+            $companyName = $query->filterSet->getFilter('name')->getValue();
+            $qb = $qb->join('j.user', 'jn')->where('jn.username LIKE :name')
+                ->setParameter(':name', '%' . $companyName . '%');
+        }
+
         if (property_exists($query, 'sortSet') && null !== $query->sortSet && $query->sortSet instanceof SortSet) {
             foreach ($query->sortSet->getSortsArray() as $column => $direction) {
                 $qb = $qb->orderBy('j.' . $column, $direction);

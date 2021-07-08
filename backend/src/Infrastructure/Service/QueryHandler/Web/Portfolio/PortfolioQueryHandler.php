@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Infrastructure\Service\QueryHandler\Web\Portfolio;
 
 use App\Application\Query\Web\Portfolio\PortfolioQuery;
+use App\Domain\Category\Category;
 use App\Domain\Portfolio\Portfolio;
 use Doctrine\ORM\EntityManagerInterface;
 use Undabot\JsonApi\Implementation\Model\Request\Sort\SortSet;
@@ -21,6 +22,12 @@ class PortfolioQueryHandler
     public function __invoke(PortfolioQuery $query
     ): ObjectCollection {
         $qb = $this->entityManager->createQueryBuilder()->select('p')->from(Portfolio::class, 'p');
+
+        if (null !== $query->filterSet && null !== $query->filterSet->getFilter('category')) {
+            $categoryName = $query->filterSet->getFilter('category')->getValue();
+            $qb = $qb->join('p.category', 'ca')->where('ca.name LIKE :category')
+                ->setParameter(':category', '%' . $categoryName . '%');
+        }
 
         if (property_exists($query, 'sortSet') && null !== $query->sortSet && $query->sortSet instanceof SortSet) {
             foreach ($query->sortSet->getSortsArray() as $column => $direction) {

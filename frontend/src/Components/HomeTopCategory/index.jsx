@@ -15,7 +15,7 @@ const HomeTopCategory = () => {
           <div className="col-lg-7 col-md-9">
             <div className="sec-heading">
               <h2>
-                Popular Jobs <span className="theme-cl-2">Category</span>
+                Popular Freelancer <span className="theme-cl-2">Category</span>
               </h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

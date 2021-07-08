@@ -1,18 +1,20 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace App\Application\Query\Web\Portfolio;
 
 use App\Application\Query\QueryInterface;
+use Undabot\JsonApi\Implementation\Model\Request\Filter\FilterSet;
 use Undabot\JsonApi\Implementation\Model\Request\Sort\SortSet;
 
-class PortfolioQuery implements QueryInterface {
+class PortfolioQuery implements QueryInterface
+{
     public function __construct(
         public ?int $offset,
         public ?int $size,
-        public ?SortSet $sortSet
-    )
-    {
+        public ?SortSet $sortSet,
+        public ?FilterSet $filterSet
+    ) {
     }
 }

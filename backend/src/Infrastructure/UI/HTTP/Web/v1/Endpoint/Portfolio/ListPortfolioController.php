@@ -18,12 +18,13 @@ final class ListPortfolioController
         GetResourceCollectionRequestInterface $request,
         QueryBus $queryBus,
         ResourceResponder $responder
-    ){
+    ) {
         $request->allowSorting(['disabilityPercent', 'createdAt']);
         $pagination = $request->getPagination();
+        $request->allowFilters(['category']);
 
         $entities = $queryBus->handleQuery(new PortfolioQuery(null === $pagination ? null : $pagination->getOffset(),
-            null === $pagination ? null : $pagination->getSize(), $request->getSortSet()));
+            null === $pagination ? null : $pagination->getSize(), $request->getSortSet(), $request->getFilterSet()));
 
         return $responder->resourceObjectCollection($entities);
     }

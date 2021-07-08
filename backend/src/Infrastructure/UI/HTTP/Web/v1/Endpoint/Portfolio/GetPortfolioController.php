@@ -25,7 +25,7 @@ final class GetPortfolioController
         GetResourceRequestInterface $request
     ): ResourceResponse {
         $request->allowIncluded(['qualifications', 'experiences', 'user']);
-        $portfolio = $repository->get($id);
+                $portfolio = $repository->get($id);
 
         return $responder->resource($portfolio, $this->getIncludedItems($request, $portfolio)->getItems());
     }

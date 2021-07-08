@@ -21,10 +21,11 @@ final class ListJobController
         ResourceResponder $responder
     ): ResourceCollectionResponse {
         $request->allowSorting(['activeTill', 'salary', 'hours', 'disableFriendly', 'createdAt']);
+        $request->allowFilters(['name']);
         $pagination = $request->getPagination();
 
         $entities = $queryBus->handleQuery(new JobQuery(null === $pagination ? null : $pagination->getOffset(),
-            null === $pagination ? null : $pagination->getSize(), $request->getSortSet()));
+            null === $pagination ? null : $pagination->getSize(), $request->getSortSet(), $request->getFilterSet()));
 
         return $responder->resourceObjectCollection($entities);
     }

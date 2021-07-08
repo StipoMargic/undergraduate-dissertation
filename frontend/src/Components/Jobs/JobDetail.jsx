@@ -251,9 +251,11 @@ const JobDetail = () => {
                     <li>
                       Disabled Friendly:
                       <span>
-                        {job.data.attributes.disableFriendly === true
-                          ? "true"
-                          : "false"}
+                        {job.data.attributes.disableFriendly === true ? (
+                          <span className="text-success">True</span>
+                        ) : (
+                          <span className="text-danger">False</span>
+                        )}
                       </span>
                     </li>
                     <li>
