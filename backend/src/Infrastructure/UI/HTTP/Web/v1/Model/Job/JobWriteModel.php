@@ -18,7 +18,7 @@ class JobWriteModel implements ApiModel
     public string $skills;
 
     /** @Attribute */
-    public string $vacancy;
+    public int $vacancy;
 
     /** @Attribute */
     public string $activeTill;
@@ -27,10 +27,10 @@ class JobWriteModel implements ApiModel
     public string $location;
 
     /** @Attribute */
-    public string $salary;
+    public int $salary;
 
     /** @Attribute */
-    public string $hours;
+    public int $hours;
 
     /** @Attribute */
     public string $typeOfPosition;
@@ -51,11 +51,11 @@ class JobWriteModel implements ApiModel
         string $id,
         string $jobDuties,
         string $skills,
-        string $vacancy,
+        int $vacancy,
         string $activeTill,
         string $location,
-        string $salary,
-        string $hours,
+        int $salary,
+        int $hours,
         string $typeOfPosition,
         bool $disabledFriendly,
         string $jobSummary,

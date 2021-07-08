@@ -26,7 +26,7 @@ class JobReadModel implements ApiModel
     public string $skills;
 
     /** @Attribute */
-    public string $vacancy;
+    public int $vacancy;
 
     /** @Attribute */
     public string $postDate;
@@ -38,10 +38,10 @@ class JobReadModel implements ApiModel
     public string $location;
 
     /** @Attribute */
-    public string $salary;
+    public int $salary;
 
     /** @Attribute */
-    public string $hours;
+    public int $hours;
 
     /** @Attribute */
     public string $typeOfPosition;
@@ -73,12 +73,12 @@ class JobReadModel implements ApiModel
         string $logo,
         string $jobDuties,
         string $skills,
-        string $vacancy,
+        int $vacancy,
         string $postDate,
         string $activeTill,
         string $location,
-        string $salary,
-        string $hours,
+        int $salary,
+        int $hours,
         string $typeOfPosition,
         bool $disableFriendly,
         string $jobSummary,

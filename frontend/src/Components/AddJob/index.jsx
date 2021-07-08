@@ -547,7 +547,10 @@ const AddJob = () => {
               </label>
               <input
                 className="form-control"
-                type="text"
+                type="NUMBER"
+                min={0}
+                max={100}
+                step={1}
                 id="vacancy"
                 onChange={handleJobChange("vacancy")}
                 value={jobData.vacancy}
@@ -579,7 +582,10 @@ const AddJob = () => {
               </label>
               <input
                 className="form-control"
-                type="text"
+                type="number"
+                min={0}
+                max={250000}
+                step={1000}
                 id="salary"
                 onChange={handleJobChange("salary")}
                 value={jobData.salary}
@@ -594,7 +600,10 @@ const AddJob = () => {
               </label>
               <input
                 className="form-control"
-                type="text"
+                type="number"
+                min={0}
+                max={360}
+                step={1}
                 id="hours"
                 onChange={handleJobChange("hours")}
                 value={jobData.hours}

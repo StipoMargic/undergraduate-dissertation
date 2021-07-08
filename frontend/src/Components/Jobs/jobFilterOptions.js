@@ -25,6 +25,14 @@ export const jobFilterOptions = [
     text: "Lowest hours",
   },
   {
+    value: "-vacancy",
+    text: "Highest vacancy",
+  },
+  {
+    value: "vacancy",
+    text: "Lowest vacancy",
+  },
+  {
     value: "-disableFriendly",
     text: "Disabled friendly",
   },

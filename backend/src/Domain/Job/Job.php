@@ -39,8 +39,8 @@ class Job implements EntityInterface
     /** @ORM\Column(name="skills", type="string", nullable=false) */
     private string $skills;
 
-    /** @ORM\Column(name="vacancy", type="string", nullable=false) */
-    private string $vacancy;
+    /** @ORM\Column(name="vacancy", type="integer", nullable=false) */
+    private int $vacancy;
 
     /** @ORM\Column(name="post_date", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $postDate;
@@ -51,11 +51,11 @@ class Job implements EntityInterface
     /** @ORM\Column(name="location", type="string", nullable=false) */
     private string $location;
 
-    /** @ORM\Column(name="salary", type="string", nullable=false) */
-    private string $salary;
+    /** @ORM\Column(name="salary", type="integer", nullable=false) */
+    private int $salary;
 
-    /** @ORM\Column(name="hours", type="string", nullable=false) */
-    private string $hours;
+    /** @ORM\Column(name="hours", type="integer", nullable=false) */
+    private int $hours;
 
     /** @ORM\Column(name="type_of_position", type="string", nullable=false) */
     private string $typeOfPosition;
@@ -82,11 +82,11 @@ class Job implements EntityInterface
         UuidInterface $id,
         string $jobDuties,
         string $skills,
-        string $vacancy,
+        int $vacancy,
         \DateTimeImmutable $activeTill,
         string $location,
-        string $salary,
-        string $hours,
+        int $salary,
+        int $hours,
         string $typeOfPosition,
         bool $disableFriendly,
         string $jobSummary,
@@ -148,12 +148,12 @@ class Job implements EntityInterface
         $this->skills = $skills;
     }
 
-    public function getVacancy(): string
+    public function getVacancy(): int
     {
         return $this->vacancy;
     }
 
-    public function setVacancy(string $vacancy): void
+    public function setVacancy(int $vacancy): void
     {
         $this->vacancy = $vacancy;
     }
@@ -179,22 +179,22 @@ class Job implements EntityInterface
         $this->location = $location;
     }
 
-    public function getSalary(): string
+    public function getSalary(): int
     {
         return $this->salary;
     }
 
-    public function setSalary(string $salary): void
+    public function setSalary(int $salary): void
     {
         $this->salary = $salary;
     }
 
-    public function getHours(): string
+    public function getHours(): int
     {
         return $this->hours;
     }
 
-    public function setHours(string $hours): void
+    public function setHours(int $hours): void
     {
         $this->hours = $hours;
     }
