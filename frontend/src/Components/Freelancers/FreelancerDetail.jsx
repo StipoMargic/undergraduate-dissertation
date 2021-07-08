@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
   faLinkedin,
@@ -87,7 +87,7 @@ const FreelancerDetail = () => {
 
     axios
       .post(
-        "http://127.0.0.1:8000/api/v1/",
+        "http://127.0.0.1:8000/api/v1/comment",
         makeCommentData(
           portfolio.data.id,
           null,
@@ -106,9 +106,68 @@ const FreelancerDetail = () => {
       .catch((err) => console.log(err));
   };
 
+  const renderScore = (score) => {
+    switch (score) {
+      case 1:
+      case 2:
+        return (
+          <small className="small font-weight-bold">
+            Score: <p className="text-danger">{score}</p>
+          </small>
+        );
+      case 3:
+        return (
+          <small className="small font-weight-bold">
+            Score: <p className="text-primary">{score}</p>
+          </small>
+        );
+      case 4:
+      case 5:
+        return (
+          <small className="small font-weight-bold">
+            Score: <p className="text-success d-inline">{score}</p>
+          </small>
+        );
+      default:
+        return "";
+    }
+  };
+
+  const renderComments = () => {
+    return (
+      <div className="container mt-5">
+        {portfolio && (
+          <div>
+            {portfolio.data.attributes.comments.map((comment) => {
+              return (
+                <div className="my-3">
+                  <div className="gray-light rounded ">
+                    <div className="row ml-1">
+                      <p>Created by: </p>
+                      <span className="text-primary">{comment.user}</span>
+                      <small className="ml-3 text-muted">
+                        {new Date(comment.createdAt).toDateString()}
+                      </small>
+                    </div>
+                    <div className="ml-2  ">{renderScore(comment.score)}</div>
+                    <div className="row-mt-1 ml-2">
+                      <small className="text-muted">Message:</small>
+                      <div className="row p-2 ml-1 small">
+                        <p> {comment.message}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  };
   const renderCommentForm = () => {
     return (
-      <div className="container">
+      <div className="container pb-3">
         <h6 className="text-muted text-uppercase pb-2">Comment form</h6>
         <form className="form-group" onSubmit={handleCommentSubmit}>
           <div className="row ">
@@ -148,7 +207,6 @@ const FreelancerDetail = () => {
       </div>
     );
   };
-
   const renderBody = () => {
     return (
       <section className="gray-bg ">
@@ -225,6 +283,7 @@ const FreelancerDetail = () => {
               </div>
 
               {isInArray && renderCommentForm()}
+              {renderComments()}
             </div>
 
             <div className="col-lg-4 col-md-12 col-sm-12">
@@ -254,6 +313,12 @@ const FreelancerDetail = () => {
                       Login with company account to hire this freelancer!
                     </small>
                   )}
+                  <div className="row justify-content-center">
+                    <small className="text-muted mt-2">
+                      This freelancer is hired{" "}
+                      {portfolio.data.attributes.hiredBy.length} times.
+                    </small>
+                  </div>
                 </div>
               </div>
 
@@ -323,6 +388,11 @@ const FreelancerDetail = () => {
                       </a>
                     </li>
                   )}
+                  <li>
+                    <a href={`mailto: ${user[0].email}`} className="share ln">
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -331,7 +401,6 @@ const FreelancerDetail = () => {
       </section>
     );
   };
-
   return (
     <>
       {user.length < 1 ? (

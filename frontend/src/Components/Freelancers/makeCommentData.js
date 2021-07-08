@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const makeCommentData = (portfolio, job, user, score, message) => {
   return {
     jsonapi: {
@@ -9,7 +10,7 @@ export const makeCommentData = (portfolio, job, user, score, message) => {
         portfolio,
         job,
         user,
-        score,
+        score: +score,
         message,
       },
       relationships: [],
