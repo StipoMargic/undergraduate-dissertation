@@ -19,7 +19,7 @@ const loginInitData = {
 };
 
 const Header = () => {
-  const { setTokenWithCookie, username } = useContext(GlobalContext);
+  const { setTokenWithCookie, role, username } = useContext(GlobalContext);
   const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [loginData, setLoginData] = useState(loginInitData);
@@ -247,6 +247,15 @@ const Header = () => {
                           </button>
                         </Link>
                       </li>
+                      {role === "ROLE_ADMIN" && (
+                        <li>
+                          <Link to="/admin">
+                            <button type="button" className="btn btn-danger">
+                              Admin
+                            </button>
+                          </Link>
+                        </li>
+                      )}
                     </ul>
                   )}
                 </div>

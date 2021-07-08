@@ -18,6 +18,8 @@ import AddJob from "./Components/AddJob";
 import Verification from "./Components/Verification";
 import HireNow from "./Components/HireNow";
 import FreelancersCategoryList from "./Components/Freelancers/FreelancersCategoryList";
+import SearchPage from "./Components/Search";
+import AdminDashboard from "./Components/Admin";
 
 function App() {
   const ttl = Cookies.get("ttl");
@@ -34,7 +36,9 @@ function App() {
       <GlobalProvider>
         <Header />
         <Switch>
+          <Route path="/admin" component={AdminDashboard} />
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/search/:searchTerm" component={SearchPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/freelancers" exact component={FreelancersPage} />
           <Route

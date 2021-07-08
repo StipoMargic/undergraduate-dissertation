@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import heroPicture from "../../Assets/images/a-2.png";
 import "./styles.scss";
+import { useHistory } from "react-router";
+import heroPicture from "../../Assets/images/a-2.png";
 
 const HomepageHero = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const history = useHistory();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // TODO: Api search
+    history.push(`/search/${searchTerm}`);
   };
+
   return (
     <div className="hero-banner full jumbo-banner">
       <div className="container">

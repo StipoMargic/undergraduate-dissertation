@@ -44,6 +44,10 @@ services:
     tags:
       - { name: messenger.message_handler, bus: query.bus }
 
+  App\Infrastructure\Driving\Console\:
+    resource: '../src/Infrastructure/Driving/Console'
+    autoconfigure: true
+
   App\Application\Service\Bus\QueryBus:
     alias: App\Infrastructure\Service\Bus\MessengerQueryBus
 
