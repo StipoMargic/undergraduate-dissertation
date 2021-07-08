@@ -20,6 +20,7 @@ final class ListJobController
         QueryBus $queryBus,
         ResourceResponder $responder
     ): ResourceCollectionResponse {
+        $request->allowSorting(['comments', 'postDate', 'activeTill', 'salary', 'hours', 'disableFriendly']);
         $pagination = $request->getPagination();
 
         $entities = $queryBus->handleQuery(new JobQuery(null === $pagination ? null : $pagination->getOffset(),
