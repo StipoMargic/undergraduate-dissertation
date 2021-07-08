@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import FreelancerCard from "./FreelancerCard";
@@ -12,9 +12,12 @@ const initialPagination = {
 };
 
 const Freelancers = () => {
-  const { portfolios, role } = useContext(GlobalContext);
+  const { portfolios, role, setFilter } = useContext(GlobalContext);
   const [pagination, setPagination] = useState(initialPagination);
 
+  useEffect(() => {
+    setFilter("-createdAt");
+  }, []);
   const handleNext = () => {
     setPagination((prev) => ({
       ...prev,

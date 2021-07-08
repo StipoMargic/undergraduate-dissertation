@@ -3,6 +3,8 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 import JobCard from "./JobCard";
 import { GlobalContext } from "../../Context/global";
+import FilterOptions from "../FilterOptions";
+import { jobFilterOptions } from "./jobFilterOptions";
 
 const initialPagination = {
   start: 0,
@@ -41,6 +43,8 @@ const Jobs = () => {
           </div>
         </div>
       </div>
+
+      <FilterOptions options={jobFilterOptions} />
       <section className="gray-bg py-5">
         <div className="container">
           {role === "ROLE_EMPLOYER" ? (

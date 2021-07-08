@@ -40,14 +40,6 @@ export const GlobalProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
 
-    axios
-      .get("http://127.0.0.1:8000/api/v1/jobs")
-      .then((res) => {
-        if (res && res.data) {
-          setJobs([...res.data.data]);
-        }
-      })
-      .catch((err) => console.log(err));
     setRole(Cookies.get("role"));
     setUsername(Cookies.get("username"));
     setToken(Cookies.get("token"));
@@ -59,6 +51,15 @@ export const GlobalProvider = ({ children }) => {
       .then((res) => {
         if (res && res.data) {
           setPortfolios([...res.data.data]);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(`http://127.0.0.1:8000/api/v1/jobs?sort=${filter}`)
+      .then((res) => {
+        if (res && res.data) {
+          setJobs([...res.data.data]);
         }
       })
       .catch((err) => console.log(err));

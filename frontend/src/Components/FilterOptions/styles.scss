@@ -1,5 +1,10 @@
-.filter-options {
-  position: absolute;
-  right: 30%;
-  margin-top: 1rem;
+.filter-row {
+    height: 3.5rem;
+
+  .filter-options {
+    position: absolute;
+    right: 30%;
+    margin-top: 1rem;
+    z-index: 1000;
+  }
 }
