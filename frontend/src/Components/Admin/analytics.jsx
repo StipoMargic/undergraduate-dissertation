@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { GlobalContext } from "../../Context/global";
@@ -15,18 +15,20 @@ const Analytics = () => {
     history.push("/");
   }
 
-  portfolios.map((p) => {
-    p.attributes.deletedAt !== null
-      ? (deactivatedPortfolios += 1)
-      : deactivatedPortfolios;
+  portfolios.forEach((p) => {
+    if (p.attributes.deletedAt) {
+      deactivatedPortfolios += 1;
+    }
   });
 
-  jobs.map((j) => {
-    j.attributes.deletedAt !== null ? (deactivatedJobs += 1) : deactivatedJobs;
+  jobs.forEach((j) => {
+    if (j.attributes.deletedAt) {
+      deactivatedJobs += 1;
+    }
     // eslint-disable-next-line no-unused-expressions
-    new Date(j.attributes.activeTill).getTime() < new Date().getTime()
-      ? (expiredJob += 1)
-      : expiredJob;
+    if (new Date(j.attributes.activeTill).getTime() < new Date().getTime()) {
+      expiredJob += 1;
+    }
   });
 
   return (

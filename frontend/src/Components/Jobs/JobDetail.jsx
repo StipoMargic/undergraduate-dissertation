@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { getSingleJob } from "./getSingleJob";
 import { GlobalContext } from "../../Context/global";
 
@@ -101,13 +102,13 @@ const JobDetail = () => {
                   <div className="_jb_details01_last">
                     <ul className="_flex_btn">
                       <li>
-                        <button
-                          type="submit"
+                        <Link
+                          to={`/apply-now/${params.id}`}
                           className="_applied_jb"
                           disabled={passed}
                         >
                           Apply Job
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -165,13 +166,13 @@ const JobDetail = () => {
                   )}
                   {role === "ROLE_USER" ? (
                     <div className="_job_detail_single flexeo">
-                      <button
-                        type="button"
+                      <Link
+                        to={`/apply-now/${params.id}`}
                         disabled={passed}
                         className="_applied_jb btn btn-outline-primary w-100"
                       >
                         Apply Job
-                      </button>
+                      </Link>
                     </div>
                   ) : (
                     ""

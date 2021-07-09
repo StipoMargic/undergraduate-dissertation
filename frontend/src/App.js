@@ -22,6 +22,7 @@ import AdminDashboard from "./Components/Admin";
 import CreateCategory from "./Components/Admin/create-category";
 import AllUsers from "./Components/Admin/all-users";
 import Analytics from "./Components/Admin/analytics";
+import ApplyNow from "./Components/ApplyNow";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="/logout" component={Logout} />
           <Route path="/add-job" component={AddJob} />
           <Route path="/verify" component={Verification} />
+          <Route path="/apply-now/:id" component={ApplyNow} />
         </Switch>
         <Footer />
       </GlobalProvider>
