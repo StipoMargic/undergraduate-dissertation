@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router";
-import Cookies from "js-cookie";
 import HomePage from "./Pages/HomePage";
 import AboutPage from "./Pages/AboutPage";
 import Header from "./Components/Header";
@@ -20,22 +19,19 @@ import HireNow from "./Components/HireNow";
 import FreelancersCategoryList from "./Components/Freelancers/FreelancersCategoryList";
 import SearchPage from "./Components/Search";
 import AdminDashboard from "./Components/Admin";
+import CreateCategory from "./Components/Admin/create-category";
 
 function App() {
-  const ttl = Cookies.get("ttl");
-
-  if (
-    ttl < new Date().getDate() ||
-    (ttl === 30 && new Date().getDate() === 1) ||
-    (ttl === 31 && new Date().getDate() === 1)
-  ) {
-    Cookies.remove("token");
-  }
   return (
     <BrowserRouter>
       <GlobalProvider>
         <Header />
         <Switch>
+          <Route
+            path="/admin/create-category"
+            exact
+            component={CreateCategory}
+          />
           <Route path="/admin" component={AdminDashboard} />
           <Route exact path="/" component={HomePage} />
           <Route exact path="/search/:searchTerm" component={SearchPage} />

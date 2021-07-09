@@ -12,12 +12,21 @@ const AdminDashboard = () => {
   }
   return (
     <div className="container justify-content-center vh-60 align-items-center">
-      <div className="row">
+      <div className="row mt-5">
         <div className="col">
-          <Link to="create-category">Create category</Link>
+          <Link to="/admin/create-category" className="btn btn-primary w-100">
+            Create category
+          </Link>
+        </div>
+        <div className="col w-100">
+          <Link to="analytics" className="btn btn-primary fa-pull w-100">
+            Analytics
+          </Link>
         </div>
         <div className="col">
-          <Link to="analytics">Analytics</Link>ž1
+          <Link to="users" className="btn btn-primary fa-pull w-100">
+            All users
+          </Link>
         </div>
       </div>
     </div>

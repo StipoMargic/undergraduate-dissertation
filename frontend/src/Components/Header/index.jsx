@@ -9,6 +9,7 @@ import {
   faWindowClose,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Cookies from "js-cookie";
 import logo from "../../Assets/images/logo.png";
 import { makeLoginData } from "./makeLoginData";
 import { GlobalContext } from "../../Context/global";
@@ -19,11 +20,19 @@ const loginInitData = {
 };
 
 const Header = () => {
-  const { setTokenWithCookie, role, username } = useContext(GlobalContext);
+  const { setTokenWithCookie, role, username, removeAllCookies } =
+    useContext(GlobalContext);
   const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [loginData, setLoginData] = useState(loginInitData);
   const [loginError, setLoginError] = useState(false);
+  const ttl = Cookies.get("ttl");
+
+  if (ttl !== "") {
+    if (new Date(ttl * 1000).getTime() < new Date().getTime()) {
+      removeAllCookies();
+    }
+  }
 
   const history = useHistory();
   const handleDropdown = (value) => {
@@ -38,9 +47,10 @@ const Header = () => {
     axios
       .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
       .then((res) => {
+        console.log(res.data.timestamp);
         setTokenWithCookie(
           res.data.token,
-          new Date().getDate(),
+          res.data.timestamp,
           res.data.username,
           res.data.role
         );

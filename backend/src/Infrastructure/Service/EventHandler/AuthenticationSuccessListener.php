@@ -21,6 +21,7 @@ class AuthenticationSuccessListener
         $additionalData = [
             'role' => $user->getRoles()[0],
             'username' => $user->getUsername(),
+            'timestamp' => time() + 3600,
         ];
 
         $data = array_merge($data, $additionalData);

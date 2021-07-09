@@ -43,6 +43,7 @@ export const GlobalProvider = ({ children }) => {
     setRole(Cookies.get("role"));
     setUsername(Cookies.get("username"));
     setToken(Cookies.get("token"));
+    setTtl(Cookies.get(""));
   }, []);
 
   useEffect(() => {

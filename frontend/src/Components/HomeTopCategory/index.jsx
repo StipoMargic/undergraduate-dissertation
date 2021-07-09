@@ -26,7 +26,7 @@ const HomeTopCategory = () => {
         </div>
 
         <div className="row justify-content-center">
-          {categories.map((category) => {
+          {categories.slice(0, 8).map((category) => {
             return (
               <Link
                 to={{
