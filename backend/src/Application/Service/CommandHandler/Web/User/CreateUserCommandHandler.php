@@ -11,6 +11,7 @@ use App\Application\User\UserRepository\UserWriteRepository;
 use App\Domain\User\Exception\NotValidRoleException;
 use App\Domain\User\Exception\UserAlreadyExistException;
 use App\Domain\User\User;
+use App\Infrastructure\File\Upload\Uploader;
 use App\Infrastructure\Image\Upload\ImageUploader;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -27,7 +28,7 @@ final class CreateUserCommandHandler
         public UserReadRepository $userReadRepository,
         public UserPasswordEncoderInterface $encoder,
         public MailerInterface $mailer,
-        public ImageUploader $imageUploader
+        public ImageUploader $imageUploader,
     ) {
     }
 

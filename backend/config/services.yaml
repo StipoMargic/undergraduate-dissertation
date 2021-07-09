@@ -97,6 +97,10 @@ services:
     arguments:
       $targetDirectory: "%kernel.project_dir%/public/images/"
 
+  App\Infrastructure\File\Upload\Uploader:
+    arguments:
+      $dir: "%kernel.project_dir%/public/uploads/"
+
   app.jwt_token_authenticator:
     class: App\Infrastructure\Security\Guard\JWTTokenAuthenticator
     parent: lexik_jwt_authentication.security.guard.jwt_token_authenticator

@@ -64,8 +64,11 @@ class JobReadModel implements ApiModel
     /** @Attribute */
     public ?string $deletedAt;
 
-    /** @Attribute  */
+    /** @Attribute */
     public string $jobDutiesBulletins;
+
+    /** @Attribute */
+    public array $applied;
 
     public function __construct(
         string $id,
@@ -86,7 +89,8 @@ class JobReadModel implements ApiModel
         string $createdAt,
         ?string $updatedAt,
         ?string $deletedAt,
-        string $jobDutiesBulletins
+        string $jobDutiesBulletins,
+        array $applied
     ) {
         $this->jobDutiesBulletins = $jobDutiesBulletins;
         $this->id = $id;
@@ -107,6 +111,7 @@ class JobReadModel implements ApiModel
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
+        $this->applied = $applied;
     }
 
     public static function fromEntity(Job $job): self
@@ -130,7 +135,8 @@ class JobReadModel implements ApiModel
             $job->getCreatedAt()->format('Y-m-d H:i:s'),
             null === $job->getUpdatedAt() ? null : $job->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $job->getDeletedAt() ? null : $job->getDeletedAt()->format('Y-m-d H:i:s'),
-            $job->getJobDutiesBulletins()
+            $job->getJobDutiesBulletins(),
+            $job->getApplied()
         );
     }
 }

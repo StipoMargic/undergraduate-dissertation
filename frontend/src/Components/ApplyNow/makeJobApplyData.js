@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-export const makeJobApplyData = (subject, message, jobId, resume) => {
+export const makeJobApplyData = (subject, message, jobId, resume, username) => {
   return {
     data: {
       type: "JobApplication",
@@ -8,6 +8,7 @@ export const makeJobApplyData = (subject, message, jobId, resume) => {
         message,
         jobId,
         resume,
+        username,
       },
     },
   };

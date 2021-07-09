@@ -69,6 +69,11 @@ class Job implements EntityInterface
     /** @ORM\Column(name="job_position_name", nullable=false, type="string") */
     private string $jobPositionName;
 
+    /**
+     * @ORM\Column(type="array", nullable=true, name="applied")
+     */
+    private array $applied;
+
     /** @ORM\Column(name="created_at", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $createdAt;
 
@@ -91,7 +96,7 @@ class Job implements EntityInterface
         bool $disableFriendly,
         string $jobSummary,
         string $jobPositionName,
-        string $jobDutiesBulletins
+        string $jobDutiesBulletins,
     ) {
         $this->id = $id;
         $this->jobDutiesBulletins = $jobDutiesBulletins;
@@ -111,6 +116,7 @@ class Job implements EntityInterface
         $this->jobSummary = $jobSummary;
         $this->jobPositionName = $jobPositionName;
         $this->comments = new ArrayCollection();
+        $this->applied = [];
     }
 
     public function getId(): UuidInterface
@@ -273,5 +279,15 @@ class Job implements EntityInterface
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
+    }
+
+    public function getApplied(): array
+    {
+        return $this->applied;
+    }
+
+    public function addApplied(string $applicant): void
+    {
+        $this->applied[] = $applicant;
     }
 }

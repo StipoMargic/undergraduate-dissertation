@@ -17,7 +17,7 @@ const initialFormData = {
 };
 
 const ApplyNow = () => {
-  const { role, token } = useContext(GlobalContext);
+  const { role, token, username } = useContext(GlobalContext);
   const [pdfFile, setPdfFile] = useState("");
   const [formData, setFormData] = useState(initialFormData);
   const history = useHistory();
@@ -64,7 +64,13 @@ const ApplyNow = () => {
     axios
       .post(
         `http://127.0.0.1:8000/api/v1/job/${id}/apply-now`,
-        makeJobApplyData(formData.subject, formData.message, id, pdfFile),
+        makeJobApplyData(
+          formData.subject,
+          formData.message,
+          id,
+          pdfFile,
+          username
+        ),
         {
           headers: {
             Authorization: `Bearer ${token}`,
