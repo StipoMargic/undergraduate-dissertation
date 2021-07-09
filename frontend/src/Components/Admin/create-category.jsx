@@ -6,6 +6,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
 import axios from "axios";
+import { useHistory } from "react-router";
 import { MakeCategoryPostData } from "./makeCategoryPostData";
 import { GlobalContext } from "../../Context/global";
 
@@ -23,9 +24,14 @@ const initialFormData = {
 };
 
 const CreateCategory = () => {
-  const { token } = useContext(GlobalContext);
+  const { role, token } = useContext(GlobalContext);
   const [image, setImage] = useState("");
   const [formData, setFormData] = useState(initialFormData);
+  const history = useHistory();
+
+  if (role === undefined || role !== "ROLE_ADMIN") {
+    history.push("/");
+  }
 
   const renderImageUpload = () => {
     return (

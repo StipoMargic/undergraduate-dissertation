@@ -19,12 +19,12 @@ const AdminDashboard = () => {
           </Link>
         </div>
         <div className="col w-100">
-          <Link to="analytics" className="btn btn-primary fa-pull w-100">
+          <Link to="/admin/analytics" className="btn btn-primary fa-pull w-100">
             Analytics
           </Link>
         </div>
         <div className="col">
-          <Link to="users" className="btn btn-primary fa-pull w-100">
+          <Link to="/admin/users" className="btn btn-primary fa-pull w-100">
             All users
           </Link>
         </div>

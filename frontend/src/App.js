@@ -20,6 +20,8 @@ import FreelancersCategoryList from "./Components/Freelancers/FreelancersCategor
 import SearchPage from "./Components/Search";
 import AdminDashboard from "./Components/Admin";
 import CreateCategory from "./Components/Admin/create-category";
+import AllUsers from "./Components/Admin/all-users";
+import Analytics from "./Components/Admin/analytics";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             exact
             component={CreateCategory}
           />
+          <Route path="/admin/users" exact component={AllUsers} />
+          <Route path="/admin/analytics" exact component={Analytics} />
           <Route path="/admin" component={AdminDashboard} />
           <Route exact path="/" component={HomePage} />
           <Route exact path="/search/:searchTerm" component={SearchPage} />

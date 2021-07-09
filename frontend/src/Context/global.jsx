@@ -12,6 +12,8 @@ export const GlobalProvider = ({ children }) => {
   const [ttl, setTtl] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
+  const [users, setUsers] = useState([]);
+
   const [filter, setFilter] = useState("-createdAt");
 
   const setTokenWithCookie = (cookie, timeToLive, _username, _role) => {
@@ -40,10 +42,14 @@ export const GlobalProvider = ({ children }) => {
       })
       .catch((err) => console.log(err));
 
+    axios
+      .get("http://127.0.0.1:8000/api/v1/users")
+      .then((res) => setUsers([...res.data.data]))
+      .catch((err) => console.log(err));
+
     setRole(Cookies.get("role"));
     setUsername(Cookies.get("username"));
     setToken(Cookies.get("token"));
-    setTtl(Cookies.get(""));
   }, []);
 
   useEffect(() => {
@@ -75,10 +81,11 @@ export const GlobalProvider = ({ children }) => {
         portfolios,
         token,
         setTokenWithCookie,
-        ttl,
         setFilter,
         username,
         role,
+        ttl,
+        users,
         removeAllCookies,
       }}
     >
