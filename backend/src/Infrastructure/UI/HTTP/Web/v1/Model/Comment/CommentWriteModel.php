@@ -4,8 +4,8 @@
 namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Comment;
 
 use Undabot\SymfonyJsonApi\Model\ApiModel;
-use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
+use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 
 /** @ResourceType(type="comment") */
 class CommentWriteModel implements ApiModel

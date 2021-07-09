@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace App\Infrastructure\Service\QueryHandler\Web\Portfolio;
 
 use App\Application\Query\Web\Portfolio\PortfolioQuery;
-use App\Domain\Category\Category;
 use App\Domain\Portfolio\Portfolio;
 use Doctrine\ORM\EntityManagerInterface;
 use Undabot\JsonApi\Implementation\Model\Request\Sort\SortSet;

@@ -11,14 +11,11 @@ use App\Application\User\UserRepository\UserWriteRepository;
 use App\Domain\User\Exception\NotValidRoleException;
 use App\Domain\User\Exception\UserAlreadyExistException;
 use App\Domain\User\User;
-use App\Infrastructure\File\Upload\Uploader;
 use App\Infrastructure\Image\Upload\ImageUploader;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Mime\Message;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 final class CreateUserCommandHandler
