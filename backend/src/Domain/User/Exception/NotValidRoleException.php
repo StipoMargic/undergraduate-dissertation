@@ -6,10 +6,11 @@ namespace App\Domain\User\Exception;
 
 
 use App\Domain\User\User;
+use JetBrains\PhpStorm\Pure;
 
 class NotValidRoleException extends \Exception
 {
-    public static function withRole(string $role): self
+    #[Pure] public static function withRole(string $role): self
     {
         $message = sprintf("%s is not allowed! Choose %s or %s please.", $role, User::ALLOWED_API_ROLES[0],
             User::ALLOWED_API_ROLES[1]);

@@ -8,6 +8,7 @@ use App\Application\Command\Web\Job\JobApplicationCommand;
 use App\Application\Job\JobRepository\JobReadRepository;
 use App\Application\Job\JobRepository\JobWriteRepository;
 use App\Application\User\UserRepository\UserReadRepository;
+use App\Domain\Job\Exception\JobApplicantAlreadyAppliedException;
 use App\Domain\User\User;
 use App\Infrastructure\File\Upload\Uploader;
 use Ramsey\Uuid\Uuid;
@@ -30,6 +31,12 @@ final class JobApplicationCommandHandler
     {
         $user = $this->userReadRepository->getByUsername($command->username);
         $job = $this->jobReadRepository->get(Uuid::fromString($command->jobId));
+
+        $applicants = $job->getApplied();
+
+        if (in_array($command->username, $applicants)) {
+            throw JobApplicantAlreadyAppliedException::alreadyApplied($user->getUsername());
+        }
 
         $job->addApplied($user->getUsername());
 
