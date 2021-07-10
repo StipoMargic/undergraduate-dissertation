@@ -34,9 +34,9 @@ const HomeTopCategory = () => {
                   state: category.attributes.name,
                 }}
                 claassName="w-100"
+                key={category.id}
               >
                 <Category
-                  key={category.attributes.name}
                   name={category.attributes.name}
                   image={category.attributes.image}
                   length={category.attributes.portfolios.length}

@@ -14,8 +14,12 @@ const FilterOptions = ({ options }) => {
           className="form-control"
           onChange={(e) => setFilter(e.target.value)}
         >
-          {options.map((option) => {
-            return <option value={option.value}>{option.text}</option>;
+          {options.map((option, idx) => {
+            return (
+              <option key={idx} value={option.value}>
+                {option.text}
+              </option>
+            );
           })}
         </select>
       </div>
