@@ -78,8 +78,12 @@ const ApplyNow = () => {
           },
         }
       )
-      .then(() => history.push("/"))
-      .catch((err) => console.log(err));
+      .then(() =>
+        setFormData({ name: "", description: "", disabled: true, error: false })
+      )
+      .catch(() =>
+        setFormData({ name: "", description: "", disabled: false, error: true })
+      );
   };
 
   return (

@@ -15,6 +15,7 @@ const JobDetail = () => {
   let skills;
   let jobDutiesBulletins;
   let passed;
+  let inArray;
   useEffect(() => {
     getSingleJob(params.id, setJob);
   }, []);
@@ -23,6 +24,9 @@ const JobDetail = () => {
     passed = new Date() > new Date(job.data.attributes.activeTill);
     skills = job.data.attributes.skills.split(", ");
     jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
+    inArray = job.data.attributes.applied.find(
+      (applicant) => applicant === username
+    );
   }
 
   const deactivateModal = () => {
@@ -98,7 +102,7 @@ const JobDetail = () => {
                     </ul>
                   </div>
                 </div>
-                {role === "ROLE_USER" && (
+                {role === "ROLE_USER" && inArray === undefined && (
                   <div className="_jb_details01_last">
                     <ul className="_flex_btn">
                       <li>
