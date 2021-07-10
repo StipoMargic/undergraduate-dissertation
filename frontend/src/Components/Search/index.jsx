@@ -5,17 +5,20 @@ import JobCard from "../Jobs/JobCard";
 
 const SearchPage = () => {
   const { searchTerm } = useParams();
-  const [state, setState] = useState([]);
+  const [state, setState] = useState({ jobs: [], error: null });
 
   useEffect(() => {
     axios
       .get(`http://127.0.0.1:8000/api/v1/jobs/?filter[name]=${searchTerm}`)
       .then((res) => {
         if (res && res.data) {
-          setState([...res.data.data]);
+          setState((prev) => ({
+            ...prev,
+            jobs: [...res.data.data],
+          }));
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => setState({ jobs: [], error: true }));
   }, []);
 
   return (
@@ -26,6 +29,9 @@ const SearchPage = () => {
             You searched for company name{" "}
             <small className="text-success">{searchTerm}</small>
           </h3>
+          {state.error && (
+            <h4 className="text-danger">Something went wrong!</h4>
+          )}
         </div>
         <div className="row mt-5">
           {state.map((job) => {

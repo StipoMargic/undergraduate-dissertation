@@ -8,6 +8,8 @@ import { makeHireFreelancerPostData } from "./makeHireFreelancerPostData";
 const initialFormData = {
   subject: "",
   message: "",
+  disabled: false,
+  error: null,
 };
 
 const HireNow = () => {
@@ -53,8 +55,12 @@ const HireNow = () => {
           },
         }
       )
-      .then(() => history.push("/"))
-      .catch((err) => console.log(err));
+      .then(() =>
+        setFormData({ subject: "", message: "", disabled: true, error: false })
+      )
+      .catch(() =>
+        setFormData({ subject: "", message: "", disabled: false, error: true })
+      );
   };
 
   const renderForm = () => {
@@ -92,6 +98,7 @@ const HireNow = () => {
               type="submit"
               value="Submit"
               className="btn btn-lg btn-outline-primary"
+              disabled={formData.disabled}
             />
           </div>
         </form>
@@ -109,6 +116,11 @@ const HireNow = () => {
               {portfolio.included[0].attributes.username}
             </span>
           </h5>
+          {formData.error && (
+            <h4 className="text-danger text-center">
+              Something went wrong try again!
+            </h4>
+          )}
           <small className="text-muted">
             <p className="text-center pt-5"> Send him message first</p>
           </small>

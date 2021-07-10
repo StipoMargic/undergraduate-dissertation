@@ -9,5 +9,5 @@ export const getSingleJob = (id, setJob) => {
         setJob(res.data);
       }
     })
-    .catch((err) => console.log(err));
+    .catch(() => null);
 };

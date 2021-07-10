@@ -11,5 +11,5 @@ export const getSinglePortfolio = (id, setPortfolio) => {
         setPortfolio(res.data);
       }
     })
-    .catch((err) => console.log(err));
+    .catch(() => null);
 };

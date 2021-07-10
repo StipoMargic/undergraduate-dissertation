@@ -47,7 +47,6 @@ const Header = () => {
     axios
       .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
       .then((res) => {
-        console.log(res.data.timestamp);
         setTokenWithCookie(
           res.data.token,
           res.data.timestamp,

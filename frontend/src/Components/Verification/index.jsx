@@ -10,7 +10,6 @@ const Verification = () => {
   const [error, setError] = useState(false);
   const history = useHistory();
 
-  console.log(username);
   if (username) {
     history.push("/");
   }

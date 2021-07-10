@@ -40,12 +40,12 @@ export const GlobalProvider = ({ children }) => {
           setCategories([...res.data.data]);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => null);
 
     axios
       .get("http://127.0.0.1:8000/api/v1/users")
       .then((res) => setUsers([...res.data.data]))
-      .catch((err) => console.log(err));
+      .catch(() => null);
 
     setRole(Cookies.get("role"));
     setUsername(Cookies.get("username"));
@@ -60,7 +60,7 @@ export const GlobalProvider = ({ children }) => {
           setPortfolios([...res.data.data]);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => null);
 
     axios
       .get(`http://127.0.0.1:8000/api/v1/jobs?sort=${filter}`)
@@ -69,7 +69,7 @@ export const GlobalProvider = ({ children }) => {
           setJobs([...res.data.data]);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => null);
   }, [filter]);
 
   return (

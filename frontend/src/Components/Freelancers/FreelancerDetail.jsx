@@ -19,12 +19,14 @@ import { makeCommentData } from "./makeCommentData";
 const initialCommentForm = {
   score: 3,
   message: "",
+  error: null,
 };
 
 const FreelancerDetail = () => {
   const { role, username, token } = useContext(GlobalContext);
   const [portfolio, setPortfolio] = useState();
   const [commentForm, setCommentForm] = useState(initialCommentForm);
+  const [error, setError] = useState(null);
   const params = useParams();
   const qualifications = [];
   const experiences = [];
@@ -79,7 +81,7 @@ const FreelancerDetail = () => {
         },
       })
       .then(() => window.location.reload())
-      .catch((err) => console.log(err));
+      .catch(() => setError(true));
   };
 
   const handleCommentSubmit = (e) => {
@@ -103,7 +105,13 @@ const FreelancerDetail = () => {
         }
       )
       .then(() => window.location.reload())
-      .catch((err) => console.log(err));
+      .catch(() =>
+        setCommentForm({
+          score: commentForm.score,
+          message: commentForm.message,
+          error: true,
+        })
+      );
   };
 
   const renderScore = (score) => {
@@ -281,7 +289,9 @@ const FreelancerDetail = () => {
                   </div>
                 )}
               </div>
-
+              {commentForm.error && (
+                <h4 className="text-danger">Your comment can not be added! </h4>
+              )}
               {isInArray && renderCommentForm()}
               {renderComments()}
             </div>
@@ -410,6 +420,11 @@ const FreelancerDetail = () => {
         portfolio.data.attributes.deletedAt === null ? (
         <>
           <div className="container mt-5">
+            {error && (
+              <h4 className="text-danger">
+                Something went wrong and portfolio is not deactivated.
+              </h4>
+            )}
             <button
               type="submit"
               className="btn btn-lg btn-danger"

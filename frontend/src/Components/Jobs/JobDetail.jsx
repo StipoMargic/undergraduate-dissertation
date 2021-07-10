@@ -11,11 +11,13 @@ import { GlobalContext } from "../../Context/global";
 const JobDetail = () => {
   const { role, username, token } = useContext(GlobalContext);
   const [job, setJob] = useState();
+  const [error, setError] = useState(null);
   const params = useParams();
   let skills;
   let jobDutiesBulletins;
   let passed;
   let inArray;
+
   useEffect(() => {
     getSingleJob(params.id, setJob);
   }, []);
@@ -44,7 +46,7 @@ const JobDetail = () => {
         },
       })
       .then(() => deactivateModal())
-      .catch((err) => console.log(err));
+      .catch(() => setError(true));
   };
 
   const renderHeader = () => {
@@ -285,6 +287,11 @@ const JobDetail = () => {
         <>
           {renderHeader()}
           <div className="container pt-3">
+            {error && (
+              <h4 className="text-danger">
+                Something went wrong with deactivation.
+              </h4>
+            )}
             <button
               type="submit"
               className="btn btn-lg btn-danger"

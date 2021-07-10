@@ -20,6 +20,8 @@ const initContactData = {
   company: "",
   phone: "",
   message: "",
+  error: undefined,
+  disabled: false,
 };
 const Contact = () => {
   const [contactData, setContactData] = useState(initContactData);
@@ -38,8 +40,28 @@ const Contact = () => {
 
     axios
       .post("http://127.0.0.1:8000/v1/contact", makeContactData(contactData))
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then(() =>
+        setContactData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          message: "",
+          error: false,
+          disabled: true,
+        })
+      )
+      .catch(() =>
+        setContactData({
+          name: contactData.name,
+          email: contactData.email,
+          company: contactData.company,
+          phone: contactData.phone,
+          message: contactData.message,
+          error: true,
+          disabled: false,
+        })
+      );
   };
   return (
     <>
@@ -152,6 +174,18 @@ const Contact = () => {
                         prepare your query for you within <strong>24</strong>{" "}
                         hours and inform you shortly.
                       </p>
+
+                      {contactData.error === true ? (
+                        <h3 className="text-center text-danger mt-2">
+                          Sorry something went wrong. Try again...
+                        </h3>
+                      ) : contactData.error === false ? (
+                        <h3 className="text-center text-success mt-2">
+                          Your email is send.
+                        </h3>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </div>
                   <div className="form_row_box_body">
@@ -166,6 +200,7 @@ const Contact = () => {
                               id="mame"
                               className="form-control with-light"
                               placeholder="Your Name"
+                              value={contactData.name}
                             />
                           </label>
                         </div>
@@ -180,7 +215,8 @@ const Contact = () => {
                               type="email"
                               id="email"
                               className="form-control with-light"
-                              placeholder="updicl@gmail.com"
+                              placeholder="liberato@liberato.io"
+                              value={contactData.email}
                             />
                           </label>
                         </div>
@@ -195,7 +231,8 @@ const Contact = () => {
                               type="text"
                               id="company"
                               className="form-control with-light"
-                              placeholder="ThemezHub Ltd."
+                              placeholder="Limitless Ltd."
+                              value={contactData.company}
                             />
                           </label>
                         </div>
@@ -211,6 +248,7 @@ const Contact = () => {
                               id="phone"
                               className="form-control with-light"
                               placeholder="+91 256 584 7863"
+                              value={contactData.phone}
                             />
                           </label>
                         </div>
@@ -225,7 +263,8 @@ const Contact = () => {
                               className="form-control with-light"
                               id="message"
                               rows={5}
-                              value="About Your Quer"
+                              placeholder="About Your Query"
+                              value={contactData.message}
                             />
                           </label>
                         </div>
@@ -237,6 +276,7 @@ const Contact = () => {
                             onClick={handleSubmit}
                             type="button"
                             className="btn btn-primary w-100"
+                            disabled={contactData.disabled}
                           >
                             Submit Query
                           </button>
