@@ -116,10 +116,14 @@ const HireNow = () => {
               {portfolio.included[0].attributes.username}
             </span>
           </h5>
-          {formData.error && (
+          {formData.error ? (
             <h4 className="text-danger text-center">
               Something went wrong try again!
             </h4>
+          ) : formData.error === false ? (
+            <h4 className="text-success text-center">All went good...</h4>
+          ) : (
+            ""
           )}
           <small className="text-muted">
             <p className="text-center pt-5"> Send him message first</p>
