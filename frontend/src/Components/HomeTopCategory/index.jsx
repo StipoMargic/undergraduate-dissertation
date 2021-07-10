@@ -33,7 +33,6 @@ const HomeTopCategory = () => {
                   pathname: `/category/${category.attributes.name}`,
                   state: category.attributes.name,
                 }}
-                claassName="w-100"
                 key={category.id}
               >
                 <Category

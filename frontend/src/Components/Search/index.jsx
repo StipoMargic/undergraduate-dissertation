@@ -12,10 +12,7 @@ const SearchPage = () => {
       .get(`http://127.0.0.1:8000/api/v1/jobs/?filter[name]=${searchTerm}`)
       .then((res) => {
         if (res && res.data) {
-          setState((prev) => ({
-            ...prev,
-            jobs: [...res.data.data],
-          }));
+          setState({ jobs: [...res.data.data] });
         }
       })
       .catch(() => setState({ jobs: [], error: true }));
@@ -34,9 +31,19 @@ const SearchPage = () => {
           )}
         </div>
         <div className="row mt-5">
-          {state.map((job) => {
-            return <JobCard job={job.attributes} id={job.id} />;
-          })}
+          {state.jobs.length < 1 ? (
+            <h4 className="text-info text-center py-5">
+              No results were found!
+            </h4>
+          ) : (
+            <>
+              {state.jobs.map((job) => {
+                return (
+                  <JobCard key={job.id} job={job.attributes} id={job.id} />
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
     </>
