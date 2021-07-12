@@ -67,6 +67,11 @@ services:
   App\Infrastructure\Persistence\Doctrine\Repository\:
     resource: '../src/Infrastructure/Persistence/Doctrine/Repository/*'
 
+  # Fixtures
+  App\Infrastructure\Persistence\Doctrine\Fixtures\:
+    resource: '../src/Infrastructure/Persistence/Doctrine/Fixtures/*'
+    tags: ['doctrine.fixture.orm']
+
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
 
@@ -108,17 +113,17 @@ services:
   app.user_checker:
     class: App\Infrastructure\Security\UserChecker
 
-  App\Infrastructure\Service\EventHandler\CreateNewPortfolioEventHandler:
-    tags:
-      - name: 'doctrine.event_listener'
-        event: 'prePersist'
-        priority: 500
+  # App\Infrastructure\Service\EventHandler\CreateNewPortfolioEventHandler:
+  # tags:
+  #    - name: 'doctrine.event_listener'
+  #      event: 'prePersist'
+  #      priority: 500
 
-  App\Infrastructure\Service\EventHandler\CreateNewJobEventHandler:
-    tags:
-      - name: 'doctrine.event_listener'
-        event: 'prePersist'
-        priority: 500
+  # App\Infrastructure\Service\EventHandler\CreateNewJobEventHandler:
+  #   tags:
+  #    - name: 'doctrine.event_listener'
+  #      event: 'prePersist'
+  #      priority: 500
 
   acme_api.event.authentication_success_listener:
     class: App\Infrastructure\Service\EventHandler\AuthenticationSuccessListener

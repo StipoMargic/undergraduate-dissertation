@@ -1,4 +1,6 @@
-/public/images/*
+/public/images/uploads/*
+/public/images/avatar
+!public/images/category
 # Created by https://www.toptal.com/developers/gitignore/api/symfony
 # Edit at https://www.toptal.com/developers/gitignore?templates=symfony
 
