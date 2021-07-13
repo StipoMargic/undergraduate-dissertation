@@ -48,7 +48,7 @@ class PortfolioFixtures extends Fixture implements DependentFixtureInterface
             /** @var User $user */
             $user = $this->getReference(User::class . "f" . random_int(0, UserFixtures::USERS_TO_CREATE / 2 - 1));
             if (false === $user->isVerified()) {
-                $portfolio->delete();;
+                $portfolio->delete();
             }
             $portfolio->setUser($user);
             $manager->persist($portfolio);

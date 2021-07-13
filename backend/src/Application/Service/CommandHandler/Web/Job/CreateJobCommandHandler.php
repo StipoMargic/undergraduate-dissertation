@@ -16,6 +16,9 @@ final class CreateJobCommandHandler
     ) {
     }
 
+    /**
+     * @throws \Exception
+     */
     public function __invoke(CreateJobCommand $command): void
     {
         $job = new Job(
@@ -23,7 +26,7 @@ final class CreateJobCommandHandler
             $command->jobDuties,
             $command->skills,
             $command->vacancy,
-            new \DateTimeImmutable($command->activeTill),
+            new \DateTime($command->activeTill),
             $command->location,
             $command->salary,
             $command->hours,

@@ -45,8 +45,8 @@ class Job implements EntityInterface
     /** @ORM\Column(name="post_date", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $postDate;
 
-    /** @ORM\Column(name="active_till", type="datetime_immutable", nullable=false) */
-    private \DateTimeImmutable $activeTill;
+    /** @ORM\Column(name="active_till", type="datetime", nullable=false) */
+    private \DateTime $activeTill;
 
     /** @ORM\Column(name="location", type="string", nullable=false) */
     private string $location;
@@ -88,7 +88,7 @@ class Job implements EntityInterface
         string $jobDuties,
         string $skills,
         int $vacancy,
-        \DateTimeImmutable $activeTill,
+        \DateTime $activeTill,
         string $location,
         int $salary,
         int $hours,
@@ -164,12 +164,12 @@ class Job implements EntityInterface
         $this->vacancy = $vacancy;
     }
 
-    public function getActiveTill(): \DateTimeImmutable|string
+    public function getActiveTill(): \DateTime|string
     {
         return $this->activeTill;
     }
 
-    public function setActiveTill(\DateTimeImmutable|string $activeTill): void
+    public function setActiveTill(\DateTime|string $activeTill): void
     {
         $this->activeTill = $activeTill;
     }

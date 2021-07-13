@@ -23,18 +23,17 @@ class JobFixtures extends Fixture implements DependentFixtureInterface
         $this->faker = Factory::create();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function load(ObjectManager $manager): void
     {
         $positionNames = ["Full time", "Part time", "Remote"];
 
-
         for ($i = 0; $i < self::JOBS_TO_CREATE; $i++) {
-            $day = (string) random_int(-7, 7);
-            if ($day < 0) {
-                $activeTill = new \DateTimeImmutable($day . 'd');
-            } else {
-                $activeTill = new \DateTimeImmutable('+' . $day . 'd');
-            }
+            $randomDay = time() + (random_int(1,14,) * 24 * 60 * 60);
+            $date = date ('Y-m-d H:i:s', $randomDay);
+            $activeTill = new \DateTime($date);
 
 
             $job = new Job(Uuid::uuid4(),
@@ -54,8 +53,13 @@ class JobFixtures extends Fixture implements DependentFixtureInterface
                 . $this->faker->text(45) . ", " . $this->faker->text(45)
             );
 
+            /** @var User  $user */
             $user = $this->getReference(User::class . "c" . random_int(0, UserFixtures::USERS_TO_CREATE / 2 - 1));
             $job->setUser($user);
+            if (false === $user->isVerified()){
+                $user->setVerified(true);
+                $user->removeToken();
+                 }
 
             $manager->persist($job);
         }
