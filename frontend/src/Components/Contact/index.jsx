@@ -39,7 +39,10 @@ const Contact = () => {
     e.preventDefault();
 
     axios
-      .post("http://127.0.0.1:8000/v1/contact", makeContactData(contactData))
+      .post(
+        "http://apizavrsni.udruga-liberato.hr/v1/contact",
+        makeContactData(contactData)
+      )
       .then(() =>
         setContactData({
           name: "",

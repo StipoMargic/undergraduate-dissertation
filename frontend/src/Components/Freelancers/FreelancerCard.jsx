@@ -12,7 +12,7 @@ const FreelancerCard = ({ id, portfolio }) => {
         <div className="_freelacers_120_thumb">
           <Link to={`/freelancers/${id}`}>
             <img
-              src={`http://127.0.0.1:8000/${portfolio.avatar}`}
+              src={`http://apizavrsni.udruga-liberato.hr/${portfolio.avatar}`}
               className="img-fluid circle"
               alt=""
             />

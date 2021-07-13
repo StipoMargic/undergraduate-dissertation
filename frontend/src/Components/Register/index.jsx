@@ -64,7 +64,7 @@ const Register = () => {
 
     axios
       .post(
-        "http://127.0.0.1:8000/api/register",
+        "http://apizavrsni.udruga-liberato.hr/api/register",
         makeRegistrationData(user, avatar)
       )
       .then(() => setError(false))

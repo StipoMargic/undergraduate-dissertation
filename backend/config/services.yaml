@@ -113,17 +113,17 @@ services:
   app.user_checker:
     class: App\Infrastructure\Security\UserChecker
 
-  # App\Infrastructure\Service\EventHandler\CreateNewPortfolioEventHandler:
-  # tags:
-  #    - name: 'doctrine.event_listener'
-  #      event: 'prePersist'
-  #      priority: 500
+  App\Infrastructure\Service\EventHandler\CreateNewPortfolioEventHandler:
+  tags:
+     - name: 'doctrine.event_listener'
+       event: 'prePersist'
+       priority: 500
 
-  # App\Infrastructure\Service\EventHandler\CreateNewJobEventHandler:
-  #   tags:
-  #    - name: 'doctrine.event_listener'
-  #      event: 'prePersist'
-  #      priority: 500
+  App\Infrastructure\Service\EventHandler\CreateNewJobEventHandler:
+    tags:
+     - name: 'doctrine.event_listener'
+       event: 'prePersist'
+       priority: 500
 
   acme_api.event.authentication_success_listener:
     class: App\Infrastructure\Service\EventHandler\AuthenticationSuccessListener

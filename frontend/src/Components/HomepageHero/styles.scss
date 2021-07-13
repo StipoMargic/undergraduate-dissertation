@@ -1,47 +1,57 @@
 .hero-banner {
   background: #f4f9fd url('../../Assets/images/bg2.png');
-  min-height:480px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   width: 100%;
 }
-.hero-banner.full{
-  min-height:580px;
+
+.hero-banner.full {
+  min-height: 580px;
 }
+
 .hero-banner.center {
-  justify-content:center;
-  text-align:center;
+  justify-content: center;
+  text-align: center;
 }
+
 .hero-banner .container {
   position: relative;
   z-index: 1;
 }
+
 .hero-banner h1 {
   color: #2e1b6a;
 }
-h1.small{
-  font-weight:500;
+
+h1.small {
+  font-weight: 500;
 }
+
 .featured-category {
   display: table;
   width: 100%;
   text-align: left;
   margin-top: 1.5rem;
 }
-.featured-category ul{
-  margin:0;
-  padding:0;
+
+.featured-category ul {
+  margin: 0;
+  padding: 0;
 }
+
 .featured-category ul li {
   margin-right: 12px;
   list-style: none;
   display: inline-block;
 }
+
 .featured-category ul li:first-child {
   margin-right: 20px;
 }
+
 .featured-category ul li a {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
   padding: 4px 12px;
   border-radius: 2px;
@@ -49,30 +59,35 @@ h1.small{
   letter-spacing: 0.5px;
   transition: all 0.4s;
 }
+
 .featured-category.light ul li a {
   background: rgb(233, 251, 247);
   color: rgb(18, 109, 86);
 }
+
 .featured-category.dark ul li a {
-  background:#11bb7c;
+  background: #11bb7c;
   color: #ffffff;
 }
+
 .featured-category ul li a:hover, .featured-category ul li a:focus {
-  background:#7bc722;
+  background: #7bc722;
   color: #ffffff;
 }
+
 .header-promo {
   margin-bottom: 10px;
   margin-left: 0px;
   padding: 5px 10px 5px 5px;
   border-radius: 20px;
-  background-color:#f4f5f7;
+  background-color: #f4f5f7;
   color: #95979b;
   max-width: 100%;
   display: inline-block;
   font-size: 14px;
   text-decoration: none;
 }
+
 .header-promo.light {
   margin-bottom: 10px;
   margin-left: 0px;
@@ -85,16 +100,18 @@ h1.small{
   font-size: 14px;
   text-decoration: none;
 }
+
 .header-promo .label {
   display: inline-block;
   min-height: 0px;
   padding: 2px 6px;
-  border-radius:50px;
-  background-color:#df3411;
+  border-radius: 50px;
+  background-color: #df3411;
   color: #fff;
   font-size: 12px;
   font-weight: 400;
 }
+
 .header-promo-text {
   display: inline-block;
   margin-left: 5px;
@@ -106,12 +123,15 @@ h1.small{
   padding: 30px 0;
   border-bottom: 1px solid #122944;
 }
+
 .featured-employers-wrap.dark h5 {
   color: #ffffff;
 }
+
 .featured-employers-wrap.dark .single-employers img {
   opacity: 0.6;
 }
+
 .single-employers img {
   max-width: 110px;
 }

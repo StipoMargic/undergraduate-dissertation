@@ -39,7 +39,7 @@ const JobDetail = () => {
     e.preventDefault();
 
     axios
-      .delete(`http://127.0.0.1:8000/api/v1/job/${params.id}`, {
+      .delete(`http://apizavrsni.udruga-liberato.hr/api/v1/job/${params.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const JobDetail = () => {
                 <div className="_jb_details01_flex">
                   <div className="_jb_details01_authors">
                     <img
-                      src={`http://127.0.0.1:8000/${job.included[0].attributes.avatar}`}
+                      src={`http://apizavrsni.udruga-liberato.hr/${job.included[0].attributes.avatar}`}
                       className="img-fluid"
                       alt=""
                     />
@@ -195,7 +195,7 @@ const JobDetail = () => {
                 <div className="_jb_summary">
                   <div className="_jb_summary_thumb">
                     <img
-                      src={`http://127.0.0.1:8000/${job.included[0].attributes.avatar}`}
+                      src={`http://apizavrsni.udruga-liberato.hr/${job.included[0].attributes.avatar}`}
                       className="img-fluid"
                       alt=""
                     />

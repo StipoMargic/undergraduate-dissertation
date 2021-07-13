@@ -2,19 +2,22 @@
   position: relative;
   text-align: center;
   display: block;
-  padding:2rem 0 0;
+  padding: 2rem 0 0;
 }
+
 .achievement-content h4 {
   margin-bottom: 5px;
   line-height: 1;
-  font-size:35px;
+  font-size: 35px;
   color: #08184b;
   font-weight: 800;
 }
-.achievement-content p{
-  font-size:18px;
+
+.achievement-content p {
+  font-size: 18px;
 }
-.ache-icon{
+
+.ache-icon {
   width: 70px;
   height: 70px;
   margin: 0 auto 10px;
@@ -25,19 +28,23 @@
   font-size: 30px;
   background: #f4f5f7;
 }
+
 .ache-icon.green {
-  background: rgba(26, 187, 105,0.1);
+  background: rgba(26, 187, 105, 0.1);
   color: #1abb69;
 }
+
 .ache-icon.purple {
-  background: rgba(153, 81, 208,0.1);
+  background: rgba(153, 81, 208, 0.1);
   color: #9951d0;
 }
+
 .ache-icon.yellow {
-  background: rgba(247, 143, 14,0.1);
+  background: rgba(247, 143, 14, 0.1);
   color: #f78f0e;
 }
+
 .ache-icon.red {
-  background: rgba(245, 22, 74,0.1);
+  background: rgba(245, 22, 74, 0.1);
   color: #f5164a;
 }

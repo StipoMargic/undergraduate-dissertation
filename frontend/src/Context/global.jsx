@@ -34,7 +34,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/v1/categories")
+      .get("http://apizavrsni.udruga-liberato.hr/api/v1/categories")
       .then((res) => {
         if (res && res.data) {
           setCategories([...res.data.data]);
@@ -43,7 +43,7 @@ export const GlobalProvider = ({ children }) => {
       .catch(() => null);
 
     axios
-      .get("http://127.0.0.1:8000/api/v1/users")
+      .get("http://apizavrsni.udruga-liberato.hr/api/v1/users")
       .then((res) => setUsers([...res.data.data]))
       .catch(() => null);
 
@@ -54,7 +54,9 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/v1/portfolios?sort=${filter}`)
+      .get(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${filter}`
+      )
       .then((res) => {
         if (res && res.data) {
           setPortfolios([...res.data.data]);
@@ -63,7 +65,7 @@ export const GlobalProvider = ({ children }) => {
       .catch(() => null);
 
     axios
-      .get(`http://127.0.0.1:8000/api/v1/jobs?sort=${filter}`)
+      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/jobs?sort=${filter}`)
       .then((res) => {
         if (res && res.data) {
           setJobs([...res.data.data]);

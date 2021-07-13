@@ -9,7 +9,9 @@ const SearchPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/v1/jobs/?filter[name]=${searchTerm}`)
+      .get(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/jobs/?filter[name]=${searchTerm}`
+      )
       .then((res) => {
         if (res && res.data) {
           setState({ jobs: [...res.data.data] });

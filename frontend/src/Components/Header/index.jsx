@@ -45,7 +45,10 @@ const Header = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://127.0.0.1:8000/api/login", makeLoginData(loginData))
+      .post(
+        "http://apizavrsni.udruga-liberato.hr/api/login",
+        makeLoginData(loginData)
+      )
       .then((res) => {
         setTokenWithCookie(
           res.data.token,

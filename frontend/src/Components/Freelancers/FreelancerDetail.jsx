@@ -74,12 +74,15 @@ const FreelancerDetail = () => {
     e.preventDefault();
 
     axios
-      .delete(`http://127.0.0.1:8000/api/v1/portfolios/${params.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
+      .delete(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/${params.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then(() => window.location.reload())
       .catch(() => setError(true));
   };
@@ -89,7 +92,7 @@ const FreelancerDetail = () => {
 
     axios
       .post(
-        "http://127.0.0.1:8000/api/v1/comment",
+        "http://apizavrsni.udruga-liberato.hr/api/v1/comment",
         makeCommentData(
           portfolio.data.id,
           null,
@@ -300,7 +303,7 @@ const FreelancerDetail = () => {
               <div className="_jb_summary light_box">
                 <div className="_jb_summary_thumb">
                   <img
-                    src={`http://127.0.0.1:8000${user[0].avatar}`}
+                    src={`http://apizavrsni.udruga-liberato.hr${user[0].avatar}`}
                     className="img-fluid circle"
                     alt=""
                   />
