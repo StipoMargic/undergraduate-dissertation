@@ -1,20 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, {useContext, useEffect, useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./styles.scss";
-import { faChevronRight, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { useParams } from "react-router";
+import {faChevronRight, faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import {faFacebook, faLinkedin, faTwitter,} from "@fortawesome/free-brands-svg-icons";
+import {useParams} from "react-router";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import QualificationDetail from "./QualificationDetail";
 import AwardDetail from "./AwardDetail";
-import { getSinglePortfolio } from "./getSinglePortfolio";
-import { GlobalContext } from "../../Context/global";
-import { makeCommentData } from "./makeCommentData";
+import {getSinglePortfolio} from "./getSinglePortfolio";
+import {GlobalContext} from "../../Context/global";
+import {makeCommentData} from "./makeCommentData";
 
 const initialCommentForm = {
   score: 3,
@@ -23,7 +19,7 @@ const initialCommentForm = {
 };
 
 const FreelancerDetail = () => {
-  const { role, username, token } = useContext(GlobalContext);
+  const {role, username, token} = useContext(GlobalContext);
   const [portfolio, setPortfolio] = useState();
   const [commentForm, setCommentForm] = useState(initialCommentForm);
   const [error, setError] = useState(null);
@@ -238,7 +234,7 @@ const FreelancerDetail = () => {
                       {advancedKnowledgeBulletins.map((bulletin, index) => {
                         return (
                           <li key={index}>
-                            <FontAwesomeIcon icon={faChevronRight} />
+                            <FontAwesomeIcon icon={faChevronRight}/>
                             {bulletin}
                           </li>
                         );
@@ -266,7 +262,7 @@ const FreelancerDetail = () => {
                       <ul className="qa-skill-list">
                         {experiences.map((experience, index) => {
                           return (
-                            <AwardDetail key={index} expirience={experience} />
+                            <AwardDetail key={index} expirience={experience}/>
                           );
                         })}
                       </ul>
@@ -331,6 +327,10 @@ const FreelancerDetail = () => {
                       This freelancer is hired{" "}
                       {portfolio.data.attributes.hiredBy.length} times.
                     </small>
+                    <div className="d-block">
+                    {role === "ROLE_ADMIN" &&
+                    <p>Hired by: <small>{portfolio.data.attributes.hiredBy.map((company) => company)}</small></p>}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -373,7 +373,7 @@ const FreelancerDetail = () => {
                         className="share fb"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon icon={faFacebook} />
+                        <FontAwesomeIcon icon={faFacebook}/>
                       </a>
                     </li>
                   )}
@@ -385,7 +385,7 @@ const FreelancerDetail = () => {
                         className="share tw"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon icon={faTwitter} />
+                        <FontAwesomeIcon icon={faTwitter}/>
                       </a>
                     </li>
                   )}
@@ -397,13 +397,13 @@ const FreelancerDetail = () => {
                         className="share ln"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon icon={faLinkedin} />
+                        <FontAwesomeIcon icon={faLinkedin}/>
                       </a>
                     </li>
                   )}
                   <li>
                     <a href={`mailto: ${user[0].email}`} className="share ln">
-                      <FontAwesomeIcon icon={faEnvelope} />
+                      <FontAwesomeIcon icon={faEnvelope}/>
                     </a>
                   </li>
                 </ul>
@@ -420,7 +420,7 @@ const FreelancerDetail = () => {
       {user.length < 1 ? (
         "Loading"
       ) : username === user[0].username &&
-        portfolio.data.attributes.deletedAt === null ? (
+      portfolio.data.attributes.deletedAt === null ? (
         <>
           <div className="container mt-5">
             {error && (
@@ -445,6 +445,7 @@ const FreelancerDetail = () => {
           <h3 className="text-danger">tHIS portfolio is deactivated</h3>
         </div>
       )}
+
     </>
   );
 };
