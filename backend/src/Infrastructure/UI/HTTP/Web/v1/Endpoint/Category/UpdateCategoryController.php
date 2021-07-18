@@ -10,6 +10,7 @@ use App\Application\Command\Web\Category\UpdateCategoryCommand;
 use App\Application\Service\Bus\CommandBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\Category\CategoryUpdateModel;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Undabot\JsonApi\Definition\Model\Request\UpdateResourceRequestInterface;
 use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceUpdatedResponse;
