@@ -21,7 +21,7 @@ final class UpdateCategoryCommandHandler
     ) {
     }
 
-    public function __invoke(UpdateCategoryCommand $command, $category): void
+    public function __invoke(UpdateCategoryCommand $command): void
     {
 
         $category = $this->categoryReadRepository->get(Uuid::fromString($command->id));
