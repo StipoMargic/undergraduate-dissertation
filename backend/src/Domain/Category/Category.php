@@ -133,4 +133,12 @@ class Category
     {
         $this->deletedAt = new \DateTimeImmutable();
     }
+
+    public function update(string $name, string $image, ?string $description): void
+    {
+        $this->name = $name;
+        $this->image = $image;
+        $this->description = $description;
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 }

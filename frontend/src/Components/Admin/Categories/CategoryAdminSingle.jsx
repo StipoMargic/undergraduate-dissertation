@@ -65,7 +65,7 @@ const CategoryAdminSingle = () => {
     e.preventDefault();
 
     axios
-      .post(
+      .put(
         `http://apizavrsni.udruga-liberato.hr/api/v1/category/${category.id}`,
         MakeCategoryUpdateData(
           category.id,
