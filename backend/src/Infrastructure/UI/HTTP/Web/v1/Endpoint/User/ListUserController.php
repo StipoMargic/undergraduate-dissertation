@@ -24,7 +24,7 @@ final class ListUserController
         QueryBus $queryBus,
         ResourceResponder $responder
     ): ResourceCollectionResponse {
-        $request->allowFilters(['role']);
+        $request->allowFilters(['name', 'role']);
 
         $pagination = $request->getPagination();
         $entities = $queryBus->handleQuery(new UserQuery(null === $pagination ? null : $pagination->getOffset(),

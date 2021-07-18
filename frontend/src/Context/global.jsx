@@ -89,6 +89,7 @@ export const GlobalProvider = ({ children }) => {
         ttl,
         users,
         removeAllCookies,
+        setUsers,
       }}
     >
       {children}

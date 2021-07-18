@@ -20,7 +20,7 @@ import FreelancersCategoryList from "./Components/Freelancers/FreelancersCategor
 import SearchPage from "./Components/Search";
 import AdminDashboard from "./Components/Admin";
 import CreateCategory from "./Components/Admin/create-category";
-import AllUsers from "./Components/Admin/all-users";
+import AllUsers from "./Components/Admin/Users/all-users";
 import Analytics from "./Components/Admin/analytics";
 import ApplyNow from "./Components/ApplyNow";
 import Categories from "./Components/Admin/Categories";

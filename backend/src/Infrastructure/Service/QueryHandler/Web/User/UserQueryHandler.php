@@ -29,6 +29,13 @@ final class UserQueryHandler
             $qb = $qb->where('u.roles = :roles')->setParameter(':roles', $userByRole);
         }
 
+        if (null !== $query->filterSet && null !== $query->filterSet->getFilter('name')) {
+            $username = $query->filterSet->getFilter('name')->getValue();
+            $qb = $qb->where('u.username LIKE :name')
+                ->setParameter(':name', '%' . $username . '%');
+        }
+
+
         if (property_exists($query, 'sortSet') && null !== $query->sortSet && $query->sortSet instanceof SortSet) {
             foreach ($query->sortSet->getSortsArray() as $column => $direction) {
                 $qb = $qb->orderBy('u.' . $column, $direction);
