@@ -31,6 +31,7 @@ const Jobs = () => {
     }));
   };
 
+  const activeJobs = jobs.filter((job) => job.attributes.deletedAt === null);
   return (
     <>
       <div className="page-title">
@@ -57,14 +58,9 @@ const Jobs = () => {
             ""
           )}
           <div className="row">
-            {jobs.map((job) => {
-              if (job.attributes.deletedAt === null) {
-                return (
-                  <JobCard key={job.id} id={job.id} job={job.attributes} />
-                );
-              }
-              return null;
-            })}
+            {activeJobs.slice(pagination.start, pagination.end).map((job) => (
+              <JobCard key={job.id} id={job.id} job={job.attributes} />
+            ))}
           </div>
 
           {pagination.start > 0 && (

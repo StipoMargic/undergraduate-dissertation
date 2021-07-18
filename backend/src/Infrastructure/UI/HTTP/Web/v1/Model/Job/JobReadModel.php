@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Job;
 
+use App\Domain\Comment\Comment;
 use App\Domain\Job\Job;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
@@ -70,6 +71,9 @@ class JobReadModel implements ApiModel
     /** @Attribute */
     public array $applied;
 
+    /** @Attribute */
+    public array $comments;
+
     public function __construct(
         string $id,
         string $name,
@@ -90,7 +94,8 @@ class JobReadModel implements ApiModel
         ?string $updatedAt,
         ?string $deletedAt,
         string $jobDutiesBulletins,
-        array $applied
+        array $applied,
+        array $comments
     ) {
         $this->jobDutiesBulletins = $jobDutiesBulletins;
         $this->id = $id;
@@ -112,10 +117,20 @@ class JobReadModel implements ApiModel
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
         $this->applied = $applied;
+        $this->comments = $comments;
     }
 
     public static function fromEntity(Job $job): self
     {
+        $comments = array_map(static function (Comment $comment) {
+            return [
+                'user' => $comment->getUser()->getUsername(),
+                'score' => $comment->getScore(),
+                'message' => $comment->getMessage(),
+                'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
+            ];
+        }, $job->getComments()->getValues());
+
         return new self(
             (string) $job->getId(),
             $job->getUser()->getUsername(),
@@ -136,7 +151,8 @@ class JobReadModel implements ApiModel
             null === $job->getUpdatedAt() ? null : $job->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $job->getDeletedAt() ? null : $job->getDeletedAt()->format('Y-m-d H:i:s'),
             $job->getJobDutiesBulletins(),
-            $job->getApplied()
+            $job->getApplied(),
+            $comments
         );
     }
 }

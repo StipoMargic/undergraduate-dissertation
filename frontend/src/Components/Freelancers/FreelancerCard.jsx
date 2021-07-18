@@ -31,9 +31,9 @@ const FreelancerCard = ({ id, portfolio }) => {
         <div className="_freelacers_120_body">
           <div className="_free0o9">
             <ul>
-              {skills.slice(0, 5).map((skill) => {
+              {skills.slice(0, 5).map((skill, idx) => {
                 return (
-                  <li key={skill}>
+                  <li key={idx}>
                     <span>{skill}</span>
                   </li>
                 );

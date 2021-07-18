@@ -34,6 +34,9 @@ const Freelancers = () => {
     }));
   };
 
+  const activePortfolios = portfolios.filter(
+    (portfolio) => portfolio.attributes.deletedAt === null
+  );
   return (
     <>
       <div className="page-title">
@@ -59,19 +62,16 @@ const Freelancers = () => {
             ""
           )}
           <div className="row py-5">
-            {portfolios
+            {activePortfolios
               .slice(pagination.start, pagination.end)
               .map((portfolio) => {
-                if (portfolio.attributes.deletedAt === null) {
-                  return (
-                    <FreelancerCard
-                      key={portfolio.id}
-                      id={portfolio.id}
-                      portfolio={portfolio.attributes}
-                    />
-                  );
-                }
-                return null;
+                return (
+                  <FreelancerCard
+                    key={portfolio.id}
+                    id={portfolio.id}
+                    portfolio={portfolio.attributes}
+                  />
+                );
               })}
           </div>
           <div className="row justify-content-center p-3">

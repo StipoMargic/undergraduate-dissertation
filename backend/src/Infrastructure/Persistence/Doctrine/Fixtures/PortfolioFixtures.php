@@ -53,7 +53,6 @@ class PortfolioFixtures extends Fixture implements DependentFixtureInterface
             $portfolio->setUser($user);
             $manager->persist($portfolio);
         }
-        $this->
 
         $manager->flush();
     }

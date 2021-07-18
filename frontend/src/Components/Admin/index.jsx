@@ -14,8 +14,8 @@ const AdminDashboard = () => {
     <div className="container justify-content-center vh-60 align-items-center">
       <div className="row mt-5">
         <div className="col">
-          <Link to="/admin/create-category" className="btn btn-primary w-100">
-            Create category
+          <Link to="/admin/categories" className="btn btn-primary w-100">
+            Categories
           </Link>
         </div>
         <div className="col w-100">

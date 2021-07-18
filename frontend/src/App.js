@@ -23,6 +23,8 @@ import CreateCategory from "./Components/Admin/create-category";
 import AllUsers from "./Components/Admin/all-users";
 import Analytics from "./Components/Admin/analytics";
 import ApplyNow from "./Components/ApplyNow";
+import Categories from "./Components/Admin/Categories";
+import CategoryAdminSingle from "./Components/Admin/Categories/CategoryAdminSingle";
 
 function App() {
   return (
@@ -34,6 +36,12 @@ function App() {
             path="/admin/create-category"
             exact
             component={CreateCategory}
+          />
+          <Route path="/admin/categories" exact component={Categories} />
+          <Route
+            path="/admin/category/:id"
+            exact
+            component={CategoryAdminSingle}
           />
           <Route path="/admin/users" exact component={AllUsers} />
           <Route path="/admin/analytics" exact component={Analytics} />

@@ -27,13 +27,17 @@ class CategoryReadModel implements ApiModel
     /** @Attribute */
     public ?string $description;
 
-    public function __construct(string $id, array $portfolios, string $name, string $image, ?string $description)
+    /** @Attribute */
+    public ?string $deletedAt;
+
+    public function __construct(string $id, array $portfolios, string $name, string $image, ?string $description, ?string $deletedAt)
     {
         $this->id = $id;
         $this->portfolios = $portfolios;
         $this->name = $name;
         $this->image = $image;
         $this->description = $description;
+        $this->deletedAt = $deletedAt;
     }
 
     public static function fromEntity(Category $category): self
@@ -47,7 +51,8 @@ class CategoryReadModel implements ApiModel
             $portfolios,
             $category->getName(),
             $category->getImage(),
-            $category->getDescription() === null ? null : $category->getDescription()
+            $category->getDescription() === null ? null : $category->getDescription(),
+            null === $category->getDeletedAt() ? null : $category->getDeletedAt()->format('Y-m-d H:i:s')
         );
     }
 }

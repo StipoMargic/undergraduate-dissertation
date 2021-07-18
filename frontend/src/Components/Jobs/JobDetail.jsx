@@ -7,11 +7,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getSingleJob } from "./getSingleJob";
 import { GlobalContext } from "../../Context/global";
+import { makeCommentData } from "../Freelancers/makeCommentData";
+
+const initialCommentForm = {
+  score: 3,
+  message: "",
+  error: null,
+};
 
 const JobDetail = () => {
   const { role, username, token } = useContext(GlobalContext);
   const [job, setJob] = useState();
   const [error, setError] = useState(null);
+  const [commentForm, setCommentForm] = useState(initialCommentForm);
   const params = useParams();
   let skills;
   let jobDutiesBulletins;
@@ -30,6 +38,36 @@ const JobDetail = () => {
       (applicant) => applicant === username
     );
   }
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        "http://apizavrsni.udruga-liberato.hr/api/v1/comment",
+        makeCommentData(
+          job.data.id,
+          null,
+          username,
+          commentForm.score,
+          commentForm.message
+        ),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => window.location.reload())
+      .catch(() =>
+        setCommentForm({
+          score: commentForm.score,
+          message: commentForm.message,
+          error: true,
+        })
+      );
+  };
 
   const deactivateModal = () => {
     window.location.reload();
@@ -104,7 +142,7 @@ const JobDetail = () => {
                     </ul>
                   </div>
                 </div>
-                {role === "ROLE_USER" && inArray === undefined && (
+                {role === "ROLE_USER" && inArray === undefined ? (
                   <div className="_jb_details01_last">
                     <ul className="_flex_btn">
                       <li>
@@ -118,11 +156,124 @@ const JobDetail = () => {
                       </li>
                     </ul>
                   </div>
+                ) : (
+                  ""
                 )}
               </div>
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  const renderScore = (score) => {
+    switch (score) {
+      case 1:
+      case 2:
+        return (
+          <small className="small font-weight-bold">
+            Score: <p className="text-danger">{score}</p>
+          </small>
+        );
+      case 3:
+        return (
+          <small className="small font-weight-bold">
+            Score: <p className="text-primary">{score}</p>
+          </small>
+        );
+      case 4:
+      case 5:
+        return (
+          <small className="small font-weight-bold">
+            Score: <p className="text-success d-inline">{score}</p>
+          </small>
+        );
+      default:
+        return "";
+    }
+  };
+
+  const renderComments = () => {
+    return (
+      <div className="container mt-5">
+        {job && (
+          <div>
+            {job.data.attributes.comments.map((comment) => {
+              return (
+                <div className="my-3">
+                  <div className="gray-light rounded ">
+                    <div className="row ml-1">
+                      <p>Created by: </p>
+                      <span className="text-primary">{comment.user}</span>
+                      <small className="ml-3 text-muted">
+                        {new Date(comment.createdAt).toDateString()}
+                      </small>
+                    </div>
+                    <div className="ml-2  ">{renderScore(comment.score)}</div>
+                    <div className="row-mt-1 ml-2">
+                      <small className="text-muted">Message:</small>
+                      <div className="row p-2 ml-1 small">
+                        <p> {comment.message}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const handleCommentFormChange = (e) => {
+    e.preventDefault();
+
+    setCommentForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const renderCommentForm = () => {
+    return (
+      <div className="container pb-3">
+        <h6 className="text-muted text-uppercase pb-2">Comment form</h6>
+        <form className="form-group" onSubmit={handleCommentSubmit}>
+          <div className="row ">
+            <div className="col-sm-3">
+              <input
+                type="number"
+                name="score"
+                id="score"
+                className="form-control"
+                placeholder="Score"
+                min={0}
+                max={5}
+                step={1}
+                value={commentForm.score}
+                onChange={handleCommentFormChange}
+              />
+            </div>
+            <div className="col-sm-9">
+              <textarea
+                name="message"
+                id="message"
+                className="form-control"
+                placeholder="Your comment..."
+                onChange={handleCommentFormChange}
+                value={commentForm.message}
+              />
+            </div>
+          </div>
+          <button
+            className="btn btn-outline-primary fa-pull-right mt-3"
+            type="submit"
+            onClick={handleCommentSubmit}
+          >
+            Comment
+          </button>
+        </form>
       </div>
     );
   };
@@ -154,7 +305,8 @@ const JobDetail = () => {
                       })}
                     </ul>
                   </div>
-
+                  {inArray && renderCommentForm()}
+                  {renderComments()}
                   {skills.length && (
                     <div className="_job_detail_single">
                       <h4>Skill & Experience</h4>
@@ -282,7 +434,8 @@ const JobDetail = () => {
     <>
       {job === undefined ? (
         "Loading"
-      ) : username === job.included[0].attributes.username &&
+      ) : (role === "ROLE_ADMIN" ||
+          username === job.included[0].attributes.username) &&
         job.data.attributes.deletedAt === null ? (
         <>
           {renderHeader()}
