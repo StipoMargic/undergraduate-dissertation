@@ -24,7 +24,7 @@ const initialFormData = {
 };
 
 const CategoryAdminSingle = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState(initialFormData);
   const { categories, token } = useContext(GlobalContext);
   const { id } = useParams();
@@ -69,7 +69,7 @@ const CategoryAdminSingle = () => {
         `http://apizavrsni.udruga-liberato.hr/api/v1/category/${category.id}`,
         MakeCategoryUpdateData(
           category.id,
-          formData.name,
+          category.attributes.name,
           formData.description,
           image
         ),
@@ -97,7 +97,7 @@ const CategoryAdminSingle = () => {
               <small className="text-danger">Something went wrong!</small>
             ) : formData.error === false ? (
               <small className="text-success">
-                You created {formData.name} category
+                You updated {formData.name} category
               </small>
             ) : (
               ""
@@ -109,11 +109,9 @@ const CategoryAdminSingle = () => {
               <input
                 type="text"
                 id="name"
-                placeholder={category.attributes.name}
-                value={formData.name}
+                value={category.attributes.name}
+                disabled
                 className="form-control"
-                required
-                onChange={handleChange}
                 name="name"
               />
               {formData.name === "" && (
@@ -148,7 +146,7 @@ const CategoryAdminSingle = () => {
                 onClick={handleSubmit}
                 disabled={formData.disabled}
               >
-                Create Category
+                Update category
               </button>
             </div>
           </form>

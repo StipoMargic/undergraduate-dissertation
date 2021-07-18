@@ -10,6 +10,7 @@ use App\Application\Command\Web\Category\UpdateCategoryCommand;
 use App\Application\Service\Bus\CommandBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\Category\CategoryUpdateModel;
+use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Undabot\JsonApi\Definition\Model\Request\UpdateResourceRequestInterface;
@@ -48,7 +49,7 @@ final class UpdateCategoryController
 
         $commandBus->handleCommand($command);
 
-        $updatedCategory = $repository->get(CategoryId::fromString($command->id));
+        $updatedCategory = $repository->get(Uuid::fromString($command->id));
 
         return $responder->resourceUpdated($updatedCategory);
     }
