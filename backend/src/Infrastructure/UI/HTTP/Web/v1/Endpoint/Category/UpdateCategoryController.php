@@ -32,7 +32,7 @@ final class UpdateCategoryController
         CategoryReadRepository $repository,
         ResourceResponder $responder
     ): ResourceUpdatedResponse {
-        $category = $repository->get($id);
+        $category = $repository->get(Uuid::fromString($id));
 
         $baseUpdateModel = CategoryUpdateModel::fromEntity($category);
 
