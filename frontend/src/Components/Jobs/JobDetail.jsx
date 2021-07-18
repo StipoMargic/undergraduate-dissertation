@@ -305,8 +305,6 @@ const JobDetail = () => {
                       })}
                     </ul>
                   </div>
-                  {inArray && renderCommentForm()}
-                  {renderComments()}
                   {skills.length && (
                     <div className="_job_detail_single">
                       <h4>Skill & Experience</h4>
@@ -322,7 +320,7 @@ const JobDetail = () => {
                       </ul>
                     </div>
                   )}
-                  {role === "ROLE_USER" ? (
+                  {role === "ROLE_USER" && (
                     <div className="_job_detail_single flexeo">
                       <Link
                         to={`/apply-now/${params.id}`}
@@ -332,9 +330,9 @@ const JobDetail = () => {
                         Apply Job
                       </Link>
                     </div>
-                  ) : (
-                    ""
                   )}
+                  {inArray && renderCommentForm()}
+                  {renderComments()}
                   {!role && (
                     <h6>
                       Login as Freelancer to be able to apply for this job!
