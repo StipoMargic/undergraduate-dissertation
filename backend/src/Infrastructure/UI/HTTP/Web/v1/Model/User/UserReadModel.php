@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Infrastructure\UI\HTTP\Web\v1\Model\User;
 
+use App\Domain\Job\Job;
 use App\Domain\Portfolio\Portfolio;
 use App\Domain\User\User;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
@@ -20,6 +21,9 @@ class UserReadModel implements ApiModel
 
     /** @Attribute */
     public array $portfolios;
+
+    /** @Attribute */
+    public array $jobs;
 
     /** @Attribute */
     public string $username;
@@ -75,6 +79,7 @@ class UserReadModel implements ApiModel
     public function __construct(
         string $id,
         array $portfolios,
+        array $jobs,
         string $username,
         string $about,
         string $email,
@@ -112,6 +117,7 @@ class UserReadModel implements ApiModel
         $this->updatedAt = $updatedAt;
         $this->deletedAt = $deletedAt;
         $this->portfolios = $portfolios;
+        $this->jobs = $jobs;
     }
 
     public static function fromEntity(User $user): self
@@ -120,9 +126,14 @@ class UserReadModel implements ApiModel
             return $portfolio->getId();
         }, $user->getPortfolios()->getValues());
 
+        $jobs = array_map(static function (Job $job) {
+            return $job->getId();
+        }, $user->getJobs()->getValues());
+
         return new self(
             (string) $user->getId(),
             $portfolios,
+            $jobs,
             $user->getUsername(),
             $user->getAbout(),
             $user->getEmail(),

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { GlobalContext } from "../../../Context/global";
 
 const initialPagination = {
@@ -23,14 +24,23 @@ const AllUsers = () => {
       )
       .then((res) => setUsers([...res.data.data]))
       .catch((err) => console.log(err));
-    L;
   };
+
   const handleNext = () => {
     setPagination((prev) => ({
       ...prev,
       start: prev.start + 10,
       end: prev.end + 10,
     }));
+  };
+
+  const handleGetUsers = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/users`)
+      .then((res) => setUsers([...res.data.data]))
+      .catch((err) => console.log(err));
   };
 
   const handlePrev = () => {
@@ -47,21 +57,33 @@ const AllUsers = () => {
 
   return (
     <>
-      <div className="w-50">
+      <div className="container mt-5">
         <form onSubmit={handleSubmit}>
           <input
             className="form-control"
             type="text"
             value={searchName}
+            placeholder="Type user name..."
             onChange={(e) => setSearchName(e.target.value)}
           />
-          <button className="btn btn-primary" onClick={handleSubmit}>
-            Searcch
+          <button
+            type="submit"
+            className="btn btn-primary form-control d-inline-block"
+            onClick={handleSubmit}
+          >
+            Search
           </button>
         </form>
       </div>
       {users && (
         <div className="container mt-5">
+          <button
+            type="submit"
+            className="btn btn-success mb-3"
+            onClick={handleGetUsers}
+          >
+            Reset users
+          </button>
           <table className="table">
             <thead>
               <tr>
@@ -79,7 +101,11 @@ const AllUsers = () => {
                   return (
                     <tr key={user.id}>
                       <th scope="row">{idx + 1 + pagination.start}</th>
-                      <td>{user.attributes.username}</td>
+                      <td>
+                        <Link to={`/admin/users/${user.id}`}>
+                          {user.attributes.username}
+                        </Link>
+                      </td>
                       <td>
                         <a href={`mailto:${user.attributes.email}`}>
                           {user.attributes.email}

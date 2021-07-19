@@ -28,9 +28,6 @@ class UserUpdateModel implements ApiModel
     public ?string $password;
 
     /** @Attribute */
-    public ?string $role;
-
-    /** @Attribute */
     public ?string $avatar;
 
     /** @Attribute */
@@ -54,12 +51,14 @@ class UserUpdateModel implements ApiModel
     /** @Attribute */
     public ?string $linkedin;
 
+    /** @Attribute */
+    public string $about;
+
     public function __construct(
         string $id,
         ?string $username,
         ?string $email,
         ?string $password,
-        ?string $role,
         ?string $avatar,
         ?string $address,
         ?string $city,
@@ -67,13 +66,13 @@ class UserUpdateModel implements ApiModel
         ?string $occupation,
         ?string $facebook,
         ?string $twitter,
-        ?string $linkedin
+        ?string $linkedin,
+        string $about
     ) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        $this->role = $role;
         $this->avatar = $avatar;
         $this->address = $address;
         $this->city = $city;
@@ -82,6 +81,7 @@ class UserUpdateModel implements ApiModel
         $this->facebook = $facebook;
         $this->twitter = $twitter;
         $this->linkedin = $linkedin;
+        $this->about = $about;
     }
 
 
@@ -92,7 +92,6 @@ class UserUpdateModel implements ApiModel
             $user->getUsername(),
             $user->getEmail(),
             $user->getPassword(),
-            $user->getRoles()[0],
             $user->getAvatar(),
             $user->getAddress(),
             $user->getCity(),
@@ -100,7 +99,8 @@ class UserUpdateModel implements ApiModel
             $user->getOccupation(),
             $user->getFacebook(),
             $user->getTwitter(),
-            $user->getLinkedin()
+            $user->getLinkedin(),
+            $user->getAbout()
         );
     }
 }

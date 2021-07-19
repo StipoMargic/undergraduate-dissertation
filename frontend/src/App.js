@@ -25,6 +25,7 @@ import Analytics from "./Components/Admin/analytics";
 import ApplyNow from "./Components/ApplyNow";
 import Categories from "./Components/Admin/Categories";
 import CategoryAdminSingle from "./Components/Admin/Categories/CategoryAdminSingle";
+import UserAdminSingle from "./Components/Admin/Users/UserAdminSingle";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             component={CategoryAdminSingle}
           />
           <Route path="/admin/users" exact component={AllUsers} />
+          <Route path="/admin/users/:id" exact component={UserAdminSingle} />
           <Route path="/admin/analytics" exact component={Analytics} />
           <Route path="/admin" component={AdminDashboard} />
           <Route exact path="/" component={HomePage} />

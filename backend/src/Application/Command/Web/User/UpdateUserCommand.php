@@ -14,10 +14,10 @@ class UpdateUserCommand implements CommandInterface
         public ?string $username,
         public ?string $email,
         public ?string $password,
-        public ?string $role,
         public ?string $avatar,
         public ?string $address,
         public ?string $city,
+        public string $about
     ) {
     }
 }

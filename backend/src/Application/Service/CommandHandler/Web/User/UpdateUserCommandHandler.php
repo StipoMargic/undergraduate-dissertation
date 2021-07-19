@@ -35,10 +35,10 @@ class UpdateUserCommandHandler
         $user->update(
             null === $command->username ? $user->getUsername() : $command->username,
             null === $command->email ? $user->getEmail() : $command->email,
-            null === $command->role ? $user->getRoles()[0] : $command->role,
             null === $command->avatar ? null : $this->makeAvatar($command->avatar),
             $command->address,
-            $command->city
+            $command->city,
+            $command->about
         );
 
         $command->password ? $user->setPassword($this->encodePassword($user, $command->password)) : null;

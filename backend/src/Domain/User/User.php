@@ -388,14 +388,14 @@ class User implements UserInterface, EntityInterface
     public function update(
         string $username,
         string $email,
-        string $role,
         ?string $avatar,
         ?string $address,
         ?string $city,
+        string $about
     ) {
         $this->username = $username;
         $this->email = $email;
-        $this->roles = [$role];
+        $this->about = $about;
         $this->avatar = $avatar;
         $this->address = $address;
         $this->city = $city;
