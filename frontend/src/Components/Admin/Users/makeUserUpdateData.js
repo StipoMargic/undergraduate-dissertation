@@ -1,24 +1,21 @@
 // eslint-disable-next-line import/prefer-default-export
 export const MakeUserUpdateData = (id, user, avatar) => {
+  const { username, email, address, city, password, about } = user;
+
+  console.log(username, email, avatar, address, city, password, about);
   return {
     data: {
       type: "user",
       id,
       attributes: {
-        username: user.username,
-        email: user.email,
-        password: user.password,
+        username,
+        email,
         avatar,
-        address: user.address,
-        city: user.city,
-        phone: user.phone,
-        occupation: user.occupation,
-        facebook: user.facebook,
-        linkedin: user.linkedin,
-        twitter: user.twitter,
-        about: user.about,
+        address,
+        city,
+        password,
+        about,
       },
-      relationships: [],
     },
   };
 };
