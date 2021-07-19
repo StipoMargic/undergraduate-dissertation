@@ -23,7 +23,7 @@ use Undabot\SymfonyJsonApi\Service\Resource\Factory\ResourceFactory;
 
 final class UpdateUserController
 {
-    #[Route('/api/v1/users/{id}', name: 'api_v1_users_update', methods: ['PUT, PATCh'])]
+    #[Route('/api/v1/users/{id}', name: 'api_v1_users_update', methods: ['PUT', 'PATCH'])]
     /** @IsGranted("ROLE_ADMIN") */
     public function update(
         UuidInterface $id,
