@@ -23,11 +23,22 @@ const UserAdminSingle = () => {
   const [newUserInfo, setNewUserInfo] = useState(user);
   const [avatar, setAvatar] = useState("");
   useEffect(() => {
-    if (user !== undefined) {
-      setNewUserInfo(user.attributes);
-    }
+    setNewUserInfo({
+      username: user.attributes.username,
+      email: user.attributes.email,
+      password: user.attributes.password,
+      address: user.attributes.address,
+      city: user.attributes.city,
+      phone: user.attributes.phone,
+      occupation: user.attributes.occupation,
+      facebook: user.attributes.facebook,
+      linkedin: user.attributes.linkedin,
+      twitter: user.attributes.twitter,
+      about: user.attributes.about,
+    });
   }, [user]);
 
+  console.log(newUserInfo);
   const handleEdit = (e) => {
     e.preventDefault();
 
@@ -51,7 +62,6 @@ const UserAdminSingle = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(avatar);
 
   const renderUpload = () => {
     return (
@@ -220,7 +230,7 @@ const UserAdminSingle = () => {
                   <div className="form-group">
                     <label htmlFor="about">
                       About
-                      <textarea
+                      <input
                         onChange={handleInputChange}
                         type="text"
                         id="about"
