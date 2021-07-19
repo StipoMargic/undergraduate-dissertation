@@ -27,7 +27,7 @@ final class UpdateUserController
      * @IsGranted("EDIT", subject="user", message="You are not allowed to edit this resource")
      */
     public function update(
-        string $id,
+        UuidInterface $id,
         UpdateResourceRequestInterface $request,
         UserReadRepository $repository,
         CommandBus $commandBus,
@@ -36,7 +36,8 @@ final class UpdateUserController
         ResourceResponder $responder,
         User $user
     ): ResourceUpdatedResponse {
-        $baseModel = UserUpdateModel::fromEntity($repository->get(Uuid::fromString($id)));
+        $user = $repository->get($id);
+        $baseModel = UserUpdateModel::fromEntity($user);
         $baseResource = $resourceFactory->make($baseModel);
 
         $updateResource = new CombinedResource($baseResource, $request->getResource());

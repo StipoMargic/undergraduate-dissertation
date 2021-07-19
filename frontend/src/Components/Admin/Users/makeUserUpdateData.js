@@ -16,6 +16,7 @@ export const MakeUserUpdateData = (id, user, avatar) => {
         facebook: user.facebook,
         linkedin: user.linkedin,
         twitter: user.twitter,
+        about: user.about,
       },
       relationships: [],
     },
