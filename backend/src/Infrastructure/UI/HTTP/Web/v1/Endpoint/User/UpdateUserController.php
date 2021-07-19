@@ -23,9 +23,8 @@ use Undabot\SymfonyJsonApi\Service\Resource\Factory\ResourceFactory;
 
 final class UpdateUserController
 {
-    /** @Route("/api/v1/users/{id}", name="api_v1_users_update", methods={"PUT"})
-     * @IsGranted("EDIT", subject="user", message="You are not allowed to edit this resource")
-     */
+    #[Route('/api/v1/users/{id}', name: 'api_v1_users_update', methods: ['PUT, PATCh'])]
+    /** @IsGranted("ROLE_ADMIN") */
     public function update(
         UuidInterface $id,
         UpdateResourceRequestInterface $request,
@@ -34,7 +33,6 @@ final class UpdateUserController
         SimpleResourceHandler $resourceHandler,
         ResourceFactory $resourceFactory,
         ResourceResponder $responder,
-        User $user
     ): ResourceUpdatedResponse {
         $user = $repository->get($id);
         $baseModel = UserUpdateModel::fromEntity($user);
