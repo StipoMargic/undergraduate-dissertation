@@ -85,7 +85,7 @@ const Freelancers = () => {
               </button>
             )}
 
-            {portfolios.length > pagination.end && (
+            {activePortfolios.length > pagination.end && (
               <button
                 type="button"
                 onClick={handleNext}

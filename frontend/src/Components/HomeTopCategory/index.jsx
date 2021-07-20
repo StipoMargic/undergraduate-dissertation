@@ -27,21 +27,24 @@ const HomeTopCategory = () => {
 
         <div className="row justify-content-center">
           {categories.slice(0, 8).map((category) => {
-            return (
-              <Link
-                to={{
-                  pathname: `/category/${category.attributes.name}`,
-                  state: category.attributes.name,
-                }}
-                key={category.id}
-              >
-                <Category
-                  name={category.attributes.name}
-                  image={category.attributes.image}
-                  length={category.attributes.portfolios.length}
-                />
-              </Link>
-            );
+            if (category.attributes.deletedAt === null) {
+              return (
+                <Link
+                  to={{
+                    pathname: `/category/${category.attributes.name}`,
+                    state: category.attributes.name,
+                  }}
+                  key={category.id}
+                >
+                  <Category
+                    name={category.attributes.name}
+                    image={category.attributes.image}
+                    length={category.attributes.portfolios.length}
+                  />
+                </Link>
+              );
+            }
+            return null;
           })}
         </div>
       </div>

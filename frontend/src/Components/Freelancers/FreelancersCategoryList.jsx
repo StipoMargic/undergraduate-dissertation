@@ -12,10 +12,11 @@ const FreelancersCategoryList = () => {
   const { state } = useLocation();
   const { portfolios } = useContext(GlobalContext);
   const [pagination, setPagination] = useState(initialPagination);
-  const portfoliosByCategory = [];
 
-  portfoliosByCategory.push(
-    portfolios.filter((portfolio) => portfolio.attributes.category === state)
+  const portfoliosByCategory = portfolios.filter(
+    (portfolio) =>
+      portfolio.attributes.category === state &&
+      portfolio.attributes.deletedAt === null
   );
 
   const handleNext = () => {
@@ -48,10 +49,10 @@ const FreelancersCategoryList = () => {
       </div>
 
       <section className="gray-bg">
-        {portfoliosByCategory[0].length > 0 ? (
+        {portfoliosByCategory.length > 0 ? (
           <div className="container">
             <div className="row py-5">
-              {portfoliosByCategory[0]
+              {portfoliosByCategory
                 .slice(pagination.start, pagination.end)
                 .map((portfolio) => {
                   if (portfolio.attributes.deletedAt === null) {
@@ -77,7 +78,7 @@ const FreelancersCategoryList = () => {
                 </button>
               )}
 
-              {portfoliosByCategory[0].length > pagination.end && (
+              {portfoliosByCategory.length > pagination.end && (
                 <button
                   type="button"
                   onClick={handleNext}
