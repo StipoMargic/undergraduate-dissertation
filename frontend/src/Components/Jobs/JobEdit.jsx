@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import DatePicker from "react-datepicker";
+import axios from "axios";
 import { GlobalContext } from "../../Context/global";
+import { makeJobUpdateData } from "./makeJobUpdateData";
 
 const JobEdit = () => {
-  const { id } = useParams();
+  const { id, token } = useParams();
   const { jobs } = useContext(GlobalContext);
   const job = jobs.find((j) => j.id === id);
   const [newJobInfo, setNewJobInfo] = useState(job);
@@ -14,7 +16,19 @@ const JobEdit = () => {
   const handleJobEdit = (e) => {
     e.preventDefault();
 
-    console.log(newJobInfo);
+    axios
+      .put(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/job/${id}`,
+        makeJobUpdateData(id, newJobInfo, activeTill),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => console.log(false))
+      .catch(() => console.log(true));
   };
 
   const handleJobChange = (value) => (e) => {

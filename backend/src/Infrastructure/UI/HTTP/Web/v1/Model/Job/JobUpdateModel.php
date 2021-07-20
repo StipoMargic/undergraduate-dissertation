@@ -5,6 +5,7 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Job;
 
 use App\Domain\Job\Job;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
+use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
 use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 
 /** @ResourceType(type="job") */
