@@ -16,7 +16,7 @@ use Ramsey\Uuid\Uuid;
 
 class PortfolioFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const PORTFOLIOS_TO_CREATE = 15480;
+    public const PORTFOLIOS_TO_CREATE = 1540;
     public Generator $faker;
 
     public function __construct()
