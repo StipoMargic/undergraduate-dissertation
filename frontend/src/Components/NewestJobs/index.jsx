@@ -31,6 +31,7 @@ const NewestJob = () => {
                   key={job.id}
                   id={job.id}
                   name={job.attributes.name}
+                  typeOfPosition={job.attributes.typeOfPosition}
                   position={job.attributes.jobPositionName}
                 />
               );

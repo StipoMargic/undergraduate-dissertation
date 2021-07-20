@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import React, { useContext, useEffect, useState } from "react";
@@ -16,6 +16,7 @@ const initialCommentForm = {
 };
 
 const JobDetail = () => {
+  const history = useHistory();
   const { role, username, token } = useContext(GlobalContext);
   const [job, setJob] = useState();
   const [error, setError] = useState(null);
@@ -449,6 +450,13 @@ const JobDetail = () => {
               onClick={handleDelete}
             >
               Deactivate
+            </button>
+            <button
+              type="submit"
+              className="ml-2 btn btn-lg btn-success"
+              onClick={() => history.push(`/job/edit/${job.data.id}`)}
+            >
+              Edit
             </button>
           </div>
           {renderBody()}

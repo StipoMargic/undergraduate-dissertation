@@ -290,4 +290,33 @@ class Job implements EntityInterface
     {
         $this->applied[] = $applicant;
     }
+
+    public function update(
+        string $jobDuties,
+        string $skills,
+        int $vacancy,
+        string $activeTill,
+        string $location,
+        int $salary,
+        int $hours,
+        string $typeOfPosition,
+        bool $disableFriendly,
+        string $jobSummary,
+        string $jobPositionName,
+        string $jobDutiesBulletins
+    ): void {
+        $this->jobDuties = $jobDuties;
+        $this->skills = $skills;
+        $this->vacancy = $vacancy;
+        $this->activeTill = new \DateTime($activeTill);
+        $this->location = $location;
+        $this->salary = $salary;
+        $this->hours = $hours;
+        $this->typeOfPosition = $typeOfPosition;
+        $this->disableFriendly = $disableFriendly;
+        $this->jobSummary = $jobSummary;
+        $this->jobPositionName = $jobPositionName;
+        $this->jobDutiesBulletins = $jobDutiesBulletins;
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 }

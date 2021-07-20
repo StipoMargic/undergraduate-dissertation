@@ -26,6 +26,7 @@ import ApplyNow from "./Components/ApplyNow";
 import Categories from "./Components/Admin/Categories";
 import CategoryAdminSingle from "./Components/Admin/Categories/CategoryAdminSingle";
 import UserAdminSingle from "./Components/Admin/Users/UserAdminSingle";
+import JobEdit from "./Components/Jobs/JobEdit";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
           <Route path="/freelancers/:id" exact component={FDetail} />
           <Route path="/freelancers/:id/hire-now" exact component={HireNow} />
           <Route path="/jobs/:id" exact component={JDetail} />
+          <Route path="/job/edit/:id" exact component={JobEdit} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/jobs" component={JobPage} />
           <Route path="/register" component={Register} />
