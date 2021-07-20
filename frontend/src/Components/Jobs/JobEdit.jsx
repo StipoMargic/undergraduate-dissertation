@@ -1,16 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { GlobalContext } from "../../Context/global";
 import { makeJobUpdateData } from "./makeJobUpdateData";
 
 const JobEdit = () => {
-  const { id, token } = useParams();
-  const { jobs } = useContext(GlobalContext);
+  const { id } = useParams();
+  const { jobs, token } = useContext(GlobalContext);
   const job = jobs.find((j) => j.id === id);
   const [newJobInfo, setNewJobInfo] = useState(job);
   const [activeTill, setActiveTill] = useState(new Date());
+  const history = useHistory();
+  const [message, setMessage] = useState({
+    error: null,
+    msg: "",
+    disabled: false,
+  });
   useEffect(() => setNewJobInfo(job), [job]);
 
   const handleJobEdit = (e) => {
@@ -27,8 +33,20 @@ const JobEdit = () => {
           },
         }
       )
-      .then(() => console.log(false))
-      .catch(() => console.log(true));
+      .then(() =>
+        setMessage({
+          error: false,
+          msg: "You have updated your portfolio!",
+          disabled: true,
+        })
+      )
+      .catch(() =>
+        setMessage({
+          error: true,
+          msg: "Something went wrong!",
+          disabled: false,
+        })
+      );
   };
 
   const handleJobChange = (value) => (e) => {
@@ -56,9 +74,22 @@ const JobEdit = () => {
   const renderJobCreation = () => {
     return (
       <div className="container py-5">
-        <h2 className="text-dark text-center pb-5">
-          Add job listing for your company!
-        </h2>
+        {message.error ? (
+          <h2 className="text-danger text-center">{message.msg} </h2>
+        ) : message.error === false ? (
+          <h2 className="text-success text-center">{message.msg}</h2>
+        ) : (
+          ""
+        )}
+        <div className="mt-3 mb-5">
+          <button
+            className="btn btn-info w-25"
+            type="submit"
+            onClick={history.goBack}
+          >
+            Go back
+          </button>
+        </div>
         <form className="form-group" onSubmit={handleJobEdit}>
           <label
             htmlFor="jobSummary"
@@ -283,6 +314,7 @@ const JobEdit = () => {
               type="submit"
               onClick={handleJobEdit}
               className="btn btn-lg btn-outline-primary"
+              disabled={message.disabled}
             >
               Submit
             </button>
@@ -292,7 +324,7 @@ const JobEdit = () => {
     );
   };
 
-  return <>{newJobInfo === undefined ? 1 : renderJobCreation()}</>;
+  return <>{newJobInfo === undefined ? "Loading" : renderJobCreation()}</>;
 };
 
 export default JobEdit;

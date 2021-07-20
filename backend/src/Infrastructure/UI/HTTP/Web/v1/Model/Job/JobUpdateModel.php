@@ -64,7 +64,6 @@ class JobUpdateModel implements ApiModel
         string $jobPositionName,
         string $jobDutiesBulletins
     ) {
-        $this->jobDutiesBulletins = $jobDutiesBulletins;
         $this->id = $id;
         $this->jobDuties = $jobDuties;
         $this->skills = $skills;
@@ -77,6 +76,7 @@ class JobUpdateModel implements ApiModel
         $this->disabledFriendly = $disabledFriendly;
         $this->jobSummary = $jobSummary;
         $this->jobPositionName = $jobPositionName;
+        $this->jobDutiesBulletins = $jobDutiesBulletins;
     }
 
     public static function fromEntity(Job $job): self
