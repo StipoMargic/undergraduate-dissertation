@@ -15,7 +15,7 @@ use Ramsey\Uuid\Uuid;
 
 class JobFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const JOBS_TO_CREATE = 100;
+    public const JOBS_TO_CREATE = 6320;
     public Generator $faker;
 
     public function __construct()
