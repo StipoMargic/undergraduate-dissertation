@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture
 {
-    public const USERS_TO_CREATE = 590;
+    public const USERS_TO_CREATE = 290;
 
     private Generator $faker;
 
