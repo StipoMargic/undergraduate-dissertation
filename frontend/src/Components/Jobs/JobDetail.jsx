@@ -47,8 +47,8 @@ const JobDetail = () => {
       .post(
         "http://apizavrsni.udruga-liberato.hr/api/v1/comment",
         makeCommentData(
-          job.data.id,
           null,
+          job.data.id,
           username,
           commentForm.score,
           commentForm.message
@@ -321,7 +321,7 @@ const JobDetail = () => {
                       </ul>
                     </div>
                   )}
-                  {role === "ROLE_USER" && (
+                  {role === "ROLE_USER" && inArray === undefined && (
                     <div className="_job_detail_single flexeo">
                       <Link
                         to={`/apply-now/${params.id}`}

@@ -93,12 +93,19 @@ const ApplyNow = () => {
           {formData.error === true ? (
             <small className="text-danger">Something went wrong!</small>
           ) : formData.error === false ? (
-            <small className="text-success">
-              You created {formData.name} category
-            </small>
+            <small className="text-success">Your application went well</small>
           ) : (
             ""
           )}
+        </div>
+        <div className="mt-3">
+          <button
+            className="btn btn-info w-100"
+            type="submit"
+            onClick={history.goBack}
+          >
+            Go back
+          </button>
         </div>
         <form onSubmit={handleSubmit} className="mt-5">
           <div className="row">
@@ -106,7 +113,7 @@ const ApplyNow = () => {
             <input
               type="text"
               id="subject"
-              placeholder="Name of category"
+              placeholder="Subject"
               value={formData.subject}
               className="form-control"
               required
@@ -125,7 +132,7 @@ const ApplyNow = () => {
             </label>
             <textarea
               name="message"
-              placeholder="Type category message"
+              placeholder="Type message"
               className="form-control"
               value={formData.message}
               required
