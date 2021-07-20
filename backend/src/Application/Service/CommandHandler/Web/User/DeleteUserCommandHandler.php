@@ -36,7 +36,7 @@ final class DeleteUserCommandHandler
         } else {
             if ($role === User::ROLE_USER) {
                 foreach ($user->getPortfolios()->getValues() as $portfolio) {
-                    $portfolio->deletet();
+                    $portfolio->delete();
                     $this->portfolioWriteRepository->save($portfolio);
                 }
             }
