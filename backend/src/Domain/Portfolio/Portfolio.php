@@ -74,6 +74,9 @@ class Portfolio implements EntityInterface
      */
     private array $hiredBy;
 
+    /** @ORM\Column(type="float", nullable=false, name="average_score" */
+    private float $averageScore;
+
     public function __construct(
         UuidInterface $id,
         Category $category,
@@ -99,6 +102,7 @@ class Portfolio implements EntityInterface
         $this->comments = new ArrayCollection();
         $this->experiences = new ArrayCollection();
         $this->hiredBy = [];
+        $this->averageScore = 0;
     }
 
 
@@ -266,5 +270,15 @@ class Portfolio implements EntityInterface
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
+    }
+
+    public function getAverageScore(): float|int
+    {
+        return $this->averageScore;
+    }
+
+    public function setAverageScore(float|int $averageScore): void
+    {
+        $this->averageScore = $averageScore;
     }
 }

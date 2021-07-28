@@ -256,7 +256,7 @@ const Header = () => {
                         <li>
                           <Link to="/add-job">
                             <button className="btn btn-primary" type="button">
-                              Add job
+                              Add job ad
                             </button>
                           </Link>
                         </li>

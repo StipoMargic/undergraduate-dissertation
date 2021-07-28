@@ -63,6 +63,9 @@ class PortfolioReadModel implements ApiModel
     /** @Attribute */
     public array $comments;
 
+    /** @Attribute */
+    public float $averageScore;
+
     public function __construct(
         string $id,
         string $user,
@@ -79,7 +82,8 @@ class PortfolioReadModel implements ApiModel
         ?string $updatedAt,
         ?string $deletedAt,
         array $hiredBy,
-        array $comments
+        array $comments,
+        float $averageScore
     ) {
         $this->id = $id;
         $this->user = $user;
@@ -97,11 +101,13 @@ class PortfolioReadModel implements ApiModel
         $this->deletedAt = $deletedAt;
         $this->hiredBy = $hiredBy;
         $this->comments = $comments;
+        $this->averageScore = $averageScore;
     }
 
 
     public static function fromEntity(Portfolio $portfolio): self
     {
+        $sum = 0;
         $comments = array_map(static function (Comment $comment) {
             return [
                 'user' => $comment->getUser()->getUsername(),
@@ -110,6 +116,12 @@ class PortfolioReadModel implements ApiModel
                 'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
             ];
         }, $portfolio->getComments()->getValues());
+
+        foreach ($portfolio->getComments()->getValues() as $comment) {
+            $sum += $comment->getScore();
+        }
+
+
 
         return new self(
             (string) $portfolio->getId(),
@@ -127,7 +139,8 @@ class PortfolioReadModel implements ApiModel
             null === $portfolio->getUpdatedAt() ? null : $portfolio->getUpdatedAt()->format('Y-m-d H:i:s'),
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
             $portfolio->getHiredBy(),
-            $comments
+            $comments,
+            $sum
         );
     }
 }

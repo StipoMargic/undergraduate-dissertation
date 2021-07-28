@@ -3,7 +3,6 @@ export const initialPortfolioData = {
   advancedKnowledge: null,
   advancedKnowledgeBulletins: null,
   skills: null,
-  salary: null,
   disabilityPercent: 0,
   rate: null,
   hour: null,

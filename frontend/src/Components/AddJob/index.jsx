@@ -235,27 +235,12 @@ const AddJob = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-5">
-            <label
-              className="mb-0 text-primary text-lg-left font-weight-bold"
-              htmlFor="salary"
-            >
-              Salary:
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              value={portfolioData.salary}
-              id="salary"
-              onChange={handlePortfolioChange("salary")}
-            />
-          </div>
           <div className="col">
             <label
               className="mb-0 text-primary text-lg-left font-weight-bold"
               htmlFor="rate"
             >
-              Rate:
+              Hourly rate:
             </label>
             <input
               type="text"
@@ -264,6 +249,9 @@ const AddJob = () => {
               id="rate"
               onChange={handlePortfolioChange("rate")}
             />
+            <small className="small text-muted">
+              Enter how much you charge for hour of your time, in dollars.
+            </small>
           </div>
           <div className="col">
             <label
@@ -279,6 +267,9 @@ const AddJob = () => {
               id="hour"
               onChange={handlePortfolioChange("hour")}
             />
+            <small className="small text-muted">
+              Enter how much time you are free for freelancer job.
+            </small>
           </div>
         </div>
         <div className="row">
