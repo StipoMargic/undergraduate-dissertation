@@ -290,7 +290,7 @@ class Portfolio implements EntityInterface
         return $averageScore;
     }
 
-    public function setAverageScore()
+    public function setAverageScore(): void
     {
         $this->averageScore = $this->calculateAverageScore();
     }

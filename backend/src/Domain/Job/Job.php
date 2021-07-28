@@ -74,6 +74,9 @@ class Job implements EntityInterface
      */
     private array $applied;
 
+    /** @ORM\Column(type="float", nullable=false, name="average_score") */
+    private float $averageScore;
+
     /** @ORM\Column(name="created_at", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $createdAt;
 
@@ -117,6 +120,7 @@ class Job implements EntityInterface
         $this->jobPositionName = $jobPositionName;
         $this->comments = new ArrayCollection();
         $this->applied = [];
+        $this->averageScore = 0;
     }
 
     public function getId(): UuidInterface
@@ -318,5 +322,28 @@ class Job implements EntityInterface
         $this->jobPositionName = $jobPositionName;
         $this->jobDutiesBulletins = $jobDutiesBulletins;
         $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function calculateAverageScore(): float|int
+    {
+        $sum = 0;
+
+        foreach ($this->getComments()->getValues() as $comment) {
+            $sum += $comment->getScore();
+        }
+        $numbersOOfComments = count($this->getComments()->getValues());
+
+        if ($numbersOOfComments > 0) {
+            $averageScore = $sum / $numbersOOfComments;
+        } else {
+            $averageScore = 0;
+        }
+
+        return $averageScore;
+    }
+
+    public function setAverageScore(): void
+    {
+        $this->averageScore = $this->calculateAverageScore();
     }
 }

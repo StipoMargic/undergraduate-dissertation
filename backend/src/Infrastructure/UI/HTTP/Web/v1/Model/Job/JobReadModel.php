@@ -74,6 +74,9 @@ class JobReadModel implements ApiModel
     /** @Attribute */
     public array $comments;
 
+    /** @Attribute */
+    public float $averageScore;
+
     public function __construct(
         string $id,
         string $name,
@@ -95,7 +98,8 @@ class JobReadModel implements ApiModel
         ?string $deletedAt,
         string $jobDutiesBulletins,
         array $applied,
-        array $comments
+        array $comments,
+        float $averageScore
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -118,6 +122,7 @@ class JobReadModel implements ApiModel
         $this->deletedAt = $deletedAt;
         $this->applied = $applied;
         $this->comments = $comments;
+        $this->averageScore = $averageScore;
     }
 
     public static function fromEntity(Job $job): self
@@ -152,7 +157,8 @@ class JobReadModel implements ApiModel
             null === $job->getDeletedAt() ? null : $job->getDeletedAt()->format('Y-m-d H:i:s'),
             $job->getJobDutiesBulletins(),
             $job->getApplied(),
-            $comments
+            $comments,
+            $job->calculateAverageScore()
         );
     }
 }
