@@ -20,7 +20,7 @@ final class ListJobController
         QueryBus $queryBus,
         ResourceResponder $responder
     ): ResourceCollectionResponse {
-        $request->allowSorting(['activeTill', 'salary', 'hours', 'disableFriendly', 'createdAt']);
+        $request->allowSorting(['activeTill', 'salary', 'hours', 'disableFriendly', 'createdAt', 'averageScore']);
         $request->allowFilters(['name']);
         $pagination = $request->getPagination();
 

@@ -198,8 +198,12 @@ const JobDetail = () => {
   const renderComments = () => {
     return (
       <div className="container mt-5">
-        {job && (
+        {job && job.data.attributes.comments.length > 0 && (
           <div>
+            <small className="small text-muted">
+              Average score is {job.data.attributes.averageScore.toFixed(2)}
+              /5
+            </small>
             {job.data.attributes.comments.map((comment) => {
               return (
                 <div className="my-3">

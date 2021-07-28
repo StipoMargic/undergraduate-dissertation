@@ -40,4 +40,12 @@ export const jobFilterOptions = [
     value: "disableFriendly",
     text: "Disabled unfriendly",
   },
+  {
+    value: "-averageScore",
+    text: "Highest average score first",
+  },
+  {
+    value: "averageScore",
+    text: "Lowest average score first",
+  },
 ];
