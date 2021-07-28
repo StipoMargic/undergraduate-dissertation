@@ -22,7 +22,10 @@ const AllUsers = () => {
       .get(
         `http://apizavrsni.udruga-liberato.hr/api/v1/users?filter[name]=${searchName}`
       )
-      .then((res) => setUsers([...res.data.data]))
+      .then((res) => {
+        setUsers([...res.data.data]);
+        setPagination({ start: 0, end: 9 });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -39,7 +42,9 @@ const AllUsers = () => {
 
     axios
       .get(`http://apizavrsni.udruga-liberato.hr/api/v1/users`)
-      .then((res) => setUsers([...res.data.data]))
+      .then((res) => {
+        setUsers([...res.data.data]);
+      })
       .catch((err) => console.log(err));
   };
 
