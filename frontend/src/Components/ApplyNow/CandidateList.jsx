@@ -1,19 +1,50 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router";
+import axios from "axios";
 import { GlobalContext } from "../../Context/global";
+import { makeDeclineData } from "./makeDeclineData";
+import { makeApproveData } from "./makeApproveData";
 
 const CandidateList = () => {
-  const { role, jobs, username } = useContext(GlobalContext);
+  const { role, jobs, username, token } = useContext(GlobalContext);
   const history = useHistory();
 
   const jobsArray = jobs.filter((j) => j.attributes.name === username);
 
-  const handleDecline = () => {
-    console.log("decline");
+  const handleDecline = (jobId, applicantName) => (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `http://apizavrsni.udruga-liberato-hr/api/v1/job/${jobId}/decline`,
+        makeDeclineData(jobId, applicantName),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => console.log("Ok"))
+      .catch((err) => console.log(err));
   };
 
-  const handleApprove = () => {
-    console.log("approve");
+  const handleApprove = (jobId, applicantName) => (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `http://apizavrsni.udruga-liberato-hr/api/v1/job/${jobId}/approve`,
+        makeApproveData(jobId, applicantName),
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => console.log("Ok"))
+      .catch((err) => console.log(err));
   };
 
   const renderApplied = () => {
@@ -25,31 +56,33 @@ const CandidateList = () => {
             if (job.attributes.applied.length > 0) {
               return job.attributes.applied.map((applicant) => {
                 return (
-                  <p className="mr-5">
-                    Freelancer: {applicant} applied for{" "}
-                    {job.attributes.jobPositionName}{" "}
-                    <button
-                      className="btn btn-info mL-5"
-                      type="submit"
-                      onClick={() => history.push(`/jobs/${job.id}`)}
-                    >
-                      View job ad
-                    </button>
-                    <button
-                      className="btn btn-danger ml-1"
-                      type="submit"
-                      onClick={handleDecline}
-                    >
-                      Decline
-                    </button>
-                    <button
-                      className="btn btn-success ml-1"
-                      type="submit"
-                      onClick={handleApprove}
-                    >
-                      Approve
-                    </button>
-                  </p>
+                  <div className="row" key={job.id}>
+                    <p className="pl-5">
+                      Freelancer: {applicant} applied for{" "}
+                      {job.attributes.jobPositionName}{" "}
+                      <button
+                        className="btn btn-info mr-1"
+                        type="submit"
+                        onClick={() => history.push(`/jobs/${job.id}`)}
+                      >
+                        View job ad
+                      </button>
+                      <button
+                        className="btn btn-danger mr-1"
+                        type="submit"
+                        onClick={() => handleDecline(job.id, applicant)}
+                      >
+                        Decline
+                      </button>
+                      <button
+                        className="btn btn-success mr-1"
+                        type="submit"
+                        onClick={() => handleApprove(job.id, applicant)}
+                      >
+                        Approve
+                      </button>
+                    </p>
+                  </div>
                 );
               });
             }

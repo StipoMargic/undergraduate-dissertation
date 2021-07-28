@@ -77,6 +77,12 @@ class Job implements EntityInterface
     /** @ORM\Column(type="float", nullable=false, name="average_score") */
     private float $averageScore;
 
+    /** @ORM\Column(type="array", nullable=true, name="approved") */
+    public array $approved;
+
+    /** @ORM\Column(type="array", nullable=true, name="declined") */
+    public array $declined;
+
     /** @ORM\Column(name="created_at", type="datetime_immutable", nullable=false) */
     private \DateTimeImmutable $createdAt;
 
@@ -121,6 +127,8 @@ class Job implements EntityInterface
         $this->comments = new ArrayCollection();
         $this->applied = [];
         $this->averageScore = 0;
+        $this->approved = [];
+        $this->declined = [];
     }
 
     public function getId(): UuidInterface
@@ -345,5 +353,43 @@ class Job implements EntityInterface
     public function setAverageScore(): void
     {
         $this->averageScore = $this->calculateAverageScore();
+    }
+
+    public function getApproved(): array
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(array $approved): void
+    {
+        $this->approved = $approved;
+    }
+
+    public function getDeclined(): array
+    {
+        return $this->declined;
+    }
+
+    public function setDeclined(array $declined): void
+    {
+        $this->declined = $declined;
+    }
+
+    public function approveApplication($applicantName): void
+    {
+        $index = array_search($this->applied, $applicantName);
+
+        array_splice($this->applied, 1, $index);
+
+        $this->approved[] = $applicantName;
+    }
+
+    public function declineApplication(string $applicantName): void
+    {
+        $index = array_search($this->applied, $applicantName);
+
+        array_splice($this->applied, 1, $index);
+
+        $this->declined[] = $applicantName;
     }
 }

@@ -72,6 +72,12 @@ class JobReadModel implements ApiModel
     public array $applied;
 
     /** @Attribute */
+    public array $approved;
+
+    /** @Attribute */
+    public array $declined;
+
+    /** @Attribute */
     public array $comments;
 
     /** @Attribute */
@@ -99,7 +105,9 @@ class JobReadModel implements ApiModel
         string $jobDutiesBulletins,
         array $applied,
         array $comments,
-        float $averageScore
+        float $averageScore,
+        array $approved,
+        array $declined
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -123,6 +131,8 @@ class JobReadModel implements ApiModel
         $this->applied = $applied;
         $this->comments = $comments;
         $this->averageScore = $averageScore;
+        $this->approved = $approved;
+        $this->declined = $declined;
     }
 
     public static function fromEntity(Job $job): self
@@ -158,7 +168,9 @@ class JobReadModel implements ApiModel
             $job->getJobDutiesBulletins(),
             $job->getApplied(),
             $comments,
-            $job->calculateAverageScore()
+            $job->calculateAverageScore(),
+            $job->getApplied(),
+            $job->getDeclined()
         );
     }
 }

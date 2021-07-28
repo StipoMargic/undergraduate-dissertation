@@ -42,5 +42,4 @@ class JobApplicationModel implements ApiModel
         $this->jobId = $jobId;
         $this->resume = $resume;
     }
-
 }
