@@ -379,7 +379,7 @@ class Job implements EntityInterface
     {
         $index = array_search($applicantName, $this->applied);
 
-        array_splice($this->applied, 1, $index);
+        $this->applied = array_splice($this->applied, 1, $index);
 
         $this->approved[] = $applicantName;
     }
