@@ -5,11 +5,16 @@ import heroPicture from "../../Assets/images/a-2.png";
 
 const HomepageHero = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState("");
   const history = useHistory();
-
   const handleSearch = (e) => {
     e.preventDefault();
-    history.push(`/search/${searchTerm}`);
+
+    if (searchTerm === "") {
+      setError("Can't be empty!");
+    } else {
+      history.push(`/search/${searchTerm}`);
+    }
   };
 
   return (
@@ -43,13 +48,18 @@ const HomepageHero = () => {
                       placeholder="Enter company name..."
                     />
                   </div>
+                  {error !== "" && (
+                    <small className="small text-danger mb-2 ml-2">
+                      {error}
+                    </small>
+                  )}
                 </div>
 
                 <div className="col-lg-2 col-md-3 col-sm-12 p-0">
                   <button
                     type="submit"
                     onClick={(e) => handleSearch(e)}
-                    className="btn btn-outline-primary rounded-sm dark-3 full-width ml-4"
+                    className="btn btn-outline-primary ml-4"
                   >
                     Search
                   </button>
@@ -70,5 +80,4 @@ const HomepageHero = () => {
     </div>
   );
 };
-
 export default HomepageHero;
