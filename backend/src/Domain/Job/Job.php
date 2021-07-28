@@ -377,19 +377,11 @@ class Job implements EntityInterface
 
     public function approveApplication($applicantName): void
     {
-        if (($key = array_search($applicantName, $this->applied, true)) !== false) {
-            unset($this->applied[$key]);
-        }
-
-        array_push($this->approved, $applicantName);
+         array_push($this->approved, $applicantName);
     }
 
     public function declineApplication(string $applicantName): void
     {
-        $index = array_search($applicantName, $this->applied);
-
-        array_splice($this->applied, 1, $index);
-
         $this->declined[] = $applicantName;
     }
 }
