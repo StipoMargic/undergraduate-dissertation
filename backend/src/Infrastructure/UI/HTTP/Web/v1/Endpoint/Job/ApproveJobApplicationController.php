@@ -5,6 +5,7 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Endpoint\Job;
 
 
 use App\Application\Command\Web\Job\JobApplicationCommand;
+use App\Application\Command\Web\Job\JobApproveCommand;
 use App\Application\Job\JobRepository\JobReadRepository;
 use App\Application\Service\Bus\CommandBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
@@ -28,7 +29,7 @@ final class ApproveJobApplicationController
     ): ResourceUpdatedResponse {
         $createModel = $resourceHandler->getModelFromRequest($request, JobApproveModel::class);
 
-        $command = new JobApplicationCommand($createModel->id, $createModel->jobId, $createModel->applicantName);
+        $command = new JobApproveCommand($createModel->id, $createModel->jobId, $createModel->applicantName);
         $commandBus->handleCommand($command);
 
         $job = $repository->get(Uuid::fromString($createModel->jobId));
