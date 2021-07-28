@@ -359,9 +359,6 @@ const FreelancerDetail = () => {
                     </span>
                   </li>
                   <li>
-                    Salary:<span>${portfolio.data.attributes.salary}</span>
-                  </li>
-                  <li>
                     Rate:
                     <span>${portfolio.data.attributes.rate} hourly</span>
                   </li>

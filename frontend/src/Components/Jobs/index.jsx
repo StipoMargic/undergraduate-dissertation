@@ -10,6 +10,7 @@ import { jobFilterOptions } from "./jobFilterOptions";
 const initialPagination = {
   start: 0,
   end: 9,
+  page: 1,
 };
 
 const Jobs = () => {
@@ -22,6 +23,7 @@ const Jobs = () => {
       ...prev,
       start: prev.start + 9,
       end: prev.end + 9,
+      page: prev.page + 1,
     }));
   };
 
@@ -30,6 +32,7 @@ const Jobs = () => {
       ...prev,
       start: prev.start - 9,
       end: prev.end - 9,
+      page: prev.page - 1,
     }));
   };
 
@@ -67,25 +70,31 @@ const Jobs = () => {
             ))}
           </div>
 
-          {pagination.start > 0 && (
-            <button
-              type="button"
-              onClick={handlePrev}
-              className="btn btn-outline-info btn-lg mr-3"
-            >
-              Previous
-            </button>
-          )}
+          <div className="row justify-content-center mb-2">
+            {pagination.start > 0 && (
+              <button
+                type="button"
+                onClick={handlePrev}
+                className="btn btn-outline-info btn-lg mr-3"
+              >
+                Previous
+              </button>
+            )}
 
-          {jobs.length > pagination.end && (
-            <button
-              type="button"
-              onClick={handleNext}
-              className="btn btn-outline-primary btn-lg"
-            >
-              Next
-            </button>
-          )}
+            {jobs.length > pagination.end && (
+              <button
+                type="button"
+                onClick={handleNext}
+                className="btn btn-outline-primary btn-lg"
+              >
+                Next
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          You are on page {pagination.page} out of{" "}
+          {parseInt(activeJobs.length / 9, 10)}.
         </div>
       </section>
     </>

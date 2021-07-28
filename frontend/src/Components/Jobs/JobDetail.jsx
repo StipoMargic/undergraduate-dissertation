@@ -122,8 +122,8 @@ const JobDetail = () => {
                       </li>
                       <li>
                         <span>
-                          <i className="ti-credit-card" />
-                          {job.data.attributes.salary}
+                          <i className="ti-credit-card" />$
+                          {job.data.attributes.salary} per month
                         </span>
                       </li>
                       <li>
@@ -404,7 +404,8 @@ const JobDetail = () => {
                       Location:<span>{job.data.attributes.location}</span>
                     </li>
                     <li>
-                      Salary:<span>{job.data.attributes.salary}</span>
+                      Salary:
+                      <span>${job.data.attributes.salary} per month</span>
                     </li>
                     <li>
                       Disabled Friendly:
@@ -417,7 +418,8 @@ const JobDetail = () => {
                       </span>
                     </li>
                     <li>
-                      Hours:<span>{job.data.attributes.hours}/week</span>
+                      Working hours:
+                      <span>{job.data.attributes.hours} per month</span>
                     </li>
                   </ul>
                 </div>

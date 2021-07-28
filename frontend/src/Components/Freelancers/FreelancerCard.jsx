@@ -8,11 +8,11 @@ const FreelancerCard = ({ id, portfolio }) => {
   return (
     <div className="col-lg-4 col-md-6 col-sm-12">
       <div className="_freelacers_120 large shadow_0">
-        <div className="_freelancers_rate">{portfolio.rate} hourly</div>
+        <div className="_freelancers_rate">${portfolio.rate} per hour</div>
         <div className="_freelacers_120_thumb">
           <Link to={`/freelancers/${id}`}>
             <img
-              src={`http://apizavrsni.udruga-liberato.hr/${portfolio.avatar}`}
+              src={`http://apizavrsni.udruga-liberato.hr${portfolio.avatar}`}
               className="img-fluid circle"
               alt=""
             />

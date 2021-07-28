@@ -8,10 +8,12 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
 import { useHistory } from "react-router";
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import { makeRegistrationData } from "./makeRegistrationData";
 import { GlobalContext } from "../../Context/global";
 
 registerPlugin(
+  FilePondPluginFileValidateType,
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview,
   FilePondPluginFileEncode
@@ -243,6 +245,7 @@ const Register = () => {
           </div>
 
           <FilePond
+            acceptedFileTypes={["image/png"]}
             onaddfile={(err, item) => {
               if (err) {
                 return;
@@ -253,7 +256,7 @@ const Register = () => {
             allowMultiple={false}
             labelIdle='Drag & Drop your avatar or <span class="filepond--label-action">Browse</span>'
           />
-
+          <small className="small">Only .png images are allowed!</small>
           <div className="row justify-content-center">
             <button
               onClick={handleRegistration}

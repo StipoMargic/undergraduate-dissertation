@@ -10,6 +10,7 @@ import { freelancerFilterOptions } from "./freelancerFilterOptions";
 const initialPagination = {
   start: 0,
   end: 9,
+  page: 1,
 };
 
 const Freelancers = () => {
@@ -27,6 +28,7 @@ const Freelancers = () => {
       ...prev,
       start: prev.start + 9,
       end: prev.end + 9,
+      page: prev.page + 1,
     }));
   };
 
@@ -35,6 +37,7 @@ const Freelancers = () => {
       ...prev,
       start: prev.start - 9,
       end: prev.end - 9,
+      page: prev.page - 1,
     }));
   };
 
@@ -98,6 +101,10 @@ const Freelancers = () => {
                 Next
               </button>
             )}
+          </div>
+          <div className="row justify-content-center">
+            You are on page {pagination.page} out of{" "}
+            {parseInt(activePortfolios.length / 9, 10)}.
           </div>
         </div>
       </section>
