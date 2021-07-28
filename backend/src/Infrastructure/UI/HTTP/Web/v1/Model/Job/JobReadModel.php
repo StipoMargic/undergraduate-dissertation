@@ -169,7 +169,7 @@ class JobReadModel implements ApiModel
             $job->getApplied(),
             $comments,
             $job->calculateAverageScore(),
-            $job->getApplied(),
+            $job->getApproved(),
             $job->getDeclined()
         );
     }

@@ -25,7 +25,5 @@ class JobApproveCommandHandler
 
         $job->approveApplication($command->applicantName);
         $this->jobWriteRepository->save($job);
-        $job->removeFromApplied($command->applicantName);
-        $this->jobWriteRepository->save($job);
     }
 }
