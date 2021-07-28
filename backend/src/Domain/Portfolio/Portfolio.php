@@ -51,9 +51,6 @@ class Portfolio implements EntityInterface
     /** @ORM\Column(name="skills", type="string", nullable=false) */
     private string $skills;
 
-    /** @ORM\Column(name="salary", type="string", nullable=false) */
-    private string $salary;
-
     /** @ORM\Column(name="disability_percent", type="integer", nullable=false) */
     private int $disabilityPercent;
 
@@ -83,7 +80,6 @@ class Portfolio implements EntityInterface
         string $advancedKnowledge,
         string $advancedKnowledgeBulletins,
         string $skills,
-        string $salary,
         int $disabilityPercent,
         string $rate,
         string $hours,
@@ -93,7 +89,6 @@ class Portfolio implements EntityInterface
         $this->advancedKnowledge = $advancedKnowledge;
         $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
         $this->skills = $skills;
-        $this->salary = $salary;
         $this->disabilityPercent = $disabilityPercent;
         $this->rate = $rate;
         $this->hours = $hours;
@@ -165,16 +160,6 @@ class Portfolio implements EntityInterface
     public function setSkills(string $skills): void
     {
         $this->skills = $skills;
-    }
-
-    public function getSalary(): string
-    {
-        return $this->salary;
-    }
-
-    public function setSalary(string $salary): void
-    {
-        $this->salary = $salary;
     }
 
     public function getDisabilityPercent(): int

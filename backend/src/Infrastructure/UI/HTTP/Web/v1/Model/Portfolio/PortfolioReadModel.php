@@ -34,9 +34,6 @@ class PortfolioReadModel implements ApiModel
     public string $skills;
 
     /** @Attribute */
-    public string $salary;
-
-    /** @Attribute */
     public int $disabilityPercent;
 
     /** @Attribute */
@@ -73,7 +70,6 @@ class PortfolioReadModel implements ApiModel
         string $advancedKnowledge,
         string $advancedKnowledgeBulletins,
         string $skills,
-        string $salary,
         int $disabilityPercent,
         string $rate,
         string $hour,
@@ -91,7 +87,6 @@ class PortfolioReadModel implements ApiModel
         $this->advancedKnowledge = $advancedKnowledge;
         $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
         $this->skills = $skills;
-        $this->salary = $salary;
         $this->disabilityPercent = $disabilityPercent;
         $this->rate = $rate;
         $this->hour = $hour;
@@ -123,7 +118,6 @@ class PortfolioReadModel implements ApiModel
             $portfolio->getAdvancedKnowledge(),
             $portfolio->getAdvancedKnowledgeBulletins(),
             $portfolio->getSkills(),
-            $portfolio->getSalary(),
             $portfolio->getDisabilityPercent(),
             $portfolio->getRate(),
             $portfolio->getHours(),

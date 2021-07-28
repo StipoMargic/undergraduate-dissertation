@@ -26,8 +26,13 @@ final class CreatePortfolioCommandHandler
 
         $portfolio = new Portfolio(
             Uuid::fromString($command->id),
-            $category, $command->advancedKnowledge, $command->advancedKnowledgeBulletins, $command->skills,
-            $command->salary, $command->disabilityPercent, $command->rate, $command->hour
+            $category,
+            $command->advancedKnowledge,
+            $command->advancedKnowledgeBulletins,
+            $command->skills,
+            $command->disabilityPercent,
+            $command->rate,
+            $command->hour
         );
 
         $this->addQualificationsToPortfolio($command->qualifications, $portfolio);

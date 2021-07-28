@@ -14,7 +14,6 @@ class CreatePortfolioCommand implements CommandInterface
         public string $advancedKnowledge,
         public string $advancedKnowledgeBulletins,
         public string $skills,
-        public string $salary,
         public int $disabilityPercent,
         public string $rate,
         public string $hour,

@@ -40,7 +40,6 @@ class PortfolioFixtures extends Fixture implements DependentFixtureInterface
                 . $this->faker->text(45) . ", " . $this->faker->text(45),
                 $this->faker->text(5) . ", " . $this->faker->text(5) . ", " . $this->faker->text(5) . ", "
                 . $this->faker->text(5) . ", " . $this->faker->text(5),
-                $salary,
                 random_int(0, 100),
                 (string) $rate,
                 (string) $hours

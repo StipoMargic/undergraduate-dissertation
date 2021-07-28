@@ -28,9 +28,6 @@ class PortfolioWriteModel implements ApiModel
     public string $skills;
 
     /** @Attribute */
-    public string $salary;
-
-    /** @Attribute */
     public int $disabilityPercent;
 
     /** @Attribute */
@@ -51,7 +48,6 @@ class PortfolioWriteModel implements ApiModel
         string $advancedKnowledge,
         string $advancedKnowledgeBulletins,
         string $skills,
-        string $salary,
         int $disabilityPercent,
         string $rate,
         string $hour,
@@ -63,7 +59,6 @@ class PortfolioWriteModel implements ApiModel
         $this->advancedKnowledge = $advancedKnowledge;
         $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
         $this->skills = $skills;
-        $this->salary = $salary;
         $this->disabilityPercent = $disabilityPercent;
         $this->rate = $rate;
         $this->hour = $hour;
