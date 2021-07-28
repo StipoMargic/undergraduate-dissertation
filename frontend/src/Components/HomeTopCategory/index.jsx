@@ -10,7 +10,7 @@ const HomeTopCategory = () => {
 
   return (
     <>
-      {role !== "ROLE_EMPLOYER" && (
+      {role !== "ROLE_USER" && (
         <section className="gray-light p-5">
           <div className="container">
             <div className="row justify-content-center">
