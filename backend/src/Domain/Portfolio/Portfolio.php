@@ -272,13 +272,20 @@ class Portfolio implements EntityInterface
         $this->comments->add($comment);
     }
 
-    public function getAverageScore(): float|int
+    public function calculateAverageScore(): float|int
     {
-        return $this->averageScore;
-    }
+        $sum = 0;
 
-    public function setAverageScore(float|int $averageScore): void
-    {
-        $this->averageScore = $averageScore;
+        foreach ($this->getComments()->getValues() as $comment) {
+            $sum += $comment->getScore();
+        }
+        $numbersOOfComments = count($this->getComments()->getValues());
+
+        if ($numbersOOfComments > 0) {
+            $averageScore = $sum / $numbersOOfComments;
+        } else {
+            $averageScore = 0;
+        }
+        return $averageScore;
     }
 }

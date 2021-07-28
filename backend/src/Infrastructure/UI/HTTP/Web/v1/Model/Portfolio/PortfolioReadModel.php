@@ -107,7 +107,6 @@ class PortfolioReadModel implements ApiModel
 
     public static function fromEntity(Portfolio $portfolio): self
     {
-        $sum = 0;
         $comments = array_map(static function (Comment $comment) {
             return [
                 'user' => $comment->getUser()->getUsername(),
@@ -116,18 +115,6 @@ class PortfolioReadModel implements ApiModel
                 'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
             ];
         }, $portfolio->getComments()->getValues());
-
-        foreach ($portfolio->getComments()->getValues() as $comment) {
-            $sum += $comment->getScore();
-        }
-        $numbersOOfComments = count($portfolio->getComments()->getValues());
-
-        if ($numbersOOfComments > 0) {
-            $averageScore = $sum / $numbersOOfComments;
-        } else {
-            $averageScore = 0;
-        }
-
 
         return new self(
             (string) $portfolio->getId(),
@@ -146,7 +133,7 @@ class PortfolioReadModel implements ApiModel
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
             $portfolio->getHiredBy(),
             $comments,
-            $averageScore
+            $portfolio->calculateAverageScore()
         );
     }
 }
