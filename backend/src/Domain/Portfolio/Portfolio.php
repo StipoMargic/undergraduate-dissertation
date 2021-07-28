@@ -286,6 +286,12 @@ class Portfolio implements EntityInterface
         } else {
             $averageScore = 0;
         }
+
         return $averageScore;
+    }
+
+    public function setAverageScore()
+    {
+        $this->averageScore = $this->calculateAverageScore();
     }
 }

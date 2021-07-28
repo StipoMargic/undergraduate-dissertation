@@ -44,6 +44,7 @@ final class CreateCommentCommandHandler
 
             $this->commentWriteRepository->save($comment);
             $portfolio->addComment($comment);
+            $portfolio->setAverageScore();
         } else {
 
             $job = $this->jobReadRepository->get(Uuid::fromString($command->job));
