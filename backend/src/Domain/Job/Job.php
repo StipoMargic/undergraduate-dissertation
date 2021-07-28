@@ -377,7 +377,7 @@ class Job implements EntityInterface
 
     public function approveApplication($applicantName): void
     {
-        $index = array_search($this->applied, $applicantName);
+        $index = array_search($applicantName, $this->applied);
 
         array_splice($this->applied, 1, $index);
 
@@ -386,7 +386,7 @@ class Job implements EntityInterface
 
     public function declineApplication(string $applicantName): void
     {
-        $index = array_search($this->applied, $applicantName);
+        $index = array_search($applicantName, $this->applied);
 
         array_splice($this->applied, 1, $index);
 
