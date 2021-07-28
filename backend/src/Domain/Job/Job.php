@@ -381,7 +381,7 @@ class Job implements EntityInterface
             unset($this->applied[$key]);
         }
 
-        $this->approved[] = $applicantName;
+        array_push($this->approved, $applicantName);
     }
 
     public function declineApplication(string $applicantName): void
