@@ -35,9 +35,6 @@ const AboutUs = () => {
                 <li>Nam libero tempore, cum soluta nobis est eligendi</li>
                 <li>At vero eos et accusamus et iusto odio dignissimos</li>
               </ul>
-              <a href="/" className="btn btn-primary btn-lg">
-                Learn More
-              </a>
             </div>
           </div>
         </div>

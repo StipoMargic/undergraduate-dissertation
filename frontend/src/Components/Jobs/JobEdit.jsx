@@ -71,6 +71,7 @@ const JobEdit = () => {
     }
   };
 
+  console.log(newJobInfo.attributes.typeOfPosition === "Full time");
   const renderJobCreation = () => {
     return (
       <div className="container py-5">
@@ -257,7 +258,9 @@ const JobEdit = () => {
                     id="full-time"
                     value="Full time"
                     onChange={handleJobChange("typeOfPosition")}
-                    checked
+                    checked={
+                      newJobInfo.attributes.typeOfPosition === "Full time"
+                    }
                   />
                   <label className="form-check-label" htmlFor="full-time">
                     Full time
@@ -269,6 +272,9 @@ const JobEdit = () => {
                     type="radio"
                     id="part-time"
                     value="Part time"
+                    checked={
+                      newJobInfo.attributes.typeOfPosition === "Part time"
+                    }
                     onChange={handleJobChange("typeOfPosition")}
                   />
                   <label className="form-check-label" htmlFor="part-time">
@@ -281,6 +287,7 @@ const JobEdit = () => {
                     type="radio"
                     id="remote"
                     value="Remote"
+                    checked={newJobInfo.attributes.typeOfPosition === "Remote"}
                     onChange={handleJobChange("typeOfPosition")}
                   />
                   <label className="form-check-label" htmlFor="remote">

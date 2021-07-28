@@ -594,6 +594,9 @@ const AddJob = () => {
                 onChange={handleJobChange("salary")}
                 value={jobData.salary}
               />
+              <small className="form-text text-muted">
+                Please enter monthly salary in dollars, without sign!
+              </small>
             </div>
             <div className="col">
               <label
@@ -612,6 +615,9 @@ const AddJob = () => {
                 onChange={handleJobChange("hours")}
                 value={jobData.hours}
               />
+              <small className="form-text text-muted">
+                Add number of working hours per month!
+              </small>
             </div>
           </div>
           <fieldset className="form-group pt-3">
@@ -624,36 +630,39 @@ const AddJob = () => {
                   <input
                     className="form-check-input"
                     type="radio"
+                    id="full-time"
+                    value="Full time"
                     onChange={handleJobChange("typeOfPosition")}
-                    id="remote"
-                    value="Remote"
+                    checked={jobData.typeOfPosition === "Full time"}
                   />
-                  <label className="form-check-label" htmlFor="remote">
-                    Remote
+                  <label className="form-check-label" htmlFor="full-time">
+                    Full time
                   </label>
                 </div>
                 <div className="form-check">
                   <input
                     className="form-check-input"
                     type="radio"
-                    id="partTime"
-                    onChange={handleJobChange("typeOfPosition")}
+                    id="part-time"
                     value="Part time"
+                    checked={jobData.typeOfPosition === "Part time"}
+                    onChange={handleJobChange("typeOfPosition")}
                   />
-                  <label className="form-check-label" htmlFor="partTime">
+                  <label className="form-check-label" htmlFor="part-time">
                     Part time
                   </label>
                 </div>
-                <div className="form-check disabled">
+                <div className="form-check">
                   <input
                     className="form-check-input"
                     type="radio"
-                    id="fullTime"
-                    value="Full time"
+                    id="remote"
+                    value="Remote"
+                    checked={jobData.typeOfPosition === "Remote"}
                     onChange={handleJobChange("typeOfPosition")}
                   />
-                  <label className="form-check-label" htmlFor="fullTime">
-                    Full time
+                  <label className="form-check-label" htmlFor="remote">
+                    Remote
                   </label>
                 </div>
               </div>
