@@ -18,7 +18,7 @@ class DoctrineJobWriteRepository extends ServiceEntityRepository implements JobW
 
     public function save(Job $job): void
     {
-        $this->_em->merge($job);
+        $this->_em->persist($job);
         $this->_em->flush();
     }
 }

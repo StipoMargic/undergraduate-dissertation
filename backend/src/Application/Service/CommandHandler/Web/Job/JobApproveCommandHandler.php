@@ -24,6 +24,7 @@ class JobApproveCommandHandler
         $job = $this->jobReadRepository->get(Uuid::fromString($command->jobId));
 
         $job->approveApplication($command->applicantName);
+        $this->jobWriteRepository->save($job);
         $job->removeFromApplied($command->applicantName);
         $this->jobWriteRepository->save($job);
     }
