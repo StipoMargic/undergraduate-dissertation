@@ -5,8 +5,8 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Model\Category;
 
 use App\Domain\Category\Category;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
-use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
+use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
 
 /** @ResourceType(type="category") */
 class CategoryUpdateModel implements ApiModel

@@ -16,7 +16,7 @@ const CandidateList = () => {
 
     axios
       .post(
-        `http://apizavrsni.udruga-liberato-hr/api/v1/job/${jobId}/decline`,
+        `http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}/decline`,
         makeDeclineData(jobId, applicantName),
         {
           headers: {
@@ -34,7 +34,7 @@ const CandidateList = () => {
 
     axios
       .post(
-        `http://apizavrsni.udruga-liberato-hr/api/v1/job/${jobId}/approve`,
+        `http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}/approve`,
         makeApproveData(jobId, applicantName),
         {
           headers: {
@@ -70,14 +70,14 @@ const CandidateList = () => {
                       <button
                         className="btn btn-danger mr-1"
                         type="submit"
-                        onClick={() => handleDecline(job.id, applicant)}
+                        onClick={handleDecline(job.id, applicant)}
                       >
                         Decline
                       </button>
                       <button
                         className="btn btn-success mr-1"
                         type="submit"
-                        onClick={() => handleApprove(job.id, applicant)}
+                        onClick={handleApprove(job.id, applicant)}
                       >
                         Approve
                       </button>

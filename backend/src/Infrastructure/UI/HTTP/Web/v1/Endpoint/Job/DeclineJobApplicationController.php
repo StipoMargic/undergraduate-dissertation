@@ -4,12 +4,10 @@ declare(strict_types = 1);
 namespace App\Infrastructure\UI\HTTP\Web\v1\Endpoint\Job;
 
 
-use App\Application\Command\Web\Job\JobApplicationCommand;
 use App\Application\Command\Web\Job\JobDeclineCommand;
 use App\Application\Job\JobRepository\JobReadRepository;
 use App\Application\Service\Bus\CommandBus;
 use App\Infrastructure\UI\HTTP\Web\v1\ApiResponder\ResourceResponder;
-use App\Infrastructure\UI\HTTP\Web\v1\Model\Job\JobApplicationModel;
 use App\Infrastructure\UI\HTTP\Web\v1\Model\Job\JobApproveModel;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Routing\Annotation\Route;

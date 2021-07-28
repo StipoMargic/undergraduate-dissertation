@@ -4,7 +4,7 @@
 namespace App\Application\Service\CommandHandler\Web\Job;
 
 
-use App\Application\Command\Web\Job\JobApplicationCommand;
+use App\Application\Command\Web\Job\JobApproveCommand;
 use App\Application\Job\JobRepository\JobReadRepository;
 use App\Application\Job\JobRepository\JobWriteRepository;
 use Ramsey\Uuid\Uuid;
@@ -19,7 +19,7 @@ class JobApproveCommandHandler
     ) {
     }
 
-    public function __invoke(JobApplicationCommand $command): void
+    public function __invoke(JobApproveCommand $command): void
     {
         $job = $this->jobReadRepository->get(Uuid::fromString($command->jobId));
 
