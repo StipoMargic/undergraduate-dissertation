@@ -30,6 +30,15 @@ const JobCard = ({ id, job }) => {
             </div>
           </div>
           <div className="jb_grid_01_footer_right">
+            <div className="row  mb-1">
+              {job.averageScore > 0 ? (
+                <small className="small text-muted">
+                  Average score is {job.averageScore.toFixed(2)}/5
+                </small>
+              ) : (
+                <small className="small text-muted">There is no score!</small>
+              )}
+            </div>
             <Link to={`/jobs/${id}`} className="btn btn-outline-primary">
               More Info
             </Link>

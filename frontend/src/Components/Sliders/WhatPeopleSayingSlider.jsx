@@ -57,8 +57,11 @@ const WhatPeopleSaying = () => {
               </div>
               <div className="smart-tes-content">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et.
+                  LiberatoJon has been an absolute joy to work with from start
+                  to finish. I am delighted with the final product. Speedy
+                  communication, an incredibly professional approach, an eye for
+                  detail, easy to work with, and creative flair - I could not
+                  have asked for more!
                 </p>
               </div>
             </div>
@@ -83,8 +86,8 @@ const WhatPeopleSaying = () => {
               </div>
               <div className="smart-tes-content">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et.
+                  Excellent work. Efficient and quick and very easy to use job
+                  platform.
                 </p>
               </div>
             </div>
@@ -109,8 +112,10 @@ const WhatPeopleSaying = () => {
               </div>
               <div className="smart-tes-content">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et.
+                  Liberato freelancers reliability and expertise stood out as
+                  they attentively approached the project. Communication was
+                  clear and easy and they were able to shape my ideas into the
+                  final Ebook, exceeding expectations. Professional recommended!
                 </p>
               </div>
             </div>
@@ -135,8 +140,10 @@ const WhatPeopleSaying = () => {
               </div>
               <div className="smart-tes-content">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et.
+                  Excellent programmers on LiberatoJob platform. They are very
+                  professional, very talented and finished my complex project
+                  for the very next week. I will be working over LiberatoJob
+                  platform again.
                 </p>
               </div>
             </div>

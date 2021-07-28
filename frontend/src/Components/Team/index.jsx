@@ -1,5 +1,9 @@
 import React from "react";
 import "./styles.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import stipo from "../../Assets/images/stipo.jpeg";
 
 const Team = () => {
   return (
@@ -11,10 +15,7 @@ const Team = () => {
               <h2>
                 Our Professional <span className="theme-cl-2">Team</span>
               </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              <p>Meet people that makes LiberatoJob possible...</p>
             </div>
           </div>
         </div>
@@ -23,11 +24,7 @@ const Team = () => {
           <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12">
             <div className="team-grid shadow-lg">
               <div className="teamgrid-user">
-                <img
-                  src="https://via.placeholder.com/400x400"
-                  alt=""
-                  className="img-fluid"
-                />
+                <img src={stipo} alt="" className="img-fluid" />
               </div>
 
               <div className="teamgrid-content">
@@ -36,67 +33,30 @@ const Team = () => {
               </div>
 
               <div className="teamgrid-social">
-                <ul>
+                <ul className="shares_jobs">
                   <li>
-                    <a href="/" className="f-cl" tabIndex="0">
-                      <i className="ti-facebook" />
+                    <a
+                      target="_blank"
+                      href="https://web.facebook.com/stipo.margic/"
+                      className="share fb"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faFacebook} />
                     </a>
                   </li>
                   <li>
-                    <a href="/" className="t-cl" tabIndex="0">
-                      <i className="ti-twitter" />
+                    <a
+                      target="_blank"
+                      href="https://www.linkedin.com/in/stipo-margic-7922b817a/"
+                      className="share ln"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faLinkedin} />
                     </a>
                   </li>
                   <li>
-                    <a href="/" className="i-cl" tabIndex="0">
-                      <i className="ti-instagram" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" className="l-cl" tabIndex="0">
-                      <i className="ti-linkedin" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-            <div className="team-grid shadow-lg">
-              <div className="teamgrid-user">
-                <img
-                  src="https://via.placeholder.com/400x400"
-                  alt=""
-                  className="img-fluid"
-                />
-              </div>
-
-              <div className="teamgrid-content">
-                <h4>Marina Rodić</h4>
-                <span>Mentor</span>
-              </div>
-
-              <div className="teamgrid-social">
-                <ul>
-                  <li>
-                    <a href="/" className="f-cl" tabIndex="0">
-                      <i className="ti-facebook" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" className="t-cl" tabIndex="0">
-                      <i className="ti-twitter" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" className="i-cl" tabIndex="0">
-                      <i className="ti-instagram" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" className="l-cl" tabIndex="0">
-                      <i className="ti-linkedin" />
+                    <a href="mailto: stipo@liberato.io" className="share ln">
+                      <FontAwesomeIcon icon={faEnvelope} />
                     </a>
                   </li>
                 </ul>

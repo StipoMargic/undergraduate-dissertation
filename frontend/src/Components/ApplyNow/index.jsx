@@ -90,6 +90,13 @@ const ApplyNow = () => {
     <>
       <div className="container mt-5">
         <div className="row justify-content-center">
+          <button
+            className="btn mb-4 btn-info btn-lg"
+            type="submit"
+            onClick={history.goBack}
+          >
+            Go back
+          </button>
           {formData.error === true ? (
             <small className="text-danger">Something went wrong!</small>
           ) : formData.error === false ? (

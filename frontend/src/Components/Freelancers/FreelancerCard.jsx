@@ -44,7 +44,7 @@ const FreelancerCard = ({ id, portfolio }) => {
             <div className="row justify-content-center mb-1">
               {portfolio.averageScore > 0 ? (
                 <small className="small text-muted">
-                  Average score is {portfolio.averageScore}/5
+                  Average score is {portfolio.averageScore.toFixed(2)}/5
                 </small>
               ) : (
                 <small className="small text-muted">There is no score!</small>

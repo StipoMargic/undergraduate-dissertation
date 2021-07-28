@@ -66,6 +66,13 @@ const HireNow = () => {
   const renderForm = () => {
     return (
       <div className="container py-5">
+        <button
+          className="btn btn-info btn-lg mb-4"
+          type="submit"
+          onClick={history.goBack}
+        >
+          Go back
+        </button>
         <form onSubmit={handleSubmit} className="form-group">
           <label htmlFor="subject">Subject:</label>
           <input

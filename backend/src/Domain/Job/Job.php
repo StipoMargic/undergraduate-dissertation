@@ -27,7 +27,7 @@ class Job implements EntityInterface
     /**  @ORM\ManyToOne(targetEntity="App\Domain\User\User", inversedBy="jobs", cascade="persist") */
     private User $user;
 
-    /** @ORM\OneToMany(targetEntity="App\Domain\Comment\Comment", mappedBy="job") */
+    /** @ORM\OneToMany(targetEntity="App\Domain\Comment\Comment", mappedBy="job", cascade="persist") */
     private ?Collection $comments;
 
     /** @ORM\Column(name="job_duties", type="string", nullable=false) */
