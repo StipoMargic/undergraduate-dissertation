@@ -16,4 +16,12 @@ export const freelancerFilterOptions = [
     value: "disabilityPercent",
     text: "Lowest disability percent first",
   },
+  {
+    value: "averageScore",
+    text: "Lowest average score first",
+  },
+  {
+    value: "averageScore",
+    text: "Lowest average score first",
+  },
 ];

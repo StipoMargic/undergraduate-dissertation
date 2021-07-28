@@ -147,8 +147,11 @@ const FreelancerDetail = () => {
   const renderComments = () => {
     return (
       <div className="container mt-5">
-        {portfolio && (
+        {portfolio && portfolio.data.attributes.comments.length > 0 && (
           <div>
+            <small className="small text-muted">
+              Average score is {portfolio.data.attributes.averageScore}/5
+            </small>
             {portfolio.data.attributes.comments.map((comment) => {
               return (
                 <div className="my-3">

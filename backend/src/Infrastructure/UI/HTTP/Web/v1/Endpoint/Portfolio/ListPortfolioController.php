@@ -19,7 +19,7 @@ final class ListPortfolioController
         QueryBus $queryBus,
         ResourceResponder $responder
     ) {
-        $request->allowSorting(['disabilityPercent', 'createdAt']);
+        $request->allowSorting(['disabilityPercent', 'createdAt', 'averageScore']);
         $pagination = $request->getPagination();
         $request->allowFilters(['category']);
 

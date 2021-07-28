@@ -41,6 +41,15 @@ const FreelancerCard = ({ id, portfolio }) => {
             </ul>
           </div>
           <div className="_freelacers_121_foot">
+            <div className="row justify-content-center mb-1">
+              {portfolio.averageScore > 0 ? (
+                <small className="small text-muted">
+                  Average score is {portfolio.averageScore}/5
+                </small>
+              ) : (
+                <small className="small text-muted">There is no score!</small>
+              )}
+            </div>
             <Link
               to={`/freelancers/${id}`}
               className="btn btn-outline-danger w-100"
@@ -53,5 +62,4 @@ const FreelancerCard = ({ id, portfolio }) => {
     </div>
   );
 };
-
 export default FreelancerCard;
