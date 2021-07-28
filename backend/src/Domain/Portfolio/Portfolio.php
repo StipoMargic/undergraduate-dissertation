@@ -74,7 +74,7 @@ class Portfolio implements EntityInterface
      */
     private array $hiredBy;
 
-    /** @ORM\Column(type="float", nullable=false, name="average_score" */
+    /** @ORM\Column(type="float", nullable=false, name="average_score") */
     private float $averageScore;
 
     public function __construct(
