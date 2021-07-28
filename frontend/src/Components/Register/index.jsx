@@ -69,6 +69,8 @@ const Register = () => {
       )
       .then(() => setError(false))
       .catch(() => setError(true));
+
+    window.scrollTo(0, 0);
   };
 
   const renderForm = () => {
@@ -249,10 +251,10 @@ const Register = () => {
             }}
             allowReorder={false}
             allowMultiple={false}
-            labelIdle='Drag & Dr`op your files or <span class="filepond--label-action">Browse</span>'
+            labelIdle='Drag & Drop your avatar or <span class="filepond--label-action">Browse</span>'
           />
 
-          <div className="col-md-6 offset-md-4 mb-5">
+          <div className="row justify-content-center">
             <button
               onClick={handleRegistration}
               type="submit"

@@ -77,13 +77,22 @@ const AllUsers = () => {
       </div>
       {users && (
         <div className="container mt-5">
-          <button
-            type="submit"
-            className="btn btn-success mb-3"
-            onClick={handleGetUsers}
-          >
-            Reset users
-          </button>
+          <div className="row mb-3">
+            <button
+              className="btn btn-info btn-lg"
+              type="submit"
+              onClick={history.goBack}
+            >
+              Go back
+            </button>
+            <button
+              type="submit"
+              className="btn btn-success btn-lg ml-5"
+              onClick={handleGetUsers}
+            >
+              Reset users
+            </button>
+          </div>
           <table className="table">
             <thead>
               <tr>

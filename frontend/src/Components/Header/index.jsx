@@ -3,13 +3,13 @@ import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronDown,
   faLock,
   faUser,
   faWindowClose,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useLocation } from "react-router";
 import logo from "../../Assets/images/logo.png";
 import { makeLoginData } from "./makeLoginData";
 import { GlobalContext } from "../../Context/global";
@@ -20,9 +20,10 @@ const loginInitData = {
 };
 
 const Header = () => {
+  const { pathname } = useLocation();
+  const history = useHistory();
   const { setTokenWithCookie, role, username, removeAllCookies } =
     useContext(GlobalContext);
-  const [dropdown, setDropdown] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const [loginData, setLoginData] = useState(loginInitData);
   const [loginError, setLoginError] = useState(false);
@@ -34,10 +35,6 @@ const Header = () => {
     }
   }
 
-  const history = useHistory();
-  const handleDropdown = (value) => {
-    setDropdown(value);
-  };
   const handleSignIn = (value) => {
     setSignIn(value);
   };
@@ -63,6 +60,7 @@ const Header = () => {
         window.location.reload();
       })
       .catch(() => setLoginError(true));
+    window.scrollTo(0, 0);
   };
   const onInputChange = (value) => (e) => {
     e.persist();
@@ -184,43 +182,29 @@ const Header = () => {
                 </div>
                 <div className="nav-menus-wrapper">
                   <ul className="nav-menu">
-                    <li className="active">
+                    <li className={pathname === "/" ? "active" : ""}>
                       <Link to="/">Home </Link>
                     </li>
 
-                    <li>
-                      <Link to="/freelancers">Freelancers</Link>
-                    </li>
-
-                    <li>
-                      <Link to="/jobs">Jobs</Link>
-                    </li>
-
-                    <li
-                      onMouseOver={() => handleDropdown(true)}
-                      onFocus={() => handleDropdown(true)}
-                      onMouseOut={() => handleDropdown(false)}
-                      onBlur={() => handleDropdown(false)}
-                    >
-                      <Link to="/about">
-                        Liberato Job
-                        <FontAwesomeIcon
-                          icon={faChevronDown}
-                          style={{ marginLeft: "10px" }}
-                        />
-                      </Link>
-                      <ul
-                        className={`nav-dropdown nav-submenu ${
-                          dropdown ? "show-dropdown" : ""
-                        }`}
+                    {role !== "ROLE_USER" && (
+                      <li
+                        className={pathname === "/freelancers" ? "active" : ""}
                       >
-                        <li>
-                          <Link to="/about">About Us</Link>
-                        </li>
-                        <li>
-                          <Link to="/contact">Contact Us</Link>
-                        </li>
-                      </ul>
+                        <Link to="/freelancers">Freelancers</Link>
+                      </li>
+                    )}
+
+                    {role !== "ROLE_EMPLOYER" && (
+                      <li className={pathname === "/jobs" ? "active" : ""}>
+                        <Link to="/jobs">Jobs</Link>
+                      </li>
+                    )}
+
+                    <li className={pathname === "/about" ? "active" : ""}>
+                      <Link to="/about">About Us</Link>
+                    </li>
+                    <li className={pathname === "/contact" ? "active" : ""}>
+                      <Link to="/contact">Contact Us</Link>
                     </li>
                   </ul>
 
@@ -249,17 +233,18 @@ const Header = () => {
                   ) : (
                     <ul className="nav-menu align-to-right">
                       <li>
+                        <FontAwesomeIcon icon={faUser} className="mr-2" />
+                        Hi {username}
                         <Link to="/logout">
                           <button
                             type="button"
-                            className="btn btn-outline-primary text-dark mr-2"
+                            className="btn btn-outline-primary text-dark mr-1"
                           >
-                            <FontAwesomeIcon icon={faUser} className="mr-2" />
-                            Hi {username}, Logout
+                            Logout
                           </button>
                         </Link>
                       </li>
-                      {role === "ROLE_ADMIN" && (
+                      {role === "ROLE_ADMIN" ? (
                         <li>
                           <Link to="/admin">
                             <button type="button" className="btn btn-danger">
@@ -267,6 +252,16 @@ const Header = () => {
                             </button>
                           </Link>
                         </li>
+                      ) : role === "ROLE_EMPLOYER" || role === "ROLE_USER" ? (
+                        <li>
+                          <Link to="/add-job">
+                            <button className="btn btn-primary" type="button">
+                              Add job
+                            </button>
+                          </Link>
+                        </li>
+                      ) : (
+                        ""
                       )}
                     </ul>
                   )}

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import JobCard from "./JobCard";
 import { GlobalContext } from "../../Context/global";
 import FilterOptions from "../FilterOptions";
@@ -14,6 +15,7 @@ const initialPagination = {
 const Jobs = () => {
   const { jobs, role } = useContext(GlobalContext);
   const [pagination, setPagination] = useState(initialPagination);
+  const history = useHistory();
 
   const handleNext = () => {
     setPagination((prev) => ({
@@ -32,6 +34,8 @@ const Jobs = () => {
   };
 
   const activeJobs = jobs.filter((job) => job.attributes.deletedAt === null);
+
+  if (role === "ROLE_EMPLOYER") history.push("/");
   return (
     <>
       <div className="page-title">

@@ -24,7 +24,9 @@ const AddJob = () => {
   const [qualifications, setQualifications] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [error, setError] = useState(null);
-  const [activeTill, setActiveTill] = useState(new Date());
+  const today = new Date();
+  const defaultDay = today.setDate(today.getDate() + 30);
+  const [activeTill, setActiveTill] = useState(defaultDay);
   const [loading, setLoading] = useState();
 
   if (!role) {
@@ -114,6 +116,8 @@ const AddJob = () => {
       )
       .then(() => setError(false))
       .catch(() => setError(true));
+
+    window.scrollTo(0, 0);
   };
 
   const handleJobSubmit = (e) => {

@@ -17,12 +17,12 @@ const HomepageHero = () => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-7 col-md-8">
-            <a href="/" className="header-promo light w-inline-block">
+            <div className="header-promo light w-inline-block">
               <div className="label bg-success">NEW</div>
               <div className="header-promo-text">
                 Liberato is launching new app
               </div>
-            </a>
+            </div>
             <h1>
               Find <span className="text-info">your job</span> & make sure goal!
             </h1>
@@ -40,7 +40,7 @@ const HomepageHero = () => {
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="form-control b-0 b-r l-radius"
-                      placeholder="Job Title or Keywords"
+                      placeholder="Enter company name..."
                     />
                   </div>
                 </div>

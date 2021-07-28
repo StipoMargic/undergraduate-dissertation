@@ -34,6 +34,15 @@ const Analytics = () => {
   return (
     <>
       <div className="container mt-5">
+        <div className="row m-3">
+          <button
+            className="btn btn-info btn-lg"
+            type="submit"
+            onClick={history.goBack}
+          >
+            Go back
+          </button>
+        </div>
         <div className="row py-5">
           <div className="col-lg-4">
             <div className="card">
