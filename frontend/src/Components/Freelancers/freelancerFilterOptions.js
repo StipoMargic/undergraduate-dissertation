@@ -17,8 +17,8 @@ export const freelancerFilterOptions = [
     text: "Lowest disability percent first",
   },
   {
-    value: "averageScore",
-    text: "Lowest average score first",
+    value: "-averageScore",
+    text: "Highest average score first",
   },
   {
     value: "averageScore",
