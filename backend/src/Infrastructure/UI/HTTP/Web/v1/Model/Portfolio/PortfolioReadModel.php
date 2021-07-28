@@ -120,7 +120,13 @@ class PortfolioReadModel implements ApiModel
         foreach ($portfolio->getComments()->getValues() as $comment) {
             $sum += $comment->getScore();
         }
+        $numbersOOfComments = count($portfolio->getComments()->getValues());
 
+        if ($numbersOOfComments > 0) {
+            $averageScore = $sum / $numbersOOfComments;
+        } else {
+            $averageScore = 0;
+        }
 
 
         return new self(
@@ -140,7 +146,7 @@ class PortfolioReadModel implements ApiModel
             null === $portfolio->getDeletedAt() ? null : $portfolio->getDeletedAt()->format('Y-m-d H:i:s'),
             $portfolio->getHiredBy(),
             $comments,
-            $sum
+            $averageScore
         );
     }
 }
