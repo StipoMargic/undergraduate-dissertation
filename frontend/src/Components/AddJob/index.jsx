@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useHistory } from "react-router";
 import axios from "axios";
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { GlobalContext } from "../../Context/global";
 import { makePortfolioPostRequest } from "./makePortfolioPostRequest";
 import { makeJobPostRequest } from "./makeJobPostRequest";
@@ -40,6 +42,20 @@ const AddJob = () => {
       ...prevState,
       [value]: e.target.value,
     }));
+  };
+
+  const handleExperienceSplice = (idx) => (e) => {
+    e.persist();
+
+    const newExpArray = experiences.splice(idx, 1);
+    setExperience(newExpArray);
+  };
+
+  const handleQualificationSplice = (idx) => (e) => {
+    e.persist();
+
+    const newArr = qualifications.splice(idx, 1);
+    setQualification(newArr);
   };
 
   const handleJobChange = (value) => (e) => {
@@ -91,12 +107,11 @@ const AddJob = () => {
 
   const addQualification = () => {
     setQualifications([...qualifications, qualification]);
-    setQualification(initialQualificationData);
   };
 
   const addExperience = () => {
+    console.log(experience.description);
     setExperiences([...experiences, experience]);
-    setExperience(initialExperienceData);
   };
 
   const handlePortfolioSubmit = (e) => {
@@ -350,9 +365,27 @@ const AddJob = () => {
                 type="submit"
                 onClick={addExperience}
                 value="Add experience"
+                disabled={
+                  experience.description == null ||
+                  experience.yearEnd == null ||
+                  experience.yearStart == null ||
+                  experience.jobTitle == null
+                }
                 className="btn btn-lg btn-primary"
               />
             </div>
+            {experience.description == null ||
+            experience.yearEnd == null ||
+            experience.yearStart == null ||
+            experience.jobTitle == null ? (
+              <div className="row justify-content-center mt-2">
+                <small className="small text-info">
+                  You need to enter all data to add experience!
+                </small>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="col">
             <h5 className="py-3 text-center font-weight-bold">
@@ -434,8 +467,132 @@ const AddJob = () => {
                 onClick={addQualification}
                 value="Add qualification"
                 className="btn btn-lg btn-primary"
+                disabled={
+                  qualification.description == null ||
+                  qualification.yearEnd == null ||
+                  qualification.yearStart == null ||
+                  qualification.nameOfQualification == null
+                }
               />
             </div>
+            {qualification.description == null ||
+            qualification.yearEnd == null ||
+            qualification.yearStart == null ||
+            qualification.nameOfQualification == null ? (
+              <div className="row justify-content-center mt-2">
+                <small className="small text-info">
+                  You need to enter all data to add qualification!
+                </small>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <div className="row my-3">
+          <div className="col-6">
+            {experiences.length > 0 && (
+              <>
+                <small className="small text-info">
+                  You already added following experiences:
+                </small>
+                {experiences.map((e, idx) => {
+                  return (
+                    <div className="bg-light p-3 mt-2 position-relative">
+                      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                      <div
+                        className="pos-close"
+                        onClick={handleExperienceSplice(idx)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faWindowClose}
+                          size="lg"
+                          color="red"
+                        />
+                      </div>
+                      <div className="row ml-2 mt-2">
+                        <small className="small font-weight-bold">
+                          Job Title:
+                        </small>
+                        <span className="small text-info ml-2">
+                          {e.jobTitle}
+                        </span>
+                      </div>
+                      <div className="row ml-2">
+                        <small className="small font-weight-bold">Since:</small>
+                        <span className="small text-info ml-2 mr-2">
+                          {e.yearStart}
+                        </span>
+                        <small className="small font-weight-bold">till:</small>
+                        <span className="small text-info ml-2">
+                          {e.yearEnd}
+                        </span>
+                      </div>
+                      <div className="row ml-2">
+                        <small className="small font-weight-bold">
+                          Description:
+                        </small>
+                        <span className="small text-info ml-2">
+                          {e.description}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+          <div className="col-6">
+            {qualifications.length > 0 && (
+              <>
+                <small className="small text-info">
+                  You already added following qualifications:
+                </small>
+                {qualifications.map((q, idx) => {
+                  return (
+                    <div className="bg-light p-3 mt-2 position-relative">
+                      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+                      <div
+                        className="pos-close"
+                        onClick={handleQualificationSplice(idx)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faWindowClose}
+                          size="lg"
+                          color="red"
+                        />
+                      </div>
+                      <div className="row ml-2 mt-2">
+                        <small className="small font-weight-bold">
+                          Name of qualification:
+                        </small>
+                        <span className="small text-info ml-2">
+                          {q.nameOfQualification}
+                        </span>
+                      </div>
+                      <div className="row ml-2">
+                        <small className="small font-weight-bold">Since:</small>
+                        <span className="small text-info ml-2 mr-2">
+                          {q.yearStart}
+                        </span>
+                        <small className="small font-weight-bold">till:</small>
+                        <span className="small text-info ml-2">
+                          {q.yearEnd}
+                        </span>
+                      </div>
+                      <div className="row ml-2">
+                        <small className="small font-weight-bold">
+                          Description:
+                        </small>
+                        <span className="small text-info ml-2">
+                          {q.description}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </div>
         </div>
         <div className="row justify-content-center  py-5">
