@@ -25,7 +25,9 @@ const JobDetail = () => {
   let skills;
   let jobDutiesBulletins;
   let passed;
-  let inArray;
+  let inAppliedArray;
+  let inApprovedArray;
+  let inDeclinedArray;
 
   useEffect(() => {
     getSingleJob(params.id, setJob);
@@ -35,7 +37,13 @@ const JobDetail = () => {
     passed = new Date() > new Date(job.data.attributes.activeTill);
     skills = job.data.attributes.skills.split(", ");
     jobDutiesBulletins = job.data.attributes.jobDutiesBulletins.split(", ");
-    inArray = job.data.attributes.applied.find(
+    inAppliedArray = job.data.attributes.applied.find(
+      (applicant) => applicant === username
+    );
+    inApprovedArray = job.data.attributes.approved.find(
+      (applicant) => applicant === username
+    );
+    inDeclinedArray = job.data.attributes.declined.find(
       (applicant) => applicant === username
     );
   }
@@ -143,7 +151,10 @@ const JobDetail = () => {
                     </ul>
                   </div>
                 </div>
-                {role === "ROLE_USER" && inArray === undefined ? (
+                {role === "ROLE_USER" &&
+                inApprovedArray === undefined &&
+                inDeclinedArray === undefined &&
+                inAppliedArray === undefined ? (
                   <div className="_jb_details01_last">
                     <ul className="_flex_btn">
                       <li>
@@ -325,18 +336,32 @@ const JobDetail = () => {
                       </ul>
                     </div>
                   )}
-                  {role === "ROLE_USER" && inArray === undefined && (
-                    <div className="_job_detail_single flexeo">
-                      <Link
-                        to={`/apply-now/${params.id}`}
-                        disabled={passed}
-                        className="_applied_jb btn btn-outline-primary w-100"
-                      >
-                        Apply Job
-                      </Link>
-                    </div>
+                  {role === "ROLE_USER" &&
+                    inAppliedArray === undefined &&
+                    inApprovedArray === undefined &&
+                    inDeclinedArray === undefined && (
+                      <div className="_job_detail_single flexeo">
+                        <Link
+                          to={`/apply-now/${params.id}`}
+                          disabled={passed}
+                          className="_applied_jb btn btn-outline-primary w-100"
+                        >
+                          Apply Job
+                        </Link>
+                      </div>
+                    )}
+
+                  {inDeclinedArray && (
+                    <h6 className="text-center small text-danger mb-2">
+                      Sorry your application was declined by this Company..
+                    </h6>
                   )}
-                  {inArray && renderCommentForm()}
+                  {inApprovedArray && (
+                    <h6 className="text-center small text-muted mb-2">
+                      You are working here, please leave comment...
+                    </h6>
+                  )}
+                  {inApprovedArray && renderCommentForm()}
                   {renderComments()}
                   {!role && (
                     <h6>

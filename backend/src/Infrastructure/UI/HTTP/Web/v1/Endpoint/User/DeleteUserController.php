@@ -15,9 +15,7 @@ use Undabot\SymfonyJsonApi\Http\Model\Response\ResourceDeletedResponse;
 
 final class DeleteUserController
 {
-    /** @Route("/api/v1/users/{id}", name="api_v1_users_delete", methods={"DELETE"})
-     * @IsGranted("DELETE", subject="user", message="You are not logged in as this user!")
-     */
+    /** @Route("/api/v1/users/{id}", name="api_v1_users_delete", methods={"DELETE"}) */
     public function delete(
         UuidInterface $id,
         CommandBus $commandBus,

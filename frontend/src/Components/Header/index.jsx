@@ -233,8 +233,10 @@ const Header = () => {
                   ) : (
                     <ul className="nav-menu align-to-right">
                       <li>
-                        <FontAwesomeIcon icon={faUser} className="mr-2" />
-                        Hi {username}
+                        <Link to={`/profile/${username}`}>
+                          <FontAwesomeIcon icon={faUser} className="mr-2" />
+                          Hi {username}
+                        </Link>
                         <Link to="/logout">
                           <button
                             type="button"

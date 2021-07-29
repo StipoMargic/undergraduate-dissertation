@@ -12,7 +12,7 @@ const JobCard = ({ id, job }) => {
             <img
               src={`http://apizavrsni.udruga-liberato.hr/${job.logo}`}
               className="img-fluid"
-              alt=""
+              alt="avatars"
             />
           </Link>
         </div>

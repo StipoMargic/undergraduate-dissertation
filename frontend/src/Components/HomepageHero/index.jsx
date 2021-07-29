@@ -29,7 +29,6 @@ const HomepageHero = () => {
     }
   };
 
-  console.log(alert);
   return (
     <div className="hero-banner full jumbo-banner">
       <div className="container">

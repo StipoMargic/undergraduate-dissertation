@@ -28,6 +28,7 @@ import CategoryAdminSingle from "./Components/Admin/Categories/CategoryAdminSing
 import UserAdminSingle from "./Components/Admin/Users/UserAdminSingle";
 import JobEdit from "./Components/Jobs/JobEdit";
 import CandidateList from "./Components/ApplyNow/CandidateList";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <GlobalProvider>
         <Header />
         <Switch>
+          <Route path="/profile/:name" exact component={Profile} />
           <Route path="/jobs/candidate-list" exact component={CandidateList} />
           <Route
             path="/admin/create-category"
