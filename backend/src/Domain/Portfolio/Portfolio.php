@@ -294,4 +294,21 @@ class Portfolio implements EntityInterface
     {
         $this->averageScore = $this->calculateAverageScore();
     }
+
+    public function update(
+        string $advancedKnowledge,
+        string $advancedKnowledgeBulletins,
+        int $disabilityPercent,
+        string $skills,
+        string $rate,
+        string $hour
+    ): void {
+        $this->advancedKnowledgeBulletins = $advancedKnowledgeBulletins;
+        $this->advancedKnowledge = $advancedKnowledge;
+        $this->disabilityPercent = $disabilityPercent;
+        $this->skills = $skills;
+        $this->rate = $rate;
+        $this->hours = $hour;
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 }

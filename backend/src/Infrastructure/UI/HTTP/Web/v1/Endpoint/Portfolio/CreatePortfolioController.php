@@ -28,9 +28,18 @@ final class CreatePortfolioController
     ): ResourceCreatedResponse {
         $createModel = $resourceHandler->getModelFromRequest($request, PortfolioWriteModel::class);
 
-        $command = new CreatePortfolioCommand($createModel->id, $createModel->category, $createModel->advancedKnowledge,
-            $createModel->advancedKnowledgeBulletins, $createModel->skills,
-            $createModel->disabilityPercent, $createModel->rate, $createModel->hour, $createModel->qualifications, $createModel->experiences);
+        $command = new CreatePortfolioCommand(
+            $createModel->id,
+            $createModel->category,
+            $createModel->advancedKnowledge,
+            $createModel->advancedKnowledgeBulletins,
+            $createModel->skills,
+            $createModel->disabilityPercent,
+            $createModel->rate,
+            $createModel->hour,
+            $createModel->qualifications,
+            $createModel->experiences
+        );
         $commandBus->handleCommand($command);
 
         $portfolio = $repository->get(Uuid::fromString($command->id));

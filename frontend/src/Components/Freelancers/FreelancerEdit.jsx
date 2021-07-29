@@ -31,8 +31,8 @@ const FreelancerEdit = () => {
     e.preventDefault();
 
     axios
-      .post(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/edit/${id}`,
+      .put(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/${id}`,
         makePortfolioUpdateData(portfolio),
         {
           headers: {
