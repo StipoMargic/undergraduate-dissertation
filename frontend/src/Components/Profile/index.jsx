@@ -11,12 +11,47 @@ import axios from "axios";
 import { GlobalContext } from "../../Context/global";
 
 const Profile = () => {
-  const { username, users, removeAllCookies, token } =
+  const { username, users, removeAllCookies, token, role, jobs, portfolios } =
     useContext(GlobalContext);
   const { name } = useParams();
   const [user, setUser] = useState();
   const history = useHistory();
   const [error, setError] = useState(null);
+
+  const handleJobDeactivation = (jobId) => (e) => {
+    e.preventDefault();
+
+    axios
+      .delete(`http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then(() => window.location.reload())
+      .catch(() => setError(true));
+
+    window.scrollTo((0, 0));
+  };
+
+  const handlePortfolioDeactivation = (portfolioId) => (e) => {
+    e.preventDefault();
+
+    axios
+      .delete(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/${portfolioId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(() => window.location.reload())
+      .catch(() => setError(true));
+
+    window.scrollTo((0, 0));
+  };
 
   useEffect(() => {
     setUser(users.find((u) => u.attributes.username === username));
@@ -42,7 +77,10 @@ const Profile = () => {
           "Content-Type": "application/json",
         },
       })
-      .then(() => removeAllCookies())
+      .then(() => {
+        removeAllCookies();
+        window.location.reload();
+      })
       .catch(() => setError(true));
 
     window.scrollTo(0, 0);
@@ -50,7 +88,7 @@ const Profile = () => {
 
   return (
     <div className="container vh-80">
-      {error && (
+      {error === true && (
         <smalll className="small text-danger">Something went wrong!</smalll>
       )}
       {user && (
@@ -69,8 +107,139 @@ const Profile = () => {
               group.
             </h5>
           </div>
-          <div className="row m-5">
-            <div className="col-8" />
+          <div className="row mt-5">
+            <div className="col-8">
+              {role === "ROLE_USER" && (
+                <div>
+                  <h6>
+                    You have {user.attributes.portfolios.length} portfolios.
+                  </h6>
+                  <table className="table table-bordered table-light">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Hourly rate</th>
+                        <th scope="col">Hours available per month</th>
+                        <th scope="col">Commands</th>
+                      </tr>
+                    </thead>
+                    {user.attributes.portfolios.map((portfolioId, idx) => {
+                      const portfolio = portfolios.find(
+                        (p) => p.id === portfolioId
+                      );
+                      return (
+                        <tbody>
+                          <tr>
+                            <th scope="row">{idx + 1}</th>
+                            <td>{portfolio.attributes.category}</td>
+                            <td>$ {portfolio.attributes.rate}</td>
+                            <td>{portfolio.attributes.hour} per month</td>
+                            {portfolio.attributes.deletedAt === null ? (
+                              <td>
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  type="button"
+                                  onClick={() =>
+                                    history.push(`/freelancers/${portfolioId}`)
+                                  }
+                                >
+                                  View
+                                </button>
+                                <button
+                                  className="btn btn-sm ml-2 btn-info"
+                                  type="button"
+                                  onClick={() =>
+                                    history.push(`/job/edit/${portfolioId}`)
+                                  }
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  className="btn btn-sm ml-2 btn-danger"
+                                  type="button"
+                                  onClick={handlePortfolioDeactivation(
+                                    portfolioId
+                                  )}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            ) : (
+                              <td className="text-danger small">
+                                This portfolio has been deactivated!
+                              </td>
+                            )}
+                          </tr>
+                        </tbody>
+                      );
+                    })}
+                  </table>
+                </div>
+              )}
+              {role === "ROLE_EMPLOYER" && (
+                <div>
+                  <h6 className="text-center py-4">
+                    You have {user.attributes.jobs.length} jobs listed.
+                  </h6>
+                  <table className="table table-bordered table-light">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Position Name</th>
+                        <th scope="col">Type of position</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Commands</th>
+                      </tr>
+                    </thead>
+                    {user.attributes.jobs.map((jobId, idx) => {
+                      const job = jobs.find((j) => j.id === jobId);
+                      return (
+                        <tbody>
+                          <tr>
+                            <th scope="row">{idx + 1}</th>
+                            <td>{job.attributes.jobPositionName}</td>
+                            <td>{job.attributes.typeOfPosition}</td>
+                            <td>$ {job.attributes.salary}</td>
+                            {job.attributes.deletedAt === null ? (
+                              <td>
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  type="button"
+                                  onClick={() => history.push(`/jobs/${jobId}`)}
+                                >
+                                  View
+                                </button>
+                                <button
+                                  className="btn btn-sm ml-2 btn-info"
+                                  type="button"
+                                  onClick={() =>
+                                    history.push(`/job/edit/${jobId}`)
+                                  }
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  className="btn btn-sm ml-2 btn-danger"
+                                  type="button"
+                                  onClick={handleJobDeactivation(jobId)}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            ) : (
+                              <td className="text-danger small">
+                                This job listing deactivated!
+                              </td>
+                            )}
+                          </tr>
+                        </tbody>
+                      );
+                    })}
+                  </table>
+                </div>
+              )}
+            </div>
             <div className="col-4">
               <div className="row justify-content-center mb-4">
                 <img
