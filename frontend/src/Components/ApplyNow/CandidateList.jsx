@@ -53,7 +53,6 @@ const CandidateList = () => {
         <h3 className="text-center m-5">Candidate list for {username}</h3>
         <div className="row">
           {jobsArray.map((job) => {
-            console.log(job);
             if (job.attributes.applied.length > 0) {
               return job.attributes.applied.map((applicant) => {
                 return (

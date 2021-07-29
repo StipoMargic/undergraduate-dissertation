@@ -1,0 +1,33 @@
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 3.5rem;
+  animation: fadeIn 700ms ease-in-out 1s both;
+  cursor: pointer;
+
+  svg {
+    font-size: 3.5rem;
+    color: blue;
+    z-index: 1000;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-to-top {
+    right: 1.5rem;
+
+    svg {
+      font-size: 2.25rem !important;
+    }
+  }
+}

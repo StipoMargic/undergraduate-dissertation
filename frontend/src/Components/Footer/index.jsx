@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/images/logo.png";
+import ScrollToTop from "../ScrollToTop";
 
 const Footer = () => {
   return (
@@ -75,6 +76,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <ScrollToTop />
       </footer>
     </div>
   );

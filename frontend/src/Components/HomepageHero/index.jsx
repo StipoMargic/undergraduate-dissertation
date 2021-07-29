@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import heroPicture from "../../Assets/images/a-2.png";
+import { GlobalContext } from "../../Context/global";
 
 const HomepageHero = () => {
+  const { username, jobs } = useContext(GlobalContext);
+  const [alert, setAlert] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState("");
   const history = useHistory();
+
+  const jobsArr = jobs.filter(
+    (j) => j.attributes.name === username && j.attributes.applied.length > 0
+  );
+  useEffect(() => {
+    setAlert(jobsArr.length);
+  }, [jobsArr]);
+
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -17,9 +29,17 @@ const HomepageHero = () => {
     }
   };
 
+  console.log(alert);
   return (
     <div className="hero-banner full jumbo-banner">
       <div className="container">
+        {alert > 0 && (
+          <div className="alert alert-info alert-pos">
+            <Link to="/jobs/candidate-list">
+              You have candidates for your job listing!{" "}
+            </Link>
+          </div>
+        )}
         <div className="row align-items-center">
           <div className="col-lg-7 col-md-8">
             <div className="header-promo light w-inline-block">

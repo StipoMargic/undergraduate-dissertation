@@ -6,6 +6,16 @@
   width: 100%;
 }
 
+.alert-pos {
+  position: absolute;
+  right: 3rem;
+  top: -5rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 .hero-banner.full {
   min-height: 580px;
 }
