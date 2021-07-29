@@ -29,6 +29,7 @@ import UserAdminSingle from "./Components/Admin/Users/UserAdminSingle";
 import JobEdit from "./Components/Jobs/JobEdit";
 import CandidateList from "./Components/ApplyNow/CandidateList";
 import Profile from "./Components/Profile";
+import FreelancerEdit from "./Components/Freelancers/FreelancerEdit";
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
         <Header />
         <Switch>
           <Route path="/profile/:name" exact component={Profile} />
+          <Route
+            path="/freelancers/edit/:id"
+            exact
+            component={FreelancerEdit}
+          />
           <Route path="/jobs/candidate-list" exact component={CandidateList} />
           <Route
             path="/admin/create-category"

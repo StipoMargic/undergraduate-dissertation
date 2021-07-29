@@ -150,7 +150,9 @@ const Profile = () => {
                                   className="btn btn-sm ml-2 btn-info"
                                   type="button"
                                   onClick={() =>
-                                    history.push(`/job/edit/${portfolioId}`)
+                                    history.push(
+                                      `/freelancers/edit/${portfolioId}`
+                                    )
                                   }
                                 >
                                   Edit
