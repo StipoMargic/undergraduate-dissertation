@@ -58,17 +58,20 @@ class CategoryReadModel implements ApiModel
 
     public static function fromEntity(Category $category): self
     {
+        $published = 0;
+        $deactivated = 0;
+
         $portfolios = array_map(static function (Portfolio $portfolio) {
             return $portfolio->getId();
         }, $category->getPortfolios()->getValues());
 
-        $published = array_map(static function (Portfolio $portfolio) {
-            return $portfolio->getDeletedAt() === null;
-        }, $category->getPortfolios()->getValues());
-
-        $deactivated = array_map(static function (Portfolio $portfolio) {
-            return $portfolio->getDeletedAt() !== null;
-        }, $category->getPortfolios()->getValues());
+        foreach ($category->getPortfolios()->getValues() as $item) {
+            if ($item->getDeletedAt() === null) {
+                $published += 1;
+            } else {
+                $deactivated += 1;
+            }
+        }
 
         return new self(
             (string) $category->getId(),
@@ -77,8 +80,8 @@ class CategoryReadModel implements ApiModel
             $category->getImage(),
             $category->getDescription() === null ? null : $category->getDescription(),
             null === $category->getDeletedAt() ? null : $category->getDeletedAt()->format('Y-m-d H:i:s'),
-            count($published),
-            count($deactivated)
+            $published,
+            $deactivated
         );
     }
 }

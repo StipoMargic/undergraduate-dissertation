@@ -18,7 +18,7 @@ const CategoryChart = () => {
     { name: "", data: [] },
     { name: "", data: [] },
   ]);
-
+  console.log(setData);
   return (
     <>
       <div className="k-card">
