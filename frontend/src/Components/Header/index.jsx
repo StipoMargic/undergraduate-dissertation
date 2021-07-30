@@ -1,5 +1,5 @@
 import "./styles.scss";
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,6 +28,20 @@ const Header = () => {
   const [loginData, setLoginData] = useState(loginInitData);
   const [loginError, setLoginError] = useState(false);
   const ttl = Cookies.get("ttl");
+
+  const escFunction = useCallback((event) => {
+    if (event.keyCode === 27) {
+      setSignIn(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, []);
 
   if (ttl !== "") {
     if (new Date(ttl * 1000).getTime() < new Date().getTime()) {
@@ -215,6 +229,7 @@ const Header = () => {
                           type="button"
                           className="btn btn-outline-primary text-dark mr-2 mt-4"
                           onClick={() => handleSignIn(!signIn)}
+                          onBlur={() => handleSignIn(false)}
                         >
                           <FontAwesomeIcon icon={faUser} /> Sign in
                         </button>
