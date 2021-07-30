@@ -30,14 +30,30 @@ class CategoryReadModel implements ApiModel
     /** @Attribute */
     public ?string $deletedAt;
 
-    public function __construct(string $id, array $portfolios, string $name, string $image, ?string $description, ?string $deletedAt)
-    {
+    /** @Attribute */
+    public int $published;
+
+    /** @Attribute */
+    public int $deactivated;
+
+    public function __construct(
+        string $id,
+        array $portfolios,
+        string $name,
+        string $image,
+        ?string $description,
+        ?string $deletedAt,
+        int $published,
+        int $deactivated
+    ) {
         $this->id = $id;
         $this->portfolios = $portfolios;
         $this->name = $name;
         $this->image = $image;
         $this->description = $description;
         $this->deletedAt = $deletedAt;
+        $this->published = $published;
+        $this->deactivated = $deactivated;
     }
 
     public static function fromEntity(Category $category): self
@@ -46,13 +62,23 @@ class CategoryReadModel implements ApiModel
             return $portfolio->getId();
         }, $category->getPortfolios()->getValues());
 
+        $published = array_map(static function (Portfolio $portfolio) {
+            return $portfolio->getDeletedAt() === null;
+        }, $category->getPortfolios()->getValues());
+
+        $deactivated = array_map(static function (Portfolio $portfolio) {
+            return $portfolio->getDeletedAt() !== null;
+        }, $category->getPortfolios()->getValues());
+
         return new self(
             (string) $category->getId(),
             $portfolios,
             $category->getName(),
             $category->getImage(),
             $category->getDescription() === null ? null : $category->getDescription(),
-            null === $category->getDeletedAt() ? null : $category->getDeletedAt()->format('Y-m-d H:i:s')
+            null === $category->getDeletedAt() ? null : $category->getDeletedAt()->format('Y-m-d H:i:s'),
+            count($published),
+            count($deactivated)
         );
     }
 }

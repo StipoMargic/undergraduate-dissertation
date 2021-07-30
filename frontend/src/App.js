@@ -1,4 +1,6 @@
 import React from "react";
+import "@progress/kendo-theme-material/dist/all.css";
+import "hammerjs";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router";
 import HomePage from "./Pages/HomePage";
