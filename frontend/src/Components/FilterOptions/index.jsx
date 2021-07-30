@@ -12,7 +12,7 @@ const FilterOptions = ({ options, type }) => {
 
     if (type === "portfolios") {
       setPortfolioFilter(searchTerm);
-    } else if (type === "iobs") {
+    } else {
       setJobFilter(searchTerm);
     }
   };
