@@ -21,10 +21,10 @@ final class ListPortfolioController
     ) {
         $request->allowSorting(['disabilityPercent', 'createdAt', 'averageScore']);
         $pagination = $request->getPagination();
-        $request->allowFilters(['category']);
+        $request->allowFilters(['category', 'skills']);
 
-        $entities = $queryBus->handleQuery(new PortfolioQuery(null === $pagination ? null : $pagination->getOffset(),
-            null === $pagination ? null : $pagination->getSize(), $request->getSortSet(), $request->getFilterSet()));
+        $entities = $queryBus->handleQuery(new PortfolioQuery($pagination?->getOffset(),
+            $pagination?->getSize(), $request->getSortSet(), $request->getFilterSet()));
 
         return $responder->resourceObjectCollection($entities);
     }

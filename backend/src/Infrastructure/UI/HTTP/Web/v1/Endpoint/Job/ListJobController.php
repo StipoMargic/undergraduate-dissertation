@@ -21,7 +21,7 @@ final class ListJobController
         ResourceResponder $responder
     ): ResourceCollectionResponse {
         $request->allowSorting(['activeTill', 'salary', 'hours', 'disableFriendly', 'createdAt', 'averageScore']);
-        $request->allowFilters(['name']);
+        $request->allowFilters(['name', 'jobPositionName']);
         $pagination = $request->getPagination();
 
         $entities = $queryBus->handleQuery(new JobQuery(null === $pagination ? null : $pagination->getOffset(),

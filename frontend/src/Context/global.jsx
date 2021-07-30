@@ -14,8 +14,10 @@ export const GlobalProvider = ({ children }) => {
   const [role, setRole] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [portfolioFilter, setPortfolioFilter] = useState("-createdAt");
-  const [jobFilter, setJobFilter] = useState("-createdAt");
+  const [portfolioFilter, setPortfolioFilter] = useState("");
+  const [jobFilter, setJobFilter] = useState("");
+  const [portfolioSort, setPortfolioSort] = useState("-createdAt");
+  const [jobSort, setJobSort] = useState("-createdAt");
 
   const setTokenWithCookie = (cookie, timeToLive, _username, _role) => {
     Cookies.set("token", cookie);
@@ -57,7 +59,7 @@ export const GlobalProvider = ({ children }) => {
     setLoading(true);
     axios
       .get(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${portfolioFilter}`
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${portfolioSort}`
       )
       .then((res) => {
         if (res && res.data) {
@@ -66,12 +68,29 @@ export const GlobalProvider = ({ children }) => {
         }
       })
       .catch(() => null);
+  }, [portfolioSort]);
+
+  useEffect(() => {
+    if (portfolioFilter.trim() !== "") {
+      setLoading(true);
+      axios
+        .get(
+          `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?filter[skills]=${portfolioFilter}`
+        )
+        .then((res) => {
+          if (res && res.data) {
+            setPortfolios([...res.data.data]);
+            setLoading(false);
+          }
+        })
+        .catch(() => null);
+    }
   }, [portfolioFilter]);
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/jobs?sort=${jobFilter}`)
+      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/jobs?sort=${jobSort}`)
       .then((res) => {
         if (res && res.data) {
           setJobs([...res.data.data]);
@@ -79,7 +98,25 @@ export const GlobalProvider = ({ children }) => {
         }
       })
       .catch(() => null);
+  }, [jobSort]);
+
+  useEffect(() => {
+    if (jobFilter.trim() !== "") {
+      setLoading(true);
+      axios
+        .get(
+          `http://apizavrsni.udruga-liberato.hr/api/v1/jobs?filter[jobPositionName]=${jobFilter}`
+        )
+        .then((res) => {
+          if (res && res.data) {
+            setJobs([...res.data.data]);
+            setLoading(false);
+          }
+        })
+        .catch(() => null);
+    }
   }, [jobFilter]);
+
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
     <GlobalContext.Provider
@@ -98,6 +135,8 @@ export const GlobalProvider = ({ children }) => {
         loading,
         setPortfolioFilter,
         setJobFilter,
+        setPortfolioSort,
+        setJobSort,
       }}
     >
       {children}

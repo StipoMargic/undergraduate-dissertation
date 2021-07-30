@@ -28,6 +28,12 @@ class JobQueryHandler
                 ->setParameter(':name', '%' . $companyName . '%');
         }
 
+        if (null !== $query->filterSet && null !== $query->filterSet->getFilter('jobPositionName')) {
+            $jobPositionName = $query->filterSet->getFilter('jobPositionName')->getValue();
+            $qb = $qb->where('j.jobPositionName LIKE :jobPositionName')
+                ->setParameter(':jobPositionName', '%' . $jobPositionName . '%');
+        }
+
         if (property_exists($query, 'sortSet') && null !== $query->sortSet && $query->sortSet instanceof SortSet) {
             foreach ($query->sortSet->getSortsArray() as $column => $direction) {
                 $qb = $qb->orderBy('j.' . $column, $direction);
