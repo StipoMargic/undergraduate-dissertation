@@ -5,12 +5,13 @@ export const makePortfolioUpdateData = (portfolio) => {
       type: "portfolio",
       id: portfolio.id,
       attributes: {
-        advancedKnowledge: portfolio.advancedKnowledge,
-        advancedKnowledgeBulletins: portfolio.advancedKnowledgeBulletins,
-        skills: portfolio.skills,
-        disabilityPercent: +portfolio.disabilityPercent,
-        rate: portfolio.rate,
-        hour: portfolio.hour,
+        advancedKnowledge: portfolio.attributes.advancedKnowledge,
+        advancedKnowledgeBulletins:
+          portfolio.attributes.advancedKnowledgeBulletins,
+        skills: portfolio.attributes.skills,
+        disabilityPercent: +portfolio.attributes.disabilityPercent,
+        rate: portfolio.attributes.rate,
+        hour: portfolio.attributes.hour,
       },
     },
   };

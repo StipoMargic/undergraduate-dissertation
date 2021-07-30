@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { getSingleJob } from "./getSingleJob";
 import { GlobalContext } from "../../Context/global";
 import { makeCommentData } from "../Freelancers/makeCommentData";
+import Spinner from "../AboutNumbers/Spinner";
 
 const initialCommentForm = {
   score: 3,
@@ -17,7 +18,7 @@ const initialCommentForm = {
 
 const JobDetail = () => {
   const history = useHistory();
-  const { role, username, token } = useContext(GlobalContext);
+  const { role, username, token, loading } = useContext(GlobalContext);
   const [job, setJob] = useState();
   const [error, setError] = useState(null);
   const [commentForm, setCommentForm] = useState(initialCommentForm);
@@ -537,7 +538,9 @@ const JobDetail = () => {
 
   return (
     <>
-      {job === undefined ? (
+      {loading ? (
+        <Spinner />
+      ) : job === undefined ? (
         "Loading"
       ) : (role === "ROLE_ADMIN" ||
           username === job.included[0].attributes.username) &&

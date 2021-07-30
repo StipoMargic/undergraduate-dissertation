@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Freelancers from "../Components/Freelancers";
+import { GlobalContext } from "../Context/global";
+import Spinner from "../Components/AboutNumbers/Spinner";
 
 const FreelancersPage = () => {
-  return (
-    <>
-      <Freelancers />
-    </>
-  );
+  const { loading } = useContext(GlobalContext);
+  return <>{loading ? <Spinner /> : <Freelancers />}</>;
 };
 
 export default FreelancersPage;

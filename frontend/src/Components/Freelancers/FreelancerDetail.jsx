@@ -19,6 +19,7 @@ import AwardDetail from "./AwardDetail";
 import { getSinglePortfolio } from "./getSinglePortfolio";
 import { GlobalContext } from "../../Context/global";
 import { makeCommentData } from "./makeCommentData";
+import Spinner from "../AboutNumbers/Spinner";
 
 const initialCommentForm = {
   score: 0,
@@ -27,7 +28,7 @@ const initialCommentForm = {
 };
 
 const FreelancerDetail = () => {
-  const { role, username, token } = useContext(GlobalContext);
+  const { role, username, token, loading } = useContext(GlobalContext);
   const [portfolio, setPortfolio] = useState();
   const [commentForm, setCommentForm] = useState(initialCommentForm);
   const [error, setError] = useState(null);
@@ -511,7 +512,9 @@ const FreelancerDetail = () => {
 
   return (
     <>
-      {user.length < 1 ? (
+      {loading ? (
+        <Spinner />
+      ) : user.length < 1 ? (
         "Loading"
       ) : (username === user[0].username || role === "ROLE_ADMIN") &&
         portfolio.data.attributes.deletedAt === null ? (

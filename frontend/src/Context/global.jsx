@@ -13,7 +13,7 @@ export const GlobalProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
   const [users, setUsers] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("-createdAt");
 
   const setTokenWithCookie = (cookie, timeToLive, _username, _role) => {
@@ -53,6 +53,7 @@ export const GlobalProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${filter}`
@@ -69,6 +70,7 @@ export const GlobalProvider = ({ children }) => {
       .then((res) => {
         if (res && res.data) {
           setJobs([...res.data.data]);
+          setLoading(false);
         }
       })
       .catch(() => null);
@@ -90,6 +92,7 @@ export const GlobalProvider = ({ children }) => {
         users,
         removeAllCookies,
         setUsers,
+        loading,
       }}
     >
       {children}
