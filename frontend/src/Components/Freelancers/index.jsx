@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -14,15 +14,12 @@ const initialPagination = {
 };
 
 const Freelancers = () => {
-  const { portfolios, role, setFilter } = useContext(GlobalContext);
+  const { portfolios, role } = useContext(GlobalContext);
   const [pagination, setPagination] = useState(initialPagination);
   const history = useHistory();
 
   if (role === "ROLE_USER") history.push("/");
 
-  useEffect(() => {
-    setFilter("-createdAt");
-  }, []);
   const handleNext = () => {
     setPagination((prev) => ({
       ...prev,
@@ -56,7 +53,7 @@ const Freelancers = () => {
           </div>
         </div>
       </div>
-      <FilterOptions options={freelancerFilterOptions} />
+      <FilterOptions options={freelancerFilterOptions} type="portfolios" />
       <section className="gray-bg">
         <div className="container">
           {role === "ROLE_USER" ? (

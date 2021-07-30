@@ -17,13 +17,12 @@ const HomeTopCategory = () => {
               <div className="col-lg-7 col-md-9">
                 <div className="sec-heading">
                   <h2>
-                    Popular Freelancer{" "}
-                    <span className="theme-cl-2">Category</span>
+                    Freelancer <span className="theme-cl-2">Category</span>
                   </h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
+                    You need more granular search? Check our freelancers by
+                    category we are assured you wil find something that suit
+                    your needs{" "}
                   </p>
                 </div>
               </div>

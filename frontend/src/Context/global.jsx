@@ -14,7 +14,8 @@ export const GlobalProvider = ({ children }) => {
   const [role, setRole] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState("-createdAt");
+  const [portfolioFilter, setPortfolioFilter] = useState("-createdAt");
+  const [jobFilter, setJobFilter] = useState("-createdAt");
 
   const setTokenWithCookie = (cookie, timeToLive, _username, _role) => {
     Cookies.set("token", cookie);
@@ -56,17 +57,21 @@ export const GlobalProvider = ({ children }) => {
     setLoading(true);
     axios
       .get(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${filter}`
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${portfolioFilter}`
       )
       .then((res) => {
         if (res && res.data) {
           setPortfolios([...res.data.data]);
+          setLoading(false);
         }
       })
       .catch(() => null);
+  }, [portfolioFilter]);
 
+  useEffect(() => {
+    setLoading(true);
     axios
-      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/jobs?sort=${filter}`)
+      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/jobs?sort=${jobFilter}`)
       .then((res) => {
         if (res && res.data) {
           setJobs([...res.data.data]);
@@ -74,8 +79,7 @@ export const GlobalProvider = ({ children }) => {
         }
       })
       .catch(() => null);
-  }, [filter]);
-
+  }, [jobFilter]);
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
     <GlobalContext.Provider
@@ -85,7 +89,6 @@ export const GlobalProvider = ({ children }) => {
         portfolios,
         token,
         setTokenWithCookie,
-        setFilter,
         username,
         role,
         ttl,
@@ -93,6 +96,8 @@ export const GlobalProvider = ({ children }) => {
         removeAllCookies,
         setUsers,
         loading,
+        setPortfolioFilter,
+        setJobFilter,
       }}
     >
       {children}

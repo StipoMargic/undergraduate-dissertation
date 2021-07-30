@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../../Context/global";
 import "./styles.scss";
 
-const FilterOptions = ({ options }) => {
-  const { setFilter } = useContext(GlobalContext);
+const FilterOptions = ({ options, type }) => {
+  const { setPortfolioFilter, setJobFilter } = useContext(GlobalContext);
 
   return (
     <div className="row position-relative filter-row">
@@ -12,7 +12,11 @@ const FilterOptions = ({ options }) => {
         <select
           id="filter"
           className="form-control"
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e) =>
+            type === "portfolios"
+              ? setPortfolioFilter(e.target.value)
+              : setJobFilter(e.target.value)
+          }
         >
           {options.map((option, idx) => {
             return (

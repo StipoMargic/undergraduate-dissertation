@@ -27,8 +27,8 @@ const WhatPeopleSaying = () => {
                 What People <span className="theme-cl-2">Saying</span>
               </h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                You are not trusting us? Read some testimonials from our
+                users...
               </p>
             </div>
           </div>
@@ -42,7 +42,7 @@ const WhatPeopleSaying = () => {
                 <div className="st-author-box">
                   <div className="st-author-thumb">
                     <img
-                      src="https://via.placeholder.com/400x400"
+                      src="https://randomuser.me/api/portraits/men/83.jpg"
                       className="img-fluid"
                       alt=""
                     />
@@ -71,7 +71,7 @@ const WhatPeopleSaying = () => {
                 <div className="st-author-box">
                   <div className="st-author-thumb">
                     <img
-                      src="https://via.placeholder.com/400x400"
+                      src="https://randomuser.me/api/portraits/women/83.jpg"
                       className="img-fluid"
                       alt=""
                     />
@@ -97,7 +97,7 @@ const WhatPeopleSaying = () => {
                 <div className="st-author-box">
                   <div className="st-author-thumb">
                     <img
-                      src="https://via.placeholder.com/400x400"
+                      src="https://randomuser.me/api/portraits/women/11.jpg"
                       className="img-fluid"
                       alt=""
                     />
@@ -125,13 +125,13 @@ const WhatPeopleSaying = () => {
                 <div className="st-author-box">
                   <div className="st-author-thumb">
                     <img
-                      src="https://via.placeholder.com/400x400"
+                      src="https://randomuser.me/api/portraits/men/11.jpg"
                       className="img-fluid"
                       alt=""
                     />
                   </div>
                   <div className="st-author-info">
-                    <h4 className="st-author-title">Shrithi Setthi</h4>
+                    <h4 className="st-author-title">John Setthi</h4>
                     <span className="st-author-subtitle theme-cl">
                       CEO Of Applio
                     </span>

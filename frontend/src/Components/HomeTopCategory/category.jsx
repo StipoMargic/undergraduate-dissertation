@@ -12,7 +12,7 @@ const Category = ({ name, image, length }) => {
         />
         <div className="urip_cated_caps">
           <h6 className="cats_urip_title">{name}</h6>
-          <span>Jobs found:{length}</span>
+          <span>Listings found:{length}</span>
         </div>
       </div>
     </div>

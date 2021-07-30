@@ -52,7 +52,7 @@ const Jobs = () => {
         </div>
       </div>
 
-      <FilterOptions options={jobFilterOptions} />
+      <FilterOptions options={jobFilterOptions} type="jobs" />
       <section className="gray-bg py-5">
         <div className="container">
           {role === "ROLE_EMPLOYER" ? (

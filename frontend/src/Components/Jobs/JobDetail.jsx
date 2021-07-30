@@ -30,6 +30,10 @@ const JobDetail = () => {
   let inApprovedArray;
   let inDeclinedArray;
 
+  const sortComments = () => {
+    return job.data.attributes.comments.sort((a, b) => b.score - a.score);
+  };
+
   useEffect(() => {
     getSingleJob(params.id, setJob);
   }, []);
@@ -47,6 +51,8 @@ const JobDetail = () => {
     inDeclinedArray = job.data.attributes.declined.find(
       (applicant) => applicant === username
     );
+
+    sortComments();
   }
 
   const handleCommentSubmit = (e) => {
@@ -378,7 +384,14 @@ const JobDetail = () => {
             <div className="row">
               <div className="col-lg-8 col-md-12 col-sm-12">
                 <div className="_job_detail_box my-5 p-5 shadow-lg">
-                  <div className="_job_detail_single">
+                  {!role && (
+                    <div className="row justify-content-center">
+                      <h6 className="small smart-center text-info">
+                        Login as Freelancer to be able to apply for this job!
+                      </h6>
+                    </div>
+                  )}
+                  <div className="_job_detail_single mt-2">
                     <h4>Job Summary</h4>
                     <p>{job.data.attributes.jobSummary}</p>
                   </div>
@@ -439,11 +452,6 @@ const JobDetail = () => {
                   )}
                   {inApprovedArray && renderCommentForm()}
                   {renderComments()}
-                  {!role && (
-                    <h6>
-                      Login as Freelancer to be able to apply for this job!
-                    </h6>
-                  )}
                 </div>
               </div>
 
