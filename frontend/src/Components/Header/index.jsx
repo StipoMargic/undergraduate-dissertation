@@ -1,5 +1,11 @@
 import "./styles.scss";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,6 +25,21 @@ const loginInitData = {
   password: "",
 };
 
+function useOutsideAlerter(ref, setModal) {
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setModal(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+}
+
 const Header = () => {
   const { pathname } = useLocation();
   const history = useHistory();
@@ -28,6 +49,8 @@ const Header = () => {
   const [loginData, setLoginData] = useState(loginInitData);
   const [loginError, setLoginError] = useState(false);
   const ttl = Cookies.get("ttl");
+  const loginRef = useRef();
+  useOutsideAlerter(loginRef, setSignIn);
 
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
@@ -87,7 +110,7 @@ const Header = () => {
 
   const renderSignInModal = () => {
     return (
-      <div>
+      <div ref={loginRef}>
         <div
           className="modal-open"
           id="login"
@@ -95,6 +118,7 @@ const Header = () => {
           role="dialog"
           aria-labelledby="registermodal"
           aria-hidden="true"
+          onFocusIn={() => handleSignIn(false)}
         >
           <div
             className="modal-dialog modal-dialog-centered login-pop-form"
@@ -229,7 +253,6 @@ const Header = () => {
                           type="button"
                           className="btn btn-outline-primary text-dark mr-2 mt-4"
                           onClick={() => handleSignIn(!signIn)}
-                          onBlur={() => handleSignIn(false)}
                         >
                           <FontAwesomeIcon icon={faUser} /> Sign in
                         </button>
