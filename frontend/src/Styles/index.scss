@@ -109,3 +109,12 @@ code {
 .ipn-subtitle {
   color: #728afb;
 }
+
+.star {
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.2);
+    color: orange;
+  }
+}

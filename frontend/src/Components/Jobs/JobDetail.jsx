@@ -1,7 +1,7 @@
 import "./styles.scss";
 import { useHistory, useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faStar } from "@fortawesome/free-solid-svg-icons";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -251,41 +251,116 @@ const JobDetail = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleScoreChange = (value) => (e) => {
+    e.preventDefault();
+
+    setCommentForm((prev) => ({
+      ...prev,
+      score: value,
+    }));
+  };
+
   const renderCommentForm = () => {
     return (
       <div className="container pb-3">
         <h6 className="text-muted text-uppercase pb-2">Comment form</h6>
         <form className="form-group" onSubmit={handleCommentSubmit}>
-          <div className="row ">
-            <div className="col-sm-3">
-              <input
-                type="number"
-                name="score"
-                id="score"
-                className="form-control"
-                placeholder="Score"
-                min={0}
-                max={5}
-                step={1}
-                value={commentForm.score}
-                onChange={handleCommentFormChange}
-              />
-            </div>
-            <div className="col-sm-9">
-              <textarea
-                name="message"
-                id="message"
-                className="form-control"
-                placeholder="Your comment..."
-                onChange={handleCommentFormChange}
-                value={commentForm.message}
-              />
-            </div>
+          <div className="row">
+            <small className="text-muted small ml-2">
+              Rate your relation with this freelancer
+            </small>
+            <ul className="d-flex">
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+              <li onClick={handleScoreChange(1)}>
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color={
+                    commentForm.score === 1 ||
+                    commentForm.score === 2 ||
+                    commentForm.score === 3 ||
+                    commentForm.score === 4 ||
+                    commentForm.score === 5
+                      ? "gold"
+                      : "gray"
+                  }
+                  size="lg"
+                  className="mr-1 star"
+                />
+              </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+              <li onClick={handleScoreChange(2)}>
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color={
+                    commentForm.score === 2 ||
+                    commentForm.score === 3 ||
+                    commentForm.score === 4 ||
+                    commentForm.score === 5
+                      ? "gold"
+                      : "gray"
+                  }
+                  size="lg"
+                  className="mr-1 star"
+                />
+              </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+              <li onClick={handleScoreChange(3)}>
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color={
+                    commentForm.score === 3 ||
+                    commentForm.score === 4 ||
+                    commentForm.score === 5
+                      ? "gold"
+                      : "gray"
+                  }
+                  size="lg"
+                  className="mr-1 star"
+                />
+              </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+              <li onClick={handleScoreChange(4)}>
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color={
+                    commentForm.score === 4 || commentForm.score === 5
+                      ? "gold"
+                      : "gray"
+                  }
+                  size="lg"
+                  className="mr-1 star"
+                />
+              </li>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
+              <li onClick={handleScoreChange(5)}>
+                <FontAwesomeIcon
+                  icon={faStar}
+                  color={commentForm.score === 5 ? "gold" : "gray"}
+                  size="lg"
+                  className="mr-1 star"
+                />
+              </li>
+            </ul>
           </div>
+          <div className="row ">
+            <textarea
+              name="message"
+              id="message"
+              className="form-control"
+              placeholder="Your comment..."
+              onChange={handleCommentFormChange}
+              value={commentForm.message}
+            />
+          </div>
+          {commentForm.message.trim() === "" && (
+            <small className="small text-danger">Message is required!</small>
+          )}
           <button
             className="btn btn-outline-primary fa-pull-right mt-3"
             type="submit"
             onClick={handleCommentSubmit}
+            disabled={commentForm.message.trim() === ""}
           >
             Comment
           </button>
