@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory } from "react-router";
 import axios from "axios";
 import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { GlobalContext } from "../../Context/global";
@@ -15,10 +14,10 @@ import {
   initialPortfolioData,
   initialQualificationData,
 } from "./initialData";
+import { nextMonth } from "../../Utils/dates";
 
 const AddJob = () => {
   const { role, categories, token } = useContext(GlobalContext);
-  const history = useHistory();
   const [portfolioData, setPortfolioData] = useState(initialPortfolioData);
   const [qualification, setQualification] = useState(initialQualificationData);
   const [experience, setExperience] = useState(initialExperienceData);
@@ -26,14 +25,8 @@ const AddJob = () => {
   const [qualifications, setQualifications] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [error, setError] = useState(null);
-  const today = new Date();
-  const defaultDay = today.setDate(today.getDate() + 30);
-  const [activeTill, setActiveTill] = useState(defaultDay);
+  const [activeTill, setActiveTill] = useState(nextMonth());
   const [loading, setLoading] = useState();
-
-  if (!role) {
-    history.push("/");
-  }
 
   const handlePortfolioChange = (value) => (e) => {
     e.persist();
