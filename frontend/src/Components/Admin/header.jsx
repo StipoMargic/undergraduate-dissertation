@@ -1,17 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { GlobalContext } from "../../Context/global";
+import { ADMIN } from "../../Constants/roles";
 
-const AdminDashboard = () => {
-  const { role } = useContext(GlobalContext);
+const AdminDashboardHeader = () => {
+  const { role, loading } = useContext(GlobalContext);
   const history = useHistory();
+  const { pathname } = useLocation();
 
-  if (role !== "ROLE_ADMIN") {
-    history.push("/");
-  }
+  useEffect(() => {
+    if (loading === false) {
+      if (role !== ADMIN) {
+        history.push("/");
+      }
+    }
+  }, []);
+
   return (
-    <div className="container justify-content-center vh-60 align-items-center">
+    <div
+      className={`container justify-content-center  align-items-center ${
+        pathname === "/admin" && "vh-70"
+      }`}
+    >
       <div className="row mt-5">
         <div className="col">
           <Link to="/admin/categories" className="btn btn-primary w-100">
@@ -33,4 +44,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboardHeader;

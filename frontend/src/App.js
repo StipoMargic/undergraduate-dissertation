@@ -20,7 +20,7 @@ import Verification from "./Components/Verification";
 import HireNow from "./Components/HireNow";
 import FreelancersCategoryList from "./Components/Freelancers/FreelancersCategoryList";
 import SearchPage from "./Components/Search";
-import AdminDashboard from "./Components/Admin";
+import AdminDashboard from "./Components/Admin/header";
 import CreateCategory from "./Components/Admin/create-category";
 import AllUsers from "./Components/Admin/Users/all-users";
 import Analytics from "./Components/Admin/analytics";

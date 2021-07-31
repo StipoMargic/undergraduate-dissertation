@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,8 +9,12 @@ import {
 import { Link } from "react-router-dom";
 import logo from "../../Assets/images/logo.png";
 import ScrollToTop from "../ScrollToTop";
+import { GlobalContext } from "../../Context/global";
+import { COMPANY, FREELANCER } from "../../Constants/roles";
 
 const Footer = () => {
+  const { role } = useContext(GlobalContext);
+
   return (
     <div className="sticky-footer">
       <footer className="dark-footer skin-dark-footer">
@@ -51,12 +55,24 @@ const Footer = () => {
             <div className="col-lg-2 col-md-6 foot-link">
               <Link to="/about">About us</Link>
             </div>
-            <div className="col-lg-2 col-md-6 foot-link">
-              <Link to="/jobs">Jobs</Link>
-            </div>
-            <div className="col-lg-2 col-md-6 foot-link">
-              <Link to="/freelancers">Freelancers</Link>
-            </div>
+            {role === FREELANCER ? (
+              <div className="col-lg-4 col-md-6 foot-link">
+                <Link to="/jobs">Jobs</Link>
+              </div>
+            ) : role === COMPANY ? (
+              <div className="col-lg-4 col-md-6 foot-link">
+                <Link to="/freelancers">Freelancers</Link>
+              </div>
+            ) : (
+              <>
+                <div className="col-lg-2 col-md-6 foot-link">
+                  <Link to="/freelancers">Freelancers</Link>
+                </div>
+                <div className="col-lg-2 col-md-6 foot-link">
+                  <Link to="/jobs">Jobs</Link>
+                </div>
+              </>
+            )}
             <div className="col-lg-2 col-md-6 foot-link">
               <Link to="/contact">Contact us</Link>
             </div>

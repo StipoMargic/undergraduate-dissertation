@@ -22,13 +22,15 @@ code {
 }
 
 .vh-60 {
-  height: 60vh;
-  overflow: hidden;
+  min-height: 60vh;
+
 }
 
+.vh-70 {
+  min-height: 70vh;
+}
 .vh-80 {
-  height: 80vh;
-  overflow: hidden;
+  min-height: 80vh;
 }
 
 

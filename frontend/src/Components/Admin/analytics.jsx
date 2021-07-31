@@ -6,6 +6,7 @@ import Spinner from "../AboutNumbers/Spinner";
 import RolesChart from "../Charts/RolesChart";
 import CategoryChart from "../Charts/CategoryChart";
 import JobChart from "../Charts/JobChart";
+import AdminDashboardHeader from "./header";
 
 const Analytics = () => {
   const { loading } = useContext(GlobalContext);
@@ -17,6 +18,7 @@ const Analytics = () => {
         <Spinner />
       ) : (
         <>
+          <AdminDashboardHeader />
           <div className="container mt-5 vh-80">
             <div className="row m-3">
               <button
