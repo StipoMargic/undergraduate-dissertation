@@ -5,7 +5,18 @@ import Spinner from "../Components/AboutNumbers/Spinner";
 
 const ContactPage = () => {
   const { loading } = useContext(GlobalContext);
-  return <> {loading ? <Spinner /> : <Contact />} </>;
+  return (
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <Contact />
+        </div>
+      )}
+      0
+    </>
+  );
 };
 
 export default ContactPage;

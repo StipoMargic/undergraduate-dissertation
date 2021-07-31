@@ -38,50 +38,56 @@ function App() {
     <BrowserRouter>
       <GlobalProvider>
         <Header />
-        <Switch>
-          <Route path="/profile/:name" exact component={Profile} />
-          <Route
-            path="/freelancers/edit/:id"
-            exact
-            component={FreelancerEdit}
-          />
-          <Route path="/jobs/candidate-list" exact component={CandidateList} />
-          <Route
-            path="/admin/create-category"
-            exact
-            component={CreateCategory}
-          />
-          <Route path="/admin/categories" exact component={Categories} />
-          <Route
-            path="/admin/category/:id"
-            exact
-            component={CategoryAdminSingle}
-          />
-          <Route path="/admin/users" exact component={AllUsers} />
-          <Route path="/admin/users/:id" exact component={UserAdminSingle} />
-          <Route path="/admin/analytics" exact component={Analytics} />
-          <Route path="/admin" component={AdminDashboard} />
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/search/:searchTerm" component={SearchPage} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/freelancers" exact component={FreelancersPage} />
-          <Route
-            path="/category/:categoryName"
-            exact
-            component={FreelancersCategoryList}
-          />
-          <Route path="/freelancers/:id" exact component={FDetail} />
-          <Route path="/freelancers/:id/hire-now" exact component={HireNow} />
-          <Route path="/jobs/:id" exact component={JDetail} />
-          <Route path="/job/edit/:id" exact component={JobEdit} />
-          <Route path="/contact" component={ContactPage} />
-          <Route path="/jobs" component={JobPage} />
-          <Route path="/register" component={Register} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/add-job" component={AddJob} />
-          <Route path="/verify" component={Verification} />
-          <Route path="/apply-now/:id" component={ApplyNow} />
-        </Switch>
+        <main>
+          <Switch>
+            <Route path="/profile/:name" exact component={Profile} />
+            <Route
+              path="/freelancers/edit/:id"
+              exact
+              component={FreelancerEdit}
+            />
+            <Route
+              path="/jobs/candidate-list"
+              exact
+              component={CandidateList}
+            />
+            <Route
+              path="/admin/create-category"
+              exact
+              component={CreateCategory}
+            />
+            <Route path="/admin/categories" exact component={Categories} />
+            <Route
+              path="/admin/category/:id"
+              exact
+              component={CategoryAdminSingle}
+            />
+            <Route path="/admin/users" exact component={AllUsers} />
+            <Route path="/admin/users/:id" exact component={UserAdminSingle} />
+            <Route path="/admin/analytics" exact component={Analytics} />
+            <Route path="/admin" component={AdminDashboard} />
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/search/:searchTerm" component={SearchPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/freelancers" exact component={FreelancersPage} />
+            <Route
+              path="/category/:categoryName"
+              exact
+              component={FreelancersCategoryList}
+            />
+            <Route path="/freelancers/:id" exact component={FDetail} />
+            <Route path="/freelancers/:id/hire-now" exact component={HireNow} />
+            <Route path="/jobs/:id" exact component={JDetail} />
+            <Route path="/job/edit/:id" exact component={JobEdit} />
+            <Route path="/contact" component={ContactPage} />
+            <Route path="/jobs" component={JobPage} />
+            <Route path="/register" component={Register} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/add-job" component={AddJob} />
+            <Route path="/verify" component={Verification} />
+            <Route path="/apply-now/:id" component={ApplyNow} />
+          </Switch>
+        </main>
         <Footer />
       </GlobalProvider>
     </BrowserRouter>
