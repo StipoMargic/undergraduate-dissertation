@@ -1,6 +1,16 @@
-/* eslint-disable */
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faMapPin,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { makeContactData } from "./makeContactData";
 
@@ -58,105 +68,218 @@ const Contact = () => {
   };
   return (
     <>
-      <div className="container justify-content-center align-items-center d-flex flex-column">
-        <div className="row">
-          <div className="col-lg-12 col-md-12">
-            <h2 className="ipt-titl mt-5">Contact Us</h2>
-            <span className="ipn-subtitle">
-              Looking For a design partner? You Found.
-            </span>
+      <div className="page-title inner-page">
+        <div className="row container">
+          <h2 className="ipt-title mr-3">Contact Us</h2>
+          <span className="ipn-subtitle">
+            Looking For a design partner? You Found.
+          </span>
+        </div>
+      </div>
+      <div className="row container">
+        <div className="col-lg-4 col-md-4 col-sm-12">
+          <div className="contact_side">
+            <div className="ct_cmp_social">
+              <ul>
+                <li>
+                  <a href="/">
+                    <FontAwesomeIcon icon={faFacebook} color="#fff" size="2x" />
+                  </a>
+                </li>
+                <li>
+                  <a href="/">
+                    <FontAwesomeIcon
+                      icon={faInstagram}
+                      color="#fff"
+                      size="2x"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="/">
+                    <FontAwesomeIcon icon={faLinkedin} color="#fff" size="2x" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="ct_cmp_caption">
+              <h4 className="mb-0">Get in Touch.</h4>
+              <p>Get in touch via mail, call and direct address.</p>
+            </div>
+
+            <div className="ct_cmp_address">
+              <div className="ct_cmp_single">
+                <div className="ct_cmp_single_icon">
+                  <FontAwesomeIcon icon={faMapPin} />
+                </div>
+                <div className="ct_cmp_brief">
+                  <h5>Reach Us:</h5>
+                  <span>
+                    Kopilica 5, 21000 Split
+                    <br />
+                    Croatia (local: Hrvatska)
+                  </span>
+                </div>
+              </div>
+              <div className="ct_cmp_single">
+                <div className="ct_cmp_single_icon">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </div>
+                <div className="ct_cmp_brief">
+                  <h5>Drop a mail:</h5>
+                  <span>info@liberato.io</span>
+                </div>
+              </div>
+              <div className="ct_cmp_single">
+                <div className="ct_cmp_single_icon">
+                  <FontAwesomeIcon icon={faPhone} />
+                </div>
+                <div className="ct_cmp_brief">
+                  <h5>Call Us:</h5>
+                  <span>+91 256 258 4759</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <section>
-          <div className="row">
-            <div className="col-lg-4 col-md-4 col-sm-12"></div>
-          </div>
-          <div className="col-lg-8 col-sm-12 col-md-8">
-            <form>
-              <div className="form-row">
-                <div className="col-md-4 mb-3">
-                  <label htmlFor="validationDefault01">First name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="validationDefault01"
-                    placeholder="First name"
-                    value="Mark"
-                    required
+
+        <div className="py-5 col-lg-8 col-md-8 col-sm-12">
+          <form onSubmit={handleSubmit} className="contact_row">
+            <div className="form_row_box">
+              <div className="form_row_header">
+                <div className="form_row_header_flex">
+                  <img
+                    src="assets/img/email.svg"
+                    className="img-fluid"
+                    width="52"
+                    alt=""
                   />
                 </div>
-                <div className="col-md-4 mb-3">
-                  <label htmlFor="validationDefault02">Last name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="validationDefault02"
-                    placeholder="Last name"
-                    value="Otto"
-                    required
-                  />
+                <div className="form_row_header_right">
+                  <p>
+                    Write as a few words about your query and we&apos;ll prepare
+                    your query for you within <strong>24</strong> hours and
+                    inform you shortly.
+                  </p>
+
+                  {contactData.error === true ? (
+                    <h3 className="text-center text-danger mt-2">
+                      Sorry something went wrong. Try again...
+                    </h3>
+                  ) : contactData.error === false ? (
+                    <h3 className="text-center text-success mt-2">
+                      Your email is send.
+                    </h3>
+                  ) : (
+                    ""
+                  )}
                 </div>
-                <div className="col-md-4 mb-3">
-                  <label htmlFor="validationDefaultUsername">Username</label>
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <span
-                        className="input-group-text"
-                        id="inputGroupPrepend2"
-                      >
-                        @
-                      </span>
+              </div>
+              <div className="form_row_box_body">
+                <div className="form-row">
+                  <div className="col-lg-6 col-md-12">
+                    <div className="form-group">
+                      <label className="w-100" htmlFor="name">
+                        Your Name
+                        <input
+                          onChange={onInputChange("name")}
+                          type="text"
+                          id="mame"
+                          className="form-control with-light"
+                          placeholder="Your Name"
+                          value={contactData.name}
+                          required
+                        />
+                      </label>
                     </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="validationDefaultUsername"
-                      placeholder="Username"
-                      aria-describedby="inputGroupPrepend2"
-                      required
-                    />
+                  </div>
+
+                  <div className="col-lg-6 col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="email" className="w-100">
+                        Your e-Mail
+                        <input
+                          onChange={onInputChange("email")}
+                          type="email"
+                          required
+                          id="email"
+                          className="form-control with-light"
+                          placeholder="liberato@liberato.io"
+                          value={contactData.email}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="col-lg-6 col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="company" className="w-100">
+                        Company
+                        <input
+                          onChange={onInputChange("company")}
+                          type="text"
+                          id="company"
+                          required
+                          className="form-control with-light"
+                          placeholder="Limitless Ltd."
+                          value={contactData.company}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="col-lg-6 col-md-12">
+                    <div className="form-group">
+                      <label htmlFor="phone" className="w-100">
+                        Phone No.
+                        <input
+                          onChange={onInputChange("phone")}
+                          type="text"
+                          required
+                          id="phone"
+                          className="form-control with-light"
+                          placeholder="+91 256 584 7863"
+                          value={contactData.phone}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label className="w-100" htmlFor="message">
+                        Your Query
+                        <textarea
+                          onChange={onInputChange("message")}
+                          className="form-control with-light"
+                          id="message"
+                          required
+                          rows={5}
+                          placeholder="About Your Query"
+                          value={contactData.message}
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <button
+                        onClick={handleSubmit}
+                        type="button"
+                        className="btn btn-primary w-100"
+                        disabled={contactData.disabled}
+                      >
+                        Submit Query
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="form-row">
-                <div className="col-md-6 mb-3">
-                  <label htmlFor="validationDefault03">City</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="validationDefault03"
-                    placeholder="City"
-                    required
-                  />
-                </div>
-                <div className="col-md-3 mb-3">
-                  <label htmlFor="validationDefault04">State</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="validationDefault04"
-                    placeholder="State"
-                    required
-                  />
-                </div>
-                <div className="col-md-3 mb-3">
-                  <label htmlFor="validationDefault05">Zip</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="validationDefault05"
-                    placeholder="Zip"
-                    required
-                  />
-                </div>
-              </div>
-
-              <button className="btn btn-primary" type="submit">
-                Submit form
-              </button>
-            </form>
-          </div>
-        </section>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

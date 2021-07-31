@@ -218,9 +218,7 @@ const Header = () => {
               {role !== FREELANCER && (
                 <li
                   className={
-                    pathname === "/freelancers"
-                      ? "acti1ve nav-item"
-                      : "nav-item"
+                    pathname === "/freelancers" ? "active nav-item" : "nav-item"
                   }
                 >
                   <Link className="nav-link" to="/freelancers">

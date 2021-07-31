@@ -10,7 +10,7 @@ const ContactPage = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div>
+        <div className="d-flex justify-content-center align-items-center flex-column">
           <Contact />
         </div>
       )}
