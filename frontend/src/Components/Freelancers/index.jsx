@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -6,6 +6,7 @@ import FreelancerCard from "./FreelancerCard";
 import { GlobalContext } from "../../Context/global";
 import FilterOptions from "../FilterOptions";
 import { freelancerFilterOptions } from "./freelancerFilterOptions";
+import { FREELANCER } from "../../Constants/roles";
 
 const initialPagination = {
   start: 0,
@@ -18,7 +19,9 @@ const Freelancers = () => {
   const [pagination, setPagination] = useState(initialPagination);
   const history = useHistory();
 
-  if (role === "ROLE_USER") history.push("/");
+  useEffect(() => {
+    if (role === FREELANCER) history.push("/");
+  }, []);
 
   const handleNext = () => {
     setPagination((prev) => ({
@@ -101,7 +104,7 @@ const Freelancers = () => {
           </div>
           <div className="row justify-content-center">
             You are on page {pagination.page} out of{" "}
-            {parseInt(activePortfolios.length / 9, 10)}.
+            {parseInt(Math.ceil(activePortfolios.length / 9), 10)}.
           </div>
         </div>
       </section>

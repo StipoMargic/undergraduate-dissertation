@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
@@ -6,6 +6,7 @@ import JobCard from "./JobCard";
 import { GlobalContext } from "../../Context/global";
 import FilterOptions from "../FilterOptions";
 import { jobFilterOptions } from "./jobFilterOptions";
+import { COMPANY } from "../../Constants/roles";
 
 const initialPagination = {
   start: 0,
@@ -38,7 +39,9 @@ const Jobs = () => {
 
   const activeJobs = jobs.filter((job) => job.attributes.deletedAt === null);
 
-  if (role === "ROLE_EMPLOYER") history.push("/");
+  useEffect(() => {
+    if (role === COMPANY) history.push("/");
+  }, []);
   return (
     <>
       <div className="page-title">
@@ -94,7 +97,7 @@ const Jobs = () => {
         </div>
         <div className="row justify-content-center">
           You are on page {pagination.page} out of{" "}
-          {parseInt(activeJobs.length / 9, 10)}.
+          {parseInt(Math.ceil(activeJobs.length / 9), 10)}.
         </div>
       </section>
     </>
