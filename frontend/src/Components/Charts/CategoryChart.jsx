@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Chart,
   ChartCategoryAxis,
@@ -18,17 +18,30 @@ const CategoryChart = () => {
     { name: "", data: [] },
     { name: "", data: [] },
   ]);
-  console.log(setData);
+
+  useEffect(() => {
+    const published = categories.map((c) => c.attributes.published);
+    const deactivated = categories.map((c) => c.attributes.deactivated);
+
+    setData([
+      {
+        name: "Published",
+        data: published,
+      },
+      { name: "Deactivated", data: deactivated },
+    ]);
+  }, []);
+
   return (
     <>
       <div className="k-card">
         <Chart
           style={{
-            height: 350,
+            height: 500,
           }}
         >
-          <ChartTitle text="Column Chart" />
-          <ChartLegend position="top" orientation="horizontal" />
+          <ChartTitle text="Portfolios analytics" />
+          <ChartLegend position="top" orientation="vertifcal" />
           <ChartCategoryAxis>
             <ChartCategoryAxisItem categories={cNames} startAngle={45} />
           </ChartCategoryAxis>
