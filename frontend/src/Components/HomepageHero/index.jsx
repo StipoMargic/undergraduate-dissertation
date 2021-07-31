@@ -55,10 +55,9 @@ const HomepageHero = () => {
               onSubmit={(e) => handleSearch(e)}
               className="search-big-form banner-search shadow mt-3 mb-2"
             >
-              <div className="row pt-2 pl-4">
+              <div className="row pt-2 px-4">
                 <div className="col-lg-8 col-md-8 col-sm-12 p-0">
                   <div className="form-group">
-                    <i className="ti-search" />
                     <input
                       type="text"
                       value={searchTerm}
@@ -66,15 +65,12 @@ const HomepageHero = () => {
                       className="form-control b-0 b-r l-radius"
                       placeholder="Enter company name..."
                     />
+                    {error !== "" && (
+                      <small className="small text-danger ml-2">{error}</small>
+                    )}
                   </div>
-                  {error !== "" && (
-                    <small className="small text-danger mb-2 ml-2">
-                      {error}
-                    </small>
-                  )}
                 </div>
-
-                <div className="col-lg-2 col-md-3 col-sm-12 p-0">
+                <div className="col-lg-2 col-md-3 col-sm-12 mb-2">
                   <button
                     type="submit"
                     onClick={(e) => handleSearch(e)}
