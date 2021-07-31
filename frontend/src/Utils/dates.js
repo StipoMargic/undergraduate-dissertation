@@ -19,3 +19,7 @@ export const threeMonthsAgo = () => {
 export const nextMonth = () => {
   return new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
 };
+
+export const inSevenDays = () => {
+  return new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+};

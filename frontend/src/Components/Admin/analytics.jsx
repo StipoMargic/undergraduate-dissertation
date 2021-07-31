@@ -7,6 +7,7 @@ import RolesChart from "../Charts/RolesChart";
 import CategoryChart from "../Charts/CategoryChart";
 import JobChart from "../Charts/JobChart";
 import AdminDashboardHeader from "./header";
+import ActiveTillJobChart from "../Charts/ActiveTillJobChart";
 
 const Analytics = () => {
   const { loading } = useContext(GlobalContext);
@@ -42,6 +43,9 @@ const Analytics = () => {
             </div>
             <div className="row mr-3">
               <JobChart />
+            </div>
+            <div className="row mt-3">
+              <ActiveTillJobChart />
             </div>
           </div>
         </>
