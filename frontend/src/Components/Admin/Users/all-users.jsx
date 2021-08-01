@@ -72,12 +72,12 @@ const AllUsers = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="vh-70 container">
+        <div className="container">
           <AdminDashboardHeader />
           <div className="mt-5">
             <form onSubmit={handleSubmit}>
               <input
-                className="form-control"
+                className="form-control mb-2"
                 type="text"
                 value={searchName}
                 placeholder="Type user name..."
@@ -93,24 +93,22 @@ const AllUsers = () => {
             </form>
           </div>
           {users && (
-            <div className="mt-5">
-              <div className="row mb-3">
-                <button
-                  className="btn btn-info btn-lg"
-                  type="submit"
-                  onClick={history.goBack}
-                >
-                  Go back
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-success btn-lg ml-5"
-                  onClick={handleGetUsers}
-                >
-                  Reset users
-                </button>
-              </div>
-              <table className="table">
+            <div className="row mb-3 d-flex justify-content-center mt-5">
+              <button
+                className="btn btn-info btn-lg"
+                type="submit"
+                onClick={history.goBack}
+              >
+                Go back
+              </button>
+              <button
+                type="submit"
+                className="btn btn-success btn-lg ml-5"
+                onClick={handleGetUsers}
+              >
+                Reset users
+              </button>
+              <table className="table table-bordered table-responsive-sm mt-3">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -154,7 +152,7 @@ const AllUsers = () => {
                     })}
                 </tbody>
               </table>
-              <div className="justify-content-center d-flex align-items-center">
+              <div className="justify-content-center d-flex align-items-center pb-4">
                 {pagination.start > 0 && (
                   <button
                     type="button"

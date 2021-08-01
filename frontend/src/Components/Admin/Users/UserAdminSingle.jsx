@@ -111,17 +111,17 @@ const UserAdminSingle = () => {
       {newUserInfo && (
         <div className="container">
           <div className="row">
-            <div className=" my-5 col-8">
+            <div className="my-5 col-lg-8 col-sm-12">
               <div className="py-3">
                 <form onSubmit={handleEdit}>
                   <div className="form-group">
-                    <label htmlFor="name">
+                    <label className="w-100" htmlFor="name">
                       Name
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="name"
-                        className="form-control"
+                        className="form-control w-100"
                         name="username"
                         value={newUserInfo.username}
                       />
@@ -129,13 +129,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="email_address">
+                    <label className="w-100" htmlFor="email_address">
                       E-Mail Address
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="email_address"
-                        className="form-control"
+                        className="form-control w-100"
                         name="email"
                         value={newUserInfo.email}
                       />
@@ -143,13 +143,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="password">
+                    <label className="w-100" htmlFor="password">
                       Password
                       <input
                         onChange={handleInputChange}
                         type="password"
                         id="password"
-                        className="form-control"
+                        className="form-control w-100"
                         name="password"
                         placeholder="Type new password..."
                         value={newUserInfo.password}
@@ -158,13 +158,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="phone_number">
+                    <label className="w-100" htmlFor="phone_number">
                       Phone Number
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="phone_number"
-                        className="form-control"
+                        className="form-control w-100"
                         name="phone"
                         value={newUserInfo.phone}
                       />
@@ -172,13 +172,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="address">
+                    <label className="w-100" htmlFor="address">
                       Address
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="address"
-                        className="form-control"
+                        className="form-control w-100"
                         name="address"
                         value={newUserInfo.address}
                       />
@@ -186,13 +186,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="city">
+                    <label className="w-100" htmlFor="city">
                       City
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="city"
-                        className="form-control"
+                        className="form-control w-100"
                         name="city"
                         value={newUserInfo.city}
                       />
@@ -200,13 +200,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="occupation">
+                    <label className="w-100" htmlFor="occupation">
                       Occupation
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="occupation"
-                        className="form-control"
+                        className="form-control w-100"
                         name="occupation"
                         value={newUserInfo.occupation}
                       />
@@ -214,13 +214,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="facebook">
+                    <label className="w-100" htmlFor="facebook">
                       Facebook
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="facebook"
-                        className="form-control"
+                        className="form-control w-100"
                         name="facebook"
                         value={newUserInfo.facebook}
                       />
@@ -228,13 +228,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="twitter">
+                    <label className="w-100" htmlFor="twitter">
                       Twitter
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="twitter"
-                        className="form-control"
+                        className="form-control w-100"
                         name="twitter"
                         value={newUserInfo.twitter}
                       />
@@ -242,13 +242,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="linkedin">
+                    <label className="w-100" htmlFor="linkedin">
                       Linkedin
                       <input
                         onChange={handleInputChange}
                         type="text"
                         id="linkedin"
-                        className="form-control"
+                        className="form-control w-100"
                         name="linkedin"
                         value={newUserInfo.linkedin}
                       />
@@ -256,13 +256,13 @@ const UserAdminSingle = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="about">
+                    <label className="w-100" htmlFor="about">
                       About
                       <textarea
                         onChange={handleInputChange}
                         type="text"
                         id="about"
-                        className="form-control"
+                        className="form-control w-100"
                         name="about"
                         value={newUserInfo.about}
                       />
@@ -281,7 +281,7 @@ const UserAdminSingle = () => {
                 </form>
               </div>
             </div>
-            <div className="col-4 mt-5">
+            <div className="col-lg-4 col-sm-12 mt-5">
               {user.attributes.roles[0] === "ROLE_EMPLOYER" ? (
                 <small className="small">
                   This user is part of Company role
@@ -351,7 +351,7 @@ const UserAdminSingle = () => {
               ) : (
                 ""
               )}
-              <div className="mt-3">
+              <div className="mt-3 pb-5">
                 <button
                   className="btn btn-info w-100"
                   type="submit"
