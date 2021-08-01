@@ -31,20 +31,20 @@ const Analytics = () => {
               </button>
             </div>
             <div className="row">
-              <div className="col-6">
+              <div className="col-lg-6 col-sm-12">
                 <RolesChart />
                 <Link to="/admin/users" className="btn btn-primary w-100">
                   Check more info
                 </Link>
               </div>
-              <div className="col-6">
+              <div className="col-lg-6 col-sm-12 mt-3">
                 <CategoryChart />
               </div>
             </div>
             <div className="row mr-3">
               <JobChart />
             </div>
-            <div className="row mt-3">
+            <div className="row mt-3 pb-3">
               <ActiveTillJobChart />
             </div>
           </div>

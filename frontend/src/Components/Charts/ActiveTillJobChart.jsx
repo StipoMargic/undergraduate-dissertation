@@ -122,7 +122,7 @@ const ActiveTillJobChart = () => {
 
   return (
     <>
-      <div className="col-4 mt-5">
+      <div className="col-lg-4 col-sm-12 mt-5">
         {dateError && (
           <p className="text-danger">Pick newer date then today!</p>
         )}
@@ -146,7 +146,7 @@ const ActiveTillJobChart = () => {
             </p>
           </div>
         )}
-        <div className="row w-100 mt-3">
+        <div className="mt-3 justify-content-center d-flex  mb-2">
           <button
             type="button"
             className="btn btn-outline-secondary w-100"
@@ -158,11 +158,11 @@ const ActiveTillJobChart = () => {
           </button>
         </div>
       </div>
-      <div className="col-8">
+      <div className="col-lg-8 col-sm-12">
         {showActiveJobs && (
           <>
             <div className="row mb-2">
-              <div className="col-4">
+              <div className="col-lg-4 col-sm-5 mb-2">
                 <select
                   id="sort"
                   className="form-control"
@@ -175,8 +175,8 @@ const ActiveTillJobChart = () => {
                 </select>
               </div>
 
-              <div className="col-4" />
-              <div className="col-4">
+              <div className="col-lg-4 col-sm-1" />
+              <div className="col-lg-4 col-sm-5 mb-2">
                 <select
                   id="sort"
                   className="form-control"

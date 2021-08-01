@@ -102,7 +102,7 @@ const JobChart = () => {
 
   return (
     <>
-      <div className="row mt-5">
+      <div className="col-12 mt-5">
         <Chart>
           <ChartTitle text="Job Analytics" />
           <ChartLegend position="top" orientation="horizontal" />
