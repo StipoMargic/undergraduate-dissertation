@@ -55,14 +55,14 @@ const HomepageHero = () => {
               onSubmit={(e) => handleSearch(e)}
               className="search-big-form banner-search shadow mt-3 mb-2"
             >
-              <div className="row pt-2 px-4">
+              <div className="row pt-2 ">
                 <div className="col-lg-8 col-md-8 col-sm-12 p-0">
-                  <div className="form-group">
+                  <div className="form-group pl-4">
                     <input
                       type="text"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="form-control b-0 b-r l-radius"
+                      className="form-control b-0 b-r l-radius "
                       placeholder="Enter company name..."
                     />
                     {error !== "" && (
@@ -74,7 +74,7 @@ const HomepageHero = () => {
                   <button
                     type="submit"
                     onClick={(e) => handleSearch(e)}
-                    className="btn btn-outline-primary ml-4"
+                    className="btn btn-outline-primary ml-3 ml-lg-0"
                   >
                     Search
                   </button>
