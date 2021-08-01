@@ -87,7 +87,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="container vh-80">
+    <div className="container">
       {error === true && (
         <smalll className="small text-danger">Something went wrong!</smalll>
       )}
@@ -108,13 +108,13 @@ const Profile = () => {
             </h5>
           </div>
           <div className="row mt-5">
-            <div className="col-8">
+            <div className="col-lg-8 col-sm-12">
               {role === "ROLE_USER" && (
                 <div>
                   <h6>
                     You have {user.attributes.portfolios.length} portfolios.
                   </h6>
-                  <table className="table table-bordered table-light">
+                  <table className="table table-bordered table-light table-responsive-sm">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -204,7 +204,7 @@ const Profile = () => {
                             <td>{job.attributes.typeOfPosition}</td>
                             <td>$ {job.attributes.salary}</td>
                             {job.attributes.deletedAt === null ? (
-                              <td>
+                              <td className="d-flex">
                                 <button
                                   className="btn btn-primary btn-sm"
                                   type="button"
@@ -242,7 +242,7 @@ const Profile = () => {
                 </div>
               )}
             </div>
-            <div className="col-4">
+            <div className="col-lg-4 col-sm-12">
               <div className="row justify-content-center mb-4">
                 <img
                   src={`http://apizavrsni.udruga-liberato.hr/${user.attributes.avatar}`}
@@ -331,7 +331,7 @@ const Profile = () => {
                   </li>
                 </ul>
               </div>
-              <div className="mt-3">
+              <div className="mt-3 pb-5">
                 <button
                   className="btn btn-info w-100"
                   type="submit"
