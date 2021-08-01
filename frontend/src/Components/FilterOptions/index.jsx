@@ -20,29 +20,31 @@ const FilterOptions = ({ options, type }) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-8 mt-3">
-          <form className="form-inline" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder={
-                type === "portfolios"
-                  ? "Type what skill you are looking for..."
-                  : "Type position name you want... (Cook, developer, etc.)"
-              }
-              className="form-control w-75 mr-1"
-              onChange={(e) => setSearchTerm(e.target.value)}
-              value={searchTerm}
-            />
+        <div className="col-lg-8 mt-3 col-sm-12">
+          <form className="form-inline">
+            <div className="form-group mx-sm-3 mb-2 w-75">
+              <input
+                type="text"
+                placeholder={
+                  type === "portfolios"
+                    ? "Type what skill you are looking for..."
+                    : "Type position name you want... (Cook, developer, etc.)"
+                }
+                className="form-control  mr-1 w-100"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
+              />
+            </div>
             <button
               type="submit"
-              className="btn btn-primary my-1"
+              className="btn btn-primary mb-2"
               onClick={handleSubmit}
             >
               Submit
             </button>
           </form>
         </div>
-        <div className="col-4 mt-3">
+        <div className="col-lg-4 mt-3 col-sm-12">
           <select
             id="sort"
             className="form-control"
