@@ -35,7 +35,7 @@ const Categories = () => {
           {deletionMessage !== null && (
             <h3 className="text-danger text-center">{deletionMessage}</h3>
           )}
-          <div className="row mt-5">
+          <div className="row d-flex justify-content-center mt-5">
             <button
               className="btn btn-info btn-lg mr-3"
               type="submit"
@@ -51,58 +51,79 @@ const Categories = () => {
               Add new category
             </button>
           </div>
-          <table className="table table-bordered mt-5">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-                <th scope="col">Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              {categories.map((category, idx) => {
-                return (
-                  <tr
-                    className={`${
-                      category.attributes.deletedAt !== null ? "bg-danger" : ""
-                    }`}
-                    key={idx}
-                  >
-                    <th scope="row">{idx + 1}</th>
-                    <td>{category.attributes.name}</td>{" "}
-                    <td>{category.attributes.description}</td>
-                    <td>
-                      <img
-                        src={`http://apizavrsni.udruga-liberato.hr/images/category/${category.attributes.image}`}
-                        alt={category.attributes.name}
-                        className="w-25"
-                      />{" "}
-                    </td>
-                    {!category.attributes.deletedAt && (
-                      <td>
-                        <Link
-                          to={`/admin/category/${category.id}`}
-                          className="btn btn-primary"
-                        >
-                          {" "}
-                          Edit{" "}
-                        </Link>
-                        <button
-                          className="btn btn-danger ml-3"
-                          type="submit"
-                          onClick={handleDelete(category.id)}
-                        >
-                          Delete
-                        </button>
+          <div className="py-3">
+            <table className="table table-borderless table-responsive-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.map((category, idx) => {
+                  return (
+                    <tr
+                      className={`${
+                        category.attributes.deletedAt !== null
+                          ? "bg-danger"
+                          : ""
+                      }`}
+                      key={idx}
+                    >
+                      <th style={{ verticalAlign: "middle" }} scope="row">
+                        {idx + 1}
+                      </th>
+                      <td style={{ verticalAlign: "middle" }}>
+                        {category.attributes.name}
+                      </td>{" "}
+                      <td style={{ verticalAlign: "middle" }}>
+                        {category.attributes.description}
                       </td>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      <td>
+                        <img
+                          src={`http://apizavrsni.udruga-liberato.hr/images/category/${category.attributes.image}`}
+                          alt={category.attributes.name}
+                          className="w-25"
+                          style={{
+                            marginLeft: "50%",
+                            transform: "translateX(-50%)",
+                          }}
+                        />{" "}
+                      </td>
+                      {!category.attributes.deletedAt ? (
+                        <td
+                          className="d-flex"
+                          style={{ verticalAlign: "middle" }}
+                        >
+                          <Link
+                            to={`/admin/category/${category.id}`}
+                            className="btn btn-primary"
+                          >
+                            {" "}
+                            Edit{" "}
+                          </Link>
+                          <button
+                            className="btn btn-danger ml-3"
+                            type="submit"
+                            onClick={handleDelete(category.id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      ) : (
+                        <td style={{ verticalAlign: "middle" }}>
+                          This category is deleted!
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </>

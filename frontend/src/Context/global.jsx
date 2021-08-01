@@ -137,6 +137,7 @@ export const GlobalProvider = ({ children }) => {
         setJobFilter,
         setPortfolioSort,
         setJobSort,
+        setLoading,
       }}
     >
       {children}

@@ -5,7 +5,7 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { FilePond, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import axios from "axios";
 import { GlobalContext } from "../../../Context/global";
 import { MakeCategoryUpdateData } from "./makeCategoryUpdateData";
@@ -27,6 +27,7 @@ const CategoryAdminSingle = () => {
   const [image, setImage] = useState("");
   const [formData, setFormData] = useState(initialFormData);
   const { categories, token } = useContext(GlobalContext);
+  const history = useHistory();
   const { id } = useParams();
 
   const category = categories.find((cat) => cat.id === id);
@@ -91,7 +92,7 @@ const CategoryAdminSingle = () => {
   return (
     <>
       {category && (
-        <div className="container mt-5">
+        <div className="container mt-1">
           <div className="row justify-content-center">
             {formData.error === true ? (
               <small className="text-danger">Something went wrong!</small>
@@ -103,53 +104,60 @@ const CategoryAdminSingle = () => {
               ""
             )}
           </div>
-          <form onSubmit={handleSubmit} className="mt-5">
-            <div className="row">
-              <label htmlFor="name">Name of category:</label>
-              <input
-                type="text"
-                id="name"
-                value={category.attributes.name}
-                disabled
-                className="form-control"
-                name="name"
-              />
-              {formData.name === "" && (
-                <small className="small text-muted">
-                  This field is required.
-                </small>
-              )}
-            </div>
-            <div className="row mb-5">
-              <label htmlFor="description" className="mt-3 ">
-                Description
-              </label>
-              <textarea
-                name="description"
-                placeholder={category.attributes.description}
-                className="form-control"
-                value={formData.description}
-                required
-                onChange={handleChange}
-              />
-              {formData.description === "" && (
-                <small className="small text-muted">
-                  This field is required.
-                </small>
-              )}
-            </div>
-            {renderImageUpload()}
-            <div className="row mt-5 justify-content-center">
+          <div className="container">
+            <div className=" mt-3 ">
+              {" "}
               <button
+                className="btn btn-info btn-lg"
                 type="submit"
-                className="btn btn-lg btn-outline-primary my-3"
-                onClick={handleSubmit}
-                disabled={formData.disabled}
+                onClick={history.goBack}
               >
-                Update category
+                Go back
               </button>
             </div>
-          </form>
+            <form onSubmit={handleSubmit} className="mt-2">
+              <div className="form-group">
+                <label htmlFor="name">Name of category:</label>
+                <input
+                  type="text"
+                  id="name"
+                  className="form-control"
+                  value={category.attributes.name}
+                  disabled
+                  name="name"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description" className="mt-3 ">
+                  Description y{" "}
+                </label>
+                <textarea
+                  name="description"
+                  placeholder={category.attributes.description}
+                  className="form-control"
+                  value={formData.description}
+                  required
+                  onChange={handleChange}
+                />
+                {formData.description === "" && (
+                  <small className="small text-muted">
+                    This field is required.
+                  </small>
+                )}
+                {renderImageUpload()}
+                <div className="row  pb-3 justify-content-center">
+                  <button
+                    type="submit"
+                    className="btn btn-lg btn-outline-primary my-3"
+                    onClick={handleSubmit}
+                    disabled={formData.disabled}
+                  >
+                    Update category
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </>

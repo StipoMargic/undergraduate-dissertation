@@ -87,20 +87,29 @@ const CreateCategory = () => {
 
   return (
     <>
-      <div className="container mt-5">
-        <div className="row justify-content-center">
-          {formData.error === true ? (
-            <small className="text-danger">Something went wrong!</small>
-          ) : formData.error === false ? (
-            <small className="text-success">
-              You created {formData.name} category
-            </small>
-          ) : (
-            ""
-          )}
+      <div className="row justify-content-center">
+        {formData.error === true ? (
+          <small className="text-danger">Something went wrong!</small>
+        ) : formData.error === false ? (
+          <small className="text-success">
+            You created {formData.name} category
+          </small>
+        ) : (
+          ""
+        )}
+      </div>
+      <div className="container">
+        <div className="mt-3 ">
+          <button
+            className="btn btn-info btn-lg"
+            type="submit"
+            onClick={history.goBack}
+          >
+            Go back
+          </button>
         </div>
-        <form onSubmit={handleSubmit} className="mt-5">
-          <div className="row">
+        <form onSubmit={handleSubmit} className="mt-2">
+          <div className="form-group">
             <label htmlFor="name">Name of category:</label>
             <input
               type="text"
@@ -118,7 +127,7 @@ const CreateCategory = () => {
               </small>
             )}
           </div>
-          <div className="row mb-5">
+          <div className="form-group">
             <label htmlFor="description" className="mt-3 ">
               Description
             </label>
@@ -137,14 +146,14 @@ const CreateCategory = () => {
             )}
           </div>
           {renderImageUpload()}
-          <div className="row mt-5 justify-content-center">
+          <div className="row  pb-3 justify-content-center">
             <button
               type="submit"
               className="btn btn-lg btn-outline-primary my-3"
               onClick={handleSubmit}
               disabled={formData.disabled}
             >
-              Create Category
+              Update category
             </button>
           </div>
         </form>
