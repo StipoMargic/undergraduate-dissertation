@@ -4,6 +4,7 @@ import axios from "axios";
 import { GlobalContext } from "../../Context/global";
 import { makeDeclineData } from "./makeDeclineData";
 import { makeApproveData } from "./makeApproveData";
+import { FREELANCER } from "../../Constants/roles";
 
 const CandidateList = () => {
   const { role, jobs, username, token } = useContext(GlobalContext);
@@ -54,37 +55,58 @@ const CandidateList = () => {
         <div className="row">
           {jobsArray.map((job) => {
             if (job.attributes.applied.length > 0) {
-              return job.attributes.applied.map((applicant) => {
-                return (
-                  <div className="row" key={job.id}>
-                    <p className="pl-5">
-                      Freelancer: {applicant} applied for{" "}
-                      {job.attributes.jobPositionName}{" "}
-                      <button
-                        className="btn btn-info mr-1"
-                        type="submit"
-                        onClick={() => history.push(`/jobs/${job.id}`)}
-                      >
-                        View job ad
-                      </button>
-                      <button
-                        className="btn btn-danger mr-1"
-                        type="submit"
-                        onClick={handleDecline(job.id, applicant)}
-                      >
-                        Decline
-                      </button>
-                      <button
-                        className="btn btn-success mr-1"
-                        type="submit"
-                        onClick={handleApprove(job.id, applicant)}
-                      >
-                        Approve
-                      </button>
-                    </p>
-                  </div>
-                );
-              });
+              return (
+                <table className="table table-bordered table-responsive-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Applicant name</th>
+                      <th scope="col">Job position name</th>
+                      <th scope="col">Options</th>
+                    </tr>
+                  </thead>
+                  {job.attributes.applied.map((applicant) => {
+                    return (
+                      <tbody key={job.id}>
+                        <tr>
+                          <th scope="row" style={{ verticalAlign: "middle" }}>
+                            1
+                          </th>
+                          <td style={{ verticalAlign: "middle" }}>
+                            {applicant}
+                          </td>
+                          <td style={{ verticalAlign: "middle" }}>
+                            {job.attributes.jobPositionName}
+                          </td>
+                          <td className="d-flex">
+                            <button
+                              className="btn btn-info mr-1"
+                              type="submit"
+                              onClick={() => history.push(`/jobs/${job.id}`)}
+                            >
+                              View job ad
+                            </button>
+                            <button
+                              className="btn btn-danger mr-1"
+                              type="submit"
+                              onClick={handleDecline(job.id, applicant)}
+                            >
+                              Decline
+                            </button>
+                            <button
+                              className="btn btn-success mr-1"
+                              type="submit"
+                              onClick={handleApprove(job.id, applicant)}
+                            >
+                              Approve
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    );
+                  })}
+                </table>
+              );
             }
             return null;
           })}
@@ -92,7 +114,7 @@ const CandidateList = () => {
       </div>
     );
   };
-  return <>{role === "ROLE_USER" ? history.push("/") : renderApplied()}</>;
+  return <>{role === FREELANCER ? history.push("/") : renderApplied()}</>;
 };
 
 export default CandidateList;
