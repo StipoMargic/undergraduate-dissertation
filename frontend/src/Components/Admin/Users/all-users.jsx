@@ -29,7 +29,7 @@ const AllUsers = () => {
         setUsers([...res.data.data]);
         setPagination({ start: 0, end: 9 });
       })
-      .catch((err) => console.log(err));
+      .catch(() => null);
   };
 
   const handleNext = () => {
@@ -48,7 +48,7 @@ const AllUsers = () => {
       .then((res) => {
         setUsers([...res.data.data]);
       })
-      .catch((err) => console.log(err));
+      .catch(() => null);
   };
 
   const handlePrev = () => {

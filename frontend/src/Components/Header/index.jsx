@@ -294,7 +294,7 @@ const Header = () => {
               </>
             )}
             {role === ADMIN ? (
-              <Link to="/admin">
+              <Link to="/admin/analytics">
                 <button type="button" className="btn btn-danger">
                   Admin
                 </button>

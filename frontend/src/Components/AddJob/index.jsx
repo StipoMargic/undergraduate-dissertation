@@ -103,7 +103,6 @@ const AddJob = () => {
   };
 
   const addExperience = () => {
-    console.log(experience.description);
     setExperiences([...experiences, experience]);
   };
 

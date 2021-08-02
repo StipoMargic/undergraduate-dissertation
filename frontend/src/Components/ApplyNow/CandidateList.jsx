@@ -25,8 +25,8 @@ const CandidateList = () => {
           },
         }
       )
-      .then(() => console.log("Ok"))
-      .catch((err) => console.log(err));
+      .then(() => null)
+      .catch(() => null);
   };
 
   const handleApprove = (jobId, applicantName) => (e) => {
@@ -43,8 +43,8 @@ const CandidateList = () => {
           },
         }
       )
-      .then(() => console.log("Ok"))
-      .catch((err) => console.log(err));
+      .then(() => null)
+      .catch(() => null);
   };
 
   const renderApplied = () => {

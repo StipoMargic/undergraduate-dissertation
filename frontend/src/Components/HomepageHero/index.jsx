@@ -57,12 +57,12 @@ const HomepageHero = () => {
             >
               <div className="row pt-2 ">
                 <div className="col-lg-8 col-md-8 col-sm-12 p-0">
-                  <div className="form-group pl-4">
+                  <div className="form-group px-4 pr-lg-0">
                     <input
                       type="text"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="form-control b-0 b-r l-radius "
+                      className="form-control b-0 b-r l-radius mr-5"
                       placeholder="Enter company name..."
                     />
                     {error !== "" && (

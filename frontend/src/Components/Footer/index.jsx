@@ -7,7 +7,7 @@ import { COMPANY, FREELANCER } from "../../Constants/roles";
 import logo from "../../Assets/images/logo.png";
 
 const Footer = () => {
-  const { role } = useContext(GlobalContext);
+  const { role, username } = useContext(GlobalContext);
 
   return (
     <>
@@ -24,13 +24,23 @@ const Footer = () => {
               <Link to="/about">About us</Link>
             </div>
             {role === FREELANCER ? (
-              <div className="col-lg-4 col-md-6 foot-link">
-                <Link to="/jobs">Jobs</Link>
-              </div>
+              <>
+                <div className="col-lg-2 col-md-6 foot-link">
+                  <Link to="/jobs">Jobs</Link>
+                </div>
+                <div className="col-lg-2 col-md-6 foot-link">
+                  <Link to={`/profile/${username}`}>Profile</Link>
+                </div>
+              </>
             ) : role === COMPANY ? (
-              <div className="col-lg-4 col-md-6 foot-link">
-                <Link to="/freelancers">Freelancers</Link>
-              </div>
+              <>
+                <div className="col-lg-3 col-md-6 foot-link">
+                  <Link to="/freelancers">Freelancers</Link>
+                </div>
+                <div className="col-lg-3 col-md-6 foot-link">
+                  <Link to={`/profile/${username}`}>Profile</Link>
+                </div>
+              </>
             ) : (
               <>
                 <div className="col-lg-2 col-md-6 foot-link">

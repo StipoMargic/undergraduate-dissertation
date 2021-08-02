@@ -1,14 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { GlobalContext } from "../../Context/global";
 import { ADMIN } from "../../Constants/roles";
 
 const AdminDashboardHeader = () => {
   const { role, loading } = useContext(GlobalContext);
   const history = useHistory();
+  const { pathname } = useLocation();
 
   useEffect(() => {
+    if (pathname === "/admin") history.push("/admin/analytics");
     if (loading === false) {
       if (role !== ADMIN) {
         history.push("/");

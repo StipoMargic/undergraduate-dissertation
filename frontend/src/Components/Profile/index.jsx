@@ -9,6 +9,7 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { GlobalContext } from "../../Context/global";
+import { ADMIN, COMPANY, FREELANCER } from "../../Constants/roles";
 
 const Profile = () => {
   const { username, users, removeAllCookies, token, role, jobs, portfolios } =
@@ -109,7 +110,16 @@ const Profile = () => {
           </div>
           <div className="row mt-5">
             <div className="col-lg-8 col-sm-12">
-              {role === "ROLE_USER" && (
+              {role === ADMIN && (
+                <p
+                  className="text-info text-center font-weight-bold text-uppercase"
+                  style={{ verticalAlign: "middle" }}
+                >
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  You don't have any listing's as administrator.
+                </p>
+              )}
+              {role === FREELANCER && (
                 <div>
                   <h6>
                     You have {user.attributes.portfolios.length} portfolios.
@@ -179,7 +189,7 @@ const Profile = () => {
                   </table>
                 </div>
               )}
-              {role === "ROLE_EMPLOYER" && (
+              {role === COMPANY && (
                 <div>
                   <h6 className="text-center py-4">
                     You have {user.attributes.jobs.length} jobs listed.
