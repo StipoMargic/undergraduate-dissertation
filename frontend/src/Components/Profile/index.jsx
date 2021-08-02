@@ -136,7 +136,7 @@ const Profile = () => {
                             <td>$ {portfolio.attributes.rate}</td>
                             <td>{portfolio.attributes.hour} per month</td>
                             {portfolio.attributes.deletedAt === null ? (
-                              <td>
+                              <td className="d-flex">
                                 <button
                                   className="btn btn-primary btn-sm"
                                   type="button"

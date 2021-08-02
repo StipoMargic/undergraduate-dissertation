@@ -539,7 +539,7 @@ const FreelancerDetail = () => {
         renderBody()
       ) : (
         <div className="deactivated">
-          <h3 className="text-danger">
+          <h3 className="text-danger text-center">
             This portfolio portfolio is deactivated
           </h3>
         </div>

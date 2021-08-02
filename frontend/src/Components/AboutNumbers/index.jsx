@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./styles.scss";
 import {
@@ -7,8 +7,11 @@ import {
   faSmile,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { GlobalContext } from "../../Context/global";
 
 const AboutNumbers = () => {
+  const { jobs, portfolios } = useContext(GlobalContext);
+
   return (
     <section className="gray-light py-5">
       <div className="container">
@@ -18,10 +21,7 @@ const AboutNumbers = () => {
               <h2>
                 Power Success For <span className="theme-cl-2">Brand</span>
               </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              <p>Some numbers that maybe will intrigue you</p>
             </div>
           </div>
         </div>
@@ -34,9 +34,9 @@ const AboutNumbers = () => {
                   <FontAwesomeIcon icon={faList} />
                 </div>
                 <h4>
-                  <span className="cto">9.8</span>M
+                  <span className="cto">{jobs.length}</span>
                 </h4>
-                <p>Listing Posted</p>
+                <p>Jobs Posted</p>
               </div>
             </div>
           </div>
@@ -48,9 +48,9 @@ const AboutNumbers = () => {
                   <FontAwesomeIcon icon={faUser} />
                 </div>
                 <h4>
-                  <span className="cto">200</span>K
+                  <span className="cto">{portfolios.length}</span>
                 </h4>
-                <p>Total Authors</p>
+                <p>Total Freelancers</p>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const AboutNumbers = () => {
                   <FontAwesomeIcon icon={faMedal} />
                 </div>
                 <h4>
-                  <span className="cto">99</span>K
+                  <span className="cto">7</span>
                 </h4>
                 <p>Win Awards</p>
               </div>
@@ -76,7 +76,7 @@ const AboutNumbers = () => {
                   <FontAwesomeIcon icon={faSmile} />
                 </div>
                 <h4>
-                  <span className="cto">7.2</span>M
+                  <span className="cto">{jobs.length + portfolios.length}</span>
                 </h4>
                 <p>Happy Clients</p>
               </div>

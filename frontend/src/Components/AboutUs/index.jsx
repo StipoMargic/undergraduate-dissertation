@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.scss";
+import about from "../../Assets/images/about.svg";
 
 const AboutUs = () => {
   return (
@@ -7,11 +8,7 @@ const AboutUs = () => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6 col-md-6 col-sm-12">
-            <img
-              src="https://via.placeholder.com/800x950"
-              alt="about us"
-              className="img-fluid"
-            />
+            <img src={about} alt="about us" className="img-fluid" />
           </div>
 
           <div className="col-lg-6 col-md-6 col-sm-12">
@@ -23,17 +20,20 @@ const AboutUs = () => {
                 Job Service.
               </h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. avoids pleasure itself, because it
-                is pleasure, but because those who do not know how to pursue
-                pleasure undertakes laborious
+                Find & hire top freelancers, web developers & designers or just{" "}
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
+                advertise job openings in your company. World's most trusted
+                marketplace. Receive quotes in seconds, post your job online,
+                and many more is just few clicks away...
               </p>
               <ul className="lists-3 mt-3">
-                <li>At vero eos et accusamus et iusto odio dignissimos</li>
-                <li>Nam libero tempore, cum soluta nobis est eligendi</li>
-                <li>At vero eos et accusamus et iusto odio dignissimos</li>
+                <li>A business solution designed for teams</li>
+                <li>
+                  Connect to freelancers with proven business experience
+                </li>{" "}
+                <li>
+                  Get matched with the perfect talent by a customer success ...
+                </li>
               </ul>
             </div>
           </div>
