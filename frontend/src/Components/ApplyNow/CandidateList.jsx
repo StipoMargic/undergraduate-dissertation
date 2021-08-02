@@ -1,20 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { GlobalContext } from "../../Context/global";
 import { makeDeclineData } from "./makeDeclineData";
 import { makeApproveData } from "./makeApproveData";
 import { FREELANCER } from "../../Constants/roles";
+import Spinner from "../AboutNumbers/Spinner";
 
 const CandidateList = () => {
-  const { role, jobs, username, token } = useContext(GlobalContext);
+  const { role, jobs, username, token, setLoading, loading } =
+    useContext(GlobalContext);
   const history = useHistory();
-
+  const [message, setMessage] = useState("");
   const jobsArray = jobs.filter((j) => j.attributes.name === username);
 
   const handleDecline = (jobId, applicantName) => (e) => {
     e.preventDefault();
-
+    setLoading(true);
     axios
       .post(
         `http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}/decline`,
@@ -26,12 +28,18 @@ const CandidateList = () => {
           },
         }
       )
-      .then(() => null)
-      .catch(() => null);
+      .then(() => {
+        window.location.reload();
+      })
+      .catch(() => {
+        setLoading(false);
+        setMessage("Something went wrong...");
+      });
   };
 
   const handleApprove = (jobId, applicantName) => (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .post(
@@ -44,13 +52,19 @@ const CandidateList = () => {
           },
         }
       )
-      .then(() => null)
-      .catch(() => null);
+      .then(() => {
+        window.location.reload();
+      })
+      .catch(() => {
+        setLoading(false);
+        setMessage("Something went wrong...");
+      });
   };
 
   const renderApplied = () => {
     return (
-      <div className="container vh-80">
+      <div className="container">
+        {message !== "" && <h6 className="text-danger py-3">{message}</h6>}
         <h3 className="text-center m-5">Candidate list for {username}</h3>
         <div className="row">
           {jobsArray.map((job) => {
@@ -114,7 +128,17 @@ const CandidateList = () => {
       </div>
     );
   };
-  return <>{role === FREELANCER ? history.push("/") : renderApplied()}</>;
+  return (
+    <>
+      {loading ? (
+        <Spinner />
+      ) : role === FREELANCER ? (
+        history.push("/")
+      ) : (
+        renderApplied()
+      )}
+    </>
+  );
 };
 
 export default CandidateList;

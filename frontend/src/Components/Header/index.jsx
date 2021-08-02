@@ -267,7 +267,7 @@ const Header = () => {
                 <Link to="/logout">
                   <button
                     type="button"
-                    className="btn btn-outline-primary text-dark mr-1"
+                    className="btn btn-outline-danger text-dark mr-1"
                   >
                     Logout
                   </button>

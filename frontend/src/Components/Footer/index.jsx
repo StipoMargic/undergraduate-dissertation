@@ -34,10 +34,10 @@ const Footer = () => {
               </>
             ) : role === COMPANY ? (
               <>
-                <div className="col-lg-3 col-md-6 foot-link">
+                <div className="col-lg-2 col-md-6 foot-link">
                   <Link to="/freelancers">Freelancers</Link>
                 </div>
-                <div className="col-lg-3 col-md-6 foot-link">
+                <div className="col-lg-2 col-md-6 foot-link">
                   <Link to={`/profile/${username}`}>Profile</Link>
                 </div>
               </>
