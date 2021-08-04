@@ -42,10 +42,10 @@ class Portfolio implements EntityInterface
     /** @ORM\OneToMany(targetEntity="App\Domain\Comment\Comment", mappedBy="portfolio") */
     private ?Collection $comments;
 
-    /** @ORM\Column(name="advancedKnowledge", type="string", nullable=false) */
+    /** @ORM\Column(name="advancedKnowledge", type="text", nullable=false) */
     private string $advancedKnowledge;
 
-    /** @ORM\Column(name="advancedKnowledgeBulletins", type="string", nullable=false) */
+    /** @ORM\Column(name="advancedKnowledgeBulletins", type="text", nullable=false) */
     private string $advancedKnowledgeBulletins;
 
     /** @ORM\Column(name="skills", type="string", nullable=false) */

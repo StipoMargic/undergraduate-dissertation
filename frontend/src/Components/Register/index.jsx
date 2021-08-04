@@ -245,7 +245,7 @@ const Register = () => {
           </div>
 
           <FilePond
-            acceptedFileTypes={["image/png"]}
+            acceptedFileTypes={["image/*"]}
             onaddfile={(err, item) => {
               if (err) {
                 return;
@@ -256,7 +256,7 @@ const Register = () => {
             allowMultiple={false}
             labelIdle='Drag & Drop your avatar or <span class="filepond--label-action">Browse</span>'
           />
-          <small className="small">Only .png images are allowed!</small>
+          <small className="small">Only images are allowed!</small>
           <div className="row pb-5 justify-content-center">
             <button
               onClick={handleRegistration}
