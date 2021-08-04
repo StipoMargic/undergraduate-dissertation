@@ -30,13 +30,13 @@ class Job implements EntityInterface
     /** @ORM\OneToMany(targetEntity="App\Domain\Comment\Comment", mappedBy="job", cascade="persist") */
     private ?Collection $comments;
 
-    /** @ORM\Column(name="job_duties", type="string", nullable=false) */
+    /** @ORM\Column(name="job_duties", type="string", nullable=false, length=9999) */
     private string $jobDuties;
 
-    /** @ORM\Column(name="job_duties_bulletins", type="string", nullable=false) */
+    /** @ORM\Column(name="job_duties_bulletins", type="string", nullable=false, length=9999) */
     private string $jobDutiesBulletins;
 
-    /** @ORM\Column(name="skills", type="string", nullable=false) */
+    /** @ORM\Column(name="skills", type="string", nullable=false, length=9999) */
     private string $skills;
 
     /** @ORM\Column(name="vacancy", type="integer", nullable=false) */
@@ -63,7 +63,7 @@ class Job implements EntityInterface
     /** @ORM\Column(name="disable_friendly", nullable=false, type="boolean") */
     private bool $disableFriendly;
 
-    /** @ORM\Column(name="job_summary", nullable=false, type="string") */
+    /** @ORM\Column(name="job_summary", nullable=false, type="string", length=9999) */
     private string $jobSummary;
 
     /** @ORM\Column(name="job_position_name", nullable=false, type="string") */

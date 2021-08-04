@@ -104,7 +104,7 @@ const Register = () => {
 
         <form onSubmit={handleRegistration}>
           <div className="form-group">
-            <label htmlFor="name">
+            <label className="w-100" htmlFor="name">
               Name
               <input
                 onChange={handleInputChange("name")}
@@ -117,7 +117,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email_address">
+            <label className="w-100" htmlFor="email_address">
               E-Mail Address
               <input
                 onChange={handleInputChange("email")}
@@ -130,7 +130,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">
+            <label className="w-100" htmlFor="password">
               Password
               <input
                 onChange={handleInputChange("password")}
@@ -143,7 +143,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone_number">
+            <label className="w-100" htmlFor="phone_number">
               Phone Number
               <input
                 onChange={handleInputChange("phone")}
@@ -155,7 +155,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="address">
+            <label className="w-100" htmlFor="address">
               Address
               <input
                 onChange={handleInputChange("address")}
@@ -167,7 +167,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="city">
+            <label className="w-100" htmlFor="city">
               City
               <input
                 onChange={handleInputChange("city")}
@@ -180,7 +180,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="occupation">
+            <label className="w-100" htmlFor="occupation">
               Occupation
               <input
                 onChange={handleInputChange("occupation")}
@@ -193,7 +193,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="facebook">
+            <label className="w-100" htmlFor="facebook">
               Facebook
               <input
                 onChange={handleInputChange("facebook")}
@@ -206,7 +206,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="twitter">
+            <label className="w-100" htmlFor="twitter">
               Twitter
               <input
                 onChange={handleInputChange("twitter")}
@@ -219,7 +219,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="linkedin">
+            <label className="w-100" htmlFor="linkedin">
               Linkedin
               <input
                 onChange={handleInputChange("linkedin")}
@@ -232,7 +232,7 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="about">
+            <label className="w-100" htmlFor="about">
               About
               <input
                 onChange={handleInputChange("about")}
@@ -257,7 +257,7 @@ const Register = () => {
             labelIdle='Drag & Drop your avatar or <span class="filepond--label-action">Browse</span>'
           />
           <small className="small">Only .png images are allowed!</small>
-          <div className="row justify-content-center">
+          <div className="row pb-5 justify-content-center">
             <button
               onClick={handleRegistration}
               type="submit"
