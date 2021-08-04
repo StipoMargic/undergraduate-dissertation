@@ -28,6 +28,7 @@ const NewestJob = () => {
           {activeJobs.slice(0, 8).map((job) => {
             return (
               <Job
+                image={job.attributes.logo}
                 key={job.id}
                 id={job.id}
                 name={job.attributes.name}
