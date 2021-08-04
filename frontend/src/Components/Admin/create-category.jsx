@@ -153,7 +153,7 @@ const CreateCategory = () => {
               onClick={handleSubmit}
               disabled={formData.disabled}
             >
-              Update category
+              Add category
             </button>
           </div>
         </form>

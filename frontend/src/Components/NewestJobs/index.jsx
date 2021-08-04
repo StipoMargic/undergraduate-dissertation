@@ -6,6 +6,7 @@ import FreelancerCard from "../Freelancers/FreelancerCard";
 
 const NewestJob = () => {
   const { jobs, portfolios, role } = useContext(GlobalContext);
+  const activeJobs = jobs.filter((job) => job.attributes.deletedAt === null);
 
   const renderJobs = () => {
     return (
@@ -24,19 +25,16 @@ const NewestJob = () => {
           {jobs.length === 0 && (
             <h6 className="text-muted">Waiting for ads to load...</h6>
           )}
-          {jobs.slice(0, 8).map((job) => {
-            if (job.attributes.deletedAt === null) {
-              return (
-                <Job
-                  key={job.id}
-                  id={job.id}
-                  name={job.attributes.name}
-                  typeOfPosition={job.attributes.typeOfPosition}
-                  position={job.attributes.jobPositionName}
-                />
-              );
-            }
-            return null;
+          {activeJobs.slice(0, 8).map((job) => {
+            return (
+              <Job
+                key={job.id}
+                id={job.id}
+                name={job.attributes.name}
+                typeOfPosition={job.attributes.typeOfPosition}
+                position={job.attributes.jobPositionName}
+              />
+            );
           })}
         </div>
       </>
