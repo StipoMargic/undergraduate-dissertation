@@ -99,7 +99,7 @@ class User implements UserInterface, EntityInterface
     /** @ORM\Column(name="linkedin", type="string", nullable=true) */
     private ?string $linkedin;
 
-    /** @ORM\Column(name="about", type="string", nullable=false, length=500) */
+    /** @ORM\Column(name="about", type="text", nullable=false) */
     private string $about;
 
     /**
