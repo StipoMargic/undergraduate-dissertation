@@ -41,11 +41,11 @@ final class JobApplicationCommandHandler
         $job->addApplied($user->getUsername());
 
         $filePath = $this->upload($command->resume);
-        $this->sendEmail($user, $command->subject, $command->message, $filePath);
+        $this->sendEmail($user, $command->username, $job->getUser()->getUsername(), $filePath);
         $this->jobWriteRepository->save($job);
     }
 
-    private function sendEmail(User $user, string $subject, string $message, string $filePath): void
+    private function sendEmail(User $user, string $applicant, string $jobListingOwner, string $filePath): void
     {
         $email = (new TemplatedEmail())
             ->from("info@liberato.io")
@@ -53,8 +53,8 @@ final class JobApplicationCommandHandler
             ->subject('Someone wants to apply for your company!')
             ->htmlTemplate('emails/apply-now.html.twig')
             ->context([
-                'subject' => $subject,
-                'message' => $message,
+                'username' => $jobListingOwner,
+                'applicant' => $applicant,
                 'file' => $filePath,
             ]);
 
