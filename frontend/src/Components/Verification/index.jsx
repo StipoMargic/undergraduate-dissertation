@@ -23,27 +23,31 @@ const Verification = () => {
       .catch(() => setError(true));
   };
   return (
-    <div className="container my-5 verification">
+    <div className="container pt-5">
       {error && (
         <p className="text-danger">Something went wrong! Try again...</p>
       )}
-      <form onSubmit={handleSubmit} className="w-100">
-        <label htmlFor="verificationCode">
+      <form onSubmit={handleSubmit} className="form-inline pt-5">
+        <div className="form-group mb-2 w-75">
+          <label htmlFor="verificationCode" className="sr-only">
+            Email
+          </label>
           <input
             type="text"
+            className="form-control w-100 btn-outline-dark"
+            id="verificationCode"
             value={verificationCode}
             placeholder="Type your code here"
-            id="verificationCode"
             onChange={(e) => setVerificationCode(e.target.value)}
-            className="w-100 p-3 ml-auto"
           />
-        </label>
-        <input
+        </div>
+        <button
           type="submit"
-          value="Submit"
+          className="btn btn-primary mb-2 w-25"
           onClick={handleSubmit}
-          className="btn btn-primary btn-lg w-50"
-        />
+        >
+          Verify
+        </button>
       </form>
     </div>
   );

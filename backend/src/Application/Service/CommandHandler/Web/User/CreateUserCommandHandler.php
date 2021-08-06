@@ -85,6 +85,7 @@ final class CreateUserCommandHandler
             ->context([
                 'username' => $user->getUsername(),
                 'token' => $user->getToken(),
+                'userEmail' => $user->getEmail()
             ]);
 
         $this->mailer->send($email);
