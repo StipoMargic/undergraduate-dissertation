@@ -29,7 +29,7 @@ class JobApproveCommandHandler
         $job = $this->jobReadRepository->get(Uuid::fromString($command->jobId));
         $applicant = $this->userReadRepository->getByUsername($command->applicantName);
         $companyName = $job->getUser()->getUsername();
-        // $this->sendEmail($companyName, $command->applicantName, $applicant->getEmail());
+        $this->sendEmail($companyName, $command->applicantName, $applicant->getEmail());
         $job->approveApplication($command->applicantName);
         $this->jobWriteRepository->save($job);
     }
