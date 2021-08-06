@@ -14,6 +14,7 @@
     "nelmio/cors-bundle": "^2.0",
     "ramsey/uuid": "^4.1",
     "ramsey/uuid-doctrine": "^1.6",
+    "symfony/asset": "5.2.x",
     "symfony/console": "5.2.x",
     "symfony/dotenv": "5.2.x",
     "symfony/filesystem": "5.2.x",
