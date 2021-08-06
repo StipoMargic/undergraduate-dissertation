@@ -398,7 +398,7 @@ const JobDetail = () => {
 
                   <div className="_job_detail_single">
                     <h4>Job Duties:</h4>
-                    <p>{job.data.attributes.jobDutiess}</p>
+                    <p>{job.data.attributes.jobDuties}</p>
                     <ul>
                       {jobDutiesBulletins.map((bulletin) => {
                         return (
