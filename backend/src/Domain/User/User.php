@@ -70,9 +70,9 @@ class User implements UserInterface, EntityInterface
     private ?string $token;
 
     /**
-     * @ORM\Column(name="avatar", type="string", nullable=false)
+     * @ORM\Column(name="avatar", type="string", nullable=true)
      */
-    private string $avatar;
+    private ?string $avatar;
 
     /**
      * @ORM\Column(name="address", type="string", nullable=true)
@@ -123,7 +123,7 @@ class User implements UserInterface, EntityInterface
         string $email,
         string $password,
         string $role,
-        string $avatar,
+        ?string $avatar,
         ?string $address,
         ?string $city,
         ?string $phone,
@@ -240,12 +240,12 @@ class User implements UserInterface, EntityInterface
         return $this->token;
     }
 
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function setAvatar(string $avatar): void
+    public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
     }
