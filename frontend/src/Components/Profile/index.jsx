@@ -1,20 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import React, {useContext, useEffect, useState} from "react";
+import {useHistory, useParams} from "react-router";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFacebook, faLinkedin, faTwitter,} from "@fortawesome/free-brands-svg-icons";
+import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { GlobalContext } from "../../Context/global";
-import { ADMIN, COMPANY, FREELANCER } from "../../Constants/roles";
+import {GlobalContext} from "../../Context/global";
+import {ADMIN, COMPANY, FREELANCER} from "../../Constants/roles";
 
 const Profile = () => {
-  const { username, users, removeAllCookies, token, role, jobs, portfolios } =
+  const {username, users, removeAllCookies, token, role, jobs, portfolios} =
     useContext(GlobalContext);
-  const { name } = useParams();
+  const {name} = useParams();
   const [user, setUser] = useState();
   const history = useHistory();
   const [error, setError] = useState(null);
@@ -102,8 +98,8 @@ const Profile = () => {
                 {user.attributes.roles[0] === "ROLE_USER"
                   ? "Freelancer"
                   : user.attributes.roles[0] === "ROLE_EMPLOYER"
-                  ? "Company"
-                  : "Administrator"}
+                    ? "Company"
+                    : "Administrator"}
               </span>{" "}
               group.
             </h5>
@@ -113,7 +109,7 @@ const Profile = () => {
               {role === ADMIN && (
                 <p
                   className="text-info text-center font-weight-bold text-uppercase"
-                  style={{ verticalAlign: "middle" }}
+                  style={{verticalAlign: "middle"}}
                 >
                   {/* eslint-disable-next-line react/no-unescaped-entities */}
                   You don't have any listing's as administrator.
@@ -126,13 +122,13 @@ const Profile = () => {
                   </h6>
                   <table className="table table-bordered table-light table-responsive-sm">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Hourly rate</th>
-                        <th scope="col">Hours available per month</th>
-                        <th scope="col">Commands</th>
-                      </tr>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Hourly rate</th>
+                      <th scope="col">Hours available per month</th>
+                      <th scope="col">Commands</th>
+                    </tr>
                     </thead>
                     {user.attributes.portfolios.map((portfolioId, idx) => {
                       const portfolio = portfolios.find(
@@ -140,49 +136,49 @@ const Profile = () => {
                       );
                       return (
                         <tbody>
-                          <tr>
-                            <th scope="row">{idx + 1}</th>
-                            <td>{portfolio.attributes.category}</td>
-                            <td>$ {portfolio.attributes.rate}</td>
-                            <td>{portfolio.attributes.hour} per month</td>
-                            {portfolio.attributes.deletedAt === null ? (
-                              <td className="d-flex">
-                                <button
-                                  className="btn btn-primary btn-sm"
-                                  type="button"
-                                  onClick={() =>
-                                    history.push(`/freelancers/${portfolioId}`)
-                                  }
-                                >
-                                  View
-                                </button>
-                                <button
-                                  className="btn btn-sm ml-2 btn-info"
-                                  type="button"
-                                  onClick={() =>
-                                    history.push(
-                                      `/freelancers/edit/${portfolioId}`
-                                    )
-                                  }
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  className="btn btn-sm ml-2 btn-danger"
-                                  type="button"
-                                  onClick={handlePortfolioDeactivation(
-                                    portfolioId
-                                  )}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            ) : (
-                              <td className="text-danger small">
-                                This portfolio has been deactivated!
-                              </td>
-                            )}
-                          </tr>
+                        <tr>
+                          <th scope="row">{idx + 1}</th>
+                          <td>{portfolio.attributes.category}</td>
+                          <td>$ {portfolio.attributes.rate}</td>
+                          <td>{portfolio.attributes.hour} per month</td>
+                          {portfolio.attributes.deletedAt === null ? (
+                            <td className="d-flex">
+                              <button
+                                className="btn btn-primary btn-sm"
+                                type="button"
+                                onClick={() =>
+                                  history.push(`/freelancers/${portfolioId}`)
+                                }
+                              >
+                                View
+                              </button>
+                              <button
+                                className="btn btn-sm ml-2 btn-info"
+                                type="button"
+                                onClick={() =>
+                                  history.push(
+                                    `/freelancers/edit/${portfolioId}`
+                                  )
+                                }
+                              >
+                                Edit
+                              </button>
+                              <button
+                                className="btn btn-sm ml-2 btn-danger"
+                                type="button"
+                                onClick={handlePortfolioDeactivation(
+                                  portfolioId
+                                )}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          ) : (
+                            <td className="text-danger small">
+                              This portfolio has been deactivated!
+                            </td>
+                          )}
+                        </tr>
                         </tbody>
                       );
                     })}
@@ -196,55 +192,55 @@ const Profile = () => {
                   </h6>
                   <table className="table table-bordered table-light">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Position Name</th>
-                        <th scope="col">Type of position</th>
-                        <th scope="col">Salary</th>
-                        <th scope="col">Commands</th>
-                      </tr>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Position Name</th>
+                      <th scope="col">Type of position</th>
+                      <th scope="col">Salary</th>
+                      <th scope="col">Commands</th>
+                    </tr>
                     </thead>
                     {user.attributes.jobs.map((jobId, idx) => {
                       const job = jobs.find((j) => j.id === jobId);
                       return (
                         <tbody>
-                          <tr>
-                            <th scope="row">{idx + 1}</th>
-                            <td>{job.attributes.jobPositionName}</td>
-                            <td>{job.attributes.typeOfPosition}</td>
-                            <td>$ {job.attributes.salary}</td>
-                            {job.attributes.deletedAt === null ? (
-                              <td className="d-flex">
-                                <button
-                                  className="btn btn-primary btn-sm"
-                                  type="button"
-                                  onClick={() => history.push(`/jobs/${jobId}`)}
-                                >
-                                  View
-                                </button>
-                                <button
-                                  className="btn btn-sm ml-2 btn-info"
-                                  type="button"
-                                  onClick={() =>
-                                    history.push(`/job/edit/${jobId}`)
-                                  }
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  className="btn btn-sm ml-2 btn-danger"
-                                  type="button"
-                                  onClick={handleJobDeactivation(jobId)}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            ) : (
-                              <td className="text-danger small">
-                                This job listing deactivated!
-                              </td>
-                            )}
-                          </tr>
+                        <tr>
+                          <th scope="row">{idx + 1}</th>
+                          <td>{job.attributes.jobPositionName}</td>
+                          <td>{job.attributes.typeOfPosition}</td>
+                          <td>$ {job.attributes.salary}</td>
+                          {job.attributes.deletedAt === null ? (
+                            <td className="d-flex">
+                              <button
+                                className="btn btn-primary btn-sm"
+                                type="button"
+                                onClick={() => history.push(`/jobs/${jobId}`)}
+                              >
+                                View
+                              </button>
+                              <button
+                                className="btn btn-sm ml-2 btn-info"
+                                type="button"
+                                onClick={() =>
+                                  history.push(`/job/edit/${jobId}`)
+                                }
+                              >
+                                Edit
+                              </button>
+                              <button
+                                className="btn btn-sm ml-2 btn-danger"
+                                type="button"
+                                onClick={handleJobDeactivation(jobId)}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          ) : (
+                            <td className="text-danger small">
+                              This job listing deactivated!
+                            </td>
+                          )}
+                        </tr>
                         </tbody>
                       );
                     })}
@@ -283,19 +279,23 @@ const Profile = () => {
               <div className="font-weight-normal text-black-50 mb-1">
                 Phone: {user.attributes.phone}
               </div>
-              <div className="row justify-content-center m-2">
-                <button
-                  className="w-100 btn btn-danger"
-                  type="submit"
-                  onClick={deleteUser(user.id)}
-                >
-                  Deactivate
-                </button>
-              </div>
-              <div className="row mb-2 justify-content-center">
-                <button type="submit" className="w-100 btn btn-primary" onClick={() => history.push(`/profile/edit/${username}`)}>
-                  Edit
-                </button>
+              <div className="row m-2">
+
+                <div className="col-lg-6 col-sm-12">
+                  <button
+                    className="w-100 btn btn-danger"
+                    type="submit"
+                    onClick={deleteUser(user.id)}
+                  >
+                    Deactivate
+                  </button>
+                </div>
+                <div className="col-lg-6 col-sm-12">
+                  <button type="submit" className="w-100 btn btn-primary mt-2 mt-lg-0"
+                          onClick={() => history.push(`/profile/edit/${username}`)}>
+                    Edit
+                  </button>
+                </div>
               </div>
               <div className="_jb_summary light_box p-4">
                 <h4>Social Info</h4>
@@ -308,7 +308,7 @@ const Profile = () => {
                         className="share fb"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon icon={faFacebook} />
+                        <FontAwesomeIcon icon={faFacebook}/>
                       </a>
                     </li>
                   )}
@@ -320,7 +320,7 @@ const Profile = () => {
                         className="share tw"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon icon={faTwitter} />
+                        <FontAwesomeIcon icon={faTwitter}/>
                       </a>
                     </li>
                   )}
@@ -332,7 +332,7 @@ const Profile = () => {
                         className="share ln"
                         rel="noopener noreferrer"
                       >
-                        <FontAwesomeIcon icon={faLinkedin} />
+                        <FontAwesomeIcon icon={faLinkedin}/>
                       </a>
                     </li>
                   )}
@@ -341,7 +341,7 @@ const Profile = () => {
                       href={`mailto: ${user.attributes.email}`}
                       className="share ln"
                     >
-                      <FontAwesomeIcon icon={faEnvelope} />
+                      <FontAwesomeIcon icon={faEnvelope}/>
                     </a>
                   </li>
                 </ul>

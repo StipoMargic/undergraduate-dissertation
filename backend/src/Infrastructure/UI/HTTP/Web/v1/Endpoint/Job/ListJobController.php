@@ -24,8 +24,8 @@ final class ListJobController
         $request->allowFilters(['name', 'jobPositionName']);
         $pagination = $request->getPagination();
 
-        $entities = $queryBus->handleQuery(new JobQuery(null === $pagination ? null : $pagination->getOffset(),
-            null === $pagination ? null : $pagination->getSize(), $request->getSortSet(), $request->getFilterSet()));
+        $entities = $queryBus->handleQuery(new JobQuery($pagination?->getOffset(),
+            $pagination?->getSize(), $request->getSortSet(), $request->getFilterSet()));
 
         return $responder->resourceObjectCollection($entities);
     }

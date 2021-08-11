@@ -18,7 +18,11 @@ class UpdateUserCommand implements CommandInterface
         public ?string $phone,
         public ?string $address,
         public ?string $city,
-        public string $about
+        public string $about,
+        public string $occupation,
+        public string $facebook,
+        public string $twitter,
+        public string $linkedin
     ) {
     }
 }

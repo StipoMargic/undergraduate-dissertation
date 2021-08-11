@@ -39,7 +39,11 @@ class UpdateUserCommandHandler
             $command->phone,
             $command->address,
             $command->city,
-            $command->about
+            $command->about,
+            $command->occupation,
+            $command->facebook,
+            $command->twitter,
+            $command->linkedin
         );
 
         $command->password ? $user->setPassword($this->encodePassword($user, $command->password)) : null;

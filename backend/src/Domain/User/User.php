@@ -156,14 +156,6 @@ class User implements UserInterface, EntityInterface
         $this->jobs = new ArrayCollection();
     }
 
-    private function verifyPortfolios(array $portfolios): ArrayCollection
-    {
-        Assertion::allIsInstanceOf($portfolios, Portfolio::class,
-            "All instances should be of class Portfolio,  %s provided");
-
-        return new ArrayCollection($portfolios);
-    }
-
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -177,6 +169,14 @@ class User implements UserInterface, EntityInterface
     public function setPortfolios(array $portfolios): void
     {
         $this->portfolios = $this->verifyPortfolios($portfolios);
+    }
+
+    private function verifyPortfolios(array $portfolios): ArrayCollection
+    {
+        Assertion::allIsInstanceOf($portfolios, Portfolio::class,
+            "All instances should be of class Portfolio,  %s provided");
+
+        return new ArrayCollection($portfolios);
     }
 
     public function getUsername(): string
@@ -392,7 +392,11 @@ class User implements UserInterface, EntityInterface
         string $phone,
         ?string $address,
         ?string $city,
-        string $about
+        string $about,
+        string $occupation,
+        string $facebook,
+        string $twitter,
+        string $linkedin
     ) {
         $this->username = $username;
         $this->email = $email;
@@ -401,6 +405,10 @@ class User implements UserInterface, EntityInterface
         $this->phone = $phone;
         $this->address = $address;
         $this->city = $city;
+        $this->occupation = $occupation;
+        $this->facebook = $facebook;
+        $this->twitter = $twitter;
+        $this->linkedin = $linkedin;
         $this->updatedAt = new \DateTimeImmutable();
     }
 

@@ -47,7 +47,11 @@ final class UpdateUserController
             $updateModel->phone,
             $updateModel->address,
             $updateModel->city,
-            $updateModel->about
+            $updateModel->about,
+            $updateModel->occupation,
+            $updateModel->facebook,
+            $updateModel->twitter,
+            $updateModel->linkedin,
         );
 
         $commandBus->handleCommand($command);

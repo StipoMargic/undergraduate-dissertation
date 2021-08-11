@@ -13,7 +13,6 @@ const ProfileEdit = () => {
   const user = users.find((u) => u.attributes.username === name)
   const [userInfo, setUserInfo] = useState(user)
   const [avatar, setAvatar] = useState("")
-  const [password, setPassword] = useState("")
 
   useEffect(() => {
     if (user !== undefined) {
@@ -21,14 +20,13 @@ const ProfileEdit = () => {
     }
   }, [user]);
 
-  console.log(error)
   const handleEdit = (e) => {
     e.preventDefault();
 
     axios
       .put(
         `http://apizavrsni.udruga-liberato.hr/api/v1/users/${user.id}`,
-        MakeUserUpdateData(user.id, userInfo, avatar, password),
+        MakeUserUpdateData(user.id, userInfo, avatar),
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,10 +34,10 @@ const ProfileEdit = () => {
           },
         }
       )
-      .then(() => setError(false))
+      .then(() => window.location.reload())
       .catch(() => setError(true));
 
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   };
 
   const handleInputChange = (e) => {
@@ -47,9 +45,8 @@ const ProfileEdit = () => {
 
     setUserInfo((prev) => ({
       ...prev,
-        [e.target.name]: e.target.value
+      [e.target.name]: e.target.value
     }));
-    if (e.target.name === "password") setPassword(e.target.value)
   };
 
   const renderUpload = () => {
@@ -71,6 +68,7 @@ const ProfileEdit = () => {
 
   return <>{(loading || userInfo === undefined) ? <Spinner/> : (<>
     <div className="container">
+      {error && <p className="text-danger">Error</p>}
       <div className="my-5 col-lg-12 col-sm-12">
         <div className="py-3">
           <form onSubmit={handleEdit}>
@@ -112,7 +110,7 @@ const ProfileEdit = () => {
                   className="form-control w-100"
                   name="password"
                   placeholder="Type new password..."
-                  value={password}
+                  value={userInfo.password}
                 />
               </label>
             </div>
