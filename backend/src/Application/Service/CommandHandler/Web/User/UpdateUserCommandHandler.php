@@ -35,7 +35,7 @@ class UpdateUserCommandHandler
         $user->update(
             null === $command->username ? $user->getUsername() : $command->username,
             null === $command->email ? $user->getEmail() : $command->email,
-            null === $command->avatar ? null : $this->makeAvatar($command->avatar),
+            null === $command->avatar ? $user->getAvatar() : $this->makeAvatar($command->avatar),
             $command->address,
             $command->city,
             $command->about
