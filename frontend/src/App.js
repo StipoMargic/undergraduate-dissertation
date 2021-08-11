@@ -32,6 +32,7 @@ import JobEdit from "./Components/Jobs/JobEdit";
 import CandidateList from "./Components/ApplyNow/CandidateList";
 import Profile from "./Components/Profile";
 import FreelancerEdit from "./Components/Freelancers/FreelancerEdit";
+import ProfileEdit from "./Components/Profile/ProfileEdit";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <main>
           <Switch>
             <Route path="/profile/:name" exact component={Profile} />
+            <Route path="/profile/edit/:name" exact component={ProfileEdit} />
             <Route
               path="/freelancers/edit/:id"
               exact

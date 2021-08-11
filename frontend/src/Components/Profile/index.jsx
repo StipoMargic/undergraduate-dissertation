@@ -292,6 +292,11 @@ const Profile = () => {
                   Deactivate
                 </button>
               </div>
+              <div className="row mb-2 justify-content-center">
+                <button type="submit" className="w-100 btn btn-primary" onClick={() => history.push(`/profile/edit/${username}`)}>
+                  Edit
+                </button>
+              </div>
               <div className="_jb_summary light_box p-4">
                 <h4>Social Info</h4>
                 <ul className="shares_jobs">

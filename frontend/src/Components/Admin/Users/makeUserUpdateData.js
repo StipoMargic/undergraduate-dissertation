@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
-export const MakeUserUpdateData = (id, user, avatar) => {
-  const { username, email, address, city, password, about } = user;
-
+export const MakeUserUpdateData = (id, user, avatar, password) => {
+  const {username, email, address, city, about} = user;
   return {
     data: {
       type: "user",
@@ -9,10 +8,10 @@ export const MakeUserUpdateData = (id, user, avatar) => {
       attributes: {
         username,
         email,
-        avatar,
+        avatar: avatar === "" ? null : avatar,
         address,
         city,
-        password,
+        password: password === "" ? null : password,
         about,
       },
     },
