@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const MakeUserUpdateData = (id, user, avatar, password) => {
   const {username, email, address, city, about} = user;
+  console.log(city)
   return {
     data: {
       type: "user",

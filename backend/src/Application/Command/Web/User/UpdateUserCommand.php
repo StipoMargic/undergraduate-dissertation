@@ -15,6 +15,7 @@ class UpdateUserCommand implements CommandInterface
         public ?string $email,
         public ?string $password,
         public ?string $avatar,
+        public ?string $phone,
         public ?string $address,
         public ?string $city,
         public string $about

@@ -389,6 +389,7 @@ class User implements UserInterface, EntityInterface
         string $username,
         string $email,
         ?string $avatar,
+        string $phone,
         ?string $address,
         ?string $city,
         string $about
@@ -397,6 +398,7 @@ class User implements UserInterface, EntityInterface
         $this->email = $email;
         $this->about = $about;
         $this->avatar = $avatar;
+        $this->phone = $phone;
         $this->address = $address;
         $this->city = $city;
         $this->updatedAt = new \DateTimeImmutable();

@@ -16,16 +16,19 @@ const ProfileEdit = () => {
   const [password, setPassword] = useState("")
 
   useEffect(() => {
-    setUserInfo(user)
-  }, [users, userInfo])
+    if (user !== undefined) {
+      setUserInfo(user.attributes);
+    }
+  }, [user]);
+
   console.log(error)
   const handleEdit = (e) => {
     e.preventDefault();
 
     axios
       .put(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/users/${userInfo.id}`,
-        MakeUserUpdateData(userInfo.id, userInfo.attributes, avatar, password),
+        `http://apizavrsni.udruga-liberato.hr/api/v1/users/${user.id}`,
+        MakeUserUpdateData(user.id, userInfo, avatar, password),
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -43,10 +46,8 @@ const ProfileEdit = () => {
     e.persist();
 
     setUserInfo((prev) => ({
-      ...prev, attributes: {
-        ...prev,
-        [e.target.name]: e.target.value,
-      }
+      ...prev,
+        [e.target.name]: e.target.value
     }));
     if (e.target.name === "password") setPassword(e.target.value)
   };
@@ -68,7 +69,7 @@ const ProfileEdit = () => {
   };
 
 
-  return <>{(loading && userInfo !== null) ? <Spinner/> : (<>
+  return <>{(loading || userInfo === undefined) ? <Spinner/> : (<>
     <div className="container">
       <div className="my-5 col-lg-12 col-sm-12">
         <div className="py-3">
@@ -82,7 +83,7 @@ const ProfileEdit = () => {
                   id="name"
                   className="form-control w-100"
                   name="username"
-                  value={userInfo.attributes.username}
+                  value={userInfo.username}
                 />
               </label>
             </div>
@@ -96,7 +97,7 @@ const ProfileEdit = () => {
                   id="email_address"
                   className="form-control w-100"
                   name="email"
-                  value={userInfo.attributes.email}
+                  value={userInfo.email}
                 />
               </label>
             </div>
@@ -125,7 +126,7 @@ const ProfileEdit = () => {
                   id="phone_number"
                   className="form-control w-100"
                   name="phone"
-                  value={userInfo.attributes.phone}
+                  value={userInfo.phone}
                 />
               </label>
             </div>
@@ -139,7 +140,7 @@ const ProfileEdit = () => {
                   id="address"
                   className="form-control w-100"
                   name="address"
-                  value={userInfo.attributes.address}
+                  value={userInfo.address}
                 />
               </label>
             </div>
@@ -153,7 +154,7 @@ const ProfileEdit = () => {
                   id="city"
                   className="form-control w-100"
                   name="city"
-                  value={userInfo.attributes.city}
+                  value={userInfo.city}
                 />
               </label>
             </div>
@@ -167,7 +168,7 @@ const ProfileEdit = () => {
                   id="occupation"
                   className="form-control w-100"
                   name="occupation"
-                  value={userInfo.attributes.occupation}
+                  value={userInfo.occupation}
                 />
               </label>
             </div>
@@ -181,7 +182,7 @@ const ProfileEdit = () => {
                   id="facebook"
                   className="form-control w-100"
                   name="facebook"
-                  value={userInfo.attributes.facebook}
+                  value={userInfo.facebook}
                 />
               </label>
             </div>
@@ -195,7 +196,7 @@ const ProfileEdit = () => {
                   id="twitter"
                   className="form-control w-100"
                   name="twitter"
-                  value={userInfo.attributes.twitter}
+                  value={userInfo.twitter}
                 />
               </label>
             </div>
@@ -209,7 +210,7 @@ const ProfileEdit = () => {
                   id="linkedin"
                   className="form-control w-100"
                   name="linkedin"
-                  value={userInfo.attributes.linkedin}
+                  value={userInfo.linkedin}
                 />
               </label>
             </div>
@@ -222,7 +223,7 @@ const ProfileEdit = () => {
                   id="about"
                   className="form-control w-100"
                   name="about"
-                  value={userInfo.attributes.about}
+                  value={userInfo.about}
                 />
               </label>
             </div>

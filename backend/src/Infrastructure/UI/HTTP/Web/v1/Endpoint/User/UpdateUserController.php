@@ -44,6 +44,7 @@ final class UpdateUserController
             $updateModel->email,
             $updateModel->password,
             $updateModel->avatar,
+            $updateModel->phone,
             $updateModel->address,
             $updateModel->city,
             $updateModel->about
