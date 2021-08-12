@@ -78,12 +78,14 @@ const ProfileEdit = () => {
                 <input
                   onChange={handleInputChange}
                   type="text"
+                  readOnly
                   id="name"
                   className="form-control w-100"
                   name="username"
                   value={userInfo.username}
                 />
               </label>
+              <small className="small text-info">This is read only field...</small>
             </div>
 
             <div className="form-group">
@@ -113,6 +115,7 @@ const ProfileEdit = () => {
                   value={userInfo.password}
                 />
               </label>
+
             </div>
 
             <div className="form-group">
