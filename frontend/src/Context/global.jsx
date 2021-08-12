@@ -58,9 +58,7 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `http://127.0.0.1:8000/api/v1/portfolios?sort=${portfolioSort}`
-      )
+      .get(`http://127.0.0.1:8000/api/v1/portfolios?sort=${portfolioSort}`)
       .then((res) => {
         if (res && res.data) {
           setPortfolios([...res.data.data]);
@@ -140,6 +138,8 @@ export const GlobalProvider = ({ children }) => {
         jobSort,
         portfolioSort,
         setLoading,
+        jobFilter,
+        portfolioFilter,
       }}
     >
       {children}

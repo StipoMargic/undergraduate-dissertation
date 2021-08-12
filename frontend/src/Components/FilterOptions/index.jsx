@@ -10,9 +10,11 @@ const FilterOptions = ({ options, type }) => {
     setJobSort,
     jobSort,
     portfolioSort,
+    jobFilter,
+    portfolioFilter,
   } = useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
-
+  console.log(jobFilter);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,12 +25,14 @@ const FilterOptions = ({ options, type }) => {
     }
   };
 
+  const resetFilters = () => window.location.reload();
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-lg-8 mt-3 col-sm-12">
           <form className="form-inline">
-            <div className="form-group mx-sm-3 mb-2 w-75">
+            <div className="form-group mx-sm-3 mb-2 w-50">
               <input
                 type="text"
                 placeholder={
@@ -41,13 +45,34 @@ const FilterOptions = ({ options, type }) => {
                 value={searchTerm}
               />
             </div>
-            <button
-              type="submit"
-              className="btn btn-primary mb-2"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
+            <div className="d-inline">
+              <button
+                type="submit"
+                className="btn btn-primary mb-2"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+              {jobFilter && type === "jobs" ? (
+                <button
+                  type="submit"
+                  className="btn btn-danger ml-2 mb-2"
+                  onClick={resetFilters}
+                >
+                  Reset Filter{" "}
+                </button>
+              ) : portfolioFilter && type === "portfolios" ? (
+                <button
+                  type="submit"
+                  className="btn btn-danger ml-2 mb-2"
+                  onClick={resetFilters}
+                >
+                  Reset Filter{" "}
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
           </form>
         </div>
         <div className="col-lg-4 mt-3 col-sm-12">

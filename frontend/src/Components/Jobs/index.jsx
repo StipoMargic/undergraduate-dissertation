@@ -18,7 +18,6 @@ const Jobs = () => {
   const { jobs, role } = useContext(GlobalContext);
   const [pagination, setPagination] = useState(initialPagination);
   const history = useHistory();
-
   const handleNext = () => {
     setPagination((prev) => ({
       ...prev,
@@ -84,7 +83,7 @@ const Jobs = () => {
               </button>
             )}
 
-            {jobs.length > pagination.end && (
+            {activeJobs.length > pagination.end && (
               <button
                 type="button"
                 onClick={handleNext}
@@ -95,10 +94,14 @@ const Jobs = () => {
             )}
           </div>
         </div>
-        <div className="row justify-content-center">
-          You are on page {pagination.page} out of{" "}
-          {parseInt(Math.ceil(activeJobs.length / 9), 10)}.
-        </div>
+        {activeJobs.length > 0 ? (
+          <div className="row justify-content-center">
+            You are on page {pagination.page} out of{" "}
+            {parseInt(Math.ceil(activeJobs.length / 9), 10)}.
+          </div>
+        ) : (
+          <p className="text-center text-info">No results...</p>
+        )}
       </section>
     </>
   );

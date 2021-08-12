@@ -15,12 +15,6 @@ import {
   yesterday,
 } from "../../Utils/dates";
 
-const [firstSeries, thirdSeries, fourthSeries] = [
-  [100, 123, 234, 343],
-  [45, 124, 189, 143],
-  [87, 154, 210, 215],
-];
-
 const categories = [
   "In last 6 months",
   "In last 3 months",
@@ -43,34 +37,22 @@ const JobChart = () => {
 
   useEffect(() => {
     const inLastSixMonthsCreated = jobs.filter(
-      (j) =>
-        new Date(j.attributes.createdAt).getTime() > sixMonthsAgo() &&
-        new Date(j.attributes.createdAt).getTime() < threeMonthsAgo()
+      (j) => new Date(j.attributes.createdAt).getTime() > sixMonthsAgo()
     );
     const inLastSixMonthsDeactivated = jobs.filter(
-      (j) =>
-        new Date(j.attributes.deletedAt).getTime() > sixMonthsAgo() &&
-        new Date(j.attributes.deletedAt).getTime() < threeMonthsAgo()
+      (j) => new Date(j.attributes.deletedAt).getTime() > sixMonthsAgo()
     );
     const inLastThreeMonthsCreated = jobs.filter(
-      (j) =>
-        new Date(j.attributes.createdAt).getTime() > threeMonthsAgo() &&
-        new Date(j.attributes.createdAt).getTime() < lastMonth()
+      (j) => new Date(j.attributes.createdAt).getTime() > threeMonthsAgo()
     );
     const inLastThreeMonthsDeactivated = jobs.filter(
-      (j) =>
-        new Date(j.attributes.deletedAt).getTime() > threeMonthsAgo() &&
-        new Date(j.attributes.deletedAt).getTime() < lastMonth()
+      (j) => new Date(j.attributes.deletedAt).getTime() > threeMonthsAgo()
     );
     const inLastThirtyDaysCreated = jobs.filter(
-      (j) =>
-        new Date(j.attributes.createdAt).getTime() > lastMonth() &&
-        new Date(j.attributes.createdAt).getTime() < yesterday()
+      (j) => new Date(j.attributes.createdAt).getTime() > lastMonth()
     );
     const inLastThirtyDaysDeactivated = jobs.filter(
-      (j) =>
-        new Date(j.attributes.deletedAt).getTime() > lastMonth() &&
-        new Date(j.attributes.deletedAt).getTime() < yesterday()
+      (j) => new Date(j.attributes.deletedAt).getTime() > lastMonth()
     );
     const inLastDayCreated = jobs.filter(
       (j) => new Date(j.attributes.createdAt).getTime() > yesterday()

@@ -1,20 +1,11 @@
 import { useHistory, useParams } from "react-router";
-import FilePondPluginFileEncode from "filepond-plugin-file-encode";
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-import { FilePond, registerPlugin } from "react-filepond";
+import { FilePond } from "react-filepond";
 import "filepond/dist/filepond.min.css";
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { GlobalContext } from "../../../Context/global";
 import { MakeUserUpdateData } from "./makeUserUpdateData";
-
-registerPlugin(
-  FilePondPluginImageExifOrientation,
-  FilePondPluginImagePreview,
-  FilePondPluginFileEncode
-);
 
 const UserAdminSingle = () => {
   const { users, token } = useContext(GlobalContext);
@@ -66,9 +57,7 @@ const UserAdminSingle = () => {
     e.preventDefault();
 
     axios
-      .post(
-        `http://127.0.0.1:8000/v1/verify/${verificationToken}`
-      )
+      .post(`http://127.0.0.1:8000/v1/verify/${verificationToken}`)
       .then(() => window.location.reload())
       .catch(() => setError(true));
   };
@@ -85,6 +74,7 @@ const UserAdminSingle = () => {
   const renderUpload = () => {
     return (
       <FilePond
+        acceptedFileTypes={["image/*"]}
         onaddfile={(err, item) => {
           if (err) {
             return;
@@ -111,176 +101,176 @@ const UserAdminSingle = () => {
       {newUserInfo && (
         <div className="container">
           <div className="row">
-              <div className="my-5 col-lg-8 col-sm-12">
-                <div className="py-3">
-                  <form onSubmit={handleEdit}>
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="name">
-                        Name
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="name"
-                          className="form-control w-100"
-                          name="username"
-                          value={newUserInfo.username}
-                        />
-                      </label>
-                    </div>
+            <div className="my-5 col-lg-8 col-sm-12">
+              <div className="py-3">
+                <form onSubmit={handleEdit}>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="name">
+                      Name
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="name"
+                        className="form-control w-100"
+                        name="username"
+                        value={newUserInfo.username}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="email_address">
-                        E-Mail Address
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="email_address"
-                          className="form-control w-100"
-                          name="email"
-                          value={newUserInfo.email}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="email_address">
+                      E-Mail Address
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="email_address"
+                        className="form-control w-100"
+                        name="email"
+                        value={newUserInfo.email}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="password">
-                        Password
-                        <input
-                          onChange={handleInputChange}
-                          type="password"
-                          id="password"
-                          className="form-control w-100"
-                          name="password"
-                          placeholder="Type new password..."
-                          value={newUserInfo.password}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="password">
+                      Password
+                      <input
+                        onChange={handleInputChange}
+                        type="password"
+                        id="password"
+                        className="form-control w-100"
+                        name="password"
+                        placeholder="Type new password..."
+                        value={newUserInfo.password}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="phone_number">
-                        Phone Number
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="phone_number"
-                          className="form-control w-100"
-                          name="phone"
-                          value={newUserInfo.phone}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="phone_number">
+                      Phone Number
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="phone_number"
+                        className="form-control w-100"
+                        name="phone"
+                        value={newUserInfo.phone}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="address">
-                        Address
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="address"
-                          className="form-control w-100"
-                          name="address"
-                          value={newUserInfo.address}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="address">
+                      Address
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="address"
+                        className="form-control w-100"
+                        name="address"
+                        value={newUserInfo.address}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="city">
-                        City
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="city"
-                          className="form-control w-100"
-                          name="city"
-                          value={newUserInfo.city}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="city">
+                      City
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="city"
+                        className="form-control w-100"
+                        name="city"
+                        value={newUserInfo.city}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="occupation">
-                        Occupation
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="occupation"
-                          className="form-control w-100"
-                          name="occupation"
-                          value={newUserInfo.occupation}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="occupation">
+                      Occupation
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="occupation"
+                        className="form-control w-100"
+                        name="occupation"
+                        value={newUserInfo.occupation}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="facebook">
-                        Facebook
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="facebook"
-                          className="form-control w-100"
-                          name="facebook"
-                          value={newUserInfo.facebook}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="facebook">
+                      Facebook
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="facebook"
+                        className="form-control w-100"
+                        name="facebook"
+                        value={newUserInfo.facebook}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="twitter">
-                        Twitter
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="twitter"
-                          className="form-control w-100"
-                          name="twitter"
-                          value={newUserInfo.twitter}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="twitter">
+                      Twitter
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="twitter"
+                        className="form-control w-100"
+                        name="twitter"
+                        value={newUserInfo.twitter}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="linkedin">
-                        Linkedin
-                        <input
-                          onChange={handleInputChange}
-                          type="text"
-                          id="linkedin"
-                          className="form-control w-100"
-                          name="linkedin"
-                          value={newUserInfo.linkedin}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="linkedin">
+                      Linkedin
+                      <input
+                        onChange={handleInputChange}
+                        type="text"
+                        id="linkedin"
+                        className="form-control w-100"
+                        name="linkedin"
+                        value={newUserInfo.linkedin}
+                      />
+                    </label>
+                  </div>
 
-                    <div className="form-group">
-                      <label className="w-100" htmlFor="about">
-                        About
-                        <textarea
-                          onChange={handleInputChange}
-                          type="text"
-                          id="about"
-                          className="form-control w-100"
-                          name="about"
-                          value={newUserInfo.about}
-                        />
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="w-100" htmlFor="about">
+                      About
+                      <textarea
+                        onChange={handleInputChange}
+                        type="text"
+                        id="about"
+                        className="form-control w-100"
+                        name="about"
+                        value={newUserInfo.about}
+                      />
+                    </label>
+                  </div>
 
-                    {renderUpload()}
-                    <div className="row pt-4 d-flex justify-content-center">
-                      <button
-                        className="btn btn-primary btn-lg w-50"
-                        type="submit"
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                  {renderUpload()}
+                  <div className="row pt-4 d-flex justify-content-center">
+                    <button
+                      className="btn btn-primary btn-lg w-50"
+                      type="submit"
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </form>
               </div>
+            </div>
             <div className="col-lg-4 col-sm-12 mt-5">
               {user.attributes.roles[0] === "ROLE_EMPLOYER" ? (
                 <small className="small">

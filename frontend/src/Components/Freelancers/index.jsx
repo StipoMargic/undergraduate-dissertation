@@ -102,10 +102,14 @@ const Freelancers = () => {
               </button>
             )}
           </div>
-          <div className="row justify-content-center">
-            You are on page {pagination.page} out of{" "}
-            {parseInt(Math.ceil(activePortfolios.length / 9), 10)}.
-          </div>
+          {activePortfolios.length > 0 ? (
+            <div className="row justify-content-center">
+              You are on page {pagination.page} out of{" "}
+              {parseInt(Math.ceil(activePortfolios.length / 9), 10)}.
+            </div>
+          ) : (
+            <p className="text-info text-center">No results...</p>
+          )}
         </div>
       </section>
     </>
