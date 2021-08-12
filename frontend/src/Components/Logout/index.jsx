@@ -1,14 +1,11 @@
 import { useContext } from "react";
-import { useHistory } from "react-router";
 import { GlobalContext } from "../../Context/global";
 
 const Logout = () => {
   const { removeAllCookies } = useContext(GlobalContext);
-  const history = useHistory();
 
   removeAllCookies();
-  window.location.reload();
-  history.push("/");
+  window.location.replace("http://zavrsni.udruga-liberato.hr");
 
   return null;
 };
