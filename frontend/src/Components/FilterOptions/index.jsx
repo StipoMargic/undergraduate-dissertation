@@ -14,7 +14,6 @@ const FilterOptions = ({ options, type }) => {
     portfolioFilter,
   } = useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(jobFilter);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -42,7 +41,13 @@ const FilterOptions = ({ options, type }) => {
                 }
                 className="form-control  mr-1 w-100"
                 onChange={(e) => setSearchTerm(e.target.value)}
-                value={searchTerm}
+                value={
+                  type === "jobs" && searchTerm === ""
+                    ? jobFilter
+                    : type === "portfolios" && searchTerm === ""
+                    ? portfolioFilter
+                    : searchTerm
+                }
               />
             </div>
             <div className="d-inline">

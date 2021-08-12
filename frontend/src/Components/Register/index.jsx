@@ -12,6 +12,7 @@ import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import { makeRegistrationData } from "./makeRegistrationData";
 import { GlobalContext } from "../../Context/global";
 import Spinner from "../AboutNumbers/Spinner";
+import { goToHome } from "../../Utils/redirects";
 
 registerPlugin(
   FilePondPluginFileValidateType,
@@ -76,7 +77,10 @@ const Register = () => {
           "http://apizavrsni.udruga-liberato.hr/api/register",
           makeRegistrationData(user, avatar)
         )
-        .then(() => setError(false))
+        .then(() => {
+          goToHome(2);
+          setError(false);
+        })
         .catch(() => setError(true));
     }
   };
@@ -121,6 +125,11 @@ const Register = () => {
               All went alright, check email for verification!
             </p>
           )}
+          {error === true && (
+            <p className="text-center font-weight-bold text-danger">
+              Something went wrong, check required fields!
+            </p>
+          )}
           <small className="small text-info">
             All fields marked with * are required!{" "}
           </small>
@@ -135,12 +144,13 @@ const Register = () => {
                   placeholder="Your name *"
                   required
                 />
-                {error && user.name === "" && (
-                  <div className="small text-danger ml-2 mt-1“">
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    This field is required or it's already taken!
-                  </div>
-                )}
+                {error ||
+                  (user.name === "" && (
+                    <div className="small text-danger ml-2 mt-1“">
+                      {/* eslint-disable-next-line react/no-unescaped-entities */}
+                      This field is required or it's already taken!
+                    </div>
+                  ))}
               </div>
               <div className="col">
                 <input
@@ -150,12 +160,13 @@ const Register = () => {
                   className="form-control"
                   required
                 />
-                {error && user.email === "" && (
-                  <div className="small text-danger ml-2 mt-1“">
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    This field is required or it's already taken!
-                  </div>
-                )}
+                {error === true ||
+                  (user.email === "" && (
+                    <div className="small text-danger ml-2 mt-1“">
+                      {/* eslint-disable-next-line react/no-unescaped-entities */}
+                      This field is required or it's already taken!
+                    </div>
+                  ))}
               </div>
             </div>
             <div className="form-row mt-4">
@@ -167,12 +178,13 @@ const Register = () => {
                   placeholder="Your password *"
                   required
                 />
-                {error && user.password === "" && (
-                  <div className="small text-danger ml-2 mt-1“">
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    This field is required!
-                  </div>
-                )}
+                {error ||
+                  (user.password === "" && (
+                    <div className="small text-danger ml-2 mt-1“">
+                      {/* eslint-disable-next-line react/no-unescaped-entities */}
+                      This field is required!
+                    </div>
+                  ))}
               </div>
               <div className="col">
                 <input
@@ -182,12 +194,13 @@ const Register = () => {
                   className="form-control"
                   required
                 />
-                {error && user.password === "" && (
-                  <div className="small text-danger ml-2 mt-1“">
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    This field is required!
-                  </div>
-                )}
+                {error ||
+                  (user.password === "" && (
+                    <div className="small text-danger ml-2 mt-1“">
+                      {/* eslint-disable-next-line react/no-unescaped-entities */}
+                      This field is required!
+                    </div>
+                  ))}
               </div>
             </div>
             {error && !passwordMatch && (
@@ -234,12 +247,13 @@ const Register = () => {
                 >
                   {user.about}
                 </textarea>
-                {error && user.about === "" && (
-                  <div className="small text-danger ml-2 mt-1“">
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    This field is required!
-                  </div>
-                )}
+                {error ||
+                  (user.about === "" && (
+                    <div className="small text-danger ml-2 mt-1“">
+                      {/* eslint-disable-next-line react/no-unescaped-entities */}
+                      This field is required!
+                    </div>
+                  ))}
               </div>
               <div className="col-lg-4 col-sm-12">
                 <input
@@ -291,12 +305,13 @@ const Register = () => {
                 labelIdle='Drag & Drop your avatar* or <span class="filepond--label-action">Browse</span>'
               />
             </div>
-            {error && avatar === "" && (
-              <div className="small text-danger ml-2 mt-1“">
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                This field is required!
-              </div>
-            )}
+            {error ||
+              (avatar === "" && (
+                <div className="small text-danger ml-2 mt-1“">
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  This field is required!
+                </div>
+              ))}
             <div className="row pb-5 justify-content-center">
               <button
                 onClick={handleRegistration}

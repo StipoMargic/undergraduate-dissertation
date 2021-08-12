@@ -6,6 +6,7 @@ import { GlobalContext } from "../../Context/global";
 import Spinner from "../AboutNumbers/Spinner";
 import { MakeUserUpdateData } from "../Admin/Users/makeUserUpdateData";
 import { checkFields } from "./checkFields";
+import { goToHome } from "../../Utils/redirects";
 
 const ProfileEdit = () => {
   const { name } = useParams();
@@ -41,7 +42,10 @@ const ProfileEdit = () => {
           },
         }
       )
-      .then(() => window.location.reload())
+      .then(() => {
+        setError(false);
+        goToHome(3);
+      })
       .catch(() => setError(true));
 
     window.scrollTo(0, 0);
@@ -85,6 +89,12 @@ const ProfileEdit = () => {
                 Something went wrong! Check your fields...
               </p>
             )}
+            {error === false && (
+              <p className="text-center font-weight-bold text-success">
+                All went alright, redirecting in 3 seconds...
+              </p>
+            )}
+
             <div className="my-5 col-lg-12 col-sm-12">
               <div className="py-3">
                 <small className="small text-danger">
