@@ -80,7 +80,7 @@ const FreelancerDetail = () => {
 
     axios
       .delete(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/${params.id}`,
+        `http://127.0.0.1:8000/api/v1/portfolios/${params.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ const FreelancerDetail = () => {
 
     axios
       .post(
-        "http://apizavrsni.udruga-liberato.hr/api/v1/comment",
+        "http://127.0.0.1:8000/api/v1/comment",
         makeCommentData(
           portfolio.data.id,
           null,
@@ -389,7 +389,7 @@ const FreelancerDetail = () => {
               <div className="_jb_summary light_box">
                 <div className="_jb_summary_thumb">
                   <img
-                    src={`http://apizavrsni.udruga-liberato.hr${user[0].avatar}`}
+                    src={`http://127.0.0.1:8000${user[0].avatar}`}
                     className="img-fluid circle"
                     alt=""
                   />

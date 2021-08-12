@@ -17,7 +17,7 @@ const Verification = () => {
     e.preventDefault();
     axios
       .post(
-        `http://apizavrsni.udruga-liberato.hr/v1/verify/${verificationCode}`
+        `http://127.0.0.1:8000/v1/verify/${verificationCode}`
       )
       .then(() => history.push("/"))
       .catch(() => setError(true));

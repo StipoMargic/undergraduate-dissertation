@@ -40,7 +40,7 @@ const Contact = () => {
 
     axios
       .post(
-        "http://apizavrsni.udruga-liberato.hr/v1/contact",
+        "http://127.0.0.1:8000/v1/contact",
         makeContactData(contactData)
       )
       .then(() =>

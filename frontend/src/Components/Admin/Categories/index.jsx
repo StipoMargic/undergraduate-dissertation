@@ -15,7 +15,7 @@ const Categories = () => {
     e.preventDefault();
 
     axios
-      .delete(`http://apizavrsni.udruga-liberato.hr/api/v1/category/${id}`, {
+      .delete(`http://127.0.0.1:8000/api/v1/category/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const Categories = () => {
                       </td>
                       <td>
                         <img
-                          src={`http://apizavrsni.udruga-liberato.hr/images/category/${category.attributes.image}`}
+                          src={`http://127.0.0.1:8000/images/category/${category.attributes.image}`}
                           alt={category.attributes.name}
                           className="w-25"
                           style={{

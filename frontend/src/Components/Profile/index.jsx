@@ -19,7 +19,7 @@ const Profile = () => {
     e.preventDefault();
 
     axios
-      .delete(`http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}`, {
+      .delete(`http://127.0.0.1:8000/api/v1/job/${jobId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const Profile = () => {
 
     axios
       .delete(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/${portfolioId}`,
+        `http://127.0.0.1:8000/api/v1/portfolios/${portfolioId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ const Profile = () => {
     e.persist();
 
     axios
-      .delete(`http://apizavrsni.udruga-liberato.hr/api/v1/users/${id}`, {
+      .delete(`http://127.0.0.1:8000/api/v1/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -251,7 +251,7 @@ const Profile = () => {
             <div className="col-lg-4 col-sm-12">
               <div className="row justify-content-center mb-4">
                 <img
-                  src={`http://apizavrsni.udruga-liberato.hr/${user.attributes.avatar}`}
+                  src={`http://127.0.0.1:8000/${user.attributes.avatar}`}
                   className="w-25"
                   alt="avatars"
                 />

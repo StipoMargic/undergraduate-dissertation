@@ -30,7 +30,7 @@ const JobEdit = () => {
 
     axios
       .put(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/job/${id}`,
+        `http://127.0.0.1:8000/api/v1/job/${id}`,
         makeJobUpdateData(id, newJobInfo, activeTill),
         {
           headers: {

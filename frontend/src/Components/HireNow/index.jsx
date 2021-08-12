@@ -41,7 +41,7 @@ const HireNow = () => {
 
     axios
       .post(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios/${id}/hire-now`,
+        `http://127.0.0.1:8000/api/v1/portfolios/${id}/hire-now`,
         makeHireFreelancerPostData(
           formData.subject,
           formData.message,

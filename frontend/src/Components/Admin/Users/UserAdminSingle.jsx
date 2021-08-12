@@ -35,7 +35,7 @@ const UserAdminSingle = () => {
 
     axios
       .put(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/users/${id}`,
+        `http://127.0.0.1:8000/api/v1/users/${id}`,
         MakeUserUpdateData(id, newUserInfo, avatar),
         {
           headers: {
@@ -52,7 +52,7 @@ const UserAdminSingle = () => {
     e.persist();
 
     axios
-      .delete(`http://apizavrsni.udruga-liberato.hr/api/v1/users/${id}`, {
+      .delete(`http://127.0.0.1:8000/api/v1/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const UserAdminSingle = () => {
 
     axios
       .post(
-        `http://apizavrsni.udruga-liberato.hr/v1/verify/${verificationToken}`
+        `http://127.0.0.1:8000/v1/verify/${verificationToken}`
       )
       .then(() => window.location.reload())
       .catch(() => setError(true));

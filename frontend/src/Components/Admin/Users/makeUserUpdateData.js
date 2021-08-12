@@ -13,7 +13,7 @@ export const MakeUserUpdateData = (id, user, avatar) => {
         phone,
         address,
         city,
-        password: password === "" ? null : password,
+        password: password || null,
         about, occupation, facebook, twitter, linkedin
       },
     },

@@ -45,10 +45,10 @@ class UpdateUserCommandHandler
             $command->twitter,
             $command->linkedin
         );
-        if ($command->password !== null){
+        if ($command->password){
             $user->setPassword($this->encodePassword($user, $command->password));
         }
-        
+
         $this->userWriteRepository->save($user);
     }
 

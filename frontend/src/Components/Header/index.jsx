@@ -78,7 +78,7 @@ const Header = () => {
     e.preventDefault();
     axios
       .post(
-        "http://apizavrsni.udruga-liberato.hr/api/login",
+        "http://127.0.0.1:8000/api/login",
         makeLoginData(loginData)
       )
       .then((res) => {

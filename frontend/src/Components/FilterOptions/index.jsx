@@ -3,8 +3,14 @@ import { GlobalContext } from "../../Context/global";
 import "./styles.scss";
 
 const FilterOptions = ({ options, type }) => {
-  const { setPortfolioFilter, setJobFilter, setPortfolioSort, setJobSort } =
-    useContext(GlobalContext);
+  const {
+    setPortfolioFilter,
+    setJobFilter,
+    setPortfolioSort,
+    setJobSort,
+    jobSort,
+    portfolioSort,
+  } = useContext(GlobalContext);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = (e) => {
@@ -54,13 +60,37 @@ const FilterOptions = ({ options, type }) => {
                 : setJobSort(e.target.value)
             }
           >
-            {options.map((option, idx) => {
-              return (
-                <option key={idx} value={option.value}>
-                  {option.text}
-                </option>
-              );
-            })}
+            {type === "jobs" ? (
+              <>
+                {options.map((option, idx) => {
+                  return (
+                    <option
+                      selected={option.value === jobSort}
+                      key={idx}
+                      value={option.value}
+                    >
+                      {option.text}
+                    </option>
+                  );
+                })}
+              </>
+            ) : type === "portfolios" ? (
+              <>
+                {options.map((option, idx) => {
+                  return (
+                    <option
+                      selected={option.value === portfolioSort}
+                      key={idx}
+                      value={option.value}
+                    >
+                      {option.text}
+                    </option>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </select>
         </div>
       </div>

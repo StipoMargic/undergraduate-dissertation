@@ -112,7 +112,7 @@ const AddJob = () => {
 
     axios
       .post(
-        "http://apizavrsni.udruga-liberato.hr/api/v1/portfolios",
+        "http://127.0.0.1:8000/api/v1/portfolios",
         makePortfolioPostRequest(portfolioData, qualifications, experiences),
         {
           headers: {
@@ -133,7 +133,7 @@ const AddJob = () => {
 
     axios
       .post(
-        "http://apizavrsni.udruga-liberato.hr/api/v1/job",
+        "http://127.0.0.1:8000/api/v1/job",
         makeJobPostRequest(jobData, activeTill),
         {
           headers: {

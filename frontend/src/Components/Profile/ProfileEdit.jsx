@@ -26,12 +26,12 @@ const ProfileEdit = () => {
 
     if (!checkFields(userInfo)) {
       setError(true)
+      window.scrollTo(0,62);
       return;
     }
 
     axios
-      .put(
-        `http://apizavrsni.udruga-liberato.hr/api/v1/users/${user.id}`,
+      .put(`http://127.0.0.1:8000/api/v1/users/${user.id}`,
         MakeUserUpdateData(user.id, userInfo, avatar),
         {
           headers: {
@@ -72,15 +72,16 @@ const ProfileEdit = () => {
   };
 
 
-  return <>{(loading || userInfo === undefined) ? <Spinner/> : (<>
+  return <>{(loading || userInfo === undefined) ? <Spinner/ >  : (<>
     <div className="container">
-      {error && <p className="text-danger">Error</p>}
+      {error && <p className="text-danger text-center mt-3">Something went wrong! Check your fields...</p>}
       <div className="my-5 col-lg-12 col-sm-12">
         <div className="py-3">
+          <small className="small text-danger">Fields marked with * are required!</small>
           <form onSubmit={handleEdit}>
             <div className="form-group">
               <label className="w-100" htmlFor="name">
-                Name
+                Name:
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -96,7 +97,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="email_address">
-                E-Mail Address
+                E-Mail Address: *
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -112,7 +113,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="password">
-                Password
+                Password:
                 <input
                   onChange={handleInputChange}
                   type="password"
@@ -128,7 +129,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="phone_number">
-                Phone Number
+                Phone Number: *
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -144,7 +145,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="address">
-                Address
+                Address: *
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -160,7 +161,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="city">
-                City
+                City: *
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -176,7 +177,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="occupation">
-                Occupation
+                Occupation: *
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -190,7 +191,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="facebook">
-                Facebook
+                Facebook:
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -204,7 +205,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="twitter">
-                Twitter
+                Twitter:
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -218,7 +219,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="linkedin">
-                Linkedin
+                Linkedin:
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -232,7 +233,7 @@ const ProfileEdit = () => {
 
             <div className="form-group">
               <label className="w-100" htmlFor="about">
-                About
+                About: *
                 <textarea
                   onChange={handleInputChange}
                   id="about"
