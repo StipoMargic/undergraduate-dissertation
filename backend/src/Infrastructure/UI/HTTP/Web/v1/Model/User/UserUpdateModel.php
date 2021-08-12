@@ -31,7 +31,7 @@ class UserUpdateModel implements ApiModel
     public ?string $avatar;
 
     /** @Attribute */
-    public ?string $address;
+    public string $address;
 
     /** @Attribute */
     public ?string $city;
@@ -93,7 +93,7 @@ class UserUpdateModel implements ApiModel
             $user->getEmail(),
             $user->getPassword(),
             $user->getAvatar(),
-            $user->getAddress(),
+            null === $user->getAddress() ? null : $user->getAddress(),
             $user->getCity(),
             $user->getPhone(),
             $user->getOccupation(),

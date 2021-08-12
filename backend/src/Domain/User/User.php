@@ -390,7 +390,7 @@ class User implements UserInterface, EntityInterface
         string $email,
         ?string $avatar,
         string $phone,
-        ?string $address,
+        string $address,
         ?string $city,
         string $about,
         ?string $occupation,
