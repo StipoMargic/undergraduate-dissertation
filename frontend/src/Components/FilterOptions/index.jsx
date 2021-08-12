@@ -41,13 +41,7 @@ const FilterOptions = ({ options, type }) => {
                 }
                 className="form-control  mr-1 w-100"
                 onChange={(e) => setSearchTerm(e.target.value)}
-                value={
-                  type === "jobs" && searchTerm === ""
-                    ? jobFilter
-                    : type === "portfolios" && searchTerm === ""
-                    ? portfolioFilter
-                    : searchTerm
-                }
+                value={searchTerm}
               />
             </div>
             <div className="d-inline">
