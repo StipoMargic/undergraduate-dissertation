@@ -144,6 +144,7 @@ const ProfileEdit = () => {
                   value={userInfo.address}
                 />
               </label>
+              {error && userInfo.address === "" ? <small className="small text-danger">This field is required.</small> : ""}
             </div>
 
             <div className="form-group">

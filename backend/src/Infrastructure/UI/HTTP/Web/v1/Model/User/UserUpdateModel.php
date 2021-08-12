@@ -6,6 +6,7 @@ namespace App\Infrastructure\UI\HTTP\Web\v1\Model\User;
 
 use App\Domain\User\User;
 use JetBrains\PhpStorm\Pure;
+use Symfony\Component\Validator\Constraints as Assert;
 use Undabot\SymfonyJsonApi\Model\ApiModel;
 use Undabot\SymfonyJsonApi\Model\Resource\Annotation\Attribute;
 use Undabot\SymfonyJsonApi\Service\Resource\Validation\Constraint\ResourceType;
@@ -30,6 +31,7 @@ class UserUpdateModel implements ApiModel
     /** @Attribute */
     public ?string $avatar;
 
+    /** @Assert\NotBlank */
     /** @Attribute */
     public ?string $address;
 
