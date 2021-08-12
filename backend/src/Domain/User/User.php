@@ -393,10 +393,10 @@ class User implements UserInterface, EntityInterface
         ?string $address,
         ?string $city,
         string $about,
-        string $occupation,
-        string $facebook,
-        string $twitter,
-        string $linkedin
+        ?string $occupation,
+        ?string $facebook,
+        ?string $twitter,
+        ?string $linkedin
     ) {
         $this->username = $username;
         $this->email = $email;
