@@ -37,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/v1/categories")
+      .get("http://apizavrsni.udruga-liberato.hr/api/v1/categories")
       .then((res) => {
         if (res && res.data) {
           setCategories([...res.data.data]);
@@ -46,7 +46,7 @@ export const GlobalProvider = ({ children }) => {
       .catch(() => null);
 
     axios
-      .get("http://127.0.0.1:8000/api/v1/users")
+      .get("http://apizavrsni.udruga-liberato.hr/api/v1/users")
       .then((res) => setUsers([...res.data.data]))
       .catch(() => null);
 
@@ -58,7 +58,9 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://127.0.0.1:8000/api/v1/portfolios?sort=${portfolioSort}`)
+      .get(
+        `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?sort=${portfolioSort}`
+      )
       .then((res) => {
         if (res && res.data) {
           setPortfolios([...res.data.data]);
@@ -73,7 +75,7 @@ export const GlobalProvider = ({ children }) => {
       setLoading(true);
       axios
         .get(
-          `http://127.0.0.1:8000/api/v1/portfolios?filter[skills]=${portfolioFilter}`
+          `http://apizavrsni.udruga-liberato.hr/api/v1/portfolios?filter[skills]=${portfolioFilter}`
         )
         .then((res) => {
           if (res && res.data) {
@@ -88,7 +90,7 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://127.0.0.1:8000/api/v1/jobs?sort=${jobSort}`)
+      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/jobs?sort=${jobSort}`)
       .then((res) => {
         if (res && res.data) {
           setJobs([...res.data.data]);
@@ -103,7 +105,7 @@ export const GlobalProvider = ({ children }) => {
       setLoading(true);
       axios
         .get(
-          `http://127.0.0.1:8000/api/v1/jobs?filter[jobPositionName]=${jobFilter}`
+          `http://apizavrsni.udruga-liberato.hr/api/v1/jobs?filter[jobPositionName]=${jobFilter}`
         )
         .then((res) => {
           if (res && res.data) {

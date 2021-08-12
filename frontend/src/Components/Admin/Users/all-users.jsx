@@ -23,7 +23,7 @@ const AllUsers = () => {
 
     axios
       .get(
-        `http://127.0.0.1:8000/api/v1/users?filter[name]=${searchName}`
+        `http://apizavrsni.udruga-liberato.hr/api/v1/users?filter[name]=${searchName}`
       )
       .then((res) => {
         setUsers([...res.data.data]);
@@ -44,7 +44,7 @@ const AllUsers = () => {
     e.preventDefault();
 
     axios
-      .get(`http://127.0.0.1:8000/api/v1/users`)
+      .get(`http://apizavrsni.udruga-liberato.hr/api/v1/users`)
       .then((res) => {
         setUsers([...res.data.data]);
       })

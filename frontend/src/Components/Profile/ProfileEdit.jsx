@@ -32,7 +32,7 @@ const ProfileEdit = () => {
 
     axios
       .put(
-        `http://127.0.0.1:8000/api/v1/users/${user.id}`,
+        `http://apizavrsni.udruga-liberato.hr/api/v1/users/${user.id}`,
         MakeUserUpdateData(user.id, userInfo, avatar),
         {
           headers: {

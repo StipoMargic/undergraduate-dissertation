@@ -19,7 +19,7 @@ const CandidateList = () => {
     setLoading(true);
     axios
       .post(
-        `http://127.0.0.1:8000/api/v1/job/${jobId}/decline`,
+        `http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}/decline`,
         makeDeclineData(jobId, applicantName),
         {
           headers: {
@@ -43,7 +43,7 @@ const CandidateList = () => {
 
     axios
       .post(
-        `http://127.0.0.1:8000/api/v1/job/${jobId}/approve`,
+        `http://apizavrsni.udruga-liberato.hr/api/v1/job/${jobId}/approve`,
         makeApproveData(jobId, applicantName),
         {
           headers: {

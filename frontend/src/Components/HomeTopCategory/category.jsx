@@ -6,7 +6,7 @@ const Category = ({ name, image, length }) => {
     <div className="col-lg-3 col-md-4 col-sm-6">
       <div className="urip_cated shadow">
         <img
-          src={`http://127.0.0.1:8000/images/category/${image}`}
+          src={`http://apizavrsni.udruga-liberato.hr/images/category/${image}`}
           alt={name}
           className="category-image"
         />

@@ -21,7 +21,7 @@ const Job = ({ id, name, position, typeOfPosition, image }) => {
         <div className="jb_types fulltime">{typeOfPosition}</div>
         <div className="jb_grid_01_thumb">
           <img
-            src={`http://127.0.0.1:8000/${image}`}
+            src={`http://apizavrsni.udruga-liberato.hr/${image}`}
             className="img-fluid"
             alt="employer details"
           />

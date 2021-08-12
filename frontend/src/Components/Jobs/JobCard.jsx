@@ -10,7 +10,7 @@ const JobCard = ({ id, job }) => {
         <div className="jb_grid_01_thumb">
           <Link to={`/jobs/${id}`}>
             <img
-              src={`http://127.0.0.1:8000/${job.logo}`}
+              src={`http://apizavrsni.udruga-liberato.hr/${job.logo}`}
               className="img-fluid"
               alt="avatars"
             />

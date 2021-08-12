@@ -11,6 +11,7 @@ import { useHistory } from "react-router";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import { makeRegistrationData } from "./makeRegistrationData";
 import { GlobalContext } from "../../Context/global";
+import Spinner from "../AboutNumbers/Spinner";
 
 registerPlugin(
   FilePondPluginFileValidateType,
@@ -23,6 +24,7 @@ const userRegistration = {
   name: "",
   email: "",
   password: "",
+  password2: "",
   phone: "",
   address: "",
   city: "",
@@ -35,11 +37,12 @@ const userRegistration = {
 };
 
 const Register = () => {
-  const { username } = useContext(GlobalContext);
+  const { username, loading } = useContext(GlobalContext);
   const history = useHistory();
   const [user, setUser] = useState(userRegistration);
   const [avatar, setAvatar] = useState("");
   const [error, setError] = useState(null);
+  const [passwordMatch, setPasswordMatch] = useState(null);
 
   if (username) {
     history.push("/");
@@ -63,19 +66,22 @@ const Register = () => {
 
   const handleRegistration = (e) => {
     e.preventDefault();
-
-    axios
-      .post(
-        "http://127.0.0.1:8000/api/register",
-        makeRegistrationData(user, avatar)
-      )
-      .then(() => setError(false))
-      .catch(() => setError(true));
-
     window.scrollTo(0, 0);
+    setPasswordMatch(true);
+    if (user.password !== user.password2) {
+      setPasswordMatch(false);
+    } else {
+      axios
+        .post(
+          "http://apizavrsni.udruga-liberato.hr/api/register",
+          makeRegistrationData(user, avatar)
+        )
+        .then(() => setError(false))
+        .catch(() => setError(true));
+    }
   };
 
-  const renderForm = () => {
+  const renderHeader = () => {
     return (
       <div className="container">
         <div className="py-3">
@@ -101,210 +107,211 @@ const Register = () => {
             Company
           </button>
         </div>
-
-        <form onSubmit={handleRegistration}>
-          <div className="form-group">
-            <label className="w-100" htmlFor="name">
-              Name
-              <input
-                onChange={handleInputChange("name")}
-                type="text"
-                id="name"
-                className="form-control"
-                name="name"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="email_address">
-              E-Mail Address
-              <input
-                onChange={handleInputChange("email")}
-                type="text"
-                id="email_address"
-                className="form-control"
-                name="email-address"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="password">
-              Password
-              <input
-                onChange={handleInputChange("password")}
-                type="password"
-                id="password"
-                className="form-control"
-                name="password"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="phone_number">
-              Phone Number
-              <input
-                onChange={handleInputChange("phone")}
-                type="text"
-                id="phone_number"
-                className="form-control"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="address">
-              Address
-              <input
-                onChange={handleInputChange("address")}
-                type="text"
-                id="address"
-                className="form-control"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="city">
-              City
-              <input
-                onChange={handleInputChange("city")}
-                type="text"
-                id="city"
-                className="form-control"
-                name="city"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="occupation">
-              Occupation
-              <input
-                onChange={handleInputChange("occupation")}
-                type="text"
-                id="occupation"
-                className="form-control"
-                name="occupation"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="facebook">
-              Facebook
-              <input
-                onChange={handleInputChange("facebook")}
-                type="text"
-                id="facebook"
-                className="form-control"
-                name="facebook"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="twitter">
-              Twitter
-              <input
-                onChange={handleInputChange("twitter")}
-                type="text"
-                id="twitter"
-                className="form-control"
-                name="twitter"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="linkedin">
-              Linkedin
-              <input
-                onChange={handleInputChange("linkedin")}
-                type="text"
-                id="linkedin"
-                className="form-control"
-                name="linkedin"
-              />
-            </label>
-          </div>
-
-          <div className="form-group">
-            <label className="w-100" htmlFor="about">
-              About
-              <input
-                onChange={handleInputChange("about")}
-                type="text"
-                id="about"
-                className="form-control"
-                name="about"
-              />
-            </label>
-          </div>
-
-          <FilePond
-            acceptedFileTypes={["image/*"]}
-            onaddfile={(err, item) => {
-              if (err) {
-                return;
-              }
-              setAvatar((file) => file.concat(item.getFileEncodeDataURL()));
-            }}
-            allowReorder={false}
-            allowMultiple={false}
-            labelIdle='Drag & Drop your avatar or <span class="filepond--label-action">Browse</span>'
-          />
-          <small className="small">Only images are allowed!</small>
-          <div className="row pb-5 justify-content-center">
-            <button
-              onClick={handleRegistration}
-              type="submit"
-              className="btn btn-primary"
-            >
-              Register
-            </button>
-          </div>
-        </form>
       </div>
     );
   };
 
-  return (
-    <>
-      {error ? (
-        <>
-          <div className="errModal">
-            <h5 className="text-center text-danger pt-3">
-              Ups! Something went wrong...
-            </h5>
-            <p>
-              We could not finish your registration! Contact us or try again!
+  const renderFreelancerRegistrationForm = () => {
+    return (
+      <>
+        {renderHeader()}
+        <div className="container mt-5">
+          {error === false && (
+            <p className="text-center font-weight-bold text-success">
+              All went alright, check email for verification!
             </p>
-            <a href="/register" className="btn btn-sm btn-outline-primary">
-              Try again
-            </a>
-          </div>
-          {renderForm()}
-        </>
-      ) : error === false ? (
-        <>
-          <div className="sucModal">
-            <h5 className="text-center text-success pt-3">
-              Yay! Welcome {user.name}...
-            </h5>
-            <p>Please verify your account with your email..</p>
-            <a href="/" className="btn btn-sm btn-outline-primary">
-              Go home
-            </a>
-          </div>
-          {renderForm()}
-        </>
-      ) : (
-        renderForm()
-      )}
-    </>
-  );
+          )}
+          <small className="small text-info">
+            All fields marked with * are required!{" "}
+          </small>
+          <form onSubmit={handleRegistration}>
+            <h4 className="ml-3 mb-3 text-blue">User info: </h4>
+            <div className="form-row">
+              <div className="col">
+                <input
+                  type="text"
+                  onChange={handleInputChange("name")}
+                  className="form-control"
+                  placeholder="Your name *"
+                  required
+                />
+                {error && user.name === "" && (
+                  <div className="small text-danger ml-2 mt-1“">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    This field is required or it's already taken!
+                  </div>
+                )}
+              </div>
+              <div className="col">
+                <input
+                  onChange={handleInputChange("email")}
+                  type="email"
+                  placeholder="Email *"
+                  className="form-control"
+                  required
+                />
+                {error && user.email === "" && (
+                  <div className="small text-danger ml-2 mt-1“">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    This field is required or it's already taken!
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="form-row mt-4">
+              <div className="col">
+                <input
+                  type="password"
+                  onChange={handleInputChange("password")}
+                  className="form-control"
+                  placeholder="Your password *"
+                  required
+                />
+                {error && user.password === "" && (
+                  <div className="small text-danger ml-2 mt-1“">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    This field is required!
+                  </div>
+                )}
+              </div>
+              <div className="col">
+                <input
+                  onChange={handleInputChange("password2")}
+                  type="password"
+                  placeholder="Confirm password *"
+                  className="form-control"
+                  required
+                />
+                {error && user.password === "" && (
+                  <div className="small text-danger ml-2 mt-1“">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    This field is required!
+                  </div>
+                )}
+              </div>
+            </div>
+            {error && !passwordMatch && (
+              <div className="small text-danger ml-2 mt-1“">
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
+                Passwords doesn't match!
+              </div>
+            )}
+            <h4 className="ml-3 my-3 text-blue">Personal info: </h4>
+            <div className="form-row mt-4">
+              <div className="col">
+                <input
+                  onChange={handleInputChange("phone")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Your phone number"
+                />
+              </div>
+              <div className="col">
+                <input
+                  onChange={handleInputChange("address")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Your Address"
+                />
+              </div>
+              <div className="col">
+                <input
+                  onChange={handleInputChange("city")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Your City"
+                />
+              </div>
+            </div>
+            <div className="form-row mt-4">
+              <div className="col-lg-8 col-sm-12">
+                <textarea
+                  className="form-control"
+                  rows={3}
+                  required
+                  onChange={handleInputChange("about")}
+                  placeholder="Give us some information about yourself... *"
+                >
+                  {user.about}
+                </textarea>
+                {error && user.about === "" && (
+                  <div className="small text-danger ml-2 mt-1“">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    This field is required!
+                  </div>
+                )}
+              </div>
+              <div className="col-lg-4 col-sm-12">
+                <input
+                  onChange={handleInputChange("occupation")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Your Occupation"
+                />
+              </div>
+            </div>
+            <h4 className="ml-3 my-3 text-blue">Social media: </h4>
+            <div className="form-row mt-4">
+              <div className="col">
+                <input
+                  onChange={handleInputChange("facebook")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Facebook"
+                />
+              </div>
+              <div className="col">
+                <input
+                  onChange={handleInputChange("twitter")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Twitter"
+                />
+              </div>
+              <div className="col">
+                <input
+                  onChange={handleInputChange("linkedin")}
+                  type="text"
+                  className="form-control"
+                  placeholder="Linkedin"
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <FilePond
+                acceptedFileTypes={["image/*"]}
+                onaddfile={(err, item) => {
+                  if (err) {
+                    return;
+                  }
+                  setAvatar((file) => file.concat(item.getFileEncodeDataURL()));
+                }}
+                allowReorder={false}
+                allowMultiple={false}
+                labelIdle='Drag & Drop your avatar* or <span class="filepond--label-action">Browse</span>'
+              />
+            </div>
+            {error && avatar === "" && (
+              <div className="small text-danger ml-2 mt-1“">
+                {/* eslint-disable-next-line react/no-unescaped-entities */}
+                This field is required!
+              </div>
+            )}
+            <div className="row pb-5 justify-content-center">
+              <button
+                onClick={handleRegistration}
+                type="submit"
+                className="btn btn-primary"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </>
+    );
+  };
+
+  return <>{loading ? <Spinner /> : renderFreelancerRegistrationForm()}</>;
 };
 export default Register;

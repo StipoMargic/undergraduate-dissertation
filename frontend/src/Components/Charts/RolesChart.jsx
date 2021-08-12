@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
-import { Chart, ChartLegend, ChartTitle } from "@progress/kendo-react-charts";
+import { Chart, ChartLegend } from "@progress/kendo-react-charts";
 import ChartTooltip from "@progress/kendo-react-charts/dist/es/components/Tooltip";
 import ChartSeries from "@progress/kendo-react-charts/dist/es/components/Series";
 import ChartSeriesItem from "@progress/kendo-react-charts/dist/es/components/SeriesItem";
