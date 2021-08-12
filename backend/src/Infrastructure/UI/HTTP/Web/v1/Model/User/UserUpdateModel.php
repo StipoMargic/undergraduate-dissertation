@@ -31,7 +31,7 @@ class UserUpdateModel implements ApiModel
     public ?string $avatar;
 
     /** @Attribute */
-    public string $address;
+    public ?string $address;
 
     /** @Attribute */
     public ?string $city;
@@ -60,7 +60,7 @@ class UserUpdateModel implements ApiModel
         string $email,
         ?string $password,
         ?string $avatar,
-        string $address,
+        ?string $address,
         string $city,
         string $phone,
         ?string $occupation,
