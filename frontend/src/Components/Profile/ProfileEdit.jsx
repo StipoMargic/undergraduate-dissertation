@@ -5,6 +5,7 @@ import axios from "axios";
 import {GlobalContext} from "../../Context/global";
 import Spinner from "../AboutNumbers/Spinner";
 import {MakeUserUpdateData} from "../Admin/Users/makeUserUpdateData";
+import {checkFields} from "./checkFields";
 
 const ProfileEdit = () => {
   const {name} = useParams()
@@ -22,6 +23,11 @@ const ProfileEdit = () => {
 
   const handleEdit = (e) => {
     e.preventDefault();
+
+    if (!checkFields(userInfo)) {
+      setError(true)
+      return;
+    }
 
     axios
       .put(
@@ -100,6 +106,8 @@ const ProfileEdit = () => {
                   value={userInfo.email}
                 />
               </label>
+              {error && userInfo.email === "" ?
+                <small className="small text-danger">This field is required.</small> : ""}
             </div>
 
             <div className="form-group">
@@ -130,6 +138,8 @@ const ProfileEdit = () => {
                   value={userInfo.phone}
                 />
               </label>
+              {error && userInfo.phone === "" ?
+                <small className="small text-danger">This field is required.</small> : ""}
             </div>
 
             <div className="form-group">
@@ -144,7 +154,8 @@ const ProfileEdit = () => {
                   value={userInfo.address}
                 />
               </label>
-              {error && userInfo.address === "" ? <small className="small text-danger">This field is required.</small> : ""}
+              {error && userInfo.address === "" ?
+                <small className="small text-danger">This field is required.</small> : ""}
             </div>
 
             <div className="form-group">
@@ -159,6 +170,8 @@ const ProfileEdit = () => {
                   value={userInfo.city}
                 />
               </label>
+              {error && userInfo.city === "" ?
+                <small className="small text-danger">This field is required.</small> : ""}
             </div>
 
             <div className="form-group">

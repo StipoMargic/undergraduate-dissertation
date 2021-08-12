@@ -31,7 +31,6 @@ class UserUpdateModel implements ApiModel
     /** @Attribute */
     public ?string $avatar;
 
-    /** @Assert\NotBlank */
     /** @Attribute */
     public ?string $address;
 
