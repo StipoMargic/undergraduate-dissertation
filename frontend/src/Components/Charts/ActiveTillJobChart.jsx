@@ -212,10 +212,12 @@ const ActiveTillJobChart = () => {
                 </button>
               )}
             </div>
-            <div className="row justify-content-center">
-              You are on page {pagination.page} out of{" "}
-              {parseInt(Math.ceil(activeJobs.length / paginationNumber), 10)}.
-            </div>
+            {pagination.page > 0 && (
+              <div className="row justify-content-center">
+                You are on page {pagination.page} out of{" "}
+                {parseInt(Math.ceil(activeJobs.length / paginationNumber), 10)}.
+              </div>
+            )}
           </>
         )}
       </div>
