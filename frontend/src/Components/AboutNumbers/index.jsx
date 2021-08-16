@@ -21,7 +21,7 @@ const AboutNumbers = () => {
               <h2>
                 Power Success For <span className="theme-cl-2">Brand</span>
               </h2>
-              <p>Some numbers that maybe will intrigue you</p>
+              <p>Numbers speak for themselves</p>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ const AboutNumbers = () => {
                 <h4>
                   <span className="cto">{portfolios.length}</span>
                 </h4>
-                <p>Total Freelancers</p>
+                <p>Total Portfolios</p>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ const AboutNumbers = () => {
                 <h4>
                   <span className="cto">7</span>
                 </h4>
-                <p>Win Awards</p>
+                <p>Awards Won</p>
               </div>
             </div>
           </div>

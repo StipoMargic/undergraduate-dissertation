@@ -15,7 +15,10 @@ const Team = () => {
               <h2>
                 Our Professional <span className="theme-cl-2">Team</span>
               </h2>
-              <p>Meet people that makes LiberatoJob possible...</p>
+              <p>
+                Meet the people behind LiberatoJob who made all of this
+                possible...
+              </p>
             </div>
           </div>
         </div>

@@ -49,11 +49,11 @@ const WhatPeopleSaying = () => {
           <div className="col-lg-7 col-md-9">
             <div className="sec-heading">
               <h2>
-                What People <span className="theme-cl-2">Saying</span>
+                <span className="theme-cl-2">REVIEWS</span>
               </h2>
               <p>
-                You are not trusting us? Read some testimonials from our
-                users...
+                Are you still having tourist issues ? Read some of the
+                testimonials from our users...
               </p>
             </div>
           </div>

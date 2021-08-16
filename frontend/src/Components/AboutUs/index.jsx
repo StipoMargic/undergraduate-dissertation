@@ -15,25 +15,24 @@ const AboutUs = () => {
             <div className="about-captione">
               <h6 className="text-blue">About LiberatoJob</h6>
               <h2>
-                Let&apos;s Short Story About LiberatoJob
-                <br />
-                Job Service.
+                LiberatoJob Job Service – World’s most trusted marketplace
               </h2>
               <p>
-                Find & hire top freelancers, web developers & designers or just{" "}
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                advertise job openings in your company. World's most trusted
-                marketplace. Receive quotes in seconds, post your job online,
-                and many more is just few clicks away...
+                Are you searching for an easy way to find and hire top quality
+                freelancers, as well as web developers & designers? Do you want
+                to use the best way to advertise your job offers ? If the
+                answers is yes, you literally a few clicks away...
               </p>
               <ul className="lists-3 mt-3">
-                <li>A business solution designed for teams</li>
                 <li>
-                  Connect to freelancers with proven business experience
-                </li>{" "}
-                <li>
-                  Get matched with the perfect talent by a customer success ...
+                  Designing business solutions to ensure that business processes
+                  go smoothly
                 </li>
+                <li>
+                  Connecting with top quality freelancers with proven business
+                  experience
+                </li>
+                <li>Finding perfect matching between customers and clients</li>
               </ul>
             </div>
           </div>
