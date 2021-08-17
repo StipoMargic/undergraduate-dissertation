@@ -52,7 +52,7 @@ const WhatPeopleSaying = () => {
                 <span className="theme-cl-2">REVIEWS</span>
               </h2>
               <p>
-                Are you still having tourist issues ? Read some of the
+                Are you still having trust issues ? Read some of the
                 testimonials from our users...
               </p>
             </div>
