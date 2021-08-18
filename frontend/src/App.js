@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "@progress/kendo-theme-material/dist/all.css";
 import "hammerjs";
 import { BrowserRouter } from "react-router-dom";
@@ -35,6 +35,31 @@ import FreelancerEdit from "./Components/Freelancers/FreelancerEdit";
 import ProfileEdit from "./Components/Profile/ProfileEdit";
 
 function App() {
+  const [lastCookie, setLastCookie] = useState();
+  const [newCookie, setNewCookie] = useState();
+
+  function listenCookieChange(callback, interval = 1000) {
+    setLastCookie(document.cookie);
+
+    setInterval(() => {
+      const { cookie } = document;
+      setNewCookie(cookie);
+      if (newCookie !== lastCookie) {
+        try {
+          callback();
+        } finally {
+          setLastCookie(newCookie);
+        }
+      }
+    }, interval);
+  }
+
+  useEffect(() => {
+    listenCookieChange(() => {
+      window.location.replace("http://zavrsni.udruga-liberato.hr/logout");
+    }, 1000);
+  }, [newCookie]);
+
   return (
     <BrowserRouter>
       <GlobalProvider>
