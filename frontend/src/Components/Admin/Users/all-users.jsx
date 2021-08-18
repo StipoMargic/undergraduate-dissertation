@@ -175,6 +175,7 @@ const AllUsers = () => {
               </div>
             </div>
           )}
+          {users.length < 1 && <p className="h4 text-info">No results...</p>}
         </div>
       )}
     </>
