@@ -1,7 +1,7 @@
 nelmio_cors:
   defaults:
     origin_regex: true
-    allow_origin: ['http://*.udruga-liberato.hr/*']
+    allow_origin: ['http://zavrsni.udruga-liberato.hr']
     allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
     allow_headers: ['Content-Type', 'Authorization', 'username', 'password']
     expose_headers: ['Link']
