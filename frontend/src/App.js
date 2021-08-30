@@ -44,7 +44,7 @@ function App() {
     setInterval(() => {
       const { cookie } = document;
       setNewCookie(cookie);
-      if (newCookie !== lastCookie) {
+      if (newCookie !== lastCookie && lastCookie !== undefined) {
         try {
           callback();
         } finally {
@@ -55,11 +55,9 @@ function App() {
   }
 
   useEffect(() => {
-    if (lastCookie) {
-      listenCookieChange(() => {
-        window.location.replace("http://zavrsni.udruga-liberato.hr/logout");
-      }, 1000);
-    }
+    listenCookieChange(() => {
+      window.location.replace("http://zavrsni.udruga-liberato.hr/logout");
+    }, 1000);
   }, [newCookie]);
 
   return (
