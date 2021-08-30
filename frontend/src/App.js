@@ -55,9 +55,11 @@ function App() {
   }
 
   useEffect(() => {
-    listenCookieChange(() => {
-      window.location.replace("http://zavrsni.udruga-liberato.hr/logout");
-    }, 1000);
+    if (lastCookie) {
+      listenCookieChange(() => {
+        window.location.replace("http://zavrsni.udruga-liberato.hr/logout");
+      }, 1000);
+    }
   }, [newCookie]);
 
   return (
